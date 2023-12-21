@@ -119,12 +119,13 @@
 			<version>1.21</version>
 		</dependency>
 
+        <!--
 		<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.29</version>
         </dependency>
-
+        -->
 		<!-- oracle 10g driver -->
 		<!--
 		<dependency>
