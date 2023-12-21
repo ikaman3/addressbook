@@ -204,7 +204,7 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <directory>${basedir}/target</directory>
-		<finalName>pst_webapp</finalName>
+		<finalName>addressBook</finalName>
         <pluginManagement>
             <plugins>
 				<plugin>
