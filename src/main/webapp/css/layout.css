@@ -29,7 +29,7 @@ body {min-width: 1400px;}
 .gnb {margin-top: 44px;}
 .gnb ul::after {content: ""; display: block; clear: both;}
 .gnb ul li {float: left;}
-.gnb ul li + li {margin-left: 90px;}
+.gnb ul li + li {margin-left: 64px;}
 .gnb ul li a {display: block; color: #333; font-size: 20px; font-weight: 700;}
 .gnb ul li a.manager {color: #004986;}
 
