@@ -1,21 +1,21 @@
 package egovframework.let.sec.ram.web;
 
-import egovframework.com.cmm.EgovMessageSource;
-import egovframework.let.sec.ram.service.AuthorRoleManage;
-import egovframework.let.sec.ram.service.AuthorRoleManageVO;
-import egovframework.let.sec.ram.service.EgovAuthorRoleManageService;
-
-import org.egovframe.rte.fdl.property.EgovPropertyService;
-import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-
 import javax.annotation.Resource;
 
+import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.fdl.security.intercept.EgovReloadableFilterInvocationSecurityMetadataSource;
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+
+import egovframework.com.cmm.EgovMessageSource;
+import egovframework.let.sec.ram.service.AuthorRoleManage;
+import egovframework.let.sec.ram.service.AuthorRoleManageVO;
+import egovframework.let.sec.ram.service.EgovAuthorRoleManageService;
 
 /**
  * 권한별 롤관리에 관한 controller 클래스를 정의한다.
@@ -47,6 +47,9 @@ public class EgovAuthorRoleController {
     /** EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
+    
+    @Resource(name="databaseSecurityMetadataSource")
+    EgovReloadableFilterInvocationSecurityMetadataSource databaseSecurityMetadataSource;
 
     /**
 	 * 권한 롤 관계 화면 이동
@@ -124,7 +127,10 @@ public class EgovAuthorRoleController {
     	}
 
         status.setComplete();
-        model.addAttribute("message", egovMessageSource.getMessage("success.common.insert"));		
+        model.addAttribute("message", egovMessageSource.getMessage("success.common.insert"));
+        
+        databaseSecurityMetadataSource.reload();
+        
 		return "forward:/sec/ram/EgovAuthorRoleList.do";
 	}    
 }
