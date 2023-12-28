@@ -119,7 +119,7 @@
                 'USR01'          userTy,
                 MBER_ID          mberId,
                 MBER_NM          mberNm,
-                PASSWORD         password,
+                PASSWORD        AS password,
                 PASSWORD_HINT    passwordHint,
                 PASSWORD_CNSR    passwordCnsr,
                 IHIDNUM          ihidnum,
@@ -188,7 +188,7 @@
     <select id="selectPassword_S" resultType="egovframework.let.uss.umt.service.MberManageVO">
         
             SELECT
-                    PASSWORD          password 
+                    PASSWORD         AS password 
             FROM    LETTNGNRLMBER
             WHERE   ESNTL_ID=#{uniqId}
         
