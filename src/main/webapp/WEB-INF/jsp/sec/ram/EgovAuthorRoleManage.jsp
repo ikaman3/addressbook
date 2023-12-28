@@ -212,7 +212,9 @@ function press() {
                                     <label class="lb item" for="searchWord">권한코드: </label>
 
                                     <span class="item f_search">
-                                        <input id="searchWord" class="f_input w_500" name="searchKeyword" type="text" value="<c:out value='${authorRoleManageVO.searchKeyword}'/>" title="검색" onkeypress="press();" readonly="readonly" />
+                                        <input id="searchWord" class="f_input w_350" name="searchKeyword" type="text" value="<c:out value='${authorRoleManageVO.searchKeyword}'/>" title="검색" onkeypress="press();" readonly="readonly" />
+                                        <input id="searchKeyword2" class="f_input w_350" name="searchKeyword2" type="text" value="<c:out value='${authorRoleManageVO.searchKeyword2}'/>" title="검색2" onkeypress="press();" placeholder="롤명"/>
+                                        <button class="btn" type="submit" onclick="javascript:fncSelectAuthorRoleList()"><spring:message code='button.inquire' /></button><!-- 조회 -->
                                     </span>
                                 </div>
                                 <!--// 검색조건 -->

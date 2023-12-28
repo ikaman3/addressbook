@@ -33,7 +33,12 @@
                      END) AS REG_YN
               FROM LETTNROLEINFO A 
                    LEFT OUTER JOIN (SELECT AUTHOR_CODE , ROLE_CODE, CREAT_DT FROM LETTNAUTHORROLERELATE WHERE AUTHOR_CODE = #{searchKeyword}) B
-                ON A.ROLE_CODE = B.ROLE_CODE        
+                ON A.ROLE_CODE = B.ROLE_CODE
+			<trim prefix="WHERE" prefixOverrides="AND |OR">
+				<if test="searchKeyword2 != null and searchKeyword2 != ''">
+					AND A.ROLE_NM like  '%'|| #{searchKeyword2}||'%'
+				</if>
+			</trim>        
 
       ) ALL_LIST
       LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -45,6 +50,11 @@
               FROM LETTNROLEINFO A 
                    LEFT OUTER JOIN (SELECT AUTHOR_CODE , ROLE_CODE, CREAT_DT FROM LETTNAUTHORROLERELATE WHERE AUTHOR_CODE = #{searchKeyword}) B
                 ON A.ROLE_CODE = B.ROLE_CODE
+            <trim prefix="WHERE" prefixOverrides="AND |OR">
+				<if test="searchKeyword2 != null and searchKeyword2 != ''">
+					AND A.ROLE_NM like  '%'|| #{searchKeyword2}||'%'
+				</if>
+			</trim>
     </select>
 
     <insert id="insertAuthorRole" parameterType="egovframework.let.sec.ram.service.AuthorRoleManage">
