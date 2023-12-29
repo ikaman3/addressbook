@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdrDAO">
+	<resultMap id="adrVO" type="egovframework.ictway.kjk.service.AdrVO">
+		<result property="adrId" column="adr_id"/>	<!-- 주소록아이디 -->
+		<result property="adrSj" column="adr_sj"/>	<!-- 주소록제목 -->
+		<result property="adrCn" column="adr_cn"/>	<!-- 주소록내용 -->
+		<result property="useAt" column="use_at"/>	<!-- 사용여부 -->
+		<result property="atchFileId" column="atch_file_id"/>	<!-- 첨부파일아이디 -->
+		<result property="frstRegistPnttm" column="frst_regist_pnttm"/>	<!-- 최초등록일시 -->
+		<result property="frstRegisterId" column="frst_register_id"/>	<!-- 최초등록아이디 -->
+		<result property="lastUpdtPnttm" column="last_updt_pnttm"/>	<!-- 최종수정일시 -->
+		<result property="lastUpdusrId" column="last_updusr_id"/>	<!-- 최종수정아이디 -->
+	</resultMap>
+
+
+	<select id="selectAdrList" parameterType="egovframework.ictway.kjk.service.AdrVO" resultType="egovMap">
+		SELECT
+			 adr_id
+			,adr_sj
+			,adr_cn
+			,use_at
+			,atch_file_id
+			,frst_regist_pnttm
+			,frst_register_id
+			,last_updt_pnttm
+			,last_updusr_id
+		FROM kjk.adr
+		WHERE
+			use_at = 'Y'
+		ORDER BY frst_regist_pnttm DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+
+	<select id="selectAdrListCnt" parameterType="egovframework.ictway.kjk.service.AdrVO" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM kjk.adr
+		WHERE 
+			use_at = 'Y'
+	</select>
+
+
+	<select id="selectAdrDetail" parameterType="egovframework.ictway.kjk.service.AdrVO" resultMap="adrVO">
+		SELECT
+			 adr_id
+			,adr_sj
+			,adr_cn
+			,use_at
+			,atch_file_id
+			,frst_regist_pnttm
+			,frst_register_id
+			,last_updt_pnttm
+			,last_updusr_id
+		FROM kjk.adr
+		WHERE 
+			use_at = 'Y'
+			AND adr_id = #{adrId}
+	</select>
+
+
+	<insert id="insertAdrAct" parameterType="egovframework.ictway.kjk.service.AdrVO">
+		INSERT INTO kjk.adr (
+			 adr_id
+			,adr_sj
+			,adr_cn
+			,atch_file_id
+			,frst_register_id
+		) VALUES(
+			 #{adrId}
+			,#{adrSj}
+			,#{adrCn}
+			,#{atchFileId}
+			,#{frstRegisterId}
+		)
+	</insert>
+
+
+	<update id="updateAdrAct" parameterType="egovframework.ictway.kjk.service.AdrVO">
+		UPDATE kjk.adr
+		SET 
+			 adr_sj = #{adrSj}
+			,adr_cn = #{adrCn}
+			,atch_file_id = #{atchFileId}
+			,last_updt_pnttm = now()
+			,last_updusr_id = #{lastUpdusrId}
+		WHERE
+			use_at = 'Y'
+			AND adr_id = #{adrId}
+	</update>
+	
+	
+	<update id="deleteAdrAct" parameterType="egovframework.ictway.kjk.service.AdrVO">
+		UPDATE kjk.adr
+		SET 
+			 use_at = 'N'
+			,last_updt_pnttm = now()
+			,last_updusr_id = #{lastUpdusrId}
+		WHERE
+			use_at = 'Y'
+			AND adr_id = #{adrId}
+	</update>
+	
+</mapper>
