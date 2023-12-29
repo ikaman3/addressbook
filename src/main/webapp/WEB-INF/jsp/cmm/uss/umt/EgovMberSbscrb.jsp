@@ -172,7 +172,7 @@ function fnSbscrb(){
                                             <td>
                                                 <span class="f_search2 w_350">
                                                     <input id="id_view" type="text" maxlength="20" disabled="disabled" name="id_view" readonly >
-                                                    <form:input path="mberId" type="hidden" readonly="true" maxlength="20" />
+                                                    <form:input path="mberId" readonly="true" maxlength="20" style="display:none;"/>
                                                     <button type="button" class="btn" onclick="javascript:fnIdCheck(); return false;"></button>
                                                 </span>
                                                 <span class="f_txt_inner ml15">(중복 아이디 검색)</span>
