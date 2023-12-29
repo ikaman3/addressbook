@@ -1,17 +1,3 @@
-<%--
-  Class Name :
-  Description :
-  Modification Information
-
-       수정일              수정자             수정내용
-    ----------  ---------   ---------------------------
-    2009.03.19  이삼섭             최초 생성
-    2011.08.31  JJY         경량환경 버전 생성
-    2021.08.12  신용호              신규 디자인 적용
-
-    author   : 공통서비스 개발팀 이삼섭
-    since    : 2009.03.19
---%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ page import="egovframework.com.cmm.service.EgovProperties"%>
@@ -33,11 +19,9 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<!-- <link rel="stylesheet" href="<c:url value='/'/>css_old/default.css" type="text/css" > -->
-
-
 <script type="text/javascript">
 </script>
+<title>샘플 포털 > 주소록 > 김진광</title>
 
 </head>
 <body>
@@ -62,23 +46,35 @@
 								<div class="location">
 									<ul>
 										<li><a class="home" href="">Home</a></li>
-										<li><a href="">알림마당</a></li>
+										<li><a href="">주소록</a></li>
+										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
 									</ul>
 								</div>
 								<!--// Location -->
 
-								<h1 class="tit_1">알림마당</h1>
+								<h1 class="tit_1">주소록</h1>
 
-								<p class="txt_1">표준프레임워크센터에서 회원여러분들께 알려드리는 모든 소식을 모았습니다.</p>
+								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
 
-								<h2 class="tit_2">
-								</h2>
+								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
 								<div class="condition">
 								
-									<form name="frm" action="" method="post">
-									
+									<form name="frm" method="post">
+										<label class="item f_select" for="searchCondition">
+											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>내용</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>작성자</option>
+											</select>
+										</label>
+										<span class="item f_search">
+											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
+											<button class="btn" type="submit" onclick="fn_egov_select_noticeList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+										</span>
+											<a href="<c:url value='/ictway/kjk/selectAdrRegist.do'/>" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form>
 									
 								</div>
