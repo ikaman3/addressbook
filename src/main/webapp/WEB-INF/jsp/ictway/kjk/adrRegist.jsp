@@ -98,11 +98,11 @@
                                  <!-- Location -->
                                  <div class="location">
                                     <ul>
-										<li><a class="home" href="">Home</a></li>
-										<li><a href="">주소록</a></li>
+										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
+										<li><a href="javascript:void(0);">주소록</a></li>
 										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
 										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrRegist"/>">주소록 등록</a></li>
+										<li><a href="javascript:void(0);">주소록 등록</a></li>
 									</ul>
                                 </div>
                                 <!--// Location -->
