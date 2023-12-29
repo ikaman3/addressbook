@@ -91,8 +91,7 @@
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>내용</option>
-												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>작성자</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -112,11 +111,13 @@
 											<col style="width: 80px;">
 											<col style="width: auto;">
 											<col style="width: 100px;">
+											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">제목</th>
+												<th scope="col">등록자</th>
 												<th scope="col">등록일</th>
 											</tr>
 										</thead>
@@ -129,12 +130,13 @@
 														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
 													</a>
 												</td>
+												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
 												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="3"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>

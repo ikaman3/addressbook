@@ -17,32 +17,56 @@
 		<result property="lastUpdusrNm" column="last_updusr_nm"/> <!-- 최종수정자명 -->
 	</resultMap>
 
+	<sql id="withAdrTb">
+		WITH tb AS (
+			SELECT
+				 adr_id
+				,adr_sj
+				,adr_cn
+				,use_at
+				,atch_file_id
+				,frst_regist_pnttm
+				,frst_register_id
+				,last_updt_pnttm
+				,last_updusr_id
+				,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = frst_register_id) AS frst_register_nm
+			FROM kjk.adr
+			WHERE
+				use_at = 'Y'
+		)
+	</sql>
 
 	<select id="selectAdrList" parameterType="egovframework.ictway.kjk.service.AdrVO" resultType="egovMap">
-		SELECT
-			 adr_id
-			,adr_sj
-			,adr_cn
-			,use_at
-			,atch_file_id
-			,frst_regist_pnttm
-			,frst_register_id
-			,last_updt_pnttm
-			,last_updusr_id
-		FROM kjk.adr
-		WHERE
-			use_at = 'Y'
+		<include refid="withAdrTb"/>
+		SELECT * FROM tb
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">
+					AND adr_sj LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 1">
+					AND frst_register_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+		</trim>
 		ORDER BY frst_regist_pnttm DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 
 	<select id="selectAdrListCnt" parameterType="egovframework.ictway.kjk.service.AdrVO" resultType="java.lang.Integer">
-		SELECT
-			COUNT(*)
-		FROM kjk.adr
-		WHERE 
-			use_at = 'Y'
+		<include refid="withAdrTb"/>
+		SELECT COUNT(*) FROM tb
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">
+					AND adr_sj LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 1">
+					AND frst_register_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+		</trim>
 	</select>
 
 
