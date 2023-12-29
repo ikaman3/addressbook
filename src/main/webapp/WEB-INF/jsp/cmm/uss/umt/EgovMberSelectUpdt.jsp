@@ -231,7 +231,6 @@ function fn_egov_modal_remove() {
                                                 <label for="mberFxnum">팩스번호</label>
                                             </td>
                                             <td>
-                                                <input class="f_txt w_350" type="text" id="">
                                                 <form:input path="mberFxnum" id="mberFxnum" class="f_txt w_350" maxlength="15" />
                                                 <form:errors path="mberFxnum" cssClass="error" />
                                             </td>
