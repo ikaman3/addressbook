@@ -48,6 +48,11 @@
 
     <!-- Annotation 을 사용하지 않는 경우에 대한 MVC 처리 설정 -->
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
+    
+    <!-- json형식으로 Return -->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"/>
+	</bean>
      
     <mvc:annotation-driven/>
 
