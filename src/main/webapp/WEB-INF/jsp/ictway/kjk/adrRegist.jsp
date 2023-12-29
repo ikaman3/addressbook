@@ -34,13 +34,13 @@
 <script type="text/javascript">
     
 	//주소록 목록조회
-   function selectAdrList(){
+	function selectAdrList(){
 		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
 		document.searchListForm.submit();
 	}
 	
-    //주소록 등록
-    function registAdrAct() {
+	//주소록 등록
+	function registAdrAct() {
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
