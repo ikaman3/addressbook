@@ -56,7 +56,9 @@ function getCurrentDate()
     minites = minites < 10 ? '0' + minites.toString() : minites.toString();
     var seconds = date.getSeconds();
     seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
-    document.getElementById("currentDate").innerHTML = year + "-" + month + "-" + day + " " + hour + ":" + minites + ":" + seconds;
+    if(document.getElementById("currentDate")){
+	    document.getElementById("currentDate").innerHTML = year + "-" + month + "-" + day + " " + hour + ":" + minites + ":" + seconds;
+    }
 }
 $(document).ready(function(){
     getCurrentDate();
