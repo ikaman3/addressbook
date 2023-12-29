@@ -81,7 +81,7 @@ public class AdrServiceImpl implements AdrService {
 	public void deleteAdrAct(AdrVO adrVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrVO.setLastUpdusrId(user.getUniqId());
-		adrDAO.updateAdrAct(adrVO);
+		adrDAO.deleteAdrAct(adrVO);
 	}
 
 }
