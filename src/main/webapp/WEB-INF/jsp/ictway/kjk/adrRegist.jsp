@@ -53,7 +53,6 @@
         	})
         	.then(response => response.json())
         	.then(data => {
-        		debugger;
         		alert("<spring:message code="success.common.insert"/>");
         		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
         	})
