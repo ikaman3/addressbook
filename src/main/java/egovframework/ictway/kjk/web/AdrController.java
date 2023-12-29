@@ -103,8 +103,9 @@ public class AdrController {
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/kjk/selectAdrRegist.do")
-	public String selectAdrRegist(AdrVO adrVO, ModelMap model) throws Exception {
+	public String selectAdrRegist(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
 		
+		/*return "cop/bbs/EgovNoticeRegist";*/
 		return "ictway/kjk/adrRegist";
 	}
 	
