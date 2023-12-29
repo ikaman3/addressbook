@@ -12,6 +12,9 @@
 		<result property="frstRegisterId" column="frst_register_id"/>	<!-- 최초등록아이디 -->
 		<result property="lastUpdtPnttm" column="last_updt_pnttm"/>	<!-- 최종수정일시 -->
 		<result property="lastUpdusrId" column="last_updusr_id"/>	<!-- 최종수정아이디 -->
+		
+		<result property="frstRegisterNm" column="frst_register_nm"/> <!-- 최초등록자명 -->
+		<result property="lastUpdusrNm" column="last_updusr_nm"/> <!-- 최종수정자명 -->
 	</resultMap>
 
 
@@ -50,10 +53,12 @@
 			,adr_cn
 			,use_at
 			,atch_file_id
-			,frst_regist_pnttm
+			,to_char(frst_regist_pnttm, 'yyyy-mm-dd') AS frst_regist_pnttm
 			,frst_register_id
 			,last_updt_pnttm
 			,last_updusr_id
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = frst_register_id) AS frst_register_nm
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = last_updusr_id) AS last_updusr_nm
 		FROM kjk.adr
 		WHERE 
 			use_at = 'Y'

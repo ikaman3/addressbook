@@ -50,5 +50,11 @@ public class AdrVO extends ComDefaultVO implements Serializable {
 
 	/** 최종수정아이디 */
 	private String lastUpdusrId;
+	
+	/** 최초등록자명 */
+	private String frstRegisterNm;
+	
+	/** 최종수정자명 */
+	private String lastUpdusrNm;
 
 }

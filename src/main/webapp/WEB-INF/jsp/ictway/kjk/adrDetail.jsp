@@ -1,22 +1,11 @@
-<%--
-  Class Name : EgovNoticeInqire.jsp
-  Description : 게시물 조회 화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.03.23   이삼섭          최초 생성
-     2009.06.26   한성곤          2단계 기능 추가 (댓글관리, 만족도조사)
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스 개발팀 이삼섭
-    since    : 2009.03.23
---%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%pageContext.setAttribute("crlf", "\r\n"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,13 +20,50 @@
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
 <script type="text/javascript">
+	//주소록 목록조회
+	function selectAdrList(){
+		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.submit();
+	}
+	
+	//주소록 수정 화면
+	function selectAdrUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrUpdate.do'/>";
+		document.searchListForm.submit();
+	}
+	
+	//주소록 정보 삭제
+	function deleteAdrAct(){
+		if (confirm('<spring:message code="common.delete.msg" />')) {
+    		const formElement = document.searchListForm;
+        	const formData = new FormData(formElement);
+        	
+        	fetch("<c:url value='/ictway/kjk/deleteAdrAct.do'/>",{
+    			method: "POST",
+    			cache: "no-cache",
+     			headers: {},
+     			body: formData
+        	})
+        	.then(response => response.json())
+        	.then(data => {
+        		alert("<spring:message code="success.common.delete"/>");
+        		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+        	})
+        	.catch(error => {
+    			console.log(error);
+    			alert("에러가 발생하였습니다.");
+    		});
+    	}
+	}
+	
 </script>
 
-<title>샘플 포털 > 알림마당 > <c:out value='${result.bbsNm}'/></title>
+<title>샘플 포털 > 주소록 > 김진광</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
 	caption {visibility:hidden; font-size:0; height:0; margin:0; padding:0; line-height:0;}
+	.board_article {padding: 20px 10px 50px 25px;}
 </style>
 
 
@@ -65,101 +91,63 @@
                                  <!-- Location -->
                                 <div class="location">
                                     <ul>
-                                        <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">알림마당</a></li>
-                                        <li><c:out value='${result.bbsNm}'/></li>
+                                        <li><a class="home" href="<c:url value="/"/>">Home</a></li>
+										<li><a href="javascript:void(0);">주소록</a></li>
+										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
+                                
+                                <!-- 검색 form 시작 -->
+								<form:form modelAttribute="searchVO" name="searchListForm" method="post">
+									<form:hidden path="pageIndex"/>
+									<form:hidden path="searchCondition"/>
+									<form:hidden path="searchKeyword"/>
+									
+									<form:hidden path="adrId"/>
+								</form:form>
+								<!-- 검색 form 끝 -->
 
+                              	<h1 class="tit_1">주소록</h1>
+								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<h2 class="tit_2">주소록 상세</h2>
 
-								<form name="frm" method="post">
-
-                                <h1 class="tit_1">알림마당</h1>
-
-                                <p class="txt_1">표준프레임워크센터에서 회원여러분들께 알려드리는 모든 소식을 모았습니다.</p>
-
-                                <h2 class="tit_2"><c:out value='${result.bbsNm}'/></h2>
-
-                                <!-- 게시판 상세보기 -->
+                                <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${result.nttSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>작성자</dt>
-                                                <dd><c:out value="${result.frstRegisterNm}" /></dd>
+                                                <dt>등록자</dt>
+                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>작성일</dt>
-                                                <dd><c:out value="${result.frstRegisterPnttm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>조회수</dt>
-                                                <dd><c:out value="${result.inqireCo}" /></dd>
+                                                <dt>등록일</dt>
+                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
 
                                     <div class="board_article">
-                                    	<textarea id="nttCn" name="nttCn" class="textarea" cols="30" rows="10" readonly="readonly" title="글내용"><c:out value="${result.nttCn}" escapeXml="false" /></textarea>
+                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
-
-
-									<!-- 파일 첨부 시작 -->
-                                    <div class="board_attach">
-                                    
-                                    	<c:if test="${not empty result.atchFileId}">
-                                    	
-				          					<c:if test="${result.bbsAttrbCode == 'BBSA02'}">
-	                                        <dl>
-	                                            <dt style="display: inline;">첨부<br>이미지</dt>
-	                                            <dd>
-	                                                <c:import url="/cmm/fms/selectImageFileInfs.do" charEncoding="utf-8">
-								                        <c:param name="atchFileId" value="${result.atchFileId}" />
-								                    </c:import>
-	                                            </dd>
-	                                        </dl>
-                                        	</c:if>
-                                        	
-                                        	<dl>
-	                                            <dt>첨부파일</dt>
-	                                            <dd>
-	                                                <c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-									                    <c:param name="param_atchFileId" value="${result.atchFileId}" />
-									                </c:import>
-	                                            </dd>
-	                                        </dl>
-	                                        
-	                                    </c:if>
-                                        
-                                    </div>
-                                    <!-- /파일 첨부 끝 -->
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                        	<c:if test="${result.frstRegisterId == sessionUniqId}">
-	                                            <a href="" class="btn btn_skyblue_h46 w_100" onclick="javascript:fn_egov_moveUpdt_notice(); return false;">수정</a>
-	                                            <a href="" class="btn btn_skyblue_h46 w_100" onclick="javascript:fn_egov_delete_notice(); return false;">삭제</a>
-                                            </c:if>
-                                            <c:if test="${result.replyPosblAt == 'Y'}">
-                                            	<a href="" class="btn btn_skyblue_h46 w_100" onclick="javascript:fn_egov_addReply(); return false;">답글작성</a>
-                                            </c:if>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="" class="btn btn_blue_46 w_100" onclick="javascript:fn_egov_select_noticeList('1'); return false;">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
                                 </div>
                                 <!-- 게시판 상세보기 -->
-                                
-                                
-                                </form>
-                                
-                                
                                 
                             </div>
                         </div>
