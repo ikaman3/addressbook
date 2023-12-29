@@ -3,9 +3,10 @@
 <%@ page import="egovframework.com.cmm.service.EgovProperties"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="ImgUrl" value="/images_old/egovframework/cop/bbs/" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -20,6 +21,28 @@
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
 <script type="text/javascript">
+
+	//주소록 목록조회
+	function selectAdrList(pageIndex){
+		document.searchListForm.adrId.value = "";
+		document.searchListForm.pageIndex.value = pageIndex;
+		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.submit();
+	}
+	
+	//주소록 상세조회
+	function selectAdrDetail(adrId){
+		document.searchListForm.adrId.value = adrId;
+		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+		document.searchListForm.submit();
+	}
+	
+	//주소록 등록 화면
+	function selectAdrRegist(){
+		document.searchListForm.adrId.value = "";
+		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrRegist.do'/>";
+		document.searchListForm.submit();
+	}
 </script>
 <title>샘플 포털 > 주소록 > 김진광</title>
 
@@ -62,7 +85,11 @@
 								<!-- 검색조건 -->
 								<div class="condition">
 								
-									<form name="frm" method="post">
+									<!-- 검색 form 시작 -->
+									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
+										<form:hidden path="pageIndex"/>
+										<input type="hidden" name="adrId">
+										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
@@ -72,21 +99,54 @@
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="fn_egov_select_noticeList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-											<a href="<c:url value='/ictway/kjk/selectAdrRegist.do'/>" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
-									</form>
-									
+										<a href="javascript:void(0);" onclick="selectAdrRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+									</form:form>
+									<!-- 검색 form 끝 -->
 								</div>
 								<!--// 검색조건 -->
 
-								<!-- 게시판 -->
+								<!-- 주소록 -->
 								<div class="board_list">
+									<table>
+										<colgroup>
+											<col style="width: 80px;">
+											<col style="width: auto;">
+											<col style="width: 100px;">
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">번호</th>
+												<th scope="col">제목</th>
+												<th scope="col">등록일</th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
+											<tr>
+												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													</a>
+												</td>
+												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+											</tr>
+										</c:forEach>
+										<c:if test="${fn:length(resultList) == 0}">
+											<tr>
+												<td colspan="3"><spring:message code="common.nodata.msg" /></td>
+                                        	</tr>
+										</c:if>
+										</tbody>
+									</table>
 								</div>
 
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrList" />
 										</ul>
 									</div>
 								</div>
