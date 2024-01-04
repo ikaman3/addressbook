@@ -67,7 +67,7 @@ public class AdrINYController {
 		adrINYVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		adrINYVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrINYService.selectAdrList(adrINYVO);
+		Map<String, Object> map = adrINYService.selectAdrINYList(adrINYVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -86,10 +86,10 @@ public class AdrINYController {
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrDetail.do")
+	@RequestMapping("/ictway/iny/selectAdrINYDetail.do")
 	public String selectAdrINYDetail(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
 		
-		AdrINYVO resultVO = adrINYService.selectAdrDetail(adrINYVO);
+		AdrINYVO resultVO = adrINYService.selectAdrINYDetail(adrINYVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
@@ -102,7 +102,7 @@ public class AdrINYController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrRegist.do")
+	@RequestMapping("/ictway/iny/selectAdrINYRegist.do")
 	public String selectAdrINYRegist(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
@@ -115,12 +115,12 @@ public class AdrINYController {
      * @return adrId
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/registAdrAct.do")
+    @RequestMapping("/ictway/iny/registAdrINYAct.do")
     public ModelAndView registAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		long adnkSn = adrINYService.registAdrAct(adrINYVO);
+		long adnkSn = adrINYService.registAdrINYAct(adrINYVO);
 		mav.addObject("adrId", adnkSn);
 		
 		return mav;
@@ -132,10 +132,10 @@ public class AdrINYController {
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrUpdate.do")
+	@RequestMapping("/ictway/iny/selectAdrINYUpdate.do")
 	public String selectAdrINYUpdate(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
 		
-		AdrINYVO resultVO = adrINYService.selectAdrDetail(adrINYVO);
+		AdrINYVO resultVO = adrINYService.selectAdrINYDetail(adrINYVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/iny/adrUpdate";
@@ -147,12 +147,12 @@ public class AdrINYController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/iny/updateAdrINYAct.do")
+    public ModelAndView updateAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrINYService.updateAdrAct(adrINYVO);
+		adrINYService.updateAdrINYAct(adrINYVO);
 		
 		return mav;
     }
@@ -163,12 +163,12 @@ public class AdrINYController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/deleteAdrAct.do")
-    public ModelAndView deleteAdrAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/iny/deleteAdrINYAct.do")
+    public ModelAndView deleteAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrINYService.deleteAdrAct(adrINYVO);
+		adrINYService.deleteAdrINYAct(adrINYVO);
 		
 		return mav;
     }
