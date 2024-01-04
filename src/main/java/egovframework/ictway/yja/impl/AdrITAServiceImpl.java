@@ -64,8 +64,6 @@ public class AdrITAServiceImpl implements AdrITAService {
 		adrITAVO.setAdbkSn(uniqIdLong);
 		String uniqId = Long.toString(uniqIdLong);
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		// adrITAVO.setFrstRegisterId(user.getUniqId());
-		
 		adrITADAO.insertAdrITAAct(adrITAVO);
 		return uniqId;
 	}
