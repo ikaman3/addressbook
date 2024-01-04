@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdrCIYDAO">
+	<resultMap id="adrCIYVO" type="package..AdrCIYVO">
+		<result property="adbkId" column="adbk_id"/>	<!-- 주소록번호 -->
+		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
+		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
+		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
+		<result property="adres" column="adres"/>	<!-- 주소 -->
+		<result property="detailAdres" column="detail_adres"/>	<!-- 상세주소 -->
+		<result property="mbtlnum" column="mbtlnum"/>	<!-- 휴대폰번호 -->
+		<result property="emailaddr" column="emailaddr"/>	<!-- 이메일주소 -->
+		<result property="memo" column="memo"/>	<!-- 메모 -->
+		<result property="photoFlpth" column="photo_flpth"/>	<!-- 사진파일경로 -->
+		<result property="photoFileNm" column="photo_file_nm"/>	<!-- 사진파일명칭 -->
+		<result property="photoExtsnNm" column="photo_extsn_nm"/>	<!-- 사진확장자명칭 -->
+		<result property="adresGroupCode" column="adres_group_code"/>	<!-- 주소록그룹코드 -->
+		<result property="cmpnyNm" column="cmpny_nm"/>	<!-- 회사명칭 -->
+		<result property="cmpnyTeamNm" column="cmpny_team_nm"/>	<!-- 회사팀명칭 -->
+		<result property="cmpnyClsfNm" column="cmpny_clsf_nm"/>	<!-- 회사직급명칭 -->
+		<result property="bkmkAt" column="bkmk_at"/>	<!-- 즐겨찾기여부 -->
+		<result property="adbkCreatDt" column="adbk_creat_dt"/>	<!-- 주소록생성일시 -->
+		<result property="adbkWrterId" column="adbk_wrter_id"/>	<!-- 주소록작성자번호 -->
+		<result property="adbkUpdtDt" column="adbk_updt_dt"/>	<!-- 주소록수정일시 -->
+		<result property="adbkUpdusrId" column="adbk_updusr_id"/>	<!-- 주소록수정자번호 -->
+		<result property="adbkDltrId" column="adbk_dltr_id"/>	<!-- 주소록삭제자번호 -->
+		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
+		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
+	</resultMap>
+	<!-- TODO: 리스트는 간략한 정보만 불러오도록 수정  -->
+	<select id="selectAdrCIYList" parameterType="package..AdrCIYVO" resultType="egovMap">
+		SELECT
+			adbk_id
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,mbtlnum
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_file_nm
+			,photo_extsn_nm
+			,adres_group_code
+			,cmpny_nm
+			,cmpny_team_nm
+			,cmpny_clsf_nm
+			,bkmk_at
+			,adbk_creat_dt
+			,adbk_wrter_id
+			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
+			,adbk_delete_at
+		FROM yjh.address_info
+		WHERE adbk_wrter_id == #{adbkWrterId}
+		ORDER BY 1 DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+	<select id="selectAdrCIYListCnt" parameterType="package..AdrCIYVO" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM yjh.address_info
+		WHERE adbk_wrter_id == #{adbkWrterId}
+	</select>
+
+	<select id="selectAdrCIYDetail" parameterType="package..AdrCIYVO" resultMap="adrCIYVO">
+		SELECT
+			adbk_id
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,mbtlnum
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_file_nm
+			,photo_extsn_nm
+			,adres_group_code
+			,cmpny_nm
+			,cmpny_team_nm
+			,cmpny_clsf_nm
+			,bkmk_at
+			,adbk_creat_dt
+			,adbk_wrter_id
+			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
+			,adbk_delete_at
+		FROM yjh.address_info
+		WHERE adbk_wrter_id == #{adbkWrterId}
+	</select>
+
+	<insert id="insertAdrCIYAct" parameterType="package..AdrCIYVO">
+		INSERT INTO yjh.address_info (
+			adbk_id
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,mbtlnum
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_file_nm
+			,photo_extsn_nm
+			,adres_group_code
+			,cmpny_nm
+			,cmpny_team_nm
+			,cmpny_clsf_nm
+			,bkmk_at
+			,adbk_creat_dt
+			,adbk_wrter_id
+			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
+			,adbk_delete_at
+		) VALUES(
+			,#{adbkId}
+			,#{userNm}
+			,#{brthdy}
+			,#{sexdstnCode}
+			,#{adres}
+			,#{detailAdres}
+			,#{mbtlnum}
+			,#{emailaddr}
+			,#{memo}
+			,#{photoFlpth}
+			,#{photoFileNm}
+			,#{photoExtsnNm}
+			,#{adresGroupCode}
+			,#{cmpnyNm}
+			,#{cmpnyTeamNm}
+			,#{cmpnyClsfNm}
+			,#{bkmkAt}
+			,#{adbkCreatDt}
+			,#{adbkWrterId}
+			,#{adbkUpdtDt}
+			,#{adbkUpdusrId}
+			,#{adbkDltrId}
+			,#{adbkDeleteDt}
+			,#{adbkDeleteAt}
+		)
+	</insert>
+
+	<update id="updateAdrCIYAct" parameterType="package..AdrCIYVO">
+		UPDATE yjh.address_info
+		SET 
+			adbk_id = #{adbkId}
+			,user_nm = #{userNm}
+			,brthdy = #{brthdy}
+			,sexdstn_code = #{sexdstnCode}
+			,adres = #{adres}
+			,detail_adres = #{detailAdres}
+			,mbtlnum = #{mbtlnum}
+			,emailaddr = #{emailaddr}
+			,memo = #{memo}
+			,photo_flpth = #{photoFlpth}
+			,photo_file_nm = #{photoFileNm}
+			,photo_extsn_nm = #{photoExtsnNm}
+			,adres_group_code = #{adresGroupCode}
+			,cmpny_nm = #{cmpnyNm}
+			,cmpny_team_nm = #{cmpnyTeamNm}
+			,cmpny_clsf_nm = #{cmpnyClsfNm}
+			,bkmk_at = #{bkmkAt}
+			,adbk_creat_dt = #{adbkCreatDt}
+			,adbk_wrter_id = #{adbkWrterId}
+			,adbk_updt_dt = #{adbkUpdtDt}
+			,adbk_updusr_id = #{adbkUpdusrId}
+			,adbk_dltr_id = #{adbkDltrId}
+			,adbk_delete_dt = #{adbkDeleteDt}
+			,adbk_delete_at = #{adbkDeleteAt}
+		WHERE adbk_wrter_id == #{adbkWrterId}
+	</update>
+</mapper>
