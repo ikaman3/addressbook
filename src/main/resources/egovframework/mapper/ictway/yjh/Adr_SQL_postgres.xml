@@ -33,7 +33,7 @@
 
 	<select id="selectAdrCIYList" parameterType="package..AdrCIYVO" resultType="egovMap">
 		SELECT
-			,adbk_id
+			adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -76,7 +76,7 @@
 
 	<select id="selectAdrCIYDetail" parameterType="package..AdrCIYVO" resultMap="adrCIYVO">
 		SELECT
-			,adbk_id
+			adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -108,7 +108,7 @@
 
 	<insert id="insertAdrCIYAct" parameterType="package..AdrCIYVO">
 		INSERT INTO yjh.address_info (
-			,adbk_id
+			adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -165,7 +165,7 @@
 	<update id="updateAdrCIYAct" parameterType="package..AdrCIYVO">
 		UPDATE yjh.address_info
 		SET 
-			,adbk_id = #{adbkId}
+			adbk_id = #{adbkId}
 			,user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
