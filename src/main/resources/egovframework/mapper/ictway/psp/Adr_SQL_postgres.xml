@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrPSPDAO">
-		<resultMap id="adrPSPVO" type="egovframework.ictway.psp.service.adrPSPVO">
+		<resultMap id="adrPSPVO" type="egovframework.ictway.psp.service.AdrPSPVO">
 		
 		<result property="adbkSn" column="adbk_sn"/>	<!-- 주소록일련번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
@@ -30,7 +30,7 @@
 
 
 
-	<select id="selectAdrList" parameterType="egovframework.ictway.psp.service.adrPSPVO" resultType="egovMap">
+	<select id="selectAdrList" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="egovMap">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -62,16 +62,16 @@
 
 
 
-	<select id="selectAdrListCnt" parameterType="package..AdrPSPVO" resultType="java.lang.Integer">
+	<!-- <select id="selectAdrListCnt" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM psp.address_info
 		WHERE 
-	</select>
+	</select> -->
 
 
 
-	<select id="selectAdrDetail" parameterType="package..AdrPSPVO" resultMap="addressInfoVO">
+	<!-- <select id="selectAdrDetail" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultMap="addressInfoVO">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -97,11 +97,11 @@
 			,usr_id
 		FROM psp.address_info
 		WHERE 
-	</select>
+	</select> -->
 
 
 
-	<insert id="insertAdrAct" parameterType="package..AdrPSPVO">
+	<insert id="insertAdrAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
 		INSERT INTO psp.address_info (
 			adbk_sn
 			,user_nm
@@ -153,7 +153,7 @@
 
 
 
-	<update id="updateAdrAct" parameterType="package..AdrPSPVO">
+	<!-- <update id="updateAdrAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
 		UPDATE psp.address_info
 		SET 
 			adbk_sn = #{adbkSn}
@@ -179,7 +179,7 @@
 			,delete_at = #{deleteAt}
 			,usr_id = #{usrId}
 		WHERE = #{}
-	</update>
+	</update> -->
 	
 	
 </mapper>

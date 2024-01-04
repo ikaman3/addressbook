@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class AdrPSPController {
 
-	@Resource(name = "AdrPSPService")
+	@Resource(name = "adrPSPService")
 	private AdrPSPService AdrPSPService;
 	
 	@Resource(name = "propertiesService")

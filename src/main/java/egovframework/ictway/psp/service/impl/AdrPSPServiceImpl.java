@@ -27,10 +27,10 @@ import egovframework.ictway.psp.service.AdrPSPVO;
  * </pre>
  * @see
  */
-@Service("adrService")
+@Service("adrPSPService")
 public class AdrPSPServiceImpl implements AdrPSPService {
 
-	@Resource(name = "AdrPSPDAO")
+	@Resource(name = "adrPSPDAO")
     private AdrPSPDAO AdrPSPDAO;
 	
 	/** kjk-adrIdGnrService */
