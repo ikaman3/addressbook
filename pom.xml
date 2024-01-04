@@ -218,9 +218,9 @@
 
 		<!-- validation체크 (@valid) 시작 -->		
 		<dependency>
-		    <groupId>org.hibernate.validator</groupId>
-		    <artifactId>hibernate-validator</artifactId>
-		    <version>7.0.5.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
 		</dependency>
 				
 		<dependency>
