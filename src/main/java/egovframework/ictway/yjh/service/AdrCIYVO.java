@@ -1,3 +1,5 @@
+package egovframework.ictway.yjh.service;
+
 import java.io.Serializable;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -22,8 +24,8 @@ public class AdrCIYVO extends ComDefaultVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	/** 주소록일련번호 */
-	private String adbkSn;
+	/** 주소록번호 */
+	private String adbkId;
 
 	/** 사용자명칭 */
 	private String userNm;
@@ -49,11 +51,11 @@ public class AdrCIYVO extends ComDefaultVO implements Serializable {
 	/** 메모 */
 	private String memo;
 
-	/** 사진원본파일경로 */
-	private String photoOrignlFlpth;
+	/** 사진파일경로 */
+	private String photoFlpth;
 
-	/** 사진보안파일경로 */
-	private String photoScrtyFlpth;
+	/** 사진파일명칭 */
+	private String photoFileNm;
 
 	/** 사진확장자명칭 */
 	private String photoExtsnNm;
@@ -73,14 +75,23 @@ public class AdrCIYVO extends ComDefaultVO implements Serializable {
 	/** 즐겨찾기여부 */
 	private String bkmkAt;
 
-	/** 주소록작성자명칭 */
-	private String adbkWrterNm;
-
 	/** 주소록생성일시 */
 	private String adbkCreatDt;
 
+	/** 주소록작성자번호 */
+	private String adbkWrterId;
+
 	/** 주소록수정일시 */
 	private String adbkUpdtDt;
+
+	/** 주소록수정자번호 */
+	private String adbkUpdusrId;
+
+	/** 주소록삭제자번호 */
+	private String adbkDltrId;
+
+	/** 주소록삭제일시 */
+	private String adbkDeleteDt;
 
 	/** 주소록삭제여부 */
 	private String adbkDeleteAt;
