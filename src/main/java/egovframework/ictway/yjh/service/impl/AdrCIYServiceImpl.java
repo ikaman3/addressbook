@@ -71,7 +71,7 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkWrterId(user.getUniqId());
 		
-		// 생성일자 셋팅
+		// 현재 시간 셋팅
 		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
 	    // 포맷팅을 위한 DateTimeFormatter 생성
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
@@ -87,6 +87,14 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkUpdusrId(user.getUniqId());
 		adrCIYDAO.updateAdrAct(adrCIYVO);
+		
+		// 현재 시간 셋팅
+		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
+	    // 포맷팅을 위한 DateTimeFormatter 생성
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+	    String formattedTime = currentTimeInKorea.format(formatter);
+	    // 수정일자 변경
+	    adrCIYVO.setAdbkUpdtDt(formattedTime);
 	}
 
 	@Override
@@ -94,5 +102,16 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkDltrId(user.getUniqId());
 		adrCIYDAO.deleteAdrAct(adrCIYVO);
-	}
+		
+		// 현재 시간 셋팅
+		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
+	    // 포맷팅을 위한 DateTimeFormatter 생성
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+	    String formattedTime = currentTimeInKorea.format(formatter);
+	    // 삭제일시 셋팅
+	    adrCIYVO.setAdbkDeleteDt(formattedTime);
+	    
+	    // 삭제여부 셋팅
+	    adrCIYVO.setAdbkDeleteAt("Y");
+;	}
 }
