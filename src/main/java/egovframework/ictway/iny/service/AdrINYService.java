@@ -23,7 +23,7 @@ public interface AdrINYService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AdrINYVO adrINYVO) throws Exception;
+	Map<String, Object> selectAdrINYList(AdrINYVO adrINYVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -31,7 +31,7 @@ public interface AdrINYService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AdrINYVO selectAdrDetail(AdrINYVO adrINYVO) throws Exception;
+	AdrINYVO selectAdrINYDetail(AdrINYVO adrINYVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
@@ -40,7 +40,7 @@ public interface AdrINYService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	long registAdrAct(AdrINYVO adrINYVO) throws FdlException, Exception;
+	long registAdrINYAct(AdrINYVO adrINYVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -48,7 +48,7 @@ public interface AdrINYService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AdrINYVO adrINYVO) throws Exception;
+	void updateAdrINYAct(AdrINYVO adrINYVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrINYService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AdrINYVO adrINYVO) throws Exception;
+	void deleteAdrINYAct(AdrINYVO adrINYVO) throws Exception;
 }
