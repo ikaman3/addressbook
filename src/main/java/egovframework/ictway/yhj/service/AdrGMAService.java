@@ -15,46 +15,46 @@ import org.egovframe.rte.fdl.cmmn.exception.FdlException;
  * </pre>
  * @see
  */
-public interface AdrService {
+public interface AdrGMAService {
 
 	/**
 	 * 검색된 목록과 건 수를 조회한다.
-	 * @param adrVO - 조회할 정보가 담긴 VO
+	 * @param addressInfoVO - 조회할 정보가 담긴 VO
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AddressInfoVO adrVO) throws Exception;
+	Map<String, Object> selectAdrList(AddressInfoVO addressInfoVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
-	 * @param adrVO - 조회할 정보가 담긴 VO
+	 * @param addressInfoVO - 조회할 정보가 담긴 VO
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AddressInfoVO selectAdrDetail(AddressInfoVO adrVO) throws Exception;
+	AddressInfoVO selectAdrDetail(AddressInfoVO addressInfoVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
-	 * @param adrVO - 등록할 정보가 담긴 VO
+	 * @param addressInfoVO - 등록할 정보가 담긴 VO
 	 * @return pk
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAdrAct(AddressInfoVO adrVO) throws FdlException, Exception;
+	String registAdrAct(AddressInfoVO addressInfoVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
-	 * @param adrVO - 수정할 정보가 담긴 VO
+	 * @param addressInfoVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AddressInfoVO adrVO) throws Exception;
+	void updateAdrAct(AddressInfoVO addressInfoVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
-	 * @param adrVO - 삭제할 정보가 담긴 VO
+	 * @param addressInfoVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AddressInfoVO adrVO) throws Exception;
+	void deleteAdrAct(AddressInfoVO addressInfoVO) throws Exception;
 }
