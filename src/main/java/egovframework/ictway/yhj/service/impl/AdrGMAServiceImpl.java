@@ -18,22 +18,22 @@ import egovframework.ictway.yhj.service.AdrGMAService;
 /**
  * 주소록 정보 관리를 위한 구현 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.01.04 / 염혜정 / 최초생성
  * </pre>
  * @see
  */
-@Service("adrService")
+@Service("adrGMAService")
 public class AdrGMAServiceImpl implements AdrGMAService {
 
 	@Resource(name = "adrGMADAO")
     private AdrGMADAO adrGMADAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	/** yhj-adrIdGnrService */
+	@Resource(name="yhj-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
@@ -61,10 +61,10 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	public String registAdrAct(AddressInfoVO addressInfoVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
-		addressInfoVO.setAdbkSn(uniqId);
+		addressInfoVO.setAdbkId(uniqId);
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		addressInfoVO.setAdbkWrterNm(user.getUniqId());
+		addressInfoVO.setAdbkWrterId(user.getUniqId());
 		
 		adrGMADAO.insertAdrAct(addressInfoVO);
 		return uniqId;
@@ -72,11 +72,15 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 
 	@Override
 	public void updateAdrAct(AddressInfoVO addressInfoVO) throws Exception {
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		addressInfoVO.setAdbkUpdusrId(user.getUniqId());
 		adrGMADAO.updateAdrAct(addressInfoVO);
 	}
 
 	@Override
 	public void deleteAdrAct(AddressInfoVO addressInfoVO) throws Exception {
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		addressInfoVO.setAdbkDltrId(user.getUniqId());
 		adrGMADAO.deleteAdrAct(addressInfoVO);
 	}
 
