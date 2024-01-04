@@ -26,8 +26,8 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrList(AdrCIYVO adrCIYVO) {
-		return selectList("AdrCIYDAO.selectAdrList", adrCIYVO);
+	public List<?> selectAdrCIYList(AdrCIYVO adrCIYVO) {
+		return selectList("AdrCIYDAO.selectAdrCIYList", adrCIYVO);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAdrListCnt(AdrCIYVO adrCIYVO) {
-		return (Integer)selectOne("AdrCIYDAO.selectAdrListCnt", adrCIYVO);
+	public int selectAdrCIYListCnt(AdrCIYVO adrCIYVO) {
+		return (Integer)selectOne("AdrCIYDAO.selectAdrCIYListCnt", adrCIYVO);
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AdrCIYVO selectAdrDetail(AdrCIYVO adrCIYVO) {
-		return selectOne("AdrCIYDAO.selectAdrDetail", adrCIYVO);
+	public AdrCIYVO selectAdrCIYDetail(AdrCIYVO adrCIYVO) {
+		return selectOne("AdrCIYDAO.selectAdrCIYDetail", adrCIYVO);
 	}
 	
 	/**
@@ -62,8 +62,8 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAdrAct(AdrCIYVO adrCIYVO) {
-		update("AdrCIYDAO.updateAdrAct", adrCIYVO);
+	public void updateAdrCIYAct(AdrCIYVO adrCIYVO) {
+		update("AdrCIYDAO.updateAdrCIYAct", adrCIYVO);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAdrAct(AdrCIYVO adrCIYVO) {
-		update("AdrCIYDAO.deleteAdrAct", adrCIYVO);
+	public void deleteAdrCIYAct(AdrCIYVO adrCIYVO) {
+		update("AdrCIYDAO.deleteAdrCIYAct", adrCIYVO);
 	}
 }

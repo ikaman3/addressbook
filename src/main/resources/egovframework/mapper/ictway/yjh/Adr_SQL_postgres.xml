@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrCIYDAO">
-	<resultMap id="addressInfoVO" type="package..AddressInfoVO">
+	<resultMap id="adrCIYVO" type="package..AdrCIYVO">
 		<result property="adbkId" column="adbk_id"/>	<!-- 주소록번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
@@ -31,7 +31,7 @@
 
 
 
-	<select id="selectAddressInfoList" parameterType="package..AddressInfoVO" resultType="egovMap">
+	<select id="selectAdrCIYList" parameterType="package..AdrCIYVO" resultType="egovMap">
 		SELECT
 			,adbk_id
 			,user_nm
@@ -65,7 +65,7 @@
 
 
 
-	<select id="selectAddressInfoListCnt" parameterType="package..AddressInfoVO" resultType="java.lang.Integer">
+	<select id="selectAdrCIYListCnt" parameterType="package..AdrCIYVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM yjh.address_info
@@ -74,7 +74,7 @@
 
 
 
-	<select id="selectAddressInfoDetail" parameterType="package..AddressInfoVO" resultMap="addressInfoVO">
+	<select id="selectAdrCIYDetail" parameterType="package..AdrCIYVO" resultMap="adrCIYVO">
 		SELECT
 			,adbk_id
 			,user_nm
@@ -106,7 +106,7 @@
 
 
 
-	<insert id="insertAddressInfoAct" parameterType="package..AddressInfoVO">
+	<insert id="insertAdrCIYAct" parameterType="package..AdrCIYVO">
 		INSERT INTO yjh.address_info (
 			,adbk_id
 			,user_nm
@@ -162,7 +162,7 @@
 
 
 
-	<update id="updateAddressInfoAct" parameterType="package..AddressInfoVO">
+	<update id="updateAdrCIYAct" parameterType="package..AdrCIYVO">
 		UPDATE yjh.address_info
 		SET 
 			,adbk_id = #{adbkId}

@@ -23,7 +23,7 @@ public interface AdrCIYService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AdrCIYVO adrCIYVO) throws Exception;
+	Map<String, Object> selectAdrCIYList(AdrCIYVO adrCIYVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -31,7 +31,7 @@ public interface AdrCIYService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AdrCIYVO selectAdrDetail(AdrCIYVO adrCIYVO) throws Exception;
+	AdrCIYVO selectAdrCIYDetail(AdrCIYVO adrCIYVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
@@ -40,7 +40,7 @@ public interface AdrCIYService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAdrAct(AdrCIYVO adrCIYVO) throws FdlException, Exception;
+	String registAdrCIYAct(AdrCIYVO adrCIYVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -48,7 +48,7 @@ public interface AdrCIYService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AdrCIYVO adrCIYVO) throws Exception;
+	void updateAdrCIYAct(AdrCIYVO adrCIYVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrCIYService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AdrCIYVO adrCIYVO) throws Exception;
+	void deleteAdrCIYAct(AdrCIYVO adrCIYVO) throws Exception;
 }

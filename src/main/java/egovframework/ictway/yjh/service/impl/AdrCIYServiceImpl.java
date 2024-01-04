@@ -51,13 +51,14 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		return formattedTime;
 	}
 	
+	// 주소정보 목록 조회
 	@Override
-	public Map<String, Object> selectAdrList(AdrCIYVO adrCIYVO) throws Exception {
+	public Map<String, Object> selectAdrCIYList(AdrCIYVO adrCIYVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = adrCIYDAO.selectAdrList(adrCIYVO);
+		List<?> list = adrCIYDAO.selectAdrCIYList(adrCIYVO);
 		/** 목록 조회 건 수 */
-		int cnt = adrCIYDAO.selectAdrListCnt(adrCIYVO);
+		int cnt = adrCIYDAO.selectAdrCIYListCnt(adrCIYVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -65,15 +66,17 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		
 		return map;
 	}
-
+	
+	// 주소정보 상세조회
 	@Override
-	public AdrCIYVO selectAdrDetail(AdrCIYVO adrCIYVO) throws Exception {
+	public AdrCIYVO selectAdrCIYDetail(AdrCIYVO adrCIYVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return adrCIYDAO.selectAdrDetail(adrCIYVO);
+		return adrCIYDAO.selectAdrCIYDetail(adrCIYVO);
 	}
     
+	// 주소정보 생성
 	@Override
-	public String registAdrAct(AdrCIYVO adrCIYVO) throws FdlException, Exception {
+	public String registAdrCIYAct(AdrCIYVO adrCIYVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		adrCIYVO.setAdbkId(uniqId);
@@ -87,9 +90,10 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		adrCIYDAO.insertAdrAct(adrCIYVO);
 		return uniqId;
 	}
-
+	
+	// 주소정보 수정
 	@Override
-	public void updateAdrAct(AdrCIYVO adrCIYVO) throws Exception {
+	public void updateAdrCIYAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		// 수정자 아이디 셋팅
 		adrCIYVO.setAdbkUpdusrId(user.getUniqId());
@@ -97,11 +101,12 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		String currentTime = getCurrentTimeInKorea();
 	    adrCIYVO.setAdbkUpdtDt(currentTime);
 		
-	    adrCIYDAO.updateAdrAct(adrCIYVO);
+	    adrCIYDAO.updateAdrCIYAct(adrCIYVO);
 	}
 
+	// 주소정보 삭제
 	@Override
-	public void deleteAdrAct(AdrCIYVO adrCIYVO) throws Exception {
+	public void deleteAdrCIYAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		// 삭제자 아이디 셋팅
 		adrCIYVO.setAdbkDltrId(user.getUniqId());
@@ -111,6 +116,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	    // 삭제여부 셋팅
 	    adrCIYVO.setAdbkDeleteAt("Y");
 		
-	    adrCIYDAO.deleteAdrAct(adrCIYVO);
+	    adrCIYDAO.deleteAdrCIYAct(adrCIYVO);
 	}
 }

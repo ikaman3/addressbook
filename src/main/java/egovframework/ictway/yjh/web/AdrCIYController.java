@@ -49,8 +49,8 @@ public class AdrCIYController {
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/yjh/selectAdrList.do")
-	public String selectAdrList(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model, HttpServletRequest request) throws Exception {
+	@RequestMapping("/ictway/yjh/selectAdrCIYList.do")
+	public String selectAdrCIYList(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
 
@@ -67,7 +67,7 @@ public class AdrCIYController {
 		adrCIYVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		adrCIYVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrCIYService.selectAdrList(adrCIYVO);
+		Map<String, Object> map = adrCIYService.selectAdrCIYList(adrCIYVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -86,10 +86,10 @@ public class AdrCIYController {
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/yjh/selectAdrDetail.do")
-	public String selectAdrDetail(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/yjh/selectAdrCIYDetail.do")
+	public String selectAdrCIYDetail(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
 		
-		AdrCIYVO resultVO = adrCIYService.selectAdrDetail(adrCIYVO);
+		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
@@ -115,12 +115,12 @@ public class AdrCIYController {
      * @return adrId
      * @throws Exception
      */
-    @RequestMapping("/ictway/yjh/registAdrAct.do")
-    public ModelAndView registAdrAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yjh/registAdrCIYAct.do")
+    public ModelAndView registAdrCIYAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrId = adrCIYService.registAdrAct(adrCIYVO);
+		String adrId = adrCIYService.registAdrCIYAct(adrCIYVO);
 		mav.addObject("adrId", adrId);
 		
 		return mav;
@@ -135,7 +135,7 @@ public class AdrCIYController {
 	@RequestMapping("/ictway/yjh/selectAdrUpdate.do")
 	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
 		
-		AdrCIYVO resultVO = adrCIYService.selectAdrDetail(adrCIYVO);
+		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/yjh/adrUpdate";
@@ -147,12 +147,12 @@ public class AdrCIYController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/yjh/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yjh/updateAdrCIYAct.do")
+    public ModelAndView updateAdrCIYAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrCIYService.updateAdrAct(adrCIYVO);
+		adrCIYService.updateAdrCIYAct(adrCIYVO);
 		
 		return mav;
     }
@@ -163,12 +163,12 @@ public class AdrCIYController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/yjh/deleteAdrAct.do")
-    public ModelAndView deleteAdrAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yjh/deleteAdrCIYAct.do")
+    public ModelAndView deleteAdrCIYAct(AdrCIYVO adrCIYVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrCIYService.deleteAdrAct(adrCIYVO);
+		adrCIYService.deleteAdrCIYAct(adrCIYVO);
 		
 		return mav;
     }
