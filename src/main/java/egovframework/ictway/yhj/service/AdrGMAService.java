@@ -7,11 +7,11 @@ import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 /**
  * 주소록 정보 관리를 위한 서비스 인터페이스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.01.04 / 염혜정 / 최초생성
  * </pre>
  * @see
  */
@@ -23,7 +23,7 @@ public interface AdrGMAService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AddressInfoVO addressInfoVO) throws Exception;
+	Map<String, Object> selectAddressInfoList(AddressInfoVO addressInfoVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -31,7 +31,7 @@ public interface AdrGMAService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AddressInfoVO selectAdrDetail(AddressInfoVO addressInfoVO) throws Exception;
+	AddressInfoVO selectAddressInfoDetail(AddressInfoVO addressInfoVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
@@ -40,7 +40,7 @@ public interface AdrGMAService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAdrAct(AddressInfoVO addressInfoVO) throws FdlException, Exception;
+	String registAddressInfoAct(AddressInfoVO addressInfoVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -48,7 +48,7 @@ public interface AdrGMAService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AddressInfoVO addressInfoVO) throws Exception;
+	void updateAddressInfoAct(AddressInfoVO addressInfoVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrGMAService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AddressInfoVO addressInfoVO) throws Exception;
+	void deleteAddressInfoAct(AddressInfoVO addressInfoVO) throws Exception;
 }

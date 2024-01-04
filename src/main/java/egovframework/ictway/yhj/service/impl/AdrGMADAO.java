@@ -10,11 +10,11 @@ import egovframework.ictway.yhj.service.AddressInfoVO;
 /**
  * 주소록 정보 관리를 위한 데이터 처리 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.01.04 / 염혜정 / 최초생성
  * </pre>
  * @see
  */
@@ -26,8 +26,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrList(AddressInfoVO addressInfoVO) {
-		return selectList("AdrGMADAO.selectAdrList", addressInfoVO);
+	public List<?> selectAddressInfoList(AddressInfoVO addressInfoVO) {
+		return selectList("AddressInfoGMADAO.selectAddressInfoList", addressInfoVO);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAdrListCnt(AddressInfoVO addressInfoVO) {
-		return (Integer)selectOne("AdrGMADAO.selectAdrListCnt", addressInfoVO);
+	public int selectAddressInfoListCnt(AddressInfoVO addressInfoVO) {
+		return (Integer)selectOne("AddressInfoGMADAO.selectAddressInfoListCnt", addressInfoVO);
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AddressInfoVO selectAdrDetail(AddressInfoVO addressInfoVO) {
-		return selectOne("AdrGMADAO.selectAdrDetail", addressInfoVO);
+	public AddressInfoVO selectAddressInfoDetail(AddressInfoVO addressInfoVO) {
+		return selectOne("AddressInfoGMADAO.selectAddressInfoDetail", addressInfoVO);
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrAct(AddressInfoVO addressInfoVO) {
-		insert("AdrGMADAO.insertAdrAct", addressInfoVO);
+	public void insertAddressInfoAct(AddressInfoVO addressInfoVO) {
+		insert("AddressInfoGMADAO.insertAddressInfoAct", addressInfoVO);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAdrAct(AddressInfoVO addressInfoVO) {
-		update("AdrGMADAO.updateAdrAct", addressInfoVO);
+	public void updateAddressInfoAct(AddressInfoVO addressInfoVO) {
+		update("AddressInfoGMADAO.updateAddressInfoAct", addressInfoVO);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AddressInfoVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAdrAct(AddressInfoVO addressInfoVO) {
-		update("AdrGMADAO.deleteAdrAct", addressInfoVO);
+	public void deleteAddressInfoAct(AddressInfoVO addressInfoVO) {
+		update("AddressInfoGMADAO.deleteAddressInfoAct", addressInfoVO);
 	}
 }
