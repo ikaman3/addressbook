@@ -15,6 +15,10 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.yjh.service.AdrCIYService;
 import egovframework.ictway.yjh.service.AdrCIYVO;
 
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 /**
  * 주소록 정보 관리를 위한 구현 클래스
  * @author ICTWAY
@@ -28,7 +32,8 @@ import egovframework.ictway.yjh.service.AdrCIYVO;
  */
 @Service("adrCIYService")
 public class AdrCIYServiceImpl implements AdrCIYService {
-
+	ZoneId koreaTimeZone = ZoneId.of("Asia/Seoul");
+	
 	@Resource(name = "adrCIYDAO")
     private AdrCIYDAO adrCIYDAO;
 	
@@ -56,15 +61,22 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		// TODO 상세조회에 대한 조건 로직 추가
 		return adrCIYDAO.selectAdrDetail(adrCIYVO);
 	}
-
+    
 	@Override
 	public String registAdrAct(AdrCIYVO adrCIYVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
-		adrCIYVO.setAdrId(uniqId);
+		adrCIYVO.setAdbkId(uniqId);
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrCIYVO.setFrstRegisterId(user.getUniqId());
+		adrCIYVO.setAdbkWrterId(user.getUniqId());
+		
+		// 생성일자 셋팅
+		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
+	    // 포맷팅을 위한 DateTimeFormatter 생성
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+	    String formattedTime = currentTimeInKorea.format(formatter);
+		adrCIYVO.setAdbkCreatDt(formattedTime);
 		
 		adrCIYDAO.insertAdrAct(adrCIYVO);
 		return uniqId;
@@ -73,15 +85,14 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Override
 	public void updateAdrAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrCIYVO.setLastUpdusrId(user.getUniqId());
+		adrCIYVO.setAdbkUpdusrId(user.getUniqId());
 		adrCIYDAO.updateAdrAct(adrCIYVO);
 	}
 
 	@Override
 	public void deleteAdrAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrCIYVO.setLastUpdusrId(user.getUniqId());
+		adrCIYVO.setAdbkDltrId(user.getUniqId());
 		adrCIYDAO.deleteAdrAct(adrCIYVO);
 	}
-
 }
