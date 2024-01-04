@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdrDAO">
+		<resultMap id="userInfoVO" type="package..UserInfoVO">
+	</resultMap>
+
+
+
+	<select id="selectUserInfoList" parameterType="package..UserInfoVO" resultType="egovMap">
+		SELECT
+		FROM test_schema.user_info
+		WHERE 
+		ORDER BY 1 DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+
+
+	<select id="selectUserInfoListCnt" parameterType="package..UserInfoVO" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM test_schema.user_info
+		WHERE 
+	</select>
+
+
+
+	<select id="selectUserInfoDetail" parameterType="package..UserInfoVO" resultMap="userInfoVO">
+		SELECT
+		FROM test_schema.user_info
+		WHERE 
+	</select>
+
+
+
+	<insert id="insertUserInfoAct" parameterType="package..UserInfoVO">
+		INSERT INTO test_schema.user_info (
+		) VALUES(
+		)
+	</insert>
+
+
+
+	<update id="updateUserInfoAct" parameterType="package..UserInfoVO">
+		UPDATE test_schema.user_info
+		SET 
+		WHERE = #{}
+	</update>
+</mapper>
