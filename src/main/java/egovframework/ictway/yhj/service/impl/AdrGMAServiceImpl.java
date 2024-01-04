@@ -33,7 +33,7 @@ public class AdrGMAServiceImpl implements AdrGMAService {
     private AdrGMADAO adrGMADAO;
 	
 	/** yhj-adrIdGnrService */
-	@Resource(name="yhj-adrIdGnrService")
+	@Resource(name="kjk-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override

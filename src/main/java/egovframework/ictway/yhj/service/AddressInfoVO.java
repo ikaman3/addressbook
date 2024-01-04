@@ -2,6 +2,7 @@ package egovframework.ictway.yhj.service;
 
 import java.io.Serializable;
 
+import egovframework.com.cmm.ComDefaultVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +20,7 @@ import lombok.Setter;
 */
 @NoArgsConstructor
 @Getter @Setter
-public class AddressInfoVO implements Serializable {
+public class AddressInfoVO extends ComDefaultVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
