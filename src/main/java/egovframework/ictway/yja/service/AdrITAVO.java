@@ -2,6 +2,7 @@ package egovframework.ictway.yja.service;
 
 import java.io.Serializable;
 
+import egovframework.com.cmm.ComDefaultVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +20,7 @@ import lombok.Setter;
 */
 @NoArgsConstructor
 @Getter @Setter
-public class AdrITAVO implements Serializable {
+public class AdrITAVO extends ComDefaultVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -79,6 +80,9 @@ public class AdrITAVO implements Serializable {
 
 	/** 수정일시 */
 	private String updtDt;
+	
+	/** 등록사용자아이디 */
+	private String registUserId;
 
 	/** 등록사용자명칭 */
 	private String registUserNm;

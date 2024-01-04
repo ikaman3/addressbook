@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrITADAO">
-	<resultMap id="adrITAVO" type="egovframework.ictway.yja.service.AdrITAVO">
+		<resultMap id="adrITAVO" type="egovframework.ictway.yja.service.AdrITAVO">
 		<result property="adbkSn" column="adbk_sn"/>	<!-- 주소록일련번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
@@ -22,11 +22,12 @@
 		<result property="photoExtsnNm" column="photo_extsn_nm"/>	<!-- 사진확장자명칭 -->
 		<result property="registDt" column="regist_dt"/>	<!-- 등록일시 -->
 		<result property="updtDt" column="updt_dt"/>	<!-- 수정일시 -->
+		<result property="registUserId" column="regist_user_id"/>	<!-- 등록사용자아이디 -->
 		<result property="registUserNm" column="regist_user_nm"/>	<!-- 등록사용자명칭 -->
 		<result property="deleteAt" column="delete_at"/>	<!-- 삭제여부 -->
 	</resultMap>
 
-	<select id="selectAddressInfoList" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultType="egovMap">
+	<select id="selectAdrITAList" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultType="egovMap">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -49,20 +50,21 @@
 			,updt_dt
 			,regist_user_nm
 			,delete_at
+			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
-	<select id="selectAddressInfoListCnt" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultType="java.lang.Integer">
+	<select id="selectAdrITAListCnt" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM yja.address_info
 		WHERE delete_at = 'N'
 	</select>
 
-	<select id="selectAddressInfoDetail" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultMap="addressInfoVO">
+	<select id="selectAdrITADetail" parameterType="egovframework.ictway.yja.service.AdrITAVO" resultMap="adrITAVO">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -85,11 +87,12 @@
 			,updt_dt
 			,regist_user_nm
 			,delete_at
+			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
 	</select>
 
-	<insert id="insertAddressInfoAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
+	<insert id="insertAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
 		INSERT INTO yja.address_info (
 			adbk_sn
 			,user_nm
@@ -112,6 +115,7 @@
 			,updt_dt
 			,regist_user_nm
 			,delete_at
+			,regist_user_id
 		) VALUES(
 			#{adbkSn}
 			,#{userNm}
@@ -134,10 +138,11 @@
 			,#{updtDt}
 			,#{registUserNm}
 			,#{deleteAt}
+			,#{registUserId}
 		)
 	</insert>
 
-	<update id="updateAddressInfoAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
+	<update id="updateAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
 		UPDATE yja.address_info
 		SET 
 			adbk_sn = #{adbkSn}
@@ -161,7 +166,8 @@
 			,updt_dt = #{updtDt}
 			,regist_user_nm = #{registUserNm}
 			,delete_at = #{deleteAt}
-		WHERE = delete_at = #{N}
+			,regist_user_id = #{registUserId}
+		WHERE delete_at = #{N}
 	</update>
 	
 </mapper>

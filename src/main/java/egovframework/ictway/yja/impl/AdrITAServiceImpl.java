@@ -33,7 +33,7 @@ public class AdrITAServiceImpl implements AdrITAService {
     private AdrITADAO adrITADAO;
 	
 	/** yja-adrITAIdGnrService */
-	@Resource(name="yja-adrITAIdGnrService")
+	@Resource(name="kjk-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
@@ -64,6 +64,7 @@ public class AdrITAServiceImpl implements AdrITAService {
 		adrITAVO.setAdbkSn(uniqIdLong);
 		String uniqId = Long.toString(uniqIdLong);
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		adrITAVO.setRegistUserId(user.getUniqId());
 		adrITADAO.insertAdrITAAct(adrITAVO);
 		return uniqId;
 	}
@@ -71,14 +72,14 @@ public class AdrITAServiceImpl implements AdrITAService {
 	@Override
 	public void updateAdrITAAct(AdrITAVO adrITAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		// adrITAVO.setLastUpdusrId(user.getUniqId());
+		adrITAVO.setRegistUserId(user.getUniqId());
 		adrITADAO.updateAdrITAAct(adrITAVO);
 	}
 
 	@Override
 	public void deleteAdrITAAct(AdrITAVO adrITAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		// adrITAVO.setLastUpdusrId(user.getUniqId());
+		adrITAVO.setRegistUserId(user.getUniqId());
 		adrITADAO.deleteAdrITAAct(adrITAVO);
 	}
 

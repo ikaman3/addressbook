@@ -26,7 +26,7 @@ public class AdrITADAO extends EgovAbstractMapper {
 	 * @param adrITAVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrITAList(AdrITAVO adrITAVO) {
+	public List<AdrITAVO> selectAdrITAList(AdrITAVO adrITAVO) {
 		return selectList("AdrITADAO.selectAdrITAList", adrITAVO);
 	}
 

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
-import egovframework.ictway.kjk.service.AdrService;
-import egovframework.ictway.kjk.service.AdrVO;
+import egovframework.ictway.yja.service.AdrITAService;
+import egovframework.ictway.yja.service.AdrITAVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class AdrITAController {
 
-	@Resource(name = "adrService")
-	private AdrService adrService;
+	@Resource(name = "adrITAService")
+	private AdrITAService adrITAService;
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -49,25 +49,25 @@ public class AdrITAController {
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrList.do")
-	public String selectAdrList(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model, HttpServletRequest request) throws Exception {
+	@RequestMapping("/ictway/yja/selectAdrITAList.do")
+	public String selectAdrITAList(@ModelAttribute("searchVO") AdrITAVO adrITAVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
 
 		/** paging */
-		adrVO.setPageUnit(propertyService.getInt("pageUnit"));
-		adrVO.setPageSize(propertyService.getInt("pageSize"));
+		adrITAVO.setPageUnit(propertyService.getInt("pageUnit"));
+		adrITAVO.setPageSize(propertyService.getInt("pageSize"));
 		
 		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(adrVO.getPageIndex()); /** 현재 페이지 번호 */
-		paginationInfo.setRecordCountPerPage(adrVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
-		paginationInfo.setPageSize(adrVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
+		paginationInfo.setCurrentPageNo(adrITAVO.getPageIndex()); /** 현재 페이지 번호 */
+		paginationInfo.setRecordCountPerPage(adrITAVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
+		paginationInfo.setPageSize(adrITAVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
 		
-		adrVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		adrVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		adrVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		adrITAVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		adrITAVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		adrITAVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrService.selectAdrList(adrVO);
+		Map<String, Object> map = adrITAService.selectAdrITAList(adrITAVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -76,7 +76,7 @@ public class AdrITAController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/kjk/adrList";
+		return "ictway/yja/adrITAList";
 	}
 	
 	/**
@@ -86,14 +86,14 @@ public class AdrITAController {
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrDetail.do")
-	public String selectAdrDetail(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/yja/selectAdrITADetail.do")
+	public String selectAdrITADetail(@ModelAttribute("searchVO") AdrITAVO adrITAVO, ModelMap model) throws Exception {
 		
-		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
+		AdrITAVO resultVO = adrITAService.selectAdrITADetail(adrITAVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/kjk/adrDetail";
+		return "ictway/yja/adrITADetail";
 	}
 	
 	/**
@@ -102,25 +102,25 @@ public class AdrITAController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrRegist.do")
-	public String selectAdrRegist(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/yja/selectAdrITARegist.do")
+	public String selectAdrITARegist(@ModelAttribute("searchVO") AdrITAVO adrITAVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/kjk/adrRegist";
+		return "ictway/yja/adrITARegist";
 	}
 	
 	/**
      * 주소록 정보 등록
-     * @param adrVO - 주소록 VO
+     * @param adrITAVO - 주소록 VO
      * @return adrId
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/registAdrAct.do")
-    public ModelAndView registAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yja/registAdrITAAct.do")
+    public ModelAndView registAdrITAAct(AdrITAVO adrITAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrId = adrService.registAdrAct(adrVO);
+		String adrId = adrITAService.registAdrITAAct(adrITAVO);
 		mav.addObject("adrId", adrId);
 		
 		return mav;
@@ -132,43 +132,43 @@ public class AdrITAController {
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrUpdate.do")
-	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/yja/selectAdrITAUpdate.do")
+	public String selectAdrITAUpdate(@ModelAttribute("searchVO") AdrITAVO adrITAVO, ModelMap model) throws Exception {
 		
-		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
+		AdrITAVO resultVO = adrITAService.selectAdrITADetail(adrITAVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/kjk/adrUpdate";
+		return "ictway/yja/adrITAUpdate";
 	}
 	
 	/**
      * 주소록 정보 수정
-     * @param adrVO - 주소록 VO
+     * @param adrITAVO - 주소록 VO
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yja/updateAdrITAAct.do")
+    public ModelAndView updateAdrITAAct(AdrITAVO adrITAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrService.updateAdrAct(adrVO);
+		adrITAService.updateAdrITAAct(adrITAVO);
 		
 		return mav;
     }
     
     /**
      * 주소록 정보 삭제
-     * @param adrVO - 주소록 VO
+     * @param adrITAVO - 주소록 VO
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/deleteAdrAct.do")
-    public ModelAndView deleteAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/yja/deleteAdrITAAct.do")
+    public ModelAndView deleteAdrITAAct(AdrITAVO adrITAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrService.deleteAdrAct(adrVO);
+		adrITAService.deleteAdrITAAct(adrITAVO);
 		
 		return mav;
     }
