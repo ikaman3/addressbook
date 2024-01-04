@@ -41,6 +41,16 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Resource(name="yjh-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
+	// 타임존이 포함된 현재 시간을 얻는 메서드
+	public String getCurrentTimeInKorea() {
+		// 현재 시간 셋팅
+		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
+	    // 포맷팅을 위한 DateTimeFormatter 생성
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
+	    String formattedTime = currentTimeInKorea.format(formatter);
+		return formattedTime;
+	}
+	
 	@Override
 	public Map<String, Object> selectAdrList(AdrCIYVO adrCIYVO) throws Exception {
 
@@ -67,16 +77,12 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		adrCIYVO.setAdbkId(uniqId);
-		
+		// 생성자 아이디 셋팅
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkWrterId(user.getUniqId());
-		
-		// 현재 시간 셋팅
-		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
-	    // 포맷팅을 위한 DateTimeFormatter 생성
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-	    String formattedTime = currentTimeInKorea.format(formatter);
-		adrCIYVO.setAdbkCreatDt(formattedTime);
+		// 생성일자 셋팅
+		String currentTime = getCurrentTimeInKorea();
+		adrCIYVO.setAdbkCreatDt(currentTime);
 		
 		adrCIYDAO.insertAdrAct(adrCIYVO);
 		return uniqId;
@@ -85,33 +91,26 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Override
 	public void updateAdrAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		// 수정자 아이디 셋팅
 		adrCIYVO.setAdbkUpdusrId(user.getUniqId());
-		adrCIYDAO.updateAdrAct(adrCIYVO);
+		// 수정일시 셋팅
+		String currentTime = getCurrentTimeInKorea();
+	    adrCIYVO.setAdbkUpdtDt(currentTime);
 		
-		// 현재 시간 셋팅
-		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
-	    // 포맷팅을 위한 DateTimeFormatter 생성
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-	    String formattedTime = currentTimeInKorea.format(formatter);
-	    // 수정일자 변경
-	    adrCIYVO.setAdbkUpdtDt(formattedTime);
+	    adrCIYDAO.updateAdrAct(adrCIYVO);
 	}
 
 	@Override
 	public void deleteAdrAct(AdrCIYVO adrCIYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		// 삭제자 아이디 셋팅
 		adrCIYVO.setAdbkDltrId(user.getUniqId());
-		adrCIYDAO.deleteAdrAct(adrCIYVO);
-		
-		// 현재 시간 셋팅
-		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
-	    // 포맷팅을 위한 DateTimeFormatter 생성
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-	    String formattedTime = currentTimeInKorea.format(formatter);
-	    // 삭제일시 셋팅
-	    adrCIYVO.setAdbkDeleteDt(formattedTime);
-	    
+		// 삭제일시 셋팅
+		String currentTime = getCurrentTimeInKorea();
+	    adrCIYVO.setAdbkDeleteDt(currentTime);
 	    // 삭제여부 셋팅
 	    adrCIYVO.setAdbkDeleteAt("Y");
-;	}
+		
+	    adrCIYDAO.deleteAdrAct(adrCIYVO);
+	}
 }
