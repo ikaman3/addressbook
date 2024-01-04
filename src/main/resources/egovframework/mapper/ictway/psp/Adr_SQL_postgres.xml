@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdrPSPDAO">
+		<resultMap id="adrPSPVO" type="egovframework.ictway.psp.service.adrPSPVO">
+		
+		<result property="adbkSn" column="adbk_sn"/>	<!-- 주소록일련번호 -->
+		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
+		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
+		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
+		<result property="adres" column="adres"/>	<!-- 주소 -->
+		<result property="detailAdres" column="detail_adres"/>	<!-- 상세주소 -->
+		<result property="moblphonNo" column="moblphon_no"/>	<!-- 휴대폰번호 -->
+		<result property="emailaddr" column="emailaddr"/>	<!-- 이메일주소 -->
+		<result property="memo" column="memo"/>	<!-- 메모 -->
+		<result property="groupNm" column="group_nm"/>	<!-- 그룹명칭 -->
+		<result property="cmpnyNm" column="cmpny_nm"/>	<!-- 회사명칭 -->
+		<result property="deptNm" column="dept_nm"/>	<!-- 부서명칭 -->
+		<result property="clsfNm" column="clsf_nm"/>	<!-- 직급명칭 -->
+		<result property="bkmkAt" column="bkmk_at"/>	<!-- 즐겨찾기여부 -->
+		<result property="photoNm" column="photo_nm"/>	<!-- 사진명칭 -->
+		<result property="photoCours" column="photo_cours"/>	<!-- 사진경로 -->
+		<result property="photoExtsnNm" column="photo_extsn_nm"/>	<!-- 사진확장자명칭 -->
+		<result property="registDt" column="regist_dt"/>	<!-- 등록일시 -->
+		<result property="updtDt" column="updt_dt"/>	<!-- 수정일시 -->
+		<result property="registUserNm" column="regist_user_nm"/>	<!-- 등록사용자명칭 -->
+		<result property="deleteAt" column="delete_at"/>	<!-- 삭제여부 -->
+		<result property="usrId" column="usr_id"/>	<!-- 유저고유아이디 -->
+	</resultMap>
+
+
+
+	<select id="selectAdrList" parameterType="egovframework.ictway.psp.service.adrPSPVO" resultType="egovMap">
+		SELECT
+			adbk_sn
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,moblphon_no
+			,emailaddr
+			,memo
+			,group_nm
+			,cmpny_nm
+			,dept_nm
+			,clsf_nm
+			,bkmk_at
+			,photo_nm
+			,photo_cours
+			,photo_extsn_nm
+			,regist_dt
+			,updt_dt
+			,regist_user_nm
+			,delete_at
+			,usr_id
+		FROM psp.address_info
+		WHERE 
+		ORDER BY 1 DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+
+
+	<select id="selectAdrListCnt" parameterType="package..AdrPSPVO" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM psp.address_info
+		WHERE 
+	</select>
+
+
+
+	<select id="selectAdrDetail" parameterType="package..AdrPSPVO" resultMap="addressInfoVO">
+		SELECT
+			adbk_sn
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,moblphon_no
+			,emailaddr
+			,memo
+			,group_nm
+			,cmpny_nm
+			,dept_nm
+			,clsf_nm
+			,bkmk_at
+			,photo_nm
+			,photo_cours
+			,photo_extsn_nm
+			,regist_dt
+			,updt_dt
+			,regist_user_nm
+			,delete_at
+			,usr_id
+		FROM psp.address_info
+		WHERE 
+	</select>
+
+
+
+	<insert id="insertAdrAct" parameterType="package..AdrPSPVO">
+		INSERT INTO psp.address_info (
+			adbk_sn
+			,user_nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,moblphon_no
+			,emailaddr
+			,memo
+			,group_nm
+			,cmpny_nm
+			,dept_nm
+			,clsf_nm
+			,bkmk_at
+			,photo_nm
+			,photo_cours
+			,photo_extsn_nm
+			,regist_dt
+			,updt_dt
+			,regist_user_nm
+			,delete_at
+			,usr_id
+		) VALUES(
+			#{adbkSn}
+			,#{userNm}
+			,#{brthdy}
+			,#{sexdstnCode}
+			,#{adres}
+			,#{detailAdres}
+			,#{moblphonNo}
+			,#{emailaddr}
+			,#{memo}
+			,#{groupNm}
+			,#{cmpnyNm}
+			,#{deptNm}
+			,#{clsfNm}
+			,#{bkmkAt}
+			,#{photoNm}
+			,#{photoCours}
+			,#{photoExtsnNm}
+			,#{registDt}
+			,#{updtDt}
+			,#{registUserNm}
+			,#{deleteAt}
+			,#{usrId}
+		)
+	</insert>
+
+
+
+	<update id="updateAdrAct" parameterType="package..AdrPSPVO">
+		UPDATE psp.address_info
+		SET 
+			adbk_sn = #{adbkSn}
+			,user_nm = #{userNm}
+			,brthdy = #{brthdy}
+			,sexdstn_code = #{sexdstnCode}
+			,adres = #{adres}
+			,detail_adres = #{detailAdres}
+			,moblphon_no = #{moblphonNo}
+			,emailaddr = #{emailaddr}
+			,memo = #{memo}
+			,group_nm = #{groupNm}
+			,cmpny_nm = #{cmpnyNm}
+			,dept_nm = #{deptNm}
+			,clsf_nm = #{clsfNm}
+			,bkmk_at = #{bkmkAt}
+			,photo_nm = #{photoNm}
+			,photo_cours = #{photoCours}
+			,photo_extsn_nm = #{photoExtsnNm}
+			,regist_dt = #{registDt}
+			,updt_dt = #{updtDt}
+			,regist_user_nm = #{registUserNm}
+			,delete_at = #{deleteAt}
+			,usr_id = #{usrId}
+		WHERE = #{}
+	</update>
+	
+	
+</mapper>
