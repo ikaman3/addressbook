@@ -9,6 +9,8 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -116,9 +118,15 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/registAdrAct.do")
-    public ModelAndView registAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
+    	
+    	if (bindingResult.hasErrors()) {
+			mav.addObject("returnResult", "FAIL");
+			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+		    return mav;
+		}
     	
 		String adrId = adrService.registAdrAct(adrVO);
 		mav.addObject("adrId", adrId);

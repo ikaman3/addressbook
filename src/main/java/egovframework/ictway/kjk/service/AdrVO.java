@@ -2,6 +2,9 @@ package egovframework.ictway.kjk.service;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import egovframework.com.cmm.ComDefaultVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +31,13 @@ public class AdrVO extends ComDefaultVO implements Serializable {
 	private String adrId;
 
 	/** 주소록제목 */
+	@NotNull(message = "주소록제목은 필수 입력값입니다.")
+	@Size(max=50, message="{max}자 이하로 입력해야 합니다.")
 	private String adrSj;
 
 	/** 주소록내용 */
+	@NotNull(message = "주소록내용은 필수 입력값입니다.")
+	@Size(max=500, message="{max}자 이하로 입력해야 합니다.")
 	private String adrCn;
 
 	/** 사용여부 */
