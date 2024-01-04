@@ -28,9 +28,7 @@
 		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
-
-
-
+	<!-- TODO: 리스트는 간략한 정보만 불러오도록 수정  -->
 	<select id="selectAdrCIYList" parameterType="package..AdrCIYVO" resultType="egovMap">
 		SELECT
 			adbk_id
@@ -58,21 +56,17 @@
 			,adbk_delete_dt
 			,adbk_delete_at
 		FROM yjh.address_info
-		WHERE 
+		WHERE adbk_wrter_id == #{adbkWrterId}
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
-
-
 
 	<select id="selectAdrCIYListCnt" parameterType="package..AdrCIYVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM yjh.address_info
-		WHERE 
+		WHERE adbk_wrter_id == #{adbkWrterId}
 	</select>
-
-
 
 	<select id="selectAdrCIYDetail" parameterType="package..AdrCIYVO" resultMap="adrCIYVO">
 		SELECT
@@ -101,10 +95,8 @@
 			,adbk_delete_dt
 			,adbk_delete_at
 		FROM yjh.address_info
-		WHERE 
+		WHERE adbk_wrter_id == #{adbkWrterId}
 	</select>
-
-
 
 	<insert id="insertAdrCIYAct" parameterType="package..AdrCIYVO">
 		INSERT INTO yjh.address_info (
@@ -160,8 +152,6 @@
 		)
 	</insert>
 
-
-
 	<update id="updateAdrCIYAct" parameterType="package..AdrCIYVO">
 		UPDATE yjh.address_info
 		SET 
@@ -189,6 +179,6 @@
 			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_delete_at = #{adbkDeleteAt}
-		WHERE = #{}
+		WHERE adbk_wrter_id == #{adbkWrterId}
 	</update>
 </mapper>
