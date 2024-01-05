@@ -160,11 +160,9 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="adres">주소</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <input id="adres" name="adres" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -190,41 +188,33 @@
 	                                        <tr>	                                        
 	                                            <td class="lb">
 	                                                <label for="memo">메모</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <input id="memo" name="memo" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>	                                        
 	                                            <td class="lb">
 	                                                <label for="photoFlpth">사진</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="photoFlpth" name="photoFlpth" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="photoFlpth" />
+	                                                <input id="photoFlpth" name="photoFlpth" type="file" value="" class="f_txt w_full" ></input>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>	                                        
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">소속그룹</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>	                                        
 	                                            <td class="lb">
 	                                                <label for="cmpnyNm">회사</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <input id="cmpnyNm" name="cmpnyNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
