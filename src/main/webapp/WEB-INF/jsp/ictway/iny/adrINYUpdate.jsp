@@ -72,7 +72,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 윤현종</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -107,7 +107,7 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">윤현종</a></li>
 										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 수정</a></li>
 									</ul>
@@ -128,7 +128,7 @@
 									<form:hidden path="adrId"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">INY 주소록 수정 입니다.</p>
 									<h2 class="tit_2">주소록 수정</h2>
 	
 	                                <div class="board_view2">
