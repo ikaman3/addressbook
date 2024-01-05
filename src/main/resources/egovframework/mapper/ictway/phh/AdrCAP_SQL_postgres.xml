@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="AdrPHHDAO">
-	<resultMap id="adrPhhVO" type="egovframework.ictway.phh.service.AdrPHHVO">
-		<result property="adbkSn" column="adbk_sn"/>	<!-- 주소록일련번호 -->
+<mapper namespace="AdrCAPDAO">
+	<resultMap id="adrCAPDAO" type="egovframework.ictway.phh.service.AdrCAPVO">
+		<result property="adbkId" column="adbk_id"/>	<!-- 주소록번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
 		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
@@ -12,25 +12,28 @@
 		<result property="mbtlnum" column="mbtlnum"/>	<!-- 휴대폰번호 -->
 		<result property="emailaddr" column="emailaddr"/>	<!-- 이메일주소 -->
 		<result property="memo" column="memo"/>	<!-- 메모 -->
-		<result property="photoOrignlFlpth" column="photo_orignl_flpth"/>	<!-- 사진원본파일경로 -->
-		<result property="photoScrtyFlpth" column="photo_scrty_flpth"/>	<!-- 사진보안파일경로 -->
+		<result property="photoFlpth" column="photo_flpth"/>	<!-- 사진파일경로 -->
+		<result property="photoFileNm" column="photo_file_nm"/>	<!-- 사진파일명칭 -->
 		<result property="photoExtsnNm" column="photo_extsn_nm"/>	<!-- 사진확장자명칭 -->
 		<result property="adresGroupCode" column="adres_group_code"/>	<!-- 주소록그룹코드 -->
 		<result property="cmpnyNm" column="cmpny_nm"/>	<!-- 회사명칭 -->
 		<result property="cmpnyTeamNm" column="cmpny_team_nm"/>	<!-- 회사팀명칭 -->
 		<result property="cmpnyClsfNm" column="cmpny_clsf_nm"/>	<!-- 회사직급명칭 -->
 		<result property="bkmkAt" column="bkmk_at"/>	<!-- 즐겨찾기여부 -->
-		<result property="adbkWrterNm" column="adbk_wrter_nm"/>	<!-- 주소록작성자명칭 -->
 		<result property="adbkCreatDt" column="adbk_creat_dt"/>	<!-- 주소록생성일시 -->
+		<result property="adbkWrterId" column="adbk_wrter_id"/>	<!-- 주소록작성자번호 -->
 		<result property="adbkUpdtDt" column="adbk_updt_dt"/>	<!-- 주소록수정일시 -->
+		<result property="adbkUpdusrId" column="adbk_updusr_id"/>	<!-- 주소록수정자번호 -->
+		<result property="adbkDltrId" column="adbk_dltr_id"/>	<!-- 주소록삭제자번호 -->
+		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
 
 
 
-	<select id="selectAddressInfoList" parameterType="egovframework.ictway.phh.service.AdrPHHVO" resultType="egovMap">
+	<select id="selectAdrCAPList" parameterType="egovframework.ictway.phh.service.AdrCAPVO" resultType="egovMap">
 		SELECT
-			 adbk_sn
+			 adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -39,17 +42,20 @@
 			,mbtlnum
 			,emailaddr
 			,memo
-			,photo_orignl_flpth
-			,photo_scrty_flpth
+			,photo_flpth
+			,photo_file_nm
 			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
 			,cmpny_team_nm
 			,cmpny_clsf_nm
 			,bkmk_at
-			,adbk_wrter_nm
 			,adbk_creat_dt
+			,adbk_wrter_id
 			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
 			,adbk_delete_at
 		FROM phh.address_info
 <!-- 		WHERE  -->
@@ -59,18 +65,18 @@
 
 
 
-	<select id="selectAddressInfoListCnt" parameterType="egovframework.ictway.phh.service.AdrPHHVO" resultType="java.lang.Integer">
+	<select id="selectAdrCAPListCnt" parameterType="egovframework.ictway.phh.service.AdrCAPVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM phh.address_info
-	<!-- 	WHERE  -->
+<!-- 		WHERE  -->
 	</select>
 
 
 
-	<select id="selectAddressInfoDetail" parameterType="egovframework.ictway.phh.service.AdrPHHVO" resultMap="adrPhhVO">
+	<select id="selectAdrCAPDetail" parameterType="egovframework.ictway.phh.service.AdrCAPVO" resultMap="adrCAPDAO">
 		SELECT
-			 adbk_sn
+			 adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -79,27 +85,30 @@
 			,mbtlnum
 			,emailaddr
 			,memo
-			,photo_orignl_flpth
-			,photo_scrty_flpth
+			,photo_flpth
+			,photo_file_nm
 			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
 			,cmpny_team_nm
 			,cmpny_clsf_nm
 			,bkmk_at
-			,adbk_wrter_nm
 			,adbk_creat_dt
+			,adbk_wrter_id
 			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
 			,adbk_delete_at
 		FROM phh.address_info
-		<!-- WHERE  -->
+<!-- 		WHERE  -->
 	</select>
 
 
 
-	<insert id="insertAddressInfoAct" parameterType="egovframework.ictway.phh.service.AdrPHHVO">
+	<insert id="insertAdrCAPAct" parameterType="egovframework.ictway.phh.service.AdrCAPVO">
 		INSERT INTO phh.address_info (
-			 adbk_sn
+			 adbk_id
 			,user_nm
 			,brthdy
 			,sexdstn_code
@@ -108,20 +117,23 @@
 			,mbtlnum
 			,emailaddr
 			,memo
-			,photo_orignl_flpth
-			,photo_scrty_flpth
+			,photo_flpth
+			,photo_file_nm
 			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
 			,cmpny_team_nm
 			,cmpny_clsf_nm
 			,bkmk_at
-			,adbk_wrter_nm
 			,adbk_creat_dt
+			,adbk_wrter_id
 			,adbk_updt_dt
+			,adbk_updusr_id
+			,adbk_dltr_id
+			,adbk_delete_dt
 			,adbk_delete_at
 		) VALUES(
-			 #{adbkSn}
+			 #{adbkId}
 			,#{userNm}
 			,#{brthdy}
 			,#{sexdstnCode}
@@ -130,27 +142,30 @@
 			,#{mbtlnum}
 			,#{emailaddr}
 			,#{memo}
-			,#{photoOrignlFlpth}
-			,#{photoScrtyFlpth}
+			,#{photoFlpth}
+			,#{photoFileNm}
 			,#{photoExtsnNm}
 			,#{adresGroupCode}
 			,#{cmpnyNm}
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
 			,#{bkmkAt}
-			,#{adbkWrterNm}
 			,#{adbkCreatDt}
+			,#{adbkWrterId}
 			,#{adbkUpdtDt}
+			,#{adbkUpdusrId}
+			,#{adbkDltrId}
+			,#{adbkDeleteDt}
 			,#{adbkDeleteAt}
 		)
 	</insert>
 
 
 
-	<update id="updateAddressInfoAct" parameterType="egovframework.ictway.phh.service.AdrPHHVO">
+	<update id="updateAdrCAPAct" parameterType="egovframework.ictway.phh.service.AdrCAPVO">
 		UPDATE phh.address_info
 		SET 
-			 adbk_sn = #{adbkSn}
+			 adbk_id = #{adbkId}
 			,user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
@@ -159,19 +174,22 @@
 			,mbtlnum = #{mbtlnum}
 			,emailaddr = #{emailaddr}
 			,memo = #{memo}
-			,photo_orignl_flpth = #{photoOrignlFlpth}
-			,photo_scrty_flpth = #{photoScrtyFlpth}
+			,photo_flpth = #{photoFlpth}
+			,photo_file_nm = #{photoFileNm}
 			,photo_extsn_nm = #{photoExtsnNm}
 			,adres_group_code = #{adresGroupCode}
 			,cmpny_nm = #{cmpnyNm}
 			,cmpny_team_nm = #{cmpnyTeamNm}
 			,cmpny_clsf_nm = #{cmpnyClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_wrter_nm = #{adbkWrterNm}
 			,adbk_creat_dt = #{adbkCreatDt}
+			,adbk_wrter_id = #{adbkWrterId}
 			,adbk_updt_dt = #{adbkUpdtDt}
+			,adbk_updusr_id = #{adbkUpdusrId}
+			,adbk_dltr_id = #{adbkDltrId}
+			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_delete_at = #{adbkDeleteAt}
-	<!-- 	WHERE = #{} -->
+<!-- 		WHERE = #{} -->
 	</update>
 	
 </mapper>

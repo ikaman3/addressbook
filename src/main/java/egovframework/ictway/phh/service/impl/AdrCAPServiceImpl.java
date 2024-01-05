@@ -12,11 +12,11 @@ import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.springframework.stereotype.Service;
 
 import egovframework.com.cmm.LoginVO;
-import egovframework.ictway.phh.service.AdrPHHService;
-import egovframework.ictway.phh.service.AdrPHHVO;
+import egovframework.ictway.phh.service.AdrCAPService;
+import egovframework.ictway.phh.service.AdrCAPVO;
 
 /**
- * 주소록 정보 관리를 위한 구현 클래스
+ * 주소 정보 정보 관리를 위한 구현 클래스
  * @author ICTWAY
  * @since 2024.12.29
  * @version 1.0
@@ -26,23 +26,23 @@ import egovframework.ictway.phh.service.AdrPHHVO;
  * </pre>
  * @see
  */
-@Service("adrPhhService")
-public class AdrPHHServiceImpl implements AdrPHHService {
+@Service("adrCAPService")
+public class AdrCAPServiceImpl implements AdrCAPService {
 
-	@Resource(name = "adrPhhDAO")
-    private AdrPHHDAO adrDAO;
+	@Resource(name = "adrCAPDAO")
+    private AdrCAPDAO adrCAPDAO;
 	
 	/** kjk-adrIdGnrService */
 	@Resource(name="kjk-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
-	public Map<String, Object> selectAdrPHHList(AdrPHHVO adrVO) throws Exception {
+	public Map<String, Object> selectAdrCAPList(AdrCAPVO adrCAPVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = adrDAO.selectAdrPHHList(adrVO);
+		List<?> list = adrCAPDAO.selectAdrCAPList(adrCAPVO);
 		/** 목록 조회 건 수 */
-		int cnt = adrDAO.selectAdrPHHListCnt(adrVO);
+		int cnt = adrCAPDAO.selectAdrCAPListCnt(adrCAPVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -52,36 +52,36 @@ public class AdrPHHServiceImpl implements AdrPHHService {
 	}
 
 	@Override
-	public AdrPHHVO selectAdrPHHDetail(AdrPHHVO adrVO) throws Exception {
+	public AdrCAPVO selectAdrCAPDetail(AdrCAPVO adrCAPVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return adrDAO.selectAdrPHHDetail(adrVO);
+		return adrCAPDAO.selectAdrCAPDetail(adrCAPVO);
 	}
 
 	@Override
-	public String registAdrPHHAct(AdrPHHVO adrVO) throws FdlException, Exception {
+	public String registAdrCAPAct(AdrCAPVO adrCAPVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
-		adrVO.setAdbkId(uniqId);
+		adrCAPVO.setAdbkId(uniqId);
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrVO.setAdbkWrterId(user.getUniqId());
+		adrCAPVO.setAdbkWrterId(user.getUniqId());
 		
-		adrDAO.insertAdrPHHAct(adrVO);
+		adrCAPDAO.insertAdrCAPAct(adrCAPVO);
 		return uniqId;
 	}
 
 	@Override
-	public void updateAdrPHHAct(AdrPHHVO adrVO) throws Exception {
+	public void updateAdrCAPAct(AdrCAPVO adrCAPVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrVO.setAdbkUpdusrId(user.getUniqId());
-		adrDAO.updateAdrPHHAct(adrVO);
+		adrCAPVO.setAdbkUpdusrId(user.getUniqId());
+		adrCAPDAO.updateAdrCAPAct(adrCAPVO);
 	}
 
 	@Override
-	public void deleteAdrPHHAct(AdrPHHVO adrVO) throws Exception {
+	public void deleteAdrCAPAct(AdrCAPVO adrCAPVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrVO.setAdbkDltrId(user.getUniqId());
-		adrDAO.deleteAdrPHHAct(adrVO);
+		adrCAPVO.setAdbkDltrId(user.getUniqId());
+		adrCAPDAO.deleteAdrCAPAct(adrCAPVO);
 	}
 
 }
