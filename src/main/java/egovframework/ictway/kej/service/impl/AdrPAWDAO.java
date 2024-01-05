@@ -10,7 +10,7 @@ import egovframework.ictway.kej.service.AdrPAWVO;
 /**
  * 주소록 정보 관리를 위한 데이터 처리 클래스
  * @author ICTWAY
- * @since 2024.01.04
+ * @since 2023.12.29
  * @version 1.0
  * @Modification
  * <pre>
@@ -26,8 +26,8 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrList(AdrPAWVO adrPAWVO) {
-		return selectList("AdrPAWDAO.selectAdrList", adrPAWVO);
+	public List<?> selectAdrPAWList(AdrPAWVO adrPAWVO) {
+		return selectList("AdrPAWDAO.selectAdrPAWList", adrPAWVO);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAdrListCnt(AdrPAWVO adrPAWVO) {
-		return (Integer)selectOne("AdrPAWDAO.selectAdrListCnt", adrPAWVO);
+	public int selectAdrPAWListCnt(AdrPAWVO adrPAWVO) {
+		return (Integer)selectOne("AdrPAWDAO.selectAdrPAWListCnt", adrPAWVO);
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AdrPAWVO selectAdrDetail(AdrPAWVO adrPAWVO) {
-		return selectOne("AdrPAWDAO.selectAdrDetail", adrPAWVO);
+	public AdrPAWVO selectAdrPAWDetail(AdrPAWVO adrPAWVO) {
+		return selectOne("AdrPAWDAO.selectAdrPAWDetail", adrPAWVO);
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrAct(AdrPAWVO adrPAWVO) {
-		insert("AdrPAWDAO.insertAdrAct", adrPAWVO);
+	public void insertAdrPAWAct(AdrPAWVO adrPAWVO) {
+		insert("AdrPAWDAO.insertAdPAWrAct", adrPAWVO);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAdrAct(AdrPAWVO adrPAWVO) {
-		update("AdrPAWDAO.updateAdrAct", adrPAWVO);
+	public void updateAdrPAWAct(AdrPAWVO adrPAWVO) {
+		update("AdrPAWDAO.updateAdrPAWAct", adrPAWVO);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @param AdrPAWVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAdrAct(AdrPAWVO adrPAWVO) {
-		update("AdrPAWDAO.deleteAdrAct", adrPAWVO);
+	public void deleteAdrPAWAct(AdrPAWVO adrPAWVO) {
+		update("AdrPAWDAO.deleteAdrPAWAct", adrPAWVO);
 	}
 }

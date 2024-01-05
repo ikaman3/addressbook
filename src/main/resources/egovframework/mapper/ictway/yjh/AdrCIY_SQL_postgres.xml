@@ -28,33 +28,12 @@
 		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
-	<!-- TODO: 리스트는 간략한 정보만 불러오도록 수정  -->
+
 	<select id="selectAdrCIYList" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="egovMap">
 		SELECT
 			adbk_id
 			,user_nm
-			,brthdy
-			,sexdstn_code
-			,adres
-			,detail_adres
 			,mbtlnum
-			,emailaddr
-			,memo
-			,photo_flpth
-			,photo_file_nm
-			,photo_extsn_nm
-			,adres_group_code
-			,cmpny_nm
-			,cmpny_team_nm
-			,cmpny_clsf_nm
-			,bkmk_at
-			,adbk_creat_dt
-			,adbk_wrter_id
-			,adbk_updt_dt
-			,adbk_updusr_id
-			,adbk_dltr_id
-			,adbk_delete_dt
-			,adbk_delete_at
 		FROM yjh.address_info
 		WHERE adbk_wrter_id == #{adbkWrterId}
 		ORDER BY 1 DESC
@@ -100,8 +79,7 @@
 
 	<insert id="insertAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
 		INSERT INTO yjh.address_info (
-			adbk_id
-			,user_nm
+			user_nm
 			,brthdy
 			,sexdstn_code
 			,adres
@@ -119,14 +97,8 @@
 			,bkmk_at
 			,adbk_creat_dt
 			,adbk_wrter_id
-			,adbk_updt_dt
-			,adbk_updusr_id
-			,adbk_dltr_id
-			,adbk_delete_dt
-			,adbk_delete_at
 		) VALUES(
-			,#{adbkId}
-			,#{userNm}
+			#{userNm}
 			,#{brthdy}
 			,#{sexdstnCode}
 			,#{adres}
@@ -142,21 +114,15 @@
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
 			,#{bkmkAt}
-			,#{adbkCreatDt}
+			,NOW()
 			,#{adbkWrterId}
-			,#{adbkUpdtDt}
-			,#{adbkUpdusrId}
-			,#{adbkDltrId}
-			,#{adbkDeleteDt}
-			,#{adbkDeleteAt}
 		)
 	</insert>
 
 	<update id="updateAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
 		UPDATE yjh.address_info
 		SET 
-			adbk_id = #{adbkId}
-			,user_nm = #{userNm}
+			user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
@@ -172,9 +138,7 @@
 			,cmpny_team_nm = #{cmpnyTeamNm}
 			,cmpny_clsf_nm = #{cmpnyClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_creat_dt = #{adbkCreatDt}
-			,adbk_wrter_id = #{adbkWrterId}
-			,adbk_updt_dt = #{adbkUpdtDt}
+			,adbk_updt_dt = NOW()
 			,adbk_updusr_id = #{adbkUpdusrId}
 			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_delete_dt = #{adbkDeleteDt}
