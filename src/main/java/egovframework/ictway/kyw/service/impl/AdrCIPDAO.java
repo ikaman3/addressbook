@@ -45,7 +45,7 @@ public class AdrCIPDAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public AdrCIPVO selectAdrCIPDetail(AdrCIPVO adrCIPVO) {
-		return selectOne("AdrDAO.selectAdrCIPDetail", adrCIPVO);
+		return selectOne("AdrCIPDAO.selectAdrCIPDetail", adrCIPVO);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class AdrCIPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void registAdrCIPAct(AdrCIPVO adrCIPVO) {
-		insert("AdrDAO.registAdrCIPAct", adrCIPVO);
+		insert("AdrCIPDAO.registAdrCIPAct", adrCIPVO);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AdrCIPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void updateAdrCIPAct(AdrCIPVO adrCIPVO) {
-		update("AdrDAO.updateAdrCIPAct", adrCIPVO);
+		update("AdrCIPDAO.updateAdrCIPAct", adrCIPVO);
 	}
 
 	/**
@@ -72,6 +72,6 @@ public class AdrCIPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void deleteAdrCIPAct(AdrCIPVO adrCIPVO) {
-		update("AdrDAO.deleteAdrCIPAct", adrCIPVO);
+		update("AdrCIPDAO.deleteAdrCIPAct", adrCIPVO);
 	}
 }
