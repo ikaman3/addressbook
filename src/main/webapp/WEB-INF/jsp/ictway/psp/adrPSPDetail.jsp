@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/psp/selectAdrList.do"/>">현승민</a></li>
+										<li><a href="<c:url value="/ictway/psp/selectAdrList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>

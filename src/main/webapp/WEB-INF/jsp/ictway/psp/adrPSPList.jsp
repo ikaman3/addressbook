@@ -26,21 +26,21 @@
 	function selectAdrList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
 	function selectAdrDetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrRegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrRegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrRegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/psp/selectAdrList.do"/>">현승민</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -116,7 +116,7 @@
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
+												<th scope="col">주소록 사용자 명칭</th>
 												<th scope="col">등록자</th>
 												<th scope="col">등록일</th>
 											</tr>
@@ -126,12 +126,12 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbksn}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.registUserNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.registDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
