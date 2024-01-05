@@ -90,8 +90,8 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>주소록 사용자 명칭</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>주소록 사용자 이메일</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -110,6 +110,7 @@
 										<colgroup>
 											<col style="width: 80px;">
 											<col style="width: auto;">
+											<col style="width: auto;">
 											<col style="width: 100px;">
 											<col style="width: 100px;">
 										</colgroup>
@@ -117,8 +118,10 @@
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">주소록 사용자 명칭</th>
+												<th scope="col">주소록 사용자 이메일</th>
 												<th scope="col">등록자</th>
 												<th scope="col">등록일</th>
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -126,10 +129,11 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbksn}"/>'); return false;" class="lnk">
+													<a href="javascript:void(0);" onclick="selectAdrPSPDetail('<c:out value="${resultVO.adbksn}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
+												<td><c:out value="${resultVO.emailaddr}"></c:out></td>
 												<td><c:out value="${resultVO.registUserNm}" /></td>
 												<td><fmt:formatDate value="${resultVO.registDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>
