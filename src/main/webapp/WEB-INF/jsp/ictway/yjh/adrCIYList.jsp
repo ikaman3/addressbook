@@ -23,28 +23,28 @@
 <script type="text/javascript">
 
 	//주소록 목록조회
-	function selectAdrPSPList(pageIndex){
-		document.searchListForm.adbkSn.value = 0;
+	function selectAdrList(pageIndex){
+		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrPSPDetail(adbkSn){
-		document.searchListForm.adbkSn.value = adbkSn;
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPDetail.do'/>";
+	function selectAdrDetail(adrId){
+		document.searchListForm.adrId.value = adrId;
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
-	function selectAdrPSPRegist(){
-		document.searchListForm.adbkSn.value = 0;
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPRegist.do'/>";
+	function selectAdrRegist(){
+		document.searchListForm.adrId.value = "";
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYRegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 현승민</title>
+<title>샘플 포털 > 주소록 > 윤준현</title>
 
 </head>
 <body>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">현승민</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -86,19 +86,19 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adbkSn">
+										<input type="hidden" name="adrId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>주소록 사용자 명칭</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>주소록 사용자 이메일</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="selectAdrPSPList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrPSPRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+										<a href="javascript:void(0);" onclick="selectAdrRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
 								</div>
@@ -110,18 +110,15 @@
 										<colgroup>
 											<col style="width: 80px;">
 											<col style="width: auto;">
-											<col style="width: auto;">
 											<col style="width: 100px;">
 											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">주소록 사용자 명칭</th>
-												<th scope="col">주소록 사용자 이메일</th>
+												<th scope="col">제목</th>
 												<th scope="col">등록자</th>
 												<th scope="col">등록일</th>
-												
 											</tr>
 										</thead>
 										<tbody>
@@ -129,13 +126,12 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrPSPDetail('<c:out value="${resultVO.adbkSn}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.userNm }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.emailaddr}"></c:out></td>
-												<td><c:out value="${resultVO.registUserNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.registDt }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
@@ -150,7 +146,7 @@
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
-											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrPSPList" />
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrList" />
 										</ul>
 									</div>
 								</div>

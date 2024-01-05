@@ -21,26 +21,24 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrPSPList(){
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
+	function selectAdrList(){
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 수정 화면
-	function selectAdrPSPUpdate(adbkSn){
-		console.log("눌리나");
-		document.searchListForm.adbkSn.value = adbkSn;
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPUpdate.do'/>";
+	function selectAdrUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYUpdate.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 정보 삭제
-	function deleteAdrPSPAct(){
+	function deleteAdrAct(){
 		if (confirm('<spring:message code="common.delete.msg" />')) {
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/psp/deleteAdrPSPAct.do'/>",{
+        	fetch("<c:url value='/ictway/yjh/deleteAdrCIYAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -49,7 +47,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.delete"/>");
-        		location.href = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
+        		location.href = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -60,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 현승민</title>
+<title>샘플 포털 > 주소록 > 윤준현</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -95,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">현승민</a></li>
-										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -108,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adbkSn"/>
+									<form:hidden path="adrId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -119,32 +117,32 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.registUserNm}" /></dd>
+                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.registDt}" /></dd>
+                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrPSPUpdate('<c:out value="${resultVO.adbkSn}"/>'); return false;">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrPSPAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrPSPList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
