@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">남시현</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">남시현</a></li>
+										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -106,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -137,12 +137,12 @@
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrUpdate();">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrAMSUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAMSAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrAMSList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
