@@ -2002,7 +2002,7 @@
         <property name="strategy" ref="yja-adrITAIdStrategy" />
         <property name="blockSize"  value="10"/>
         <property name="table"      value="IDS"/>
-        <property name="tableName"  value="YJA_ADRITA_ID"/>
+        <property name="tableName"  value="ADRITA_ID"/>
     </bean>
     <!-- 유지애-주소록 ID Generation  Strategy Config -->
     <bean name="yja-adrITAIdStrategy"
