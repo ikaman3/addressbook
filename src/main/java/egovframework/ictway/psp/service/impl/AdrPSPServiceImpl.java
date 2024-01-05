@@ -77,7 +77,7 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 		//로그인 유저 이름
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrPSPVO.setUsrId(user.getUniqId());
-		AdrPSPDAO.updateAdrAct(AdrPSPVO);
+		AdrPSPDAO.updateAdrPSPAct(AdrPSPVO);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 		// 로그인 유저 이름
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrPSPVO.setUsrId(user.getUniqId());
-		AdrPSPDAO.deleteAdrAct(AdrPSPVO);
+		AdrPSPDAO.deleteAdrPSPAct(AdrPSPVO);
 	}
 
 }
