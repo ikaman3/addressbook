@@ -216,13 +216,13 @@
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
-	</update>
+	</update> 
 	
 	
 	<update id="deleteAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
 		UPDATE kyw.address_info
-		SET 
-			 adbk_delete_at = 'N'
+		SET
+			 adbk_delete_at = 'Y'
 			,adbk_delete_dt = now()
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 		WHERE
