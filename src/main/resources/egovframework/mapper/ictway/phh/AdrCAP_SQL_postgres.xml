@@ -58,7 +58,7 @@
 			,adbk_delete_dt
 			,adbk_delete_at
 		FROM phh.address_info
-<!-- 		WHERE  -->
+ 		WHERE adbk_delete_at = 'N'
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -69,7 +69,7 @@
 		SELECT
 			COUNT(*)
 		FROM phh.address_info
-<!-- 		WHERE  -->
+ 		WHERE adbk_delete_at = 'N'
 	</select>
 
 
@@ -101,7 +101,8 @@
 			,adbk_delete_dt
 			,adbk_delete_at
 		FROM phh.address_info
-<!-- 		WHERE  -->
+ 		WHERE adbk_id = #{adbkId}
+ 		AND adbk_delete_at = 'N'
 	</select>
 
 
@@ -189,7 +190,7 @@
 			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_delete_at = #{adbkDeleteAt}
-<!-- 		WHERE = #{} -->
+ 		WHERE adbk_id = #{adbkId}
 	</update>
 	
 </mapper>
