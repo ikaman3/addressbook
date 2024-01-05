@@ -1982,7 +1982,7 @@
         destroy-method="destroy">
         <property name="dataSource" ref="dataSource" />
         <property name="strategy" ref="kjk-adrIdStrategy" />
-        <property name="blockSize"  value="10"/>
+        <property name="blockSize"  value="1"/>
         <property name="table"      value="IDS"/>
         <property name="tableName"  value="KJK_ADR_ID"/>
     </bean>
