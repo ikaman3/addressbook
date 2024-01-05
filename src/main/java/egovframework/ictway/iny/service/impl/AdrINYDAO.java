@@ -26,8 +26,8 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrList(AdrINYVO adrINYVO) {
-		return selectList("AdrDAO.selectAdrList", adrINYVO);
+	public List<?> selectAdrINYList(AdrINYVO adrINYVO) {
+		return selectList("AdrDAO.selectAdrINYList", adrINYVO);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAdrListCnt(AdrINYVO adrINYVO) {
-		return (Integer)selectOne("AdrDAO.selectAdrListCnt", adrINYVO);
+	public int selectAdrINYListCnt(AdrINYVO adrINYVO) {
+		return (Integer)selectOne("AdrDAO.selectAdrINYListCnt", adrINYVO);
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AdrINYVO selectAdrDetail(AdrINYVO adrINYVO) {
-		return selectOne("AdrDAO.selectAdrDetail", adrINYVO);
+	public AdrINYVO selectAdrINYDetail(AdrINYVO adrINYVO) {
+		return selectOne("AdrDAO.selectAdrINYDetail", adrINYVO);
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrAct(AdrINYVO adrINYVO) {
-		insert("AdrDAO.insertAdrAct", adrINYVO);
+	public void insertAdrINYAct(AdrINYVO adrINYVO) {
+		insert("AdrDAO.insertAdrINYAct", adrINYVO);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAdrAct(AdrINYVO adrINYVO) {
-		update("AdrDAO.updateAdrAct", adrINYVO);
+	public void updateAdrINYAct(AdrINYVO adrINYVO) {
+		update("AdrDAO.updateAdrINYAct", adrINYVO);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @param adrINYVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAdrAct(AdrINYVO adrINYVO) {
-		update("AdrDAO.deleteAdrAct", adrINYVO);
+	public void deleteAdrINYAct(AdrINYVO adrINYVO) {
+		update("AdrDAO.deleteAdrINYAct", adrINYVO);
 	}
 }

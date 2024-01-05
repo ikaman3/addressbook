@@ -37,12 +37,12 @@ public class AdrINYServiceImpl implements AdrINYService {
 	private EgovIdGnrService idgenService;
 	
 	@Override
-	public Map<String, Object> selectAdrList(AdrINYVO abrINYVO) throws Exception {
+	public Map<String, Object> selectAdrINYList(AdrINYVO abrINYVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = adrINYDAO.selectAdrList(abrINYVO);
+		List<?> list = adrINYDAO.selectAdrINYList(abrINYVO);
 		/** 목록 조회 건 수 */
-		int cnt = adrINYDAO.selectAdrListCnt(abrINYVO);
+		int cnt = adrINYDAO.selectAdrINYListCnt(abrINYVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -52,13 +52,13 @@ public class AdrINYServiceImpl implements AdrINYService {
 	}
 
 	@Override
-	public AdrINYVO selectAdrDetail(AdrINYVO abrINYVO) throws Exception {
+	public AdrINYVO selectAdrINYDetail(AdrINYVO abrINYVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return adrINYDAO.selectAdrDetail(abrINYVO);
+		return adrINYDAO.selectAdrINYDetail(abrINYVO);
 	}
 
 	@Override
-	public long registAdrAct(AdrINYVO abrINYVO) throws FdlException, Exception {
+	public long registAdrINYAct(AdrINYVO abrINYVO) throws FdlException, Exception {
 
 		//고유아이디셋팅 String -> long
 		long uniqId = idgenService.getNextLongId();
@@ -67,22 +67,22 @@ public class AdrINYServiceImpl implements AdrINYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		abrINYVO.setRegistUserId(user.getUniqId());
 		
-		adrINYDAO.insertAdrAct(abrINYVO);
+		adrINYDAO.insertAdrINYAct(abrINYVO);
 		return uniqId;
 	}
 	
 	@Override
-	public void updateAdrAct(AdrINYVO abrINYVO) throws Exception {
+	public void updateAdrINYAct(AdrINYVO abrINYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		abrINYVO.setRegistUserId(user.getUniqId());
-		adrINYDAO.updateAdrAct(abrINYVO);
+		adrINYDAO.updateAdrINYAct(abrINYVO);
 	}
 
 	@Override
-	public void deleteAdrAct(AdrINYVO abrINYVO) throws Exception {
+	public void deleteAdrINYAct(AdrINYVO abrINYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		abrINYVO.setRegistUserId(user.getUniqId());
-		adrINYDAO.deleteAdrAct(abrINYVO);
+		adrINYDAO.deleteAdrINYAct(abrINYVO);
 	}
 	
 }

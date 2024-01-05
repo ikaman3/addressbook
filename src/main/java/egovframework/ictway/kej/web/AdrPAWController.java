@@ -1,4 +1,4 @@
-package egovframework.ictway.iny.web;
+package egovframework.ictway.kej.web;
 
 import java.util.Map;
 
@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
-import egovframework.ictway.iny.service.AdrINYService;
-import egovframework.ictway.iny.service.AdrINYVO;
+import egovframework.ictway.kej.service.AdrPAWService;
+import egovframework.ictway.kej.service.AdrPAWVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * 주소록 정보의 목록조회, 상세조회, 등록화면조회, 수정화면조회, 등록, 수정, 삭제, 파일업로드, 파일다운로드를 위한 컨트롤러 클래스
  * @author ICTWAY
- * @since 2023.12.28
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2023.12.28 / 김진광 / 최초생성
+ *2024.01.04 / 김은지 / 최초생성
  * </pre>
  * @see
  */
 @Slf4j
 @Controller
-public class AdrINYController {
+public class AdrPAWController {
 
-	@Resource(name = "adrINYService")
-	private AdrINYService adrINYService;
+	@Resource(name = "AdrPAWService")
+	private AdrPAWService AdrPAWService;
 	
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
@@ -49,25 +49,25 @@ public class AdrINYController {
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrList.do")
-	public String selectAdrINYList(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model, HttpServletRequest request) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrList.do")
+	public String selectAdrList(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
 
 		/** paging */
-		adrINYVO.setPageUnit(propertyService.getInt("pageUnit"));
-		adrINYVO.setPageSize(propertyService.getInt("pageSize"));
+		AdrPAWVO.setPageUnit(propertyService.getInt("pageUnit"));
+		AdrPAWVO.setPageSize(propertyService.getInt("pageSize"));
 		
 		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(adrINYVO.getPageIndex()); /** 현재 페이지 번호 */
-		paginationInfo.setRecordCountPerPage(adrINYVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
-		paginationInfo.setPageSize(adrINYVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
+		paginationInfo.setCurrentPageNo(AdrPAWVO.getPageIndex()); /** 현재 페이지 번호 */
+		paginationInfo.setRecordCountPerPage(AdrPAWVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
+		paginationInfo.setPageSize(AdrPAWVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
 		
-		adrINYVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		adrINYVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		adrINYVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		AdrPAWVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		AdrPAWVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		AdrPAWVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrINYService.selectAdrINYList(adrINYVO);
+		Map<String, Object> map = AdrPAWService.selectAdrList(AdrPAWVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -76,7 +76,7 @@ public class AdrINYController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/iny/adrList";
+		return "ictway/kej/adrList";
 	}
 	
 	/**
@@ -86,14 +86,14 @@ public class AdrINYController {
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrINYDetail.do")
-	public String selectAdrINYDetail(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrDetail.do")
+	public String selectAdrDetail(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		AdrINYVO resultVO = adrINYService.selectAdrINYDetail(adrINYVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrDetail(AdrPAWVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/iny/adrDetail";
+		return "ictway/kej/adrDetail";
 	}
 	
 	/**
@@ -102,26 +102,26 @@ public class AdrINYController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrINYRegist.do")
-	public String selectAdrINYRegist(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrRegist.do")
+	public String selectAdrRegist(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/iny/adrRegist";
+		return "ictway/kej/adrRegist";
 	}
 	
 	/**
      * 주소록 정보 등록
-     * @param adrINYVO - 주소록 VO
+     * @param AdrPAWVO - 주소록 VO
      * @return adrId
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/registAdrINYAct.do")
-    public ModelAndView registAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/registAdrAct.do")
+    public ModelAndView registAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		long adnkSn = adrINYService.registAdrINYAct(adrINYVO);
-		mav.addObject("adrId", adnkSn);
+		String adrId = AdrPAWService.registAdrAct(AdrPAWVO);
+		mav.addObject("adrId", adrId);
 		
 		return mav;
     }
@@ -132,43 +132,43 @@ public class AdrINYController {
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrINYUpdate.do")
-	public String selectAdrINYUpdate(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrUpdate.do")
+	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		AdrINYVO resultVO = adrINYService.selectAdrINYDetail(adrINYVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrDetail(AdrPAWVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/iny/adrUpdate";
+		return "ictway/kej/adrUpdate";
 	}
 	
 	/**
      * 주소록 정보 수정
-     * @param adrINYVO - 주소록 VO
+     * @param AdrPAWVO - 주소록 VO
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/updateAdrINYAct.do")
-    public ModelAndView updateAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/updateAdrAct.do")
+    public ModelAndView updateAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrINYService.updateAdrINYAct(adrINYVO);
+		AdrPAWService.updateAdrAct(AdrPAWVO);
 		
 		return mav;
     }
     
     /**
      * 주소록 정보 삭제
-     * @param adrINYVO - 주소록 VO
+     * @param AdrPAWVO - 주소록 VO
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/iny/deleteAdrINYAct.do")
-    public ModelAndView deleteAdrINYAct(AdrINYVO adrINYVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/deleteAdrAct.do")
+    public ModelAndView deleteAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrINYService.deleteAdrINYAct(adrINYVO);
+		AdrPAWService.deleteAdrAct(AdrPAWVO);
 		
 		return mav;
     }
