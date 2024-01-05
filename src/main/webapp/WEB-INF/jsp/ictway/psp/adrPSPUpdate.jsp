@@ -33,7 +33,7 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrPSPList(){
 		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
 		document.searchListForm.submit();
 	}
@@ -46,7 +46,7 @@
 	}
 	
 	//주소록 수정
-	function updateAdrAct(){
+	function updateAdrPSPAct(){
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
