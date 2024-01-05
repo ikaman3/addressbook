@@ -118,7 +118,7 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록 등록 페이지입니다.</p>
+									<p class="txt_1"><알려주소> 주소록 등록 페이지</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -241,7 +241,7 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">사진첨부</label>
+	                                                <label for="photoNm">사진첨부</label>
 	                                            </td>
 	                                            <td>
 	                                                <div class="board_attach2" id="file_upload_posbl">
@@ -257,11 +257,11 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">메모</label>
+	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
