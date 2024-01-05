@@ -33,8 +33,8 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+	function selectAdrCAPList(){
+		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
@@ -46,12 +46,12 @@
 	}
 	
 	//주소록 수정
-	function updateAdrAct(){
+	function updateAdrCAPAct(){
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/kjk/updateAdrAct.do'/>",{
+        	fetch("<c:url value='/ictway/phh/updateAdrCAPAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -60,7 +60,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.update"/>");
-        		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+        		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPDetail.do'/>";
         		document.searchListForm.submit();
         	})
         	.catch(error => {
@@ -107,8 +107,8 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 수정</a></li>
 									</ul>
                                 </div>
@@ -167,7 +167,7 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrAct();"><spring:message code='button.save' /></a><!-- 저장 -->
+	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrCAPAct();"><spring:message code='button.save' /></a><!-- 저장 -->
 	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>
