@@ -34,18 +34,18 @@
 <script type="text/javascript">
     
 	//주소록 목록조회
-	function selectAdrList(){
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+	function selectAdrCAPList(){
+		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록
-	function registAdrAct() {
+	function registAdrCAPAct() {
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/kjk/registAdrAct.do'/>",{
+        	fetch("<c:url value='/ictway/phh/registAdrCAPAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -54,7 +54,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.insert"/>");
-        		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+        		location.href = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -100,8 +100,8 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 등록</a></li>
 									</ul>
                                 </div>
@@ -155,8 +155,8 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrAct();"><spring:message code="button.save" /></a>
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();"><spring:message code="button.list" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrCAPAct();"><spring:message code="button.save" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCAPList();"><spring:message code="button.list" /></a>
 	                                    </div>
 	                                </div>
 	                                

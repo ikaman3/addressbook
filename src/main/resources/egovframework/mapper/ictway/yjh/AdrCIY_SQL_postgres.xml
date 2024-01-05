@@ -35,7 +35,7 @@
 			,user_nm
 			,mbtlnum
 		FROM yjh.address_info
-		WHERE adbk_wrter_id == #{adbkWrterId}
+		WHERE adbk_delete_at = 'N'
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -44,7 +44,7 @@
 		SELECT
 			COUNT(*)
 		FROM yjh.address_info
-		WHERE adbk_wrter_id == #{adbkWrterId}
+		WHERE adbk_delete_at = 'N'
 	</select>
 
 	<select id="selectAdrCIYDetail" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultMap="adrCIYVO">
@@ -74,7 +74,7 @@
 			,adbk_delete_dt
 			,adbk_delete_at
 		FROM yjh.address_info
-		WHERE adbk_wrter_id == #{adbkWrterId}
+		WHERE adbk_id = #{adbkId} AND adbk_delete_at = 'N'
 	</select>
 
 	<insert id="insertAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
@@ -143,6 +143,6 @@
 			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_delete_at = #{adbkDeleteAt}
-		WHERE adbk_wrter_id == #{adbkWrterId}
+		WHERE adbk_id = #{adbkId}
 	</update>
 </mapper>

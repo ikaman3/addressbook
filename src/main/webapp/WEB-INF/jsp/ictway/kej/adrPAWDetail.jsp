@@ -21,24 +21,24 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrCIPList(){
-		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPList.do'/>";
+	function selectAdrPAWList(){
+		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 수정 화면
-	function selectAdrCIPUpdate(){
-		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPUpdate.do'/>";
+	function selectAdrPAWUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWUpdate.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 정보 삭제
-	function deleteAdrCIPAct(){
+	function deleteAdrPAWAct(){
 		if (confirm('<spring:message code="common.delete.msg" />')) {
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/kyw/deleteAdrCIPAct.do'/>",{
+        	fetch("<c:url value='/ictway/kej/deleteAdrPAWAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -47,7 +47,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.delete"/>");
-        		location.href = "<c:url value='/ictway/kyw/selectAdrCIPList.do'/>";
+        		location.href = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -58,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 김예원</title>
+<title>샘플 포털 > 주소록 > 김은지</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kyw/selectAdrCIPList.do"/>">김예원</a></li>
-										<li><a href="<c:url value="/ictway/kyw/selectAdrCIPList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">김은지</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -106,43 +106,43 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adrPAWId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
+								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
+                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
+                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
 
-                                    <%-- <div class="board_article">
+                                    <div class="board_article">
                                     	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
-                                    </div> --%>
+                                    </div>
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrCIPUpdate();">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrCIPAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrPAWUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrPAWAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCIPList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrPAWList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->

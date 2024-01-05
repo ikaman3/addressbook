@@ -32,26 +32,20 @@
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 --%>
 <script type="text/javascript">
+    
 	//주소록 목록조회
-	function selectAdrCIYList(){
-		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
+	function selectAdrPAWList(){
+		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
 		document.searchListForm.submit();
 	}
 	
-	//수정 취소
-	function goToBack(){
-		if (confirm('<spring:message code="common.reset.msg" />')) {
-			history.back();
-		}
-	}
-	
-	//주소록 수정
-	function updateAdrCIYAct(){
-		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
+	//주소록 등록
+	function registAdrPAWAct() {
+    	if (confirm('<spring:message code="common.regist.msg" />')) {
+    		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/yjh/updateAdrCIYAct.do'/>",{
+        	fetch("<c:url value='/ictway/kej/registAdrPAWAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -59,20 +53,19 @@
         	})
         	.then(response => response.json())
         	.then(data => {
-        		alert("<spring:message code="success.common.update"/>");
-        		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYDetail.do'/>";
-        		document.searchListForm.submit();
+        		alert("<spring:message code="success.common.insert"/>");
+        		location.href = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
     			alert("에러가 발생하였습니다.");
     		});
     	}
-	}
-	
+    }
+    
 </script>
 
-<title>샘플 포털 > 주소록 > 윤준현</title>
+<title>샘플 포털 > 주소록 > 김은지</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -107,30 +100,27 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
-										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">주소록 목록</a></li>
-										<li><a href="javascript:void(0);">주소록 수정</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">김은지</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">주소록 목록</a></li>
+										<li><a href="javascript:void(0);">주소록 등록</a></li>
 									</ul>
                                 </div>
                                 <!--// Location -->
-
-								<!-- 검색 form 시작 -->
+                                
+                                <!-- 검색 form 시작 -->
 								<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 									<form:hidden path="pageIndex"/>
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
-									
-									<form:hidden path="adrId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
-								
-								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
-									
+
+								<form name="registForm" method="post" enctype="multipart/form-data" >
+
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
-									<h2 class="tit_2">주소록 수정</h2>
-	
+									<h2 class="tit_2">주소록 등록</h2>
+
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
@@ -140,10 +130,10 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="adrSj">제목</label>
-													<span class="req">필수</span>
+	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                        </tr>
@@ -153,29 +143,27 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
-										
 	                                </div>
-	
-									<!-- 목록/저장버튼  시작-->
+
 	                                <div class="board_view_bot">
 	                                    <div class="left_col btn3">
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrCIYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrPAWAct();"><spring:message code="button.save" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrPAWList();"><spring:message code="button.list" /></a>
 	                                    </div>
 	                                </div>
-	                                <!-- 목록/저장버튼  끝-->
+	                                
+	                                <!--// 주소록 -->
                                 
-                                </form:form>
+                                </form>
                                 
-                                <!--// 게시판 -->
                             </div>
                         </div>
                     </div>
