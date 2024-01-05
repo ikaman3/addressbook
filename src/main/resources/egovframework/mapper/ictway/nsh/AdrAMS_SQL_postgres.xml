@@ -102,31 +102,9 @@
 		SELECT
 			 adbk_id
 			,nm
-			,brthdy
-			,sexdstn_code
-			,adres
-			,detail_adres
-			,telno
-			,emailaddr
-			,memo
-			,photo_flpth
-			,photo_nm
-			,photo_extsn_nm
-			,group_code
-			,cmpny_psitn_nm
-			,cmpny_psitn_team_nm
-			,cmpny_psitn_clsf_nm
-			,bkmk_at
-			,adbk_frst_writng_dt
-			,adbk_frst_wrter_id
+			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,adbk_frst_wrter_nm
-			,adbk_last_updt_dt
-			,adbk_last_updusr_id
-			,adbk_last_updusr_nm
 			,adbk_delete_at
-			,adbk_delete_dt
-			,adbk_dltr_id
-			,adbk_dltr_nm
 		FROM nsh.address_info
 		WHERE
 			adbk_delete_at = 'N'
