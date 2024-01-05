@@ -76,7 +76,7 @@ public class AdrCIYController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/yjh/adrList";
+		return "ictway/yjh/adrCIYList";
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class AdrCIYController {
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/yjh/adrDetail";
+		return "ictway/yjh/adrCIYDetail";
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class AdrCIYController {
 	public String selectAdrRegist(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/yjh/adrRegist";
+		return "ictway/yjh/adrCIYRegist";
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class AdrCIYController {
 		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/yjh/adrUpdate";
+		return "ictway/yjh/adrCIYUpdate";
 	}
 	
 	/**
