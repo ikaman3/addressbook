@@ -34,6 +34,13 @@
 			adbk_id
 			,user_nm
 			,mbtlnum
+			,photo_flpth
+			,photo_file_nm
+			,photo_extsn_nm
+			,adres_group_code
+			,cmpny_nm
+			,cmpny_team_nm
+			,cmpny_clsf_nm
 		FROM yjh.address_info
 		WHERE adbk_delete_at = 'N'
 		ORDER BY 1 DESC
@@ -70,11 +77,26 @@
 			,adbk_wrter_id
 			,adbk_updt_dt
 			,adbk_updusr_id
-			,adbk_dltr_id
-			,adbk_delete_dt
-			,adbk_delete_at
 		FROM yjh.address_info
 		WHERE adbk_id = #{adbkId} AND adbk_delete_at = 'N'
+	</select>
+
+	<select id="selectAdrCIYFavorite" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="egovMap">
+		SELECT
+			adbk_id
+			,user_nm
+			,mbtlnum
+			,photo_flpth
+			,photo_file_nm
+			,photo_extsn_nm
+			,adres_group_code
+			,cmpny_nm
+			,cmpny_team_nm
+			,cmpny_clsf_nm
+		FROM yjh.address_info
+		WHERE adbk_delete_at = 'N' AND bkmk_at = 'Y'
+		ORDER BY 1 DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<insert id="insertAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
@@ -140,9 +162,16 @@
 			,bkmk_at = #{bkmkAt}
 			,adbk_updt_dt = NOW()
 			,adbk_updusr_id = #{adbkUpdusrId}
-			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_delete_dt = #{adbkDeleteDt}
-			,adbk_delete_at = #{adbkDeleteAt}
 		WHERE adbk_id = #{adbkId}
 	</update>
+	
+	<update id="deleteAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
+		UPDATE yjh.address_info
+		SET 
+			adbk_dltr_id = #{adbkDltrId}
+			,adbk_delete_dt = NOW()
+			,adbk_delete_at = 'Y'
+		WHERE adbk_id = #{adbkId}
+	</update>
+
 </mapper>
