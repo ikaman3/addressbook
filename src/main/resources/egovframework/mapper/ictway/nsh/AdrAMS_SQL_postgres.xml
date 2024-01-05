@@ -165,7 +165,7 @@
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		) VALUES(
-			,#{adbkId}
+			#{adbkId}
 			,#{nm}
 			,#{brthdy}
 			,#{sexdstnCode}
