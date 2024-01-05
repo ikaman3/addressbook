@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrCIYDAO">
-	<resultMap id="adrCIYVO" type="package..AdrCIYVO">
+	<resultMap id="adrCIYVO" type="egovframework.ictway.yjh.service.AdrCIYVO">
 		<result property="adbkId" column="adbk_id"/>	<!-- 주소록번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
@@ -29,7 +29,7 @@
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
 	<!-- TODO: 리스트는 간략한 정보만 불러오도록 수정  -->
-	<select id="selectAdrCIYList" parameterType="package..AdrCIYVO" resultType="egovMap">
+	<select id="selectAdrCIYList" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="egovMap">
 		SELECT
 			adbk_id
 			,user_nm
@@ -61,14 +61,14 @@
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
-	<select id="selectAdrCIYListCnt" parameterType="package..AdrCIYVO" resultType="java.lang.Integer">
+	<select id="selectAdrCIYListCnt" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM yjh.address_info
 		WHERE adbk_wrter_id == #{adbkWrterId}
 	</select>
 
-	<select id="selectAdrCIYDetail" parameterType="package..AdrCIYVO" resultMap="adrCIYVO">
+	<select id="selectAdrCIYDetail" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultMap="adrCIYVO">
 		SELECT
 			adbk_id
 			,user_nm
@@ -98,7 +98,7 @@
 		WHERE adbk_wrter_id == #{adbkWrterId}
 	</select>
 
-	<insert id="insertAdrCIYAct" parameterType="package..AdrCIYVO">
+	<insert id="insertAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
 		INSERT INTO yjh.address_info (
 			adbk_id
 			,user_nm
@@ -152,7 +152,7 @@
 		)
 	</insert>
 
-	<update id="updateAdrCIYAct" parameterType="package..AdrCIYVO">
+	<update id="updateAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
 		UPDATE yjh.address_info
 		SET 
 			adbk_id = #{adbkId}
