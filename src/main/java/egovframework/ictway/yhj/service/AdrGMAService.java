@@ -23,7 +23,7 @@ public interface AdrGMAService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAddressInfoList(AdrGMAVO adrGMAVO) throws Exception;
+	Map<String, Object> selectAdrGMAList(AdrGMAVO adrGMAVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -31,7 +31,7 @@ public interface AdrGMAService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AdrGMAVO selectAddressInfoDetail(AdrGMAVO adrGMAVO) throws Exception;
+	AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
@@ -40,7 +40,7 @@ public interface AdrGMAService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAddressInfoAct(AdrGMAVO adrGMAVO) throws FdlException, Exception;
+	String registAdrGMAAct(AdrGMAVO adrGMAVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -48,7 +48,7 @@ public interface AdrGMAService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAddressInfoAct(AdrGMAVO adrGMAVO) throws Exception;
+	void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrGMAService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAddressInfoAct(AdrGMAVO adrGMAVO) throws Exception;
+	void deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
 }
