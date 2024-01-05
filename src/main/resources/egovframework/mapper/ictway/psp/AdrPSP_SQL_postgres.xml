@@ -55,6 +55,21 @@
 			,usr_id
 		FROM psp.address_info
 		WHERE delete_at = 'N'
+		
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm = #{searchKeyword}
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND emailaddr = #{searchKeyword}
+				</when>
+			</choose>
+			
+		</if>
+		
+		
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -95,7 +110,7 @@
 			,delete_at
 			,usr_id
 		FROM psp.address_info
-		WHERE adbk_sn = #{adbksn}
+		WHERE adbk_sn = #{adbkSn}
 	</select>
 
 
