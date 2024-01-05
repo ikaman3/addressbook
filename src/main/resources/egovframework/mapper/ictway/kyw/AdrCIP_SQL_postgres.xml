@@ -34,37 +34,19 @@
 
 
 	<select id="selectAdrCIPList" parameterType="egovframework.ictway.kyw.service.AdrCIPVO" resultType="egovMap">
-		SELECT
-			 adbk_id
-			,nm
-			,brthdy
-			,sexdstn_code
-			,adres
-			,detail_adres
-			,telno
-			,emailaddr
-			,memo
-			,photo_flpth
-			,photo_nm
-			,photo_extsn_nm
-			,group_code
-			,cmpny_psitn_nm
-			,cmpny_psitn_team_nm
-			,cmpny_psitn_clsf_nm
-			,bkmk_at
-			,adbk_frst_writng_dt
-			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
-			,adbk_last_updt_dt
-			,adbk_last_updusr_id
-			,adbk_last_updusr_nm
-			,adbk_delete_at
-			,adbk_delete_dt
-			,adbk_dltr_id
-			,adbk_dltr_nm
+		SELECT *
 		FROM kyw.address_info
-		WHERE 
-		ORDER BY 1 DESC
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">
+					AND nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 1">
+					AND telno LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+		</trim>
+		ORDER BY nm ASC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
@@ -122,7 +104,7 @@
 	</select>
 
 
-	<insert id="insertAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
+	<insert id="registAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
 		INSERT INTO kyw.address_info (
 			 adbk_id
 			,nm
@@ -169,14 +151,14 @@
 			,#{cmpnyPsitnTeamNm}
 			,#{cmpnyPsitnClsfNm}
 			,#{bkmkAt}
-			,#{adbkFrstWritngDt}
+			,#{adbkFrstWritngDt}::timestamp
 			,#{adbkFrstWrterId}
 			,#{adbkFrstWrterNm}
-			,#{adbkLastUpdtDt}
+			,#{adbkLastUpdtDt}::timestamp
 			,#{adbkLastUpdusrId}
 			,#{adbkLastUpdusrNm}
 			,#{adbkDeleteAt}
-			,#{adbkDeleteDt}
+			,#{adbkDeleteDt}::timestamp
 			,#{adbkDltrId}
 			,#{adbkDltrNm}
 		)
@@ -203,14 +185,14 @@
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_frst_writng_dt = #{adbkFrstWritngDt}
+			,adbk_frst_writng_dt = #{adbkFrstWritngDt}::timestamp
 			,adbk_frst_wrter_id = #{adbkFrstWrterId}
 			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
-			,adbk_last_updt_dt = #{adbkLastUpdtDt}
+			,adbk_last_updt_dt = #{adbkLastUpdtDt}::timestamp
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
 			,adbk_delete_at = #{adbkDeleteAt}
-			,adbk_delete_dt = #{adbkDeleteDt}
+			,adbk_delete_dt = #{adbkDeleteDt}::timestamp
 			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_dltr_nm = #{adbkDltrNm}
 		WHERE
