@@ -26,21 +26,21 @@
 	function selectAdrGMAList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAGMAList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
 	function selectAdrGMADetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAGMADetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMADetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrGMARegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAGMARegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMARegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/yhj/selectAdrGMAGMAList.do"/>">염혜정</a></li>
+										<li><a href="<c:url value="/ictway/yhj/selectAdrGMAList.do"/>">염혜정</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -109,9 +109,10 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
+											<col style="width: 150px;">
+											<col style="width: 150px;">
+											<col style="width: 150px;">
 											<col style="width: auto;">
-											<col style="width: 100px;">
-											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
