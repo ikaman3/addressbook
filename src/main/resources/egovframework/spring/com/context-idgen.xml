@@ -2002,7 +2002,7 @@
         <property name="strategy" ref="nsh-adrAMSIdStrategy" />
         <property name="blockSize"  value="10"/>
         <property name="table"      value="IDS"/>
-        <property name="tableName"  value="NSH_ADRAMS_ID"/>
+        <property name="tableName"  value="NSH_ADR_ID"/>
     </bean>
     <!-- 남시현-주소록 ID Generation  Strategy Config -->
     <bean name="nsh-adrAMSIdStrategy"
