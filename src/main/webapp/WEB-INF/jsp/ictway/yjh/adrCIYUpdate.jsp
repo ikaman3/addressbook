@@ -33,7 +33,7 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
@@ -46,7 +46,7 @@
 	}
 	
 	//주소록 수정
-	function updateAdrAct(){
+	function updateAdrCIYAct(){
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -167,7 +167,7 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrAct();"><spring:message code='button.save' /></a><!-- 저장 -->
+	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrCIYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
 	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>
