@@ -53,8 +53,8 @@ public class AdrCIPDAO extends EgovAbstractMapper {
 	 * @param adrCIPVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrCIPAct(AdrCIPVO adrCIPVO) {
-		insert("AdrDAO.insertAdrCIPAct", adrCIPVO);
+	public void registAdrCIPAct(AdrCIPVO adrCIPVO) {
+		insert("AdrDAO.registAdrCIPAct", adrCIPVO);
 	}
 
 	/**
