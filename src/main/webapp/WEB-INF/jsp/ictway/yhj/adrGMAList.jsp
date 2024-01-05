@@ -23,28 +23,28 @@
 <script type="text/javascript">
 
 	//주소록 목록조회
-	function selectAdrCIPList(pageIndex){
+	function selectAdrGMAList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrCIPDetail(adrId){
+	function selectAdrGMADetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPDetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMADetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
-	function selectAdrCIPRegist(){
+	function selectAdrGMARegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPRegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMARegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김예원</title>
+<title>샘플 포털 > 주소록 > 염혜정</title>
 
 </head>
 <body>
@@ -70,14 +70,14 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kyw/selectAdrCIPList.do"/>">김예원</a></li>
+										<li><a href="<c:url value="/ictway/yhj/selectAdrGMAList.do"/>">염혜정</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
+								<p class="txt_1">염혜정 - 주소록 목록을 조회할 수 있는 페이지입니다.</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -90,15 +90,15 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="selectAdrCIPList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrGMAList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrCIPRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+										<a href="javascript:void(0);" onclick="selectAdrGMARegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
 								</div>
@@ -109,18 +109,18 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
-											<col style="width: 80px;">
-											<col style="width: 80px;">
-											<col style="width: 200px;">
+											<col style="width: 150px;">
+											<col style="width: 150px;">
+											<col style="width: 150px;">
 											<col style="width: auto;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">이름</th>
-												<th scope="col">성별</th>
-												<th scope="col">전화번호</th>
-												<th scope="col">이메일 주소</th>
+												<th scope="col">사용자 이름</th>
+												<th scope="col">생년월일</th>
+												<th scope="col">휴대폰번호</th>
+												<th scope="col">등록일</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -128,27 +128,17 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.nm }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrGMADetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.sexdstnCode }" escapeXml="false"/>
-													</a>
+													<c:out value="${resultVO.brthdy }" escapeXml="false"/>
 												</td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.telno }" escapeXml="false"/>
-													</a>
+													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>
 												</td>
-												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
-													</a>
-												</td>
-												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.adbkfrstWrtingDt }" pattern="yyyy-MM-dd"/></td>
+												<td class="al"><c:out value="${resultVO.adbkCreatDt}" /></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
@@ -163,7 +153,7 @@
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
-											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrCIPList" />
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrGMAList" />
 										</ul>
 									</div>
 								</div>

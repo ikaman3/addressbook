@@ -102,11 +102,11 @@ public class AdrCIPController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kyw/selectAdrCIPRegist.do")
-	public String selectAdrCIPRegist(@ModelAttribute("searchVO") AdrCIPVO adrCIPVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kyw/selectAdrCIPInsert.do")
+	public String selectAdrCIPInsert(@ModelAttribute("searchVO") AdrCIPVO adrCIPVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/kyw/adrCIPRegist";
+		return "ictway/kyw/adrCIPInsert";
 	}
 	
 	/**

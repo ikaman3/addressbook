@@ -34,13 +34,13 @@
 <script type="text/javascript">
     
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록
-	function registAdrAct() {
+	function registAdrCIYAct() {
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -155,8 +155,8 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrAct();"><spring:message code="button.save" /></a>
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();"><spring:message code="button.list" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrCIYAct();"><spring:message code="button.save" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCIYList();"><spring:message code="button.list" /></a>
 	                                    </div>
 	                                </div>
 	                                

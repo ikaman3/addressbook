@@ -33,8 +33,8 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrCIYList(){
-		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
+	function selectAdrPAWList{
+		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
 		document.searchListForm.submit();
 	}
 	
@@ -46,12 +46,12 @@
 	}
 	
 	//주소록 수정
-	function updateAdrCIYAct(){
+	function updateAdrPAWAct{
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/yjh/updateAdrCIYAct.do'/>",{
+        	fetch("<c:url value='/ictway/kej/updateAdrPAWAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -60,7 +60,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.update"/>");
-        		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYDetail.do'/>";
+        		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWDetail.do'/>";
         		document.searchListForm.submit();
         	})
         	.catch(error => {
@@ -72,7 +72,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 윤준현</title>
+<title>샘플 포털 > 주소록 > 김은지</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -107,8 +107,8 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
-										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">김은지</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 수정</a></li>
 									</ul>
                                 </div>
@@ -167,7 +167,7 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrCIYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
+	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrPAWAct;"><spring:message code='button.save' /></a><!-- 저장 -->
 	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>
