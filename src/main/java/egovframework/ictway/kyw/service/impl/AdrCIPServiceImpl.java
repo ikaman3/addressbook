@@ -32,8 +32,8 @@ public class AdrCIPServiceImpl implements AdrCIPService {
 	@Resource(name = "adrCIPDAO")
     private AdrCIPDAO adrCIPDAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	/** kyw-adrCIPIdGnrService */
+	@Resource(name="kyw-adrCIPIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override

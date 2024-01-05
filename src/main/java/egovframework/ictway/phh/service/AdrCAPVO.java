@@ -14,13 +14,13 @@ import lombok.Setter;
 * @version 1.0
 * @Modification
 * <pre>
-*2024.01.04 / ??? / 최초생성
+*2024.01.04 / 박현희 / 최초생성
 * </pre>
 * @see
 */
 @NoArgsConstructor
 @Getter @Setter
-public class AdrPHHVO extends ComDefaultVO implements Serializable {
+public class AdrCAPVO extends ComDefaultVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
