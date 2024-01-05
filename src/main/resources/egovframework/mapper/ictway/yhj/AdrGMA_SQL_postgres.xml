@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrGMADAO">
-	<resultMap id="addressInfoVO" type="egovframework.ictway.yhj.service.AddressInfoVO">
+	<resultMap id="adrGMAVO" type="egovframework.ictway.yhj.service.AdrGMAVO">
 		<result property="adbkId" column="adbk_id"/>	<!-- 주소록번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
@@ -31,7 +31,7 @@
 
 
 
-	<select id="selectAddressInfoList" parameterType="egovframework.ictway.yhj.service.AddressInfoVO" resultType="egovMap">
+	<select id="selectAddressInfoList" parameterType="egovframework.ictway.yhj.service.AdrGMAVO" resultType="egovMap">
 		SELECT
 			adbk_id
 			,user_nm
@@ -59,7 +59,7 @@
 
 
 
-	<select id="selectAddressInfoListCnt" parameterType="egovframework.ictway.yhj.service.AddressInfoVO" resultType="java.lang.Integer">
+	<select id="selectAddressInfoListCnt" parameterType="egovframework.ictway.yhj.service.AdrGMAVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM yhj.address_info
@@ -68,7 +68,7 @@
 
 
 
-	<select id="selectAddressInfoDetail" parameterType="egovframework.ictway.yhj.service.AddressInfoVO" resultMap="addressInfoVO">
+	<select id="selectAddressInfoDetail" parameterType="egovframework.ictway.yhj.service.AdrGMAVO" resultMap="adrGMAVO">
 		SELECT
 			adbk_id
 			,user_nm
@@ -96,7 +96,7 @@
 
 
 
-	<insert id="insertAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AddressInfoVO">
+	<insert id="insertAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AdrGMAVO">
 		INSERT INTO yhj.address_info (
 			adbk_id
 			,user_nm
@@ -140,7 +140,7 @@
 
 
 
-	<update id="updateAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AddressInfoVO">
+	<update id="updateAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AdrGMAVO">
 		UPDATE yhj.address_info
 		SET 
 			user_nm = #{userNm}
@@ -164,7 +164,7 @@
 		WHERE adbk_id = #{adbkId}
 	</update>
 	
-		<update id="deleteAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AddressInfoVO">
+		<update id="deleteAddressInfoAct" parameterType="egovframework.ictway.yhj.service.AdrGMAVO">
 		UPDATE yhj.address_info
 		SET 
 			adbk_dltr_id = #{adbkDltrId}
