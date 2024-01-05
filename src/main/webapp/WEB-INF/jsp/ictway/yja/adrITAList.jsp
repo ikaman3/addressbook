@@ -23,28 +23,28 @@
 <script type="text/javascript">
 
 	//주소록 목록조회
-	function selectAdrList(pageIndex){
+	function selectAdrITAList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrDetail(adrId){
+	function selectAdrITADetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITADetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
-	function selectAdrRegist(){
+	function selectAdrITARegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrRegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITARegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 유지애</title>
 
 </head>
 <body>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/yja/selectAdrITAList.do"/>">유지애</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -96,9 +96,9 @@
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="selectAdrList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrITAList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+										<a href="javascript:void(0);" onclick="selectAdrITARegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
 								</div>
@@ -126,7 +126,7 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
+													<a href="javascript:void(0);" onclick="selectAdrITADetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
 													</a>
 												</td>
@@ -146,7 +146,7 @@
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
-											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrList" />
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrITAList" />
 										</ul>
 									</div>
 								</div>

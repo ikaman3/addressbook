@@ -10,11 +10,11 @@ import egovframework.ictway.yja.service.AdrITAVO;
 /**
  * 주소록 정보 관리를 위한 데이터 처리 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 유지애 / 최초생성
+ *2024.01.04 / 유지애 / 최초생성
  * </pre>
  * @see
  */
