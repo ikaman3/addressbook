@@ -27,7 +27,9 @@
 	}
 	
 	//주소록 수정 화면
-	function selectAdrPSPUpdate(){
+	function selectAdrPSPUpdate(adbkSn){
+		console.log("눌리나");
+		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPUpdate.do'/>";
 		document.searchListForm.submit();
 	}
@@ -106,7 +108,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -117,27 +119,27 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dd><c:out value="${resultVO.registUserNm}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dd><c:out value="${resultVO.registDt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrPSPUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrPSPUpdate('<c:out value="${resultVO.adbkSn}"/>'); return false;">수정</a>
                                             <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrPSPAct();">삭제</a>
                                         </div>
 

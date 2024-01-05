@@ -21,24 +21,24 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrINYList(){
-		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYList.do'/>";
+	function selectAdrList(){
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 수정 화면
-	function selectAdrINYUpdate(){
-		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYUpdate.do'/>";
+	function selectAdrUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYUpdate.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 정보 삭제
-	function deleteAdrINYAct(){
+	function deleteAdrAct(){
 		if (confirm('<spring:message code="common.delete.msg" />')) {
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/iny/deleteAdrINYAct.do'/>",{
+        	fetch("<c:url value='/ictway/yjh/deleteAdrCIYAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -47,7 +47,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.delete"/>");
-        		location.href = "<c:url value='/ictway/iny/selectAdrINYList.do'/>";
+        		location.href = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -58,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 윤현종</title>
+<title>샘플 포털 > 주소록 > 윤준현</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">윤현종</a></li>
-										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -111,7 +111,7 @@
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">INY 주소록 상세조회 입니다.</p>
+								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
@@ -137,12 +137,12 @@
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrINYUpdate();">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrINYAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrINYList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
