@@ -2002,12 +2002,12 @@
         <property name="strategy" ref="yja-adrITAIdStrategy" />
         <property name="blockSize"  value="10"/>
         <property name="table"      value="IDS"/>
-        <property name="tableName"  value="YJA_ADR_ID"/>
+        <property name="tableName"  value="YJA_ADRITA_ID"/>
     </bean>
     <!-- 유지애-주소록 ID Generation  Strategy Config -->
     <bean name="yja-adrITAIdStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="ADR" />
+        <property name="prefix" value="ADRITA" />
         <property name="cipers" value="12" />
         <property name="fillChar" value="0" />
     </bean>            
