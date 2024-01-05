@@ -151,8 +151,8 @@
 		)
 	</insert>
 
-<!-- 
-	<update id="updateAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
+<!--
+ 	<update id="updateAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
 		UPDATE iny.address_info
 		SET 
 			 adbk_sn = #{adbkSn}
@@ -179,5 +179,5 @@
 			,regist_user_id = #{registUserId}
 		WHERE = #{}
 	</update>
- -->
+-->
 </mapper>
