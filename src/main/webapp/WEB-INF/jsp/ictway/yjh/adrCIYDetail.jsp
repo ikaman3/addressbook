@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
@@ -142,7 +142,7 @@
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCIYList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
