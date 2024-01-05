@@ -21,24 +21,24 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+	function selectAdrITAList(){
+		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 수정 화면
-	function selectAdrUpdate(){
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrUpdate.do'/>";
+	function selectAdrITAUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITAUpdate.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 정보 삭제
-	function deleteAdrAct(){
+	function deleteAdrITAAct(){
 		if (confirm('<spring:message code="common.delete.msg" />')) {
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/kjk/deleteAdrAct.do'/>",{
+        	fetch("<c:url value='/ictway/yja/deleteAdrITAAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -47,7 +47,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.delete"/>");
-        		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+        		location.href = "<c:url value='/ictway/yja/selectAdrITAList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -58,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 유지애</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/yja/selectAdrITAList.do"/>">유지애</a></li>
+										<li><a href="<c:url value="/ictway/yja/selectAdrITAList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -137,12 +137,12 @@
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrUpdate();">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrITAUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrITAAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrITAList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
