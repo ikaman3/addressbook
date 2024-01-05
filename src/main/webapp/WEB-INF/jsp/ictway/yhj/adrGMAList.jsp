@@ -44,7 +44,7 @@
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 염혜정</title>
 
 </head>
 <body>
@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">염혜정 - 주소록 목록을 조회할 수 있는 페이지입니다.</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -116,8 +116,9 @@
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
+												<th scope="col">사용자 이름</th>
+												<th scope="col">생년월일</th>
+												<th scope="col">휴대폰번호</th>
 												<th scope="col">등록일</th>
 											</tr>
 										</thead>
@@ -126,12 +127,17 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrGMADetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrGMADetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td class="al">
+													<c:out value="${resultVO.brthdy }" escapeXml="false"/>
+												</td>
+												<td class="al">
+													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>
+												</td>
+												<td class="al"><c:out value="${resultVO.adbkCreatDt}" /></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
