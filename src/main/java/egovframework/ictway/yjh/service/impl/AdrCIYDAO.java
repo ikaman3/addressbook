@@ -53,8 +53,8 @@ public class AdrCIYDAO extends EgovAbstractMapper {
 	 * @param adrCIYVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrAct(AdrCIYVO adrCIYVO) {
-		insert("AdrCIYDAO.insertAdrAct", adrCIYVO);
+	public void insertAdrCIYAct(AdrCIYVO adrCIYVO) {
+		insert("AdrCIYDAO.insertAdrCIYAct", adrCIYVO);
 	}
 
 	/**
