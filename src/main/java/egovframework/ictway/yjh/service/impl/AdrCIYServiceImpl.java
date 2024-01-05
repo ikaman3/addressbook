@@ -38,8 +38,8 @@ public class AdrCIYServiceImpl implements AdrCIYService {
     private AdrCIYDAO adrCIYDAO;
 	
 	/** yjh-adrIdGnrService */
-	@Resource(name="yjh-adrIdGnrService")
-	private EgovIdGnrService idgenService;
+//	@Resource(name="yjh-adrIdGnrService")
+//	private EgovIdGnrService idgenService;
 	
 	// 타임존이 포함된 현재 시간을 얻는 메서드
 	public String getCurrentTimeInKorea() {
@@ -78,7 +78,7 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Override
 	public String registAdrCIYAct(AdrCIYVO adrCIYVO) throws FdlException, Exception {
 		//고유아이디 셋팅
-		String uniqId = idgenService.getNextStringId();
+		String uniqId = "ㅇㅇ";
 		adrCIYVO.setAdbkId(uniqId);
 		// 생성자 아이디 셋팅
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
