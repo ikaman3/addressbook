@@ -60,7 +60,7 @@ public class AdrITAServiceImpl implements AdrITAService {
 	@Override
 	public String registAdrITAAct(AdrITAVO adrITAVO) throws FdlException, Exception {
 		//고유아이디 셋팅
-		Long uniqIdLong = Long.parseLong(idgenService.getNextStringId());
+		Long uniqIdLong = idgenService.getNextLongId();
 		adrITAVO.setAdbkSn(uniqIdLong);
 		String uniqId = Long.toString(uniqIdLong);
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();

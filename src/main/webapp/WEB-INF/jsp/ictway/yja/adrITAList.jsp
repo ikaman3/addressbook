@@ -76,8 +76,8 @@
 								</div>
 								<!--// Location -->
 
-								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<h1 class="tit_1">알려주소</h1>
+								<p class="txt_1">주소록 목록 페이지</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -90,8 +90,8 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>메모</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,15 +109,17 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
-											<col style="width: auto;">
+											<col style="width: 80px;">
+											<col style="width: 200px;">
 											<col style="width: 100px;">
 											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
+												<th scope="col">이름</th>
+												<th scope="col">휴대폰번호</th>
+												<th scope="col">그룹</th>
 												<th scope="col">등록일</th>
 											</tr>
 										</thead>
@@ -125,13 +127,14 @@
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
-												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrITADetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+												<td>
+													<a href="javascript:void(0);" onclick="selectAdrITADetail('<c:out value="${resultVO.userNm}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.userNm}" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.moblphonNo}" /></td>
+												<td><c:out value="${resultVO.groupNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.registDt}" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
