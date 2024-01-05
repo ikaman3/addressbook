@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.0
  * @Modification
  * <pre>
- *2023.01.04 / 남시현 / 최초생성
+ *2024.01.04 / 남시현 / 최초생성
  * </pre>
  * @see
  */
@@ -82,7 +82,7 @@ public class AdrAMSController {
 	/**
 	 * 주소록 상세조회
 	 * @param request
-	 * @param addrAMSVO - 주소록 VO
+	 * @param adrAMSVO - 주소록 VO
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
@@ -98,7 +98,7 @@ public class AdrAMSController {
 	
 	/**
 	 * 주소록 등록 화면
-	 * @param addrAMSVO - 주소록 VO
+	 * @param adrAMSVO - 주소록 VO
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
@@ -128,7 +128,7 @@ public class AdrAMSController {
 	
 	/**
 	 * 주소록 수정 화면
-	 * @param addrAMSVO - 주소록 VO
+	 * @param adrAMSVO - 주소록 VO
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
