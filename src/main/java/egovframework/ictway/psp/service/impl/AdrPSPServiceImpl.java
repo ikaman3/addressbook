@@ -33,8 +33,8 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 	@Resource(name = "adrPSPDAO")
     private AdrPSPDAO AdrPSPDAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	/** psp-adrIdGnrService */
+	@Resource(name="psp-adrPSPIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override

@@ -32,8 +32,8 @@ public class AdrAMSServiceImpl implements AdrAMSService {
 	@Resource(name = "adrAMSDAO")
     private AdrAMSDAO adrAMSDAO;
 	
-	/** nsh-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	/** nsh-adrAMSIdGnrService */
+	@Resource(name="nsh-adrAMSIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
