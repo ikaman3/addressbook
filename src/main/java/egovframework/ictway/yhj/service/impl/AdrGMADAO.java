@@ -5,7 +5,7 @@ import java.util.List;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
-import egovframework.ictway.yhj.service.AddressInfoVO;
+import egovframework.ictway.yhj.service.AdrGMAVO;
 
 /**
  * 주소록 정보 관리를 위한 데이터 처리 클래스
@@ -23,55 +23,55 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	
 	/**
 	 * 검색된 목록을 조회한다.
-	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
+	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAddressInfoList(AddressInfoVO addressInfoVO) {
-		return selectList("AddressInfoGMADAO.selectAddressInfoList", addressInfoVO);
+	public List<?> selectAdrGMAList(AdrGMAVO adrGMAVO) {
+		return selectList("AdrGMAGMADAO.selectAdrGMAList", adrGMAVO);
 	}
 
 	/**
 	 * 검색된 목록의 총 건 수를 조회한다.
-	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
+	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAddressInfoListCnt(AddressInfoVO addressInfoVO) {
-		return (Integer)selectOne("AddressInfoGMADAO.selectAddressInfoListCnt", addressInfoVO);
+	public int selectAdrGMAListCnt(AdrGMAVO adrGMAVO) {
+		return (Integer)selectOne("AdrGMAGMADAO.selectAdrGMAListCnt", adrGMAVO);
 	}
 	
 	/**
 	 * 정보를 조회한다.
-	 * @param AddressInfoVO - 조회할 정보가 담긴 VO
+	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AddressInfoVO selectAddressInfoDetail(AddressInfoVO addressInfoVO) {
-		return selectOne("AddressInfoGMADAO.selectAddressInfoDetail", addressInfoVO);
+	public AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) {
+		return selectOne("AdrGMAGMADAO.selectAdrGMADetail", adrGMAVO);
 	}
 	
 	/**
 	 * 정보를 등록한다.
-	 * @param AddressInfoVO - 등록할 정보가 담긴 VO
+	 * @param AdrGMAVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAddressInfoAct(AddressInfoVO addressInfoVO) {
-		insert("AddressInfoGMADAO.insertAddressInfoAct", addressInfoVO);
+	public void insertAdrGMAAct(AdrGMAVO adrGMAVO) {
+		insert("AdrGMAGMADAO.insertAdrGMAAct", adrGMAVO);
 	}
 
 	/**
 	 * 정보를 수정한다.
-	 * @param AddressInfoVO - 수정할 정보가 담긴 VO
+	 * @param AdrGMAVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAddressInfoAct(AddressInfoVO addressInfoVO) {
-		update("AddressInfoGMADAO.updateAddressInfoAct", addressInfoVO);
+	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) {
+		update("AdrGMAGMADAO.updateAdrGMAAct", adrGMAVO);
 	}
 
 	/**
 	 * 정보를 삭제한다.
-	 * @param AddressInfoVO - 삭제할 정보가 담긴 VO
+	 * @param AdrGMAVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAddressInfoAct(AddressInfoVO addressInfoVO) {
-		update("AddressInfoGMADAO.deleteAddressInfoAct", addressInfoVO);
+	public void deleteAdrGMAAct(AdrGMAVO adrGMAVO) {
+		update("AdrGMAGMADAO.deleteAdrGMAAct", adrGMAVO);
 	}
 }

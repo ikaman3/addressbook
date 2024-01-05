@@ -231,4 +231,15 @@
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
 	</update>
+	
+	<update id="deleteAdrAMSAct" parameterType="egovframework.ictway.nsh.service.AdrAMSVO">
+		UPDATE nsh.address_info
+		SET 
+			 use_at = 'Y'
+			,adbk_delete_dt = now()
+			,adbk_last_updusr_id = #{adbkDltrId}
+		WHERE
+			use_at = 'N'
+			AND adbk_id = #{adbkId}
+	</update>
 </mapper>

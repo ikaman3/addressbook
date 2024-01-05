@@ -19,42 +19,42 @@ public interface AdrGMAService {
 
 	/**
 	 * 검색된 목록과 건 수를 조회한다.
-	 * @param addressInfoVO - 조회할 정보가 담긴 VO
+	 * @param adrGMAVO - 조회할 정보가 담긴 VO
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAddressInfoList(AddressInfoVO addressInfoVO) throws Exception;
+	Map<String, Object> selectAdrGMAList(AdrGMAVO adrGMAVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
-	 * @param addressInfoVO - 조회할 정보가 담긴 VO
+	 * @param adrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AddressInfoVO selectAddressInfoDetail(AddressInfoVO addressInfoVO) throws Exception;
+	AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
-	 * @param addressInfoVO - 등록할 정보가 담긴 VO
+	 * @param adrGMAVO - 등록할 정보가 담긴 VO
 	 * @return pk
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAddressInfoAct(AddressInfoVO addressInfoVO) throws FdlException, Exception;
+	String registAdrGMAAct(AdrGMAVO adrGMAVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
-	 * @param addressInfoVO - 수정할 정보가 담긴 VO
+	 * @param adrGMAVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAddressInfoAct(AddressInfoVO addressInfoVO) throws Exception;
+	void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
-	 * @param addressInfoVO - 삭제할 정보가 담긴 VO
+	 * @param adrGMAVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAddressInfoAct(AddressInfoVO addressInfoVO) throws Exception;
+	void deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
 }
