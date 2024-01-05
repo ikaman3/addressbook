@@ -41,16 +41,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Resource(name="yjh-adrCIYIdGnrService")
 	private EgovIdGnrService idgenService;
 	
-	// 타임존이 포함된 현재 시간을 얻는 메서드
-	public String getCurrentTimeInKorea() {
-		// 현재 시간 셋팅
-		ZonedDateTime currentTimeInKorea = ZonedDateTime.now(koreaTimeZone);
-	    // 포맷팅을 위한 DateTimeFormatter 생성
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
-	    String formattedTime = currentTimeInKorea.format(formatter);
-		return formattedTime;
-	}
-	
 	// 주소정보 목록 조회
 	@Override
 	public Map<String, Object> selectAdrCIYList(AdrCIYVO adrCIYVO) throws Exception {
@@ -83,9 +73,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		// 생성자 아이디 셋팅
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkWrterId(user.getUniqId());
-		// 생성일자 셋팅
-		String currentTime = getCurrentTimeInKorea();
-		adrCIYVO.setAdbkCreatDt(currentTime);
 		
 		adrCIYDAO.insertAdrAct(adrCIYVO);
 		return uniqId;
@@ -97,9 +84,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		// 수정자 아이디 셋팅
 		adrCIYVO.setAdbkUpdusrId(user.getUniqId());
-		// 수정일시 셋팅
-		String currentTime = getCurrentTimeInKorea();
-	    adrCIYVO.setAdbkUpdtDt(currentTime);
 		
 	    adrCIYDAO.updateAdrCIYAct(adrCIYVO);
 	}
@@ -110,9 +94,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		// 삭제자 아이디 셋팅
 		adrCIYVO.setAdbkDltrId(user.getUniqId());
-		// 삭제일시 셋팅
-		String currentTime = getCurrentTimeInKorea();
-	    adrCIYVO.setAdbkDeleteDt(currentTime);
 		
 	    adrCIYDAO.deleteAdrCIYAct(adrCIYVO);
 	}
