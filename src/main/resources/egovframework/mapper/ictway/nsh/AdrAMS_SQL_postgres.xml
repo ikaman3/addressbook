@@ -182,14 +182,14 @@
 			,#{cmpnyPsitnTeamNm}
 			,#{cmpnyPsitnClsfNm}
 			,#{bkmkAt}
-			,#{adbkFrstWritngDt}
+			,#{adbkFrstWritngDt}::timestamp
 			,#{adbkFrstWrterId}
 			,#{adbkFrstWrterNm}
-			,#{adbkLastUpdtDt}
+			,#{adbkLastUpdtDt}::timestamp
 			,#{adbkLastUpdusrId}
 			,#{adbkLastUpdusrNm}
 			,#{adbkDeleteAt}
-			,#{adbkDeleteDt}
+			,#{adbkDeleteDt}::timestamp
 			,#{adbkDltrId}
 			,#{adbkDltrNm}
 		)
