@@ -15,10 +15,6 @@ import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.yjh.service.AdrCIYService;
 import egovframework.ictway.yjh.service.AdrCIYVO;
 
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-
 /**
  * 주소정보 관리를 위한 구현 클래스
  * @author ICTWAY
@@ -32,8 +28,6 @@ import java.time.format.DateTimeFormatter;
  */
 @Service("adrCIYService")
 public class AdrCIYServiceImpl implements AdrCIYService {
-	ZoneId koreaTimeZone = ZoneId.of("Asia/Seoul");
-	
 	@Resource(name = "adrCIYDAO")
     private AdrCIYDAO adrCIYDAO;
 	
