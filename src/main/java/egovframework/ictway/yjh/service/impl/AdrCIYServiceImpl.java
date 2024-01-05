@@ -37,9 +37,9 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Resource(name = "adrCIYDAO")
     private AdrCIYDAO adrCIYDAO;
 	
-	/** yjh-adrIdGnrService */
-//	@Resource(name="yjh-adrIdGnrService")
-//	private EgovIdGnrService idgenService;
+	/** yjh-adrCIYIdGnrService */
+	@Resource(name="yjh-adrCIYIdGnrService")
+	private EgovIdGnrService idgenService;
 	
 	// 타임존이 포함된 현재 시간을 얻는 메서드
 	public String getCurrentTimeInKorea() {
