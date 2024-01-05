@@ -29,7 +29,7 @@ public interface AdrPSPService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AdrPSPVO AdrPSPVO) throws Exception;
+	Map<String, Object> selectAdrPSPList(AdrPSPVO AdrPSPVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -38,7 +38,7 @@ public interface AdrPSPService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */
-	AdrPSPVO selectAdrDetail(AdrPSPVO AdrPSPVO) throws Exception;
+	AdrPSPVO selectAdrPSPDetail(AdrPSPVO AdrPSPVO) throws Exception;
 
 	/**
 	 * 정보를 등록한다.
@@ -48,7 +48,7 @@ public interface AdrPSPService {
 	 * @exception FdlException
 	 * @throws Exception
 	 */
-	Long registAdrAct(AdrPSPVO AdrPSPVO) throws FdlException, Exception;
+	Long registAdrPSPAct(AdrPSPVO AdrPSPVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -57,7 +57,7 @@ public interface AdrPSPService {
 	 * @return void
 	 * @exception Exception
 	 */
-	void updateAdrAct(AdrPSPVO AdrPSPVO) throws Exception;
+	void updateAdrPSPAct(AdrPSPVO AdrPSPVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -66,5 +66,5 @@ public interface AdrPSPService {
 	 * @return void
 	 * @exception Exception
 	 */
-	void deleteAdrAct(AdrPSPVO AdrPSPVO) throws Exception;
+	void deleteAdrPSPAct(AdrPSPVO AdrPSPVO) throws Exception;
 }

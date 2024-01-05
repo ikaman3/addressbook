@@ -27,8 +27,8 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAdrList(AdrPSPVO AdrPSPVO) {
-		return selectList("AdrDAO.selectAdrList", AdrPSPVO);
+	public List<?> selectAdrPSPList(AdrPSPVO AdrPSPVO) {
+		return selectList("AdrPSPDAO.selectAdrList", AdrPSPVO);
 	}
 
 	/**
@@ -36,8 +36,8 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAdrListCnt(AdrPSPVO AdrPSPVO) {
-		return (Integer)selectOne("AdrDAO.selectAdrListCnt", AdrPSPVO);
+	public int selectAdrPSPListCnt(AdrPSPVO AdrPSPVO) {
+		return (Integer)selectOne("AdrPSPDAO.selectAdrListCnt", AdrPSPVO);
 	}
 	
 	/**
@@ -45,8 +45,8 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AdrPSPVO selectAdrDetail(AdrPSPVO AdrPSPVO) {
-		return selectOne("AdrDAO.selectAdrDetail", AdrPSPVO);
+	public AdrPSPVO selectAdrPSPDetail(AdrPSPVO AdrPSPVO) {
+		return selectOne("AdrPSPDAO.selectAdrDetail", AdrPSPVO);
 	}
 	
 	/**
@@ -54,8 +54,8 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAdrAct(AdrPSPVO AdrPSPVO) {
-		insert("AdrDAO.insertAdrAct", AdrPSPVO);
+	public void insertAdrPSPAct(AdrPSPVO AdrPSPVO) {
+		insert("AdrPSPDAO.insertAdrAct", AdrPSPVO);
 	}
 
 	/**
@@ -63,8 +63,8 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAdrAct(AdrPSPVO AdrPSPVO) {
-		update("AdrDAO.updateAdrAct", AdrPSPVO);
+	public void updateAdrPSPAct(AdrPSPVO AdrPSPVO) {
+		update("AdrPSPDAO.updateAdrAct", AdrPSPVO);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @param AdrPSPVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAdrAct(AdrPSPVO AdrPSPVO) {
-		update("AdrDAO.deleteAdrAct", AdrPSPVO);
+	public void deleteAdrPSPAct(AdrPSPVO AdrPSPVO) {
+		update("AdrPSPDAO.deleteAdrAct", AdrPSPVO);
 	}
 }

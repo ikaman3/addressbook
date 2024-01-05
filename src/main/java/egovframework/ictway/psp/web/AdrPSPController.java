@@ -67,7 +67,7 @@ public class AdrPSPController {
 		AdrPSPVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		AdrPSPVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = AdrPSPService.selectAdrList(AdrPSPVO);
+		Map<String, Object> map = AdrPSPService.selectAdrPSPList(AdrPSPVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -76,7 +76,7 @@ public class AdrPSPController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/kjk/AdrPSPList";
+		return "ictway/psp/adrPSPList";
 	}
 	
 	/**
@@ -86,14 +86,14 @@ public class AdrPSPController {
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrPSPDetail.do")
+	@RequestMapping("/ictway/psp/selectAdrPSPDetail.do")
 	public String selectAdrPSPDetail(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
 		
-		AdrPSPVO resultVO = AdrPSPService.selectAdrDetail(AdrPSPVO);
+		AdrPSPVO resultVO = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/kjk/AdrPSPDetail";
+		return "ictway/psp/adrPSPDetail";
 	}
 	
 	/**
@@ -102,11 +102,11 @@ public class AdrPSPController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrPSPRegist.do")
+	@RequestMapping("/ictway/psp/selectAdrPSPRegist.do")
 	public String selectAdrPSPRegist(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/kjk/AdrPSPRegist";
+		return "ictway/psp/adrPSPRegist";
 	}
 	
 	/**
@@ -115,12 +115,12 @@ public class AdrPSPController {
      * @return AdrPSPId
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/registAdrPSPAct.do")
+    @RequestMapping("/ictway/psp/registAdrPSPAct.do")
     public ModelAndView registAdrPSPAct(AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		Long AdrPSPId = AdrPSPService.registAdrAct(AdrPSPVO);
+		Long AdrPSPId = AdrPSPService.registAdrPSPAct(AdrPSPVO);
 		mav.addObject("AdrPSPId", AdrPSPId);
 		
 		return mav;
@@ -132,13 +132,13 @@ public class AdrPSPController {
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kjk/selectAdrPSPUpdate.do")
+	@RequestMapping("/ictway/psp/selectAdrPSPUpdate.do")
 	public String selectAdrPSPUpdate(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
 		
-		AdrPSPVO resultVO = AdrPSPService.selectAdrDetail(AdrPSPVO);
+		AdrPSPVO resultVO = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/kjk/AdrPSPUpdate";
+		return "ictway/psp/adrPSPUpdate";
 	}
 	
 	/**
@@ -147,12 +147,12 @@ public class AdrPSPController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/updateAdrPSPAct.do")
+    @RequestMapping("/ictway/psp/updateAdrPSPAct.do")
     public ModelAndView updateAdrPSPAct(AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		AdrPSPService.updateAdrAct(AdrPSPVO);
+		AdrPSPService.updateAdrPSPAct(AdrPSPVO);
 		
 		return mav;
     }
@@ -163,12 +163,12 @@ public class AdrPSPController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kjk/deleteAdrPSPAct.do")
+    @RequestMapping("/ictway/psp/deleteAdrPSPAct.do")
     public ModelAndView deleteAdrPSPAct(AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		AdrPSPService.deleteAdrAct(AdrPSPVO);
+		AdrPSPService.deleteAdrPSPAct(AdrPSPVO);
 		
 		return mav;
     }

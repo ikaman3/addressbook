@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AdrPSPDAO">
-		<resultMap id="adrPSPVO" type="egovframework.ictway.psp.service.AdrPSPVO">
-		
+	<resultMap id="adrPSPVO" type="egovframework.ictway.psp.service.AdrPSPVO">
 		<result property="adbkSn" column="adbk_sn"/>	<!-- 주소록일련번호 -->
 		<result property="userNm" column="user_nm"/>	<!-- 사용자명칭 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
@@ -30,7 +29,7 @@
 
 
 
-	<select id="selectAdrList" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="egovMap">
+	<select id="selectAdrPSPList" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="egovMap">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -55,23 +54,23 @@
 			,delete_at
 			,usr_id
 		FROM psp.address_info
-		WHERE 
+		WHERE delete_at = 'N'
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 
 
-	<!-- <select id="selectAdrListCnt" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="java.lang.Integer">
+	<select id="selectAdrPSPListCnt" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultType="java.lang.Integer">
 		SELECT
 			COUNT(*)
 		FROM psp.address_info
-		WHERE 
-	</select> -->
+		WHERE delete_at = 'N'
+	</select>
 
 
 
-	<!-- <select id="selectAdrDetail" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultMap="addressInfoVO">
+	<select id="selectAdrPSPDetail" parameterType="egovframework.ictway.psp.service.AdrPSPVO" resultMap="adrPSPVO">
 		SELECT
 			adbk_sn
 			,user_nm
@@ -96,12 +95,12 @@
 			,delete_at
 			,usr_id
 		FROM psp.address_info
-		WHERE 
-	</select> -->
+		WHERE adbk_sn = #{adbksn}
+	</select>
 
 
 
-	<insert id="insertAdrAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
+	<insert id="insertAdrPSPAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
 		INSERT INTO psp.address_info (
 			adbk_sn
 			,user_nm
@@ -153,7 +152,7 @@
 
 
 
-	<!-- <update id="updateAdrAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
+	 <update id="updateAdrPSPAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
 		UPDATE psp.address_info
 		SET 
 			adbk_sn = #{adbkSn}
@@ -178,8 +177,8 @@
 			,regist_user_nm = #{registUserNm}
 			,delete_at = #{deleteAt}
 			,usr_id = #{usrId}
-		WHERE = #{}
-	</update> -->
+		WHERE usr_id = #{usrId}
+	</update>
 	
 	
 </mapper>
