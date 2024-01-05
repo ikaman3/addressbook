@@ -26,25 +26,25 @@
 	function selectAdrList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
 	function selectAdrDetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrRegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrRegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYRegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 윤준현</title>
 
 </head>
 <body>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>

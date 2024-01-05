@@ -102,31 +102,9 @@
 		SELECT
 			 adbk_id
 			,nm
-			,brthdy
-			,sexdstn_code
-			,adres
-			,detail_adres
-			,telno
-			,emailaddr
-			,memo
-			,photo_flpth
-			,photo_nm
-			,photo_extsn_nm
-			,group_code
-			,cmpny_psitn_nm
-			,cmpny_psitn_team_nm
-			,cmpny_psitn_clsf_nm
-			,bkmk_at
-			,adbk_frst_writng_dt
-			,adbk_frst_wrter_id
+			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,adbk_frst_wrter_nm
-			,adbk_last_updt_dt
-			,adbk_last_updusr_id
-			,adbk_last_updusr_nm
 			,adbk_delete_at
-			,adbk_delete_dt
-			,adbk_dltr_id
-			,adbk_dltr_nm
 		FROM nsh.address_info
 		WHERE
 			adbk_delete_at = 'N'
@@ -153,19 +131,19 @@
 			,cmpny_psitn_nm
 			,cmpny_psitn_team_nm
 			,cmpny_psitn_clsf_nm
-			,bkmk_at
-			,adbk_frst_writng_dt
+			<!-- ,bkmk_at -->
+			<!-- ,adbk_frst_writng_dt -->
 			,adbk_frst_wrter_id
 			,adbk_frst_wrter_nm
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
-			,adbk_delete_at
+			<!-- ,adbk_delete_at -->
 			,adbk_delete_dt
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		) VALUES(
-			,#{adbkId}
+			#{adbkId}
 			,#{nm}
 			,#{brthdy}
 			,#{sexdstnCode}
@@ -181,15 +159,15 @@
 			,#{cmpnyPsitnNm}
 			,#{cmpnyPsitnTeamNm}
 			,#{cmpnyPsitnClsfNm}
-			,#{bkmkAt}
-			,#{adbkFrstWritngDt}
+			<!-- ,#{bkmkAt} -->
+			<!-- ,#{adbkFrstWritngDt}::timestamp -->
 			,#{adbkFrstWrterId}
 			,#{adbkFrstWrterNm}
-			,#{adbkLastUpdtDt}
+			,#{adbkLastUpdtDt}::timestamp
 			,#{adbkLastUpdusrId}
 			,#{adbkLastUpdusrNm}
-			,#{adbkDeleteAt}
-			,#{adbkDeleteDt}
+			<!-- ,#{adbkDeleteAt} -->
+			,#{adbkDeleteDt}::timestamp
 			,#{adbkDltrId}
 			,#{adbkDltrNm}
 		)
@@ -216,17 +194,17 @@
 			,cmpny_psitn_nm = #{cmpnyPsitnNm}
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
-			,bkmk_at = #{bkmkAt}
-			,adbk_frst_writng_dt = #{adbkFrstWritngDt}
-			,adbk_frst_wrter_id = #{adbkFrstWrterId}
-			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
-			,adbk_last_updt_dt = #{adbkLastUpdtDt}
+			<!-- ,bkmk_at = #{bkmkAt} -->
+			<!-- ,adbk_frst_writng_dt = #{adbkFrstWritngDt} -->
+			<!-- ,adbk_frst_wrter_id = #{adbkFrstWrterId}
+			,adbk_frst_wrter_nm = #{adbkFrstWrterNm} -->
+			<!-- ,adbk_last_updt_dt = #{adbkLastUpdtDt}
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
 			,adbk_delete_at = #{adbkDeleteAt}
 			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_dltr_nm = #{adbkDltrNm}
+			,adbk_dltr_nm = #{adbkDltrNm} -->
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}

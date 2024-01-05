@@ -67,13 +67,13 @@ public class AdrPAWController {
 		AdrPAWVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		AdrPAWVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		//Map<String, Object> map = AdrPAWService.selectAdrPAWList(AdrPAWVO);
-		//int totCnt = Integer.parseInt((String)map.get("resultCnt"));
-		//paginationInfo.setTotalRecordCount(totCnt);
+		Map<String, Object> map = AdrPAWService.selectAdrPAWList(AdrPAWVO);
+		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
+		paginationInfo.setTotalRecordCount(totCnt);
 		
-		//model.addAttribute("resultList", map.get("resultList"));
-		//model.addAttribute("resultCnt", map.get("resultCnt"));
-		//model.addAttribute("paginationInfo", paginationInfo);
+		model.addAttribute("resultList", map.get("resultList"));
+		model.addAttribute("resultCnt", map.get("resultCnt"));
+		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
 		return "ictway/kej/adrList";
@@ -89,8 +89,8 @@ public class AdrPAWController {
 	@RequestMapping("/ictway/kej/selectAdrPAWDetail.do")
 	public String selectAdrPAWDetail(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		//AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
-		//model.addAttribute("resultVO", resultVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
+		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
 		return "ictway/kej/adrDetail";
@@ -120,8 +120,8 @@ public class AdrPAWController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		//String adrPAWId = AdrPAWService.registAdrPAWAct(AdrPAWVO);
-		//mav.addObject("adrPAWId", adrPAWId);
+		String adrPAWId = AdrPAWService.registAdrPAWAct(AdrPAWVO);
+		mav.addObject("adrPAWId", adrPAWId);
 		
 		return mav;
     }
@@ -135,8 +135,8 @@ public class AdrPAWController {
 	@RequestMapping("/ictway/kej/selectAdrPAWUpdate.do")
 	public String selectAdrPAWUpdate(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		//AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
-		//model.addAttribute("resultVO", resultVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
+		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/kej/adrUpdate";
 	}
@@ -152,7 +152,7 @@ public class AdrPAWController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		//AdrPAWService.updateAdrPAWAct(AdrPAWVO);
+		AdrPAWService.updateAdrPAWAct(AdrPAWVO);
 		
 		return mav;
     }
@@ -168,7 +168,7 @@ public class AdrPAWController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		//AdrPAWService.deleteAdrPAWAct(AdrPAWVO);
+		AdrPAWService.deleteAdrPAWAct(AdrPAWVO);
 		
 		return mav;
     }

@@ -33,7 +33,7 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrPSPList(){
 		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
 		document.searchListForm.submit();
 	}
@@ -46,7 +46,7 @@
 	}
 	
 	//주소록 수정
-	function updateAdrAct(){
+	function updateAdrPSPAct(){
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -120,12 +120,12 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
@@ -139,22 +139,22 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="userNm">제목</label>
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adrSj" />
+	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="memo">내용</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                            	<form:textarea path="memo" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+													<form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
