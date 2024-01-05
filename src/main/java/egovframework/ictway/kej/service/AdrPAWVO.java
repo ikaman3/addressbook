@@ -10,7 +10,7 @@ import lombok.Setter;
 /**
 * 주소정보 관리 정보 처리를 위한 VO 클래스
 * @author ICTWAY
-* @since 2024.01.04
+* @since 2023.12.29
 * @version 1.0
 * @Modification
 * <pre>
