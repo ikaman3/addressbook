@@ -118,7 +118,7 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">염혜정 - 주소록 등록 화면입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -143,8 +143,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="adrCn" />
+	                                                <input id="brthdy" name="brthdy" type="date" value="" class="f_txt w_full" ></input>
+	                                                <form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -153,8 +153,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
-	                                                <form:errors path="adrCn" />
+	                                            	<input type="radio" name="sexdstnCode" value="SX001" /> 여성
+	                                            	<input type="radio" name="sexdstnCode" value="SX002" /> 남성
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -173,7 +173,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
+	                                                <input id="mbtlnum" name="mbtlnum" type="tel" size="50" value=""  maxlength="50" class="f_txt w_full" ></input>
 	                                                <form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
