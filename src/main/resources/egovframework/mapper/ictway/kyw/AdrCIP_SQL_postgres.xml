@@ -122,7 +122,7 @@
 	</select>
 
 
-	<insert id="insertAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
+	<insert id="registAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
 		INSERT INTO kyw.address_info (
 			 adbk_id
 			,nm
