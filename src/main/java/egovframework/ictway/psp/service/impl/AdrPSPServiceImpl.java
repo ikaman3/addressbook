@@ -19,11 +19,11 @@ import egovframework.ictway.psp.service.AdrPSPVO;
 /**
  * 주소록 정보 관리를 위한 구현 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.01.04 / 현승민 / 최초생성
  * </pre>
  * @see
  */
@@ -38,12 +38,12 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 	private EgovIdGnrService idgenService;
 	
 	@Override
-	public Map<String, Object> selectAdrList(AdrPSPVO AdrPSPVO) throws Exception {
+	public Map<String, Object> selectAdrPSPList(AdrPSPVO AdrPSPVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = AdrPSPDAO.selectAdrList(AdrPSPVO);
+		List<?> list = AdrPSPDAO.selectAdrPSPList(AdrPSPVO);
 		/** 목록 조회 건 수 */
-		int cnt = AdrPSPDAO.selectAdrListCnt(AdrPSPVO);
+		int cnt = AdrPSPDAO.selectAdrPSPListCnt(AdrPSPVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -53,13 +53,13 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 	}
 
 	@Override
-	public AdrPSPVO selectAdrDetail(AdrPSPVO AdrPSPVO) throws Exception {
+	public AdrPSPVO selectAdrPSPDetail(AdrPSPVO AdrPSPVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return AdrPSPDAO.selectAdrDetail(AdrPSPVO);
+		return AdrPSPDAO.selectAdrPSPDetail(AdrPSPVO);
 	}
 
 	@Override
-	public Long registAdrAct(AdrPSPVO AdrPSPVO) throws FdlException, Exception {
+	public Long registAdrPSPAct(AdrPSPVO AdrPSPVO) throws FdlException, Exception {
 		
 		//고유아이디 셋팅
 		Long uniqId = idgenService.getNextLongId();
@@ -68,24 +68,24 @@ public class AdrPSPServiceImpl implements AdrPSPService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrPSPVO.setUsrId(user.getUniqId());
 		
-		AdrPSPDAO.insertAdrAct(AdrPSPVO);
+		AdrPSPDAO.insertAdrPSPAct(AdrPSPVO);
 		return uniqId;
 	}
 
 	@Override
-	public void updateAdrAct(AdrPSPVO AdrPSPVO) throws Exception {
+	public void updateAdrPSPAct(AdrPSPVO AdrPSPVO) throws Exception {
 		//로그인 유저 이름
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrPSPVO.setUsrId(user.getUniqId());
-		AdrPSPDAO.updateAdrAct(AdrPSPVO);
+		AdrPSPDAO.updateAdrPSPAct(AdrPSPVO);
 	}
 
 	@Override
-	public void deleteAdrAct(AdrPSPVO AdrPSPVO) throws Exception {
+	public void deleteAdrPSPAct(AdrPSPVO AdrPSPVO) throws Exception {
 		// 로그인 유저 이름
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrPSPVO.setUsrId(user.getUniqId());
-		AdrPSPDAO.deleteAdrAct(AdrPSPVO);
+		AdrPSPDAO.deleteAdrPSPAct(AdrPSPVO);
 	}
 
 }
