@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AdrPAWDAO">
+	<resultMap id="AdrPAWVO" type="egovframework.ictway.kej.service.AdrPAWVO">
+		<result property="adbkId" column="adbk_id"/>	<!-- 주소록아이디 -->
+		<result property="nm" column="nm"/>	<!-- 이름 -->
+		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
+		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
+		<result property="adres" column="adres"/>	<!-- 주소 -->
+		<result property="detailAdres" column="detail_adres"/>	<!-- 상세주소 -->
+		<result property="telno" column="telno"/>	<!-- 전화번호 -->
+		<result property="emailaddr" column="emailaddr"/>	<!-- 이메일주소 -->
+		<result property="memo" column="memo"/>	<!-- 메모 -->
+		<result property="photoFlpth" column="photo_flpth"/>	<!-- 사진파일경로 -->
+		<result property="photoNm" column="photo_nm"/>	<!-- 사진명 -->
+		<result property="photoExtsnNm" column="photo_extsn_nm"/>	<!-- 사진확장자명 -->
+		<result property="groupCode" column="group_code"/>	<!-- 그룹코드 -->
+		<result property="cmpnyPsitnNm" column="cmpny_psitn_nm"/>	<!-- 회사소속명 -->
+		<result property="cmpnyPsitnTeamNm" column="cmpny_psitn_team_nm"/>	<!-- 회사소속팀명 -->
+		<result property="cmpnyPsitnClsfNm" column="cmpny_psitn_clsf_nm"/>	<!-- 회사소속직급명 -->
+		<result property="bkmkAt" column="bkmk_at"/>	<!-- 즐겨찾기여부 -->
+		<result property="adbkFrstWritngDt" column="adbk_frst_writng_dt"/>	<!-- 주소록최초작성일시 -->
+		<result property="adbkFrstWrterId" column="adbk_frst_wrter_id"/>	<!-- 주소록최초작성자아이디 -->
+		<result property="adbkFrstWrterNm" column="adbk_frst_wrter_nm"/>	<!-- 주소록최초작성자명 -->
+		<result property="adbkLastUpdtDt" column="adbk_last_updt_dt"/>	<!-- 주소록최종수정일시 -->
+		<result property="adbkLastUpdusrId" column="adbk_last_updusr_id"/>	<!-- 주소록최종수정자아이디 -->
+		<result property="adbkLastUpdusrNm" column="adbk_last_updusr_nm"/>	<!-- 주소록최종수정자명 -->
+		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
+		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
+		<result property="adbkDltrId" column="adbk_dltr_id"/>	<!-- 주소록삭제자아이디 -->
+		<result property="adbkDltrNm" column="adbk_dltr_nm"/>	<!-- 주소록삭제자명 -->
+	</resultMap>
+
+	<select id="selectAdrPAWList" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultType="egovMap">
+		SELECT
+			 adbk_id
+			,nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,telno
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_nm
+			,photo_extsn_nm
+			,group_code
+			,cmpny_psitn_nm
+			,cmpny_psitn_team_nm
+			,cmpny_psitn_clsf_nm
+			,bkmk_at
+			,adbk_frst_writng_dt
+			,adbk_frst_wrter_id
+			,adbk_frst_wrter_nm
+			,adbk_last_updt_dt
+			,adbk_last_updusr_id
+			,adbk_last_updusr_nm
+			,adbk_delete_at
+			,adbk_delete_dt
+			,adbk_dltr_id
+			,adbk_dltr_nm
+		FROM kej.address_info
+		WHERE 
+			adbk_delete_at = 'N'
+			AND adbk_id = #{adbkId}
+		ORDER BY 1 DESC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>
+
+	<select id="selectAdrPAWListCnt" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM kej.address_info
+		WHERE 
+			adbk_delete_at = 'N'
+			AND adbk_id = #{adbkId}
+	</select>
+
+	<select id="selectAdrPAWDetail" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultMap="AdrPAWVO">
+		SELECT
+			 adbk_id
+			,nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,telno
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_nm
+			,photo_extsn_nm
+			,group_code
+			,cmpny_psitn_nm
+			,cmpny_psitn_team_nm
+			,cmpny_psitn_clsf_nm
+			,bkmk_at
+			,adbk_frst_writng_dt
+			,adbk_frst_wrter_id
+			,adbk_frst_wrter_nm
+			,adbk_last_updt_dt
+			,adbk_last_updusr_id
+			,adbk_last_updusr_nm
+			,adbk_delete_at
+			,adbk_delete_dt
+			,adbk_dltr_id
+			,adbk_dltr_nm
+		FROM kej.address_info
+		WHERE 
+			adbk_delete_at = 'N'
+			AND adbk_id = #{adbkId}
+	</select>
+
+	<insert id="insertAdrPAWAct" parameterType="egovframework.ictway.kej.service.AdrPAWVO">
+		INSERT INTO kej.address_info (
+			 adbk_id
+			,nm
+			,brthdy
+			,sexdstn_code
+			,adres
+			,detail_adres
+			,telno
+			,emailaddr
+			,memo
+			,photo_flpth
+			,photo_nm
+			,photo_extsn_nm
+			,group_code
+			,cmpny_psitn_nm
+			,cmpny_psitn_team_nm
+			,cmpny_psitn_clsf_nm
+			,bkmk_at
+			,adbk_frst_writng_dt
+			,adbk_frst_wrter_id
+			,adbk_frst_wrter_nm
+			,adbk_last_updt_dt
+			,adbk_last_updusr_id
+			,adbk_last_updusr_nm
+			,adbk_delete_at
+			,adbk_delete_dt
+			,adbk_dltr_id
+			,adbk_dltr_nm
+		) VALUES(
+			 #{adbkId}
+			,#{nm}
+			,#{brthdy}
+			,#{sexdstnCode}
+			,#{adres}
+			,#{detailAdres}
+			,#{telno}
+			,#{emailaddr}
+			,#{memo}
+			,#{photoFlpth}
+			,#{photoNm}
+			,#{photoExtsnNm}
+			,#{groupCode}
+			,#{cmpnyPsitnNm}
+			,#{cmpnyPsitnTeamNm}
+			,#{cmpnyPsitnClsfNm}
+			,#{bkmkAt}
+			,#{adbkFrstWritngDt}
+			,#{adbkFrstWrterId}
+			,#{adbkFrstWrterNm}
+			,#{adbkLastUpdtDt}
+			,#{adbkLastUpdusrId}
+			,#{adbkLastUpdusrNm}
+			,#{adbkDeleteAt}
+			,#{adbkDeleteDt}
+			,#{adbkDltrId}
+			,#{adbkDltrNm}
+		)
+	</insert>
+
+	<update id="updateAdrPAWAct" parameterType="egovframework.ictway.kej.service.AdrPAWVO">
+		UPDATE kej.address_info
+		SET 
+			 adbk_id = #{adbkId}
+			,nm = #{nm}
+			,brthdy = #{brthdy}
+			,sexdstn_code = #{sexdstnCode}
+			,adres = #{adres}
+			,detail_adres = #{detailAdres}
+			,telno = #{telno}
+			,emailaddr = #{emailaddr}
+			,memo = #{memo}
+			,photo_flpth = #{photoFlpth}
+			,photo_nm = #{photoNm}
+			,photo_extsn_nm = #{photoExtsnNm}
+			,group_code = #{groupCode}
+			,cmpny_psitn_nm = #{cmpnyPsitnNm}
+			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
+			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
+			,bkmk_at = #{bkmkAt}
+			,adbk_frst_writng_dt = #{adbkFrstWritngDt}
+			,adbk_frst_wrter_id = #{adbkFrstWrterId}
+			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
+			,adbk_last_updt_dt = #{adbkLastUpdtDt}
+			,adbk_last_updusr_id = #{adbkLastUpdusrId}
+			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
+			,adbk_delete_at = #{adbkDeleteAt}
+			,adbk_delete_dt = #{adbkDeleteDt}
+			,adbk_dltr_id = #{adbkDltrId}
+			,adbk_dltr_nm = #{adbkDltrNm}
+		WHERE
+			adbk_delete_at = 'N'
+			AND adbk_id = #{adbkId}
+	</update>
+	
+	<update id="deleteAdrPAWAct" parameterType="egovframework.ictway.kej.service.AdrPAWVO">
+		UPDATE kej.address_info
+		SET 
+			 adbk_delete_at = 'Y'
+			,adbk_last_updt_dt = now()
+			,adbk_last_updusr_id = #{adbkLastUpdusrId}
+		WHERE
+			adbk_delete_at = 'Y'
+			AND adbk_id = #{adbkId}
+	</update>
+</mapper>
