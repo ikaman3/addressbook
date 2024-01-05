@@ -14,7 +14,7 @@ import egovframework.ictway.nsh.service.AdrAMSVO;
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 남시현 / 최초생성
+ *2024.01.04 / 남시현 / 최초생성
  * </pre>
  * @see
  */

@@ -34,18 +34,18 @@
 <script type="text/javascript">
     
 	//주소록 목록조회
-	function selectAdrList(){
-		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
+	function selectAdrAMSList(){
+		document.searchListForm.action = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록
-	function registAdrAct() {
+	function registAdrAMSAct() {
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/psp/registAdrPSPAct.do'/>",{
+        	fetch("<c:url value='/ictway/nsh/registAdrAMSAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -54,7 +54,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.insert"/>");
-        		location.href = "<c:url value='/ictway/psp/selectAdrPSPList.do'/>";
+        		location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -65,7 +65,7 @@
     
 </script>
 
-<title>샘플 포털 > 주소록 > 현승민</title>
+<title>샘플 포털 > 주소록 > 남시현</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -100,8 +100,8 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">현승민</a></li>
-										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">남시현</a></li>
+										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 등록</a></li>
 									</ul>
                                 </div>
@@ -118,7 +118,7 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">AMS 주소록입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -129,22 +129,22 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="adbkId">제목</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="adbkId" name="adbkId" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adbkId" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="nm">내용</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea id="nm" name="nm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
@@ -155,8 +155,8 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrPSPAct();"><spring:message code="button.save" /></a>
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrPSPList();"><spring:message code="button.list" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrAMSAct();"><spring:message code="button.save" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrAMSList();"><spring:message code="button.list" /></a>
 	                                    </div>
 	                                </div>
 	                                

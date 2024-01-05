@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.ictway.yhj.service.AdrGMAService;
-import egovframework.ictway.yhj.service.AddressInfoVO;
+import egovframework.ictway.yhj.service.AdrGMAVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -45,29 +45,29 @@ public class AdrGMAController {
 	/**
 	 * 주소록 목록조회
 	 * @param request - session에 menuNo set 
-	 * @param addrVO - 주소록 VO
+	 * @param adrGMAVO - 주소록 VO
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/yhj/selectAdrGMAList.do")
-	public String selectAdrGMAList(@ModelAttribute("searchVO") AddressInfoVO addressInfoVO, ModelMap model, HttpServletRequest request) throws Exception {
+	public String selectAdrGMAList(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
 
 		/** paging */
-		addressInfoVO.setPageUnit(propertyService.getInt("pageUnit"));
-		addressInfoVO.setPageSize(propertyService.getInt("pageSize"));
+		adrGMAVO.setPageUnit(propertyService.getInt("pageUnit"));
+		adrGMAVO.setPageSize(propertyService.getInt("pageSize"));
 		
 		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(addressInfoVO.getPageIndex()); /** 현재 페이지 번호 */
-		paginationInfo.setRecordCountPerPage(addressInfoVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
-		paginationInfo.setPageSize(addressInfoVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
+		paginationInfo.setCurrentPageNo(adrGMAVO.getPageIndex()); /** 현재 페이지 번호 */
+		paginationInfo.setRecordCountPerPage(adrGMAVO.getPageUnit()); /** 한 페이지당 게시되는 게시물 건 수 */
+		paginationInfo.setPageSize(adrGMAVO.getPageSize()); /** 페이지 리스트에 게시되는 페이지 건 수 */
 		
-		addressInfoVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		addressInfoVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		addressInfoVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		adrGMAVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		adrGMAVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		adrGMAVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrGMAService.selectAddressInfoList(addressInfoVO);
+		Map<String, Object> map = adrGMAService.selectAdrGMAList(adrGMAVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -82,14 +82,14 @@ public class AdrGMAController {
 	/**
 	 * 주소록 상세조회
 	 * @param request
-	 * @param addrVO - 주소록 VO
+	 * @param adrGMAVO - 주소록 VO
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/yhj/selectAdrGMADetail.do")
-	public String selectAdrGMADetail(@ModelAttribute("searchVO") AddressInfoVO addressInfoVO, ModelMap model) throws Exception {
+	public String selectAdrGMADetail(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
-		AddressInfoVO resultVO = adrGMAService.selectAddressInfoDetail(addressInfoVO);
+		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
@@ -98,12 +98,12 @@ public class AdrGMAController {
 	
 	/**
 	 * 주소록 등록 화면
-	 * @param addrVO - 주소록 VO
+	 * @param adrGMAVO - 주소록 VO
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/yhj/selectAdrGMARegist.do")
-	public String selectAdrGMARegist(@ModelAttribute("searchVO") AddressInfoVO addressInfoVO, ModelMap model) throws Exception {
+	public String selectAdrGMARegist(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
 		return "ictway/yhj/adrGMARegist";
@@ -111,16 +111,16 @@ public class AdrGMAController {
 	
 	/**
      * 주소록 정보 등록
-     * @param addressInfoVO - 주소록 VO
+     * @param adrGMAVO - 주소록 VO
      * @return adrGMAId
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/registAdrGMAAct.do")
-    public ModelAndView registAdrGMAAct(AddressInfoVO addressInfoVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrGMAId = adrGMAService.registAddressInfoAct(addressInfoVO);
+		String adrGMAId = adrGMAService.registAdrGMAAct(adrGMAVO);
 		mav.addObject("adrGMAId", adrGMAId);
 		
 		return mav;
@@ -128,14 +128,14 @@ public class AdrGMAController {
 	
 	/**
 	 * 주소록 수정 화면
-	 * @param addrVO - 주소록 VO
+	 * @param adrGMAVO - 주소록 VO
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/yhj/selectAdrGMAUpdate.do")
-	public String selectAdrGMAUpdate(@ModelAttribute("searchVO") AddressInfoVO addressInfoVO, ModelMap model) throws Exception {
+	public String selectAdrGMAUpdate(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
-		AddressInfoVO resultVO = adrGMAService.selectAddressInfoDetail(addressInfoVO);
+		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/yhj/adrGMAUpdate";
@@ -143,32 +143,32 @@ public class AdrGMAController {
 	
 	/**
      * 주소록 정보 수정
-     * @param addressInfoVO - 주소록 VO
+     * @param adrGMAVO - 주소록 VO
      * @return 
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/updateAdrGMAAct.do")
-    public ModelAndView updateAdrGMAAct(AddressInfoVO addressInfoVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.updateAddressInfoAct(addressInfoVO);
+		adrGMAService.updateAdrGMAAct(adrGMAVO);
 		
 		return mav;
     }
     
     /**
      * 주소록 정보 삭제
-     * @param addressInfoVO - 주소록 VO
+     * @param adrGMAVO - 주소록 VO
      * @return 
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/deleteAdrGMAAct.do")
-    public ModelAndView deleteAdrGMAAct(AddressInfoVO addressInfoVO, ModelMap model) throws Exception { 
+    public ModelAndView deleteAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.deleteAddressInfoAct(addressInfoVO);
+		adrGMAService.deleteAdrGMAAct(adrGMAVO);
 		
 		return mav;
     }
