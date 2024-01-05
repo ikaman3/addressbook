@@ -44,7 +44,7 @@
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 윤현종</title>
+<title>샘플 포털 > 주소록 > 윤현종</title> 
 
 </head>
 <body>
