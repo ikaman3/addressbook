@@ -11,7 +11,7 @@ import org.egovframe.rte.fdl.cmmn.exception.FdlException;
  * @version 1.0
  * @Modification
  * <pre>
- *2024.01.04 / 김진광 / 최초생성
+ *2024.01.04 / 윤준현 / 최초생성
  * </pre>
  * @see
  */
