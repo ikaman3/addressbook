@@ -1,5 +1,4 @@
 package egovframework.ictway.kej.service;
-
 import java.io.Serializable;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -10,81 +9,99 @@ import lombok.Setter;
 /**
 * 주소정보 관리 정보 처리를 위한 VO 클래스
 * @author ICTWAY
-* @since 2023.12.29
+* @since 2024.01.05
 * @version 1.0
 * @Modification
 * <pre>
-*2024.01.04 / 김은지 / 최초생성
+*2024.01.05 / ??? / 최초생성
 * </pre>
 * @see
 */
 @NoArgsConstructor
 @Getter @Setter
-public class AdrPAWVO extends ComDefaultVO implements Serializable {
+public class AdrPAWVO  extends ComDefaultVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	/** 주소록일련번호 */
-	private long adbkSn;
+	/** 주소록아이디 */
+	private String adbkId;
 
-	/** 사용자명 */
-	private String userNm;
+	/** 이름 */
+	private String nm;
 
-	/** 사용자생년월일 */
-	private String userBrthdy;
+	/** 생년월일 */
+	private String brthdy;
 
-	/** 사용자성별코드 */
-	private String userSexdstnCode;
+	/** 성별코드 */
+	private String sexdstnCode;
 
-	/** 사용자주소 */
-	private String userAdres;
+	/** 주소 */
+	private String adres;
 
-	/** 사용자상세주소 */
-	private String userDetailAdres;
+	/** 상세주소 */
+	private String detailAdres;
 
-	/** 사용자전화번호 */
-	private String userTelno;
+	/** 전화번호 */
+	private String telno;
 
-	/** 사용자이메일주소 */
-	private String userEmailaddr;
+	/** 이메일주소 */
+	private String emailaddr;
 
-	/** 사용자메모 */
-	private String userMemo;
+	/** 메모 */
+	private String memo;
 
-	/** 사용자사진파일경로 */
-	private String userPhotoFlpth;
+	/** 사진파일경로 */
+	private String photoFlpth;
 
-	/** 사용자사진명 */
-	private String userPhotoNm;
+	/** 사진명 */
+	private String photoNm;
 
-	/** 사용자사진확장자명 */
-	private String userPhotoExtsnNm;
+	/** 사진확장자명 */
+	private String photoExtsnNm;
 
-	/** 사용자그룹코드 */
-	private String userGroupCode;
+	/** 그룹코드 */
+	private String groupCode;
 
-	/** 사용자회사소속명 */
-	private String userCmpnyPsitnNm;
+	/** 회사소속명 */
+	private String cmpnyPsitnNm;
 
-	/** 사용자회사소속팀명 */
-	private String userCmpnyPsitnTeamNm;
+	/** 회사소속팀명 */
+	private String cmpnyPsitnTeamNm;
 
-	/** 사용자회사소속직급명 */
-	private String userCmpnyPsitnClsfNm;
+	/** 회사소속직급명 */
+	private String cmpnyPsitnClsfNm;
 
 	/** 즐겨찾기여부 */
 	private String bkmkAt;
 
-	/** 주소록생성일시 */
-	private String adbkCreatDt;
+	/** 주소록최초작성일시 */
+	private String adbkFrstWritngDt;
 
-	/** 주소록수정일시 */
-	private String adbkUpdtDt;
+	/** 주소록최초작성자아이디 */
+	private String adbkFrstWrterId;
+
+	/** 주소록최초작성자명 */
+	private String adbkFrstWrterNm;
+
+	/** 주소록최종수정일시 */
+	private String adbkLastUpdtDt;
+
+	/** 주소록최종수정자아이디 */
+	private String adbkLastUpdusrId;
+
+	/** 주소록최종수정자명 */
+	private String adbkLastUpdusrNm;
 
 	/** 주소록삭제여부 */
 	private String adbkDeleteAt;
 
-	/** 주소록작성자명 */
-	private String adbkWrterNm;
+	/** 주소록삭제일시 */
+	private String adbkDeleteDt;
+
+	/** 주소록삭제자아이디 */
+	private String adbkDltrId;
+
+	/** 주소록삭제자명 */
+	private String adbkDltrNm;
 
 }
