@@ -33,7 +33,7 @@ public class AdrITAServiceImpl implements AdrITAService {
     private AdrITADAO adrITADAO;
 	
 	/** yja-adrITAIdGnrService */
-	@Resource(name="yja-adrIdGnrService")
+	@Resource(name="yja-adrITAIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
