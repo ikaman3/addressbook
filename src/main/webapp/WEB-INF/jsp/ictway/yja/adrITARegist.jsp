@@ -244,8 +244,15 @@
 	                                                <label for="adrSj">사진첨부</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <div class="board_attach2" id="file_upload_posbl">
+	                                                    <input name="file_1" id="egovComFileUploader" type="file" />
+	                                                    <div id="egovComFileList"></div>
+	                                                </div>
+	                                                <div class="board_attach2" id="file_upload_imposbl">
+	                                                </div>
+	                                                <c:if test="${empty result.atchFileId}">
+											            <input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
+											        </c:if>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
