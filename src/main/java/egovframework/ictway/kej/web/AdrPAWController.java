@@ -76,7 +76,7 @@ public class AdrPAWController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/kej/adrList";
+		return "ictway/kej/adrPAWList";
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class AdrPAWController {
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/kej/adrDetail";
+		return "ictway/kej/adrPAWDetail";
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class AdrPAWController {
 	public String selectAdrPAWRegist(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/kej/adrRegist";
+		return "ictway/kej/adrPAWRegist";
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class AdrPAWController {
 		AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/kej/adrUpdate";
+		return "ictway/kej/adrPAWUpdate";
 	}
 	
 	/**

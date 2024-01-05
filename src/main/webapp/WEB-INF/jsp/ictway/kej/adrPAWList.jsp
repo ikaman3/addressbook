@@ -44,7 +44,7 @@
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 김은지</title>
 
 </head>
 <body>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/kej/selectAdrPAWList.do"/>">김은지</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
