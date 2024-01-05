@@ -2079,7 +2079,7 @@
     <!-- 염혜정-주소록 ID Generation  Strategy Config -->
     <bean name="yhj-adrGMAIdStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="ADR" />
+        <property name="prefix" value="ADRGMA" />
         <property name="cipers" value="12" />
         <property name="fillChar" value="0" />
     </bean>
