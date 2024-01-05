@@ -49,7 +49,7 @@ public class AdrINYController {
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/iny/selectAdrList.do")
+	@RequestMapping("/ictway/iny/selectAdrINYList.do")
 	public String selectAdrINYList(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
@@ -76,7 +76,7 @@ public class AdrINYController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/iny/adrList";
+		return "ictway/iny/adrINYList";
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class AdrINYController {
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/iny/adrDetail";
+		return "ictway/iny/adrINYDetail";
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class AdrINYController {
 	public String selectAdrINYRegist(@ModelAttribute("searchVO") AdrINYVO adrINYVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/iny/adrRegist";
+		return "ictway/iny/adrINYRegist";
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class AdrINYController {
 		AdrINYVO resultVO = adrINYService.selectAdrINYDetail(adrINYVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/iny/adrUpdate";
+		return "ictway/iny/adrINYUpdate";
 	}
 	
 	/**

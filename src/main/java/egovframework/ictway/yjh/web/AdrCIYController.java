@@ -21,11 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 주소록 정보의 목록조회, 상세조회, 등록화면조회, 수정화면조회, 등록, 수정, 삭제, 파일업로드, 파일다운로드를 위한 컨트롤러 클래스
  * @author ICTWAY
- * @since 2023.12.28
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2023.12.28 / 김진광 / 최초생성
+ *2024.01.04 / 윤준현 / 최초생성
  * </pre>
  * @see
  */
@@ -76,7 +76,7 @@ public class AdrCIYController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		/* return "cop/bbs/EgovNoticeList"; */
-		return "ictway/yjh/adrList";
+		return "ictway/yjh/adrCIYList";
 	}
 	
 	/**
@@ -93,7 +93,7 @@ public class AdrCIYController {
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
-		return "ictway/yjh/adrDetail";
+		return "ictway/yjh/adrCIYDetail";
 	}
 	
 	/**
@@ -106,7 +106,7 @@ public class AdrCIYController {
 	public String selectAdrRegist(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
-		return "ictway/yjh/adrRegist";
+		return "ictway/yjh/adrCIYRegist";
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class AdrCIYController {
 		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		return "ictway/yjh/adrUpdate";
+		return "ictway/yjh/adrCIYUpdate";
 	}
 	
 	/**

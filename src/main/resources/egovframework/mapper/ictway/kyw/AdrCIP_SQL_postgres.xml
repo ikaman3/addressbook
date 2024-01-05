@@ -216,7 +216,7 @@
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
-	</update>
+	</update> 
 	
 	
 	<update id="deleteAdrCIPAct" parameterType="egovframework.ictway.kyw.service.AdrCIPVO">
