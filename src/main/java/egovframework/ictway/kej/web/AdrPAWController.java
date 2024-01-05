@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 주소록 정보의 목록조회, 상세조회, 등록화면조회, 수정화면조회, 등록, 수정, 삭제, 파일업로드, 파일다운로드를 위한 컨트롤러 클래스
  * @author ICTWAY
- * @since 2024.01.04
+ * @since 2023.12.29
  * @version 1.0
  * @Modification
  * <pre>
@@ -45,12 +45,12 @@ public class AdrPAWController {
 	/**
 	 * 주소록 목록조회
 	 * @param request - session에 menuNo set 
-	 * @param addrVO - 주소록 VO
+	 * @param adrPAWVO - 주소록 VO
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kej/selectAdrList.do")
-	public String selectAdrList(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model, HttpServletRequest request) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrPAWList.do")
+	public String selectAdrPAWList(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model, HttpServletRequest request) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "9000000");
 
@@ -67,7 +67,7 @@ public class AdrPAWController {
 		AdrPAWVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		AdrPAWVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = AdrPAWService.selectAdrList(AdrPAWVO);
+		Map<String, Object> map = AdrPAWService.selectAdrPAWList(AdrPAWVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -82,14 +82,14 @@ public class AdrPAWController {
 	/**
 	 * 주소록 상세조회
 	 * @param request
-	 * @param addrVO - 주소록 VO
+	 * @param adrPAWVO - 주소록 VO
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kej/selectAdrDetail.do")
-	public String selectAdrDetail(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrPAWDetail.do")
+	public String selectAdrPAWDetail(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		AdrPAWVO resultVO = AdrPAWService.selectAdrDetail(AdrPAWVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
@@ -98,12 +98,12 @@ public class AdrPAWController {
 	
 	/**
 	 * 주소록 등록 화면
-	 * @param addrVO - 주소록 VO
+	 * @param adrPAWVO - 주소록 VO
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kej/selectAdrRegist.do")
-	public String selectAdrRegist(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrPAWRegist.do")
+	public String selectAdrPAWRegist(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
 		return "ictway/kej/adrRegist";
@@ -112,30 +112,30 @@ public class AdrPAWController {
 	/**
      * 주소록 정보 등록
      * @param AdrPAWVO - 주소록 VO
-     * @return adrId
+     * @return adrPAWId
      * @throws Exception
      */
-    @RequestMapping("/ictway/kej/registAdrAct.do")
-    public ModelAndView registAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/registAdrPAWAct.do")
+    public ModelAndView registAdrPAWAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrId = AdrPAWService.registAdrAct(AdrPAWVO);
-		mav.addObject("adrId", adrId);
+		String adrPAWId = AdrPAWService.registAdrPAWAct(AdrPAWVO);
+		mav.addObject("adrPAWId", adrPAWId);
 		
 		return mav;
     }
 	
 	/**
 	 * 주소록 수정 화면
-	 * @param addrVO - 주소록 VO
+	 * @param adrPAWVO - 주소록 VO
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/kej/selectAdrUpdate.do")
-	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
+	@RequestMapping("/ictway/kej/selectAdrPAWUpdate.do")
+	public String selectAdrPAWUpdate(@ModelAttribute("searchVO") AdrPAWVO AdrPAWVO, ModelMap model) throws Exception {
 		
-		AdrPAWVO resultVO = AdrPAWService.selectAdrDetail(AdrPAWVO);
+		AdrPAWVO resultVO = AdrPAWService.selectAdrPAWDetail(AdrPAWVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/kej/adrUpdate";
@@ -147,12 +147,12 @@ public class AdrPAWController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kej/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/updateAdrPAWAct.do")
+    public ModelAndView updateAdrPAWAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		AdrPAWService.updateAdrAct(AdrPAWVO);
+		AdrPAWService.updateAdrPAWAct(AdrPAWVO);
 		
 		return mav;
     }
@@ -163,12 +163,12 @@ public class AdrPAWController {
      * @return 
      * @throws Exception
      */
-    @RequestMapping("/ictway/kej/deleteAdrAct.do")
-    public ModelAndView deleteAdrAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
+    @RequestMapping("/ictway/kej/deleteAdrPAWAct.do")
+    public ModelAndView deleteAdrPAWAct(AdrPAWVO AdrPAWVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		AdrPAWService.deleteAdrAct(AdrPAWVO);
+		AdrPAWService.deleteAdrPAWAct(AdrPAWVO);
 		
 		return mav;
     }
