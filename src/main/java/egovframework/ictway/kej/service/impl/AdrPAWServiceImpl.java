@@ -32,8 +32,8 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 	@Resource(name = "adrPAWDAO")
     private AdrPAWDAO adrPAWDAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrPAWIdGnrService")
+	/** kej-adrIdGnrService */
+	@Resource(name="kej-adrPAWIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
