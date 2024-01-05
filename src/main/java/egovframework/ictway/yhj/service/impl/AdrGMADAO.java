@@ -26,8 +26,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public List<?> selectAddressInfoList(AdrGMAVO adrGMAVO) {
-		return selectList("AddressInfoGMADAO.selectAddressInfoList", adrGMAVO);
+	public List<?> selectAdrGMAList(AdrGMAVO adrGMAVO) {
+		return selectList("AdrGMAGMADAO.selectAdrGMAList", adrGMAVO);
 	}
 
 	/**
@@ -35,8 +35,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록 건 수
 	 */
-	public int selectAddressInfoListCnt(AdrGMAVO adrGMAVO) {
-		return (Integer)selectOne("AddressInfoGMADAO.selectAddressInfoListCnt", adrGMAVO);
+	public int selectAdrGMAListCnt(AdrGMAVO adrGMAVO) {
+		return (Integer)selectOne("AdrGMAGMADAO.selectAdrGMAListCnt", adrGMAVO);
 	}
 	
 	/**
@@ -44,8 +44,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 조회할 정보가 담긴 VO
 	 * @return 목록
 	 */
-	public AdrGMAVO selectAddressInfoDetail(AdrGMAVO adrGMAVO) {
-		return selectOne("AddressInfoGMADAO.selectAddressInfoDetail", adrGMAVO);
+	public AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) {
+		return selectOne("AdrGMAGMADAO.selectAdrGMADetail", adrGMAVO);
 	}
 	
 	/**
@@ -53,8 +53,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 등록할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void insertAddressInfoAct(AdrGMAVO adrGMAVO) {
-		insert("AddressInfoGMADAO.insertAddressInfoAct", adrGMAVO);
+	public void insertAdrGMAAct(AdrGMAVO adrGMAVO) {
+		insert("AdrGMAGMADAO.insertAdrGMAAct", adrGMAVO);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 수정할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void updateAddressInfoAct(AdrGMAVO adrGMAVO) {
-		update("AddressInfoGMADAO.updateAddressInfoAct", adrGMAVO);
+	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) {
+		update("AdrGMAGMADAO.updateAdrGMAAct", adrGMAVO);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @param AdrGMAVO - 삭제할 정보가 담긴 VO
 	 * @return void
 	 */
-	public void deleteAddressInfoAct(AdrGMAVO adrGMAVO) {
-		update("AddressInfoGMADAO.deleteAddressInfoAct", adrGMAVO);
+	public void deleteAdrGMAAct(AdrGMAVO adrGMAVO) {
+		update("AdrGMAGMADAO.deleteAdrGMAAct", adrGMAVO);
 	}
 }

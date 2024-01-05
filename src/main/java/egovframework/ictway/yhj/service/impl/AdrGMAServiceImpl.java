@@ -37,12 +37,12 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	private EgovIdGnrService idgenService;
 	
 	@Override
-	public Map<String, Object> selectAddressInfoList(AdrGMAVO adrGMAVO) throws Exception {
+	public Map<String, Object> selectAdrGMAList(AdrGMAVO adrGMAVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = adrGMADAO.selectAddressInfoList(adrGMAVO);
+		List<?> list = adrGMADAO.selectAdrGMAList(adrGMAVO);
 		/** 목록 조회 건 수 */
-		int cnt = adrGMADAO.selectAddressInfoListCnt(adrGMAVO);
+		int cnt = adrGMADAO.selectAdrGMAListCnt(adrGMAVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -52,13 +52,13 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	}
 
 	@Override
-	public AdrGMAVO selectAddressInfoDetail(AdrGMAVO adrGMAVO) throws Exception {
+	public AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return adrGMADAO.selectAddressInfoDetail(adrGMAVO);
+		return adrGMADAO.selectAdrGMADetail(adrGMAVO);
 	}
 
 	@Override
-	public String registAddressInfoAct(AdrGMAVO adrGMAVO) throws FdlException, Exception {
+	public String registAdrGMAAct(AdrGMAVO adrGMAVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		adrGMAVO.setAdbkId(uniqId);
@@ -66,22 +66,22 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrGMAVO.setAdbkWrterId(user.getUniqId());
 		
-		adrGMADAO.insertAddressInfoAct(adrGMAVO);
+		adrGMADAO.insertAdrGMAAct(adrGMAVO);
 		return uniqId;
 	}
 
 	@Override
-	public void updateAddressInfoAct(AdrGMAVO adrGMAVO) throws Exception {
+	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrGMAVO.setAdbkUpdusrId(user.getUniqId());
-		adrGMADAO.updateAddressInfoAct(adrGMAVO);
+		adrGMADAO.updateAdrGMAAct(adrGMAVO);
 	}
 
 	@Override
-	public void deleteAddressInfoAct(AdrGMAVO adrGMAVO) throws Exception {
+	public void deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrGMAVO.setAdbkDltrId(user.getUniqId());
-		adrGMADAO.deleteAddressInfoAct(adrGMAVO);
+		adrGMADAO.deleteAdrGMAAct(adrGMAVO);
 	}
 
 }

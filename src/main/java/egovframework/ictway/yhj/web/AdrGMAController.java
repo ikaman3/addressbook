@@ -67,7 +67,7 @@ public class AdrGMAController {
 		adrGMAVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		adrGMAVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		Map<String, Object> map = adrGMAService.selectAddressInfoList(adrGMAVO);
+		Map<String, Object> map = adrGMAService.selectAdrGMAList(adrGMAVO);
 		int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 		paginationInfo.setTotalRecordCount(totCnt);
 		
@@ -89,7 +89,7 @@ public class AdrGMAController {
 	@RequestMapping("/ictway/yhj/selectAdrGMADetail.do")
 	public String selectAdrGMADetail(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
-		AdrGMAVO resultVO = adrGMAService.selectAddressInfoDetail(adrGMAVO);
+		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
@@ -120,7 +120,7 @@ public class AdrGMAController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrGMAId = adrGMAService.registAddressInfoAct(adrGMAVO);
+		String adrGMAId = adrGMAService.registAdrGMAAct(adrGMAVO);
 		mav.addObject("adrGMAId", adrGMAId);
 		
 		return mav;
@@ -135,7 +135,7 @@ public class AdrGMAController {
 	@RequestMapping("/ictway/yhj/selectAdrGMAUpdate.do")
 	public String selectAdrGMAUpdate(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
-		AdrGMAVO resultVO = adrGMAService.selectAddressInfoDetail(adrGMAVO);
+		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
 		model.addAttribute("resultVO", resultVO);
 		
 		return "ictway/yhj/adrGMAUpdate";
@@ -152,7 +152,7 @@ public class AdrGMAController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.updateAddressInfoAct(adrGMAVO);
+		adrGMAService.updateAdrGMAAct(adrGMAVO);
 		
 		return mav;
     }
@@ -168,7 +168,7 @@ public class AdrGMAController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.deleteAddressInfoAct(adrGMAVO);
+		adrGMAService.deleteAdrGMAAct(adrGMAVO);
 		
 		return mav;
     }
