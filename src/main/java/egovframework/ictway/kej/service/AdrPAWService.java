@@ -7,7 +7,7 @@ import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 /**
  * 주소록 정보 관리를 위한 서비스 인터페이스
  * @author ICTWAY
- * @since 2024.01.04
+ * @since 2023.12.29
  * @version 1.0
  * @Modification
  * <pre>
@@ -23,7 +23,7 @@ public interface AdrPAWService {
 	 * @return Map - resultList(목록), resultCnt(목록 건 수)
 	 * @exception Exception
 	 */
-	Map<String, Object> selectAdrList(AdrPAWVO AdrPAWVO) throws Exception;
+	Map<String, Object> selectAdrPAWList(AdrPAWVO AdrPAWVO) throws Exception;
 
 	/**
 	 * 정보를 조회한다.
@@ -31,7 +31,7 @@ public interface AdrPAWService {
 	 * @return 정보 1건
 	 * @exception Exception
 	 */	
-	AdrPAWVO selectAdrDetail(AdrPAWVO AdrPAWVO) throws Exception;
+	AdrPAWVO selectAdrPAWDetail(AdrPAWVO AdrPAWVO) throws Exception;
 	
 	/**
 	 * 정보를 등록한다.
@@ -40,7 +40,7 @@ public interface AdrPAWService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAdrAct(AdrPAWVO AdrPAWVO) throws FdlException, Exception;
+	String registAdrPAWAct(AdrPAWVO AdrPAWVO) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
@@ -48,7 +48,7 @@ public interface AdrPAWService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AdrPAWVO AdrPAWVO) throws Exception;
+	void updateAdrPAWAct(AdrPAWVO AdrPAWVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrPAWService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AdrPAWVO AdrPAWVO) throws Exception;
+	void deleteAdrPAWAct(AdrPAWVO AdrPAWVO) throws Exception;
 }

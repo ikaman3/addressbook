@@ -18,7 +18,7 @@ import egovframework.ictway.kej.service.AdrPAWVO;
 /**
  * 주소록 정보 관리를 위한 구현 클래스
  * @author ICTWAY
- * @since 2024.01.04
+ * @since 2023.12.29
  * @version 1.0
  * @Modification
  * <pre>
@@ -30,19 +30,19 @@ import egovframework.ictway.kej.service.AdrPAWVO;
 public class AdrPAWServiceImpl implements AdrPAWService {
 
 	@Resource(name = "adrPAWDAO")
-    private AdrPAWDAO adrDAO;
+    private AdrPAWDAO adrPAWDAO;
 	
 	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	@Resource(name="kjk-adrPAWIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
-	public Map<String, Object> selectAdrList(AdrPAWVO adrPAWVO) throws Exception {
+	public Map<String, Object> selectAdrPAWList(AdrPAWVO adrPAWVO) throws Exception {
 
 		/** 목록 조회 */
-		List<?> list = adrDAO.selectAdrList(adrPAWVO);
+		List<?> list = adrPAWDAO.selectAdrPAWList(adrPAWVO);
 		/** 목록 조회 건 수 */
-		int cnt = adrDAO.selectAdrListCnt(adrPAWVO);
+		int cnt = adrPAWDAO.selectAdrPAWListCnt(adrPAWVO);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("resultList", list);
@@ -52,13 +52,13 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 	}
 
 	@Override
-	public AdrPAWVO selectAdrDetail(AdrPAWVO adrPAWVO) throws Exception {
+	public AdrPAWVO selectAdrPAWDetail(AdrPAWVO adrPAWVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
-		return adrDAO.selectAdrDetail(adrPAWVO);
+		return adrPAWDAO.selectAdrPAWDetail(adrPAWVO);
 	}
 
 	@Override
-	public String registAdrAct(AdrPAWVO adrPAWVO) throws FdlException, Exception {
+	public String registAdrPAWAct(AdrPAWVO adrPAWVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		//adrPAWVO.setAdrId(uniqId);
@@ -66,22 +66,22 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		//adrPAWVO.setFrstRegisterId(user.getUniqId());
 		
-		adrDAO.insertAdrAct(adrPAWVO);
+		adrPAWDAO.insertAdrPAWAct(adrPAWVO);
 		return uniqId;
 	}
 
 	@Override
-	public void updateAdrAct(AdrPAWVO adrPAWVO) throws Exception {
+	public void updateAdrPAWAct(AdrPAWVO adrPAWVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		//adrPAWVO.setLastUpdusrId(user.getUniqId());
-		adrDAO.updateAdrAct(adrPAWVO);
+		adrPAWDAO.updateAdrPAWAct(adrPAWVO);
 	}
 
 	@Override
-	public void deleteAdrAct(AdrPAWVO adrPAWVO) throws Exception {
+	public void deleteAdrPAWAct(AdrPAWVO adrPAWVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		//adrPAWVO.setLastUpdusrId(user.getUniqId());
-		adrDAO.deleteAdrAct(adrPAWVO);
+		adrPAWDAO.deleteAdrPAWAct(adrPAWVO);
 	}
 
 	
