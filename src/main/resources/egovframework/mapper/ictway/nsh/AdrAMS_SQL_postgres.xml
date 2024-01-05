@@ -216,17 +216,17 @@
 			,cmpny_psitn_nm = #{cmpnyPsitnNm}
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
-			,bkmk_at = #{bkmkAt}
-			,adbk_frst_writng_dt = #{adbkFrstWritngDt}
-			,adbk_frst_wrter_id = #{adbkFrstWrterId}
-			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
-			,adbk_last_updt_dt = #{adbkLastUpdtDt}
+			<!-- ,bkmk_at = #{bkmkAt} -->
+			<!-- ,adbk_frst_writng_dt = #{adbkFrstWritngDt} -->
+			<!-- ,adbk_frst_wrter_id = #{adbkFrstWrterId}
+			,adbk_frst_wrter_nm = #{adbkFrstWrterNm} -->
+			<!-- ,adbk_last_updt_dt = #{adbkLastUpdtDt}
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
 			,adbk_delete_at = #{adbkDeleteAt}
 			,adbk_delete_dt = #{adbkDeleteDt}
 			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_dltr_nm = #{adbkDltrNm}
+			,adbk_dltr_nm = #{adbkDltrNm} -->
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
