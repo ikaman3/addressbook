@@ -20,13 +20,13 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 주소록 정보 관리를 위한 구현 클래스
+ * 주소정보 관리를 위한 구현 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.01.04 / 윤준현 / 최초생성
  * </pre>
  * @see
  */
@@ -113,8 +113,6 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		// 삭제일시 셋팅
 		String currentTime = getCurrentTimeInKorea();
 	    adrCIYVO.setAdbkDeleteDt(currentTime);
-	    // 삭제여부 셋팅
-	    adrCIYVO.setAdbkDeleteAt("Y");
 		
 	    adrCIYDAO.deleteAdrCIYAct(adrCIYVO);
 	}
