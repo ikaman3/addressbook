@@ -23,24 +23,24 @@
 <script type="text/javascript">
 
 	//주소록 목록조회
-	function selectAdrList(pageIndex){
+	function selectAdrCAPList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrDetail(adrId){
+	function selectAdrCAPDetail(adrId){
 		document.searchListForm.adrId.value = adrId;
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
-	function selectAdrRegist(){
+	function selectAdrCAPRegist(){
 		document.searchListForm.adrId.value = "";
-		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrRegist.do'/>";
+		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPRegist.do'/>";
 		document.searchListForm.submit();
 	}
 </script>
@@ -70,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/kjk/selectAdrList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">김진광</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -96,9 +96,9 @@
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="selectAdrList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrCAPList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+										<a href="javascript:void(0);" onclick="selectAdrCAPRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
 								</div>
@@ -126,7 +126,7 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
+													<a href="javascript:void(0);" onclick="selectAdrCAPDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
 													</a>
 												</td>
@@ -146,7 +146,7 @@
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
-											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrList" />
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrCAPList" />
 										</ul>
 									</div>
 								</div>
