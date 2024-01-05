@@ -143,8 +143,11 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="sexdstnCode" />
+	                                            	<select name="sexdstnCode" class="f_txt w_full">
+	                                            		<option value="">선택</option>
+	                                            		<option value="남성">남성</option>
+	                                            		<option value="여성">여성</option>
+	                                            	</select>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -153,7 +156,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="moblphonNo" name="moblphonNo" placeholder="'-' 없이 11자리로 입력해 주세요 ex) 01085967102" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -172,8 +175,14 @@
 	                                                <label for="groupNm">그룹</label>                                              
 	                                            </td>
 	                                            <td>
-	                                                <input id="groupNm" name="groupNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="groupNm" />
+	                                                <select name="groupNm" class="f_txt w_full">
+	                                            		<option value="">선택</option>
+	                                            		<option value="가족">가족</option>
+	                                            		<option value="친구">친구</option>
+	                                            		<option value="현직장">현직장</option>
+	                                            		<option value="구직장">구직장</option>
+	                                            		<option value="동호회">동호회</option>
+	                                            	</select>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -181,7 +190,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 010731" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
@@ -235,8 +244,11 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="bkmkAt" name="bkmkAt" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="bkmkAt" />
+	                                                <select name="bkmkAt" class="f_txt w_full">
+	                                            		<option value="">선택</option>
+	                                            		<option value="Y">예</option>
+	                                            		<option value="N">아니오</option>
+	                                            	</select>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
