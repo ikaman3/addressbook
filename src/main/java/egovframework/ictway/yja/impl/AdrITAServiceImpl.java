@@ -18,11 +18,11 @@ import egovframework.ictway.yja.service.AdrITAVO;
 /**
  * 주소록 정보 관리를 위한 구현 클래스
  * @author ICTWAY
- * @since 2024.12.29
+ * @since 2024.01.04
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 유지애 / 최초생성
+ *2024.01.04 / 유지애 / 최초생성
  * </pre>
  * @see
  */
@@ -33,7 +33,7 @@ public class AdrITAServiceImpl implements AdrITAService {
     private AdrITADAO adrITADAO;
 	
 	/** yja-adrITAIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	@Resource(name="yja-adrIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
