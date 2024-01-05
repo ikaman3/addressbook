@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -90,7 +90,7 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
@@ -109,16 +109,18 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
+											<col style="width: 80px;">
+											<col style="width: 80px;">
+											<col style="width: 200px;">
 											<col style="width: auto;">
-											<col style="width: 100px;">
-											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
-												<th scope="col">등록일</th>
+												<th scope="col">이름</th>
+												<th scope="col">성별</th>
+												<th scope="col">전화번호</th>
+												<th scope="col">이메일 주소</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -126,12 +128,27 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.nm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.sexdstnCode }" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.telno }" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
+													</a>
+												</td>
+												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.adbkfrstWrtingDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

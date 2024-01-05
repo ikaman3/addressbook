@@ -118,7 +118,7 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -129,7 +129,7 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="adbkId">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>

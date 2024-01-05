@@ -66,7 +66,7 @@ public class AdrCIPServiceImpl implements AdrCIPService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIPVO.setAdbkFrstWrterId(user.getUniqId());
 		
-		adrCIPDAO.insertAdrCIPAct(adrCIPVO);
+		adrCIPDAO.registAdrCIPAct(adrCIPVO);
 		return uniqId;
 	}
 
