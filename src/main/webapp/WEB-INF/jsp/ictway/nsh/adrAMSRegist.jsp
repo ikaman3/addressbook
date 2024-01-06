@@ -276,6 +276,15 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="memo" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
 	                                                <label for="adbkFrstWrterId">최초작성자id</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
