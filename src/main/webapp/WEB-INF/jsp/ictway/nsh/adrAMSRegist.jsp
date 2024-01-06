@@ -62,6 +62,12 @@
     		});
     	}
     }
+	
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	}
     
 </script>
 
@@ -129,22 +135,12 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adbkId">제목</label>
+	                                                <label for="nm">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adbkId" name="adbkId" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adbkId" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="nm">내용</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="nm" name="nm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="nm" />
+	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -153,7 +149,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요">
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
