@@ -64,12 +64,14 @@
     	}
     }
 	
+	// 전화번호 입력 시 하이픈 자동 추가
 	function oninputPhone(target) {
 	    target.value = target.value
 	        .replace(/[^0-9]/g, '')
 	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
 	
+	// 다음 우편번호 API
 	function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -113,6 +115,29 @@
             }
         }).open();
     }
+	
+	// 이메일 유효성 검사
+	function emailCheck(emailaddr){     
+	email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+	if(!email_regex.test(emailaddr)){ 
+		return false; 
+	}else{
+		return true;
+	}
+	
+	}
+	function validateEmail() {
+		var emailInput = document.getElementById('emailaddr');
+		var resultDiv = document.getElementById('result');
+	
+		var emailaddr = emailInput.value;
+	
+		if (emailCheck(emailaddr)) {
+			resultDiv.innerHTML = '유효한 이메일 주소입니다.';
+		} else {
+			resultDiv.innerHTML = '유효하지 않은 이메일 주소입니다.';
+		}
+	}
 </script>
     
 </script>
@@ -243,7 +268,9 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            	<input type="text" id="emailaddr" name="emailaddr" class="f_txt w_full" placeholder="gildong@gmail.com" required>
+	                                            	<button onclick="validateEmail()">확인</button>
+													<div id="result"></div>
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
