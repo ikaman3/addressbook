@@ -206,9 +206,9 @@
 	                                            <td>
 	                                                <select id="sexdstnCode" name="sexdstnCode" class="f_txt w_full">
 	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
-	                                                	<option value="man">남자</option>
-	                                                	<option value="woman">여자</option>
-	                                                	<option value="rather not say">공개 안 함</option>
+	                                                	<option value="SEX01">남자</option>
+	                                                	<option value="SEX02">여자</option>
+	                                                	<option value="SEX03">공개 안 함</option>
 	                                                </select>
 	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
@@ -225,15 +225,6 @@
 													<input type="text" id="sample4_detailAddress" name="detailAdres" class="f_txt w_full" placeholder="상세주소">
 													<form:errors path="adres" />
 													<form:errors path="detailAdres" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="detailAdres">상세주소</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="detailAdres" name="detailAdres" class="f_txt w_full"></input>
-	                                                <form:errors path="detailAdres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
