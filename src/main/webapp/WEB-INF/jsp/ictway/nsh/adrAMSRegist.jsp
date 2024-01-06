@@ -145,12 +145,12 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="telno">전화번호</label>
+	                                                <label for="brthdy">생년월일</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요">
-	                                                <form:errors path="telno" />
+	                                                <input id="brthdy" name="brthdy" type="date" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -159,8 +159,23 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="sexdstnCode" name="sexdstnCode" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <select id="sexdstnCode" name="sexdstnCode" class="f_txtar w_full">
+	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
+	                                                	<option value="man">남자</option>
+	                                                	<option value="woman">여자</option>
+	                                                	<option value="rather not say">공개 안 함</option>
+	                                                </select>
 	                                                <form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="telno">전화번호</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요">
+	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
