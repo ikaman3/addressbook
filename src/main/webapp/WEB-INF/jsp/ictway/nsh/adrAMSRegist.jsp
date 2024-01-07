@@ -285,12 +285,19 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adbkFrstWrterId">최초작성자id</label>
+	                                                <label for="groupCode">그룹코드</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adbkFrstWrterId" name="adbkFrstWrterId" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adbkFrstWrterId" />
+	                                                <select id="groupCode" name="groupCode" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
+	                                                	<option value="GRP01">가족</option>
+	                                                	<option value="GRP02">친구</option>
+	                                                	<option value="GRP03">현직장</option>
+	                                                	<option value="GRP04">구직장</option>
+	                                                	<option value="GRP05">동호회</option>
+	                                                </select>
+	                                                <form:errors path="groupCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -299,7 +306,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adbkFrstWrterNm" name="adbkFrstWrterNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <input id="adbkFrstWrterNm" name="adbkFrstWrterNm" class="f_txt w_full" cols="30" rows="10" ></input>
 	                                                <form:errors path="adbkFrstWrterNm" />
 	                                            </td>
 	                                        </tr>
