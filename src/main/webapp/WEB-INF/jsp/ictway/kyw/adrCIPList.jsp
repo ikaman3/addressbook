@@ -110,50 +110,62 @@
 										<colgroup>
 											<col style="width: 80px;">
 											<col style="width: 80px;">
+											<col style="width: 150px;">
 											<col style="width: 80px;">
-											<col style="width: 200px;">
+											<col style="width: 150px;">
 											<col style="width: auto;">
+											<col style="width: 150px">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">이름</th>
+												<th scope="col">생년월일</th>
 												<th scope="col">성별</th>
 												<th scope="col">전화번호</th>
 												<th scope="col">이메일 주소</th>
+												<th scope="col">그룹</th>
 											</tr>
 										</thead>
 										<tbody>
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.nm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.brthdy }" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.sexdstnCode }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.telno }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.adbkfrstWrtingDt }" pattern="yyyy-MM-dd"/></td>
+												<td class="al" style="text-align: center">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.groupCode }" escapeXml="false"/>
+													</a>
+												</td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="6"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>
