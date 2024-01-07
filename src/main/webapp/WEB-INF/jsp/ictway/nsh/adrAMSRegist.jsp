@@ -308,6 +308,43 @@
 	                                                <form:errors path="groupCode" />
 	                                            </td>
 	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnNm">회사소속명</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="cmpnyPsitnNm" name="cmpnyPsitnNm" class="f_txt w_full"></input>
+	                                                <form:errors path="cmpnyPsitnNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnTeamNm">회사소속팀명</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="cmpnyPsitnTeamNm" name="cmpnyPsitnTeamNm" class="f_txt w_full"></input>
+	                                                <form:errors path="cmpnyPsitnTeamNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnClsfNm">회사소속직급명</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="cmpnyPsitnClsfNm" name="cmpnyPsitnClsfNm" class="f_txt w_full"></input>
+	                                                <form:errors path="cmpnyPsitnClsfNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기</label>
+	                                            </td>
+	                                            <td>
+	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="N" checked="checked">추가하지 않음</input></br>
+	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="Y">추가</input>
+	                                                <form:errors path="bkmkAt" />
+	                                            </td>
+	                                        </tr>
 	                                    </table>
 	                                </div>
 
