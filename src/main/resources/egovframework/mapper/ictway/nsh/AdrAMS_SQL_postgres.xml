@@ -32,10 +32,26 @@
 		<result property="adbkDltrNm" column="adbk_dltr_nm"/>	<!-- 주소록삭제자명 -->
 	</resultMap>
 
-
+	<sql id="withAdrAMSTb">
+		WITH tbAMS AS (
+			SELECT
+				 adbk_id
+				,nm
+				,adbk_delete_at
+				,photo_flpth
+				,adbk_frst_writng_dt
+				,adbk_frst_wrter_id
+				,adbk_last_updt_dt
+				,adbk_last_updusr_id
+				,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
+			FROM nsh.address_info
+			WHERE
+				adbk_delete_at = 'N'
+		)
+	</sql>
 
 	<select id="selectAdrAMSList" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="egovMap">
-		
+		<include refid="withAdrAMSTb"/>
 		SELECT
 			 adbk_id
 			,nm
@@ -56,7 +72,7 @@
 			,bkmk_at
 			,adbk_frst_writng_dt
 			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
@@ -82,7 +98,7 @@
 
 
 	<select id="selectAdrAMSListCnt" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="java.lang.Integer">
-		
+		<include refid="withAdrAMSTb"/>
 		SELECT COUNT(*) FROM nsh.address_info
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
 			<if test="searchKeyword != null and searchKeyword != ''">
@@ -131,17 +147,15 @@
 			,cmpny_psitn_nm
 			,cmpny_psitn_team_nm
 			,cmpny_psitn_clsf_nm
-			<!-- ,bkmk_at -->
-			<!-- ,adbk_frst_writng_dt -->
+			,bkmk_at
 			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
+			<!-- ,adbk_frst_wrter_nm -->
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
-			<!-- ,adbk_delete_at -->
 			,adbk_delete_dt
-			,adbk_dltr_id
-			,adbk_dltr_nm
+			<!-- ,adbk_dltr_id
+			,adbk_dltr_nm -->
 		) VALUES(
 			#{adbkId}
 			,#{nm}
@@ -159,17 +173,15 @@
 			,#{cmpnyPsitnNm}
 			,#{cmpnyPsitnTeamNm}
 			,#{cmpnyPsitnClsfNm}
-			<!-- ,#{bkmkAt} -->
-			<!-- ,#{adbkFrstWritngDt}::timestamp -->
+			,#{bkmkAt}
 			,#{adbkFrstWrterId}
-			,#{adbkFrstWrterNm}
+			<!-- ,#{adbkFrstWrterNm} -->
 			,#{adbkLastUpdtDt}::timestamp
 			,#{adbkLastUpdusrId}
 			,#{adbkLastUpdusrNm}
-			<!-- ,#{adbkDeleteAt} -->
 			,#{adbkDeleteDt}::timestamp
-			,#{adbkDltrId}
-			,#{adbkDltrNm}
+			<!-- ,#{adbkDltrId}
+			,#{adbkDltrNm} -->
 		)
 	</insert>
 
