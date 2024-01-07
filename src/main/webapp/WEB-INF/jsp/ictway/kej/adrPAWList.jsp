@@ -92,7 +92,7 @@
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
-												<option value="2" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>즐겨찾기 여부</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>즐겨찾기 여부</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -114,6 +114,8 @@
 											<col style="width: 150px;">
 											<col style="width: 180px;">
 											<col style="width: auto;">
+											<col style="width: auto;">
+											<col style="width: auto;">
 										</colgroup>
 										<thead>
 											<tr>
@@ -122,6 +124,8 @@
 												<th scope="col">전화번호</th>
 												<th scope="col">이메일</th>
 												<th scope="col">즐겨찾기 여부</th>
+												<th scope="col">작성자</th>
+												<th scope="col">작성일시</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -133,23 +137,11 @@
 														<c:out value="${resultVO.nm}" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.telno}" escapeXml="false"/>
-													</a>
-												</td>
-												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.emailaddr}" escapeXml="false"/>
-													</a>
-												</td>
-												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.bkmk_at}" escapeXml="false"/>
-													</a>
-												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.telno}" /></td>
+												<td><c:out value="${resultVO.emailaddr}" /></td>
+												<td><c:out value="${resultVO.bkmkAt}" /></td>
+												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.adbkFrstWritngDt}" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
