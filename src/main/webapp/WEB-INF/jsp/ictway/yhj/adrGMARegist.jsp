@@ -49,8 +49,29 @@
     formData.set("brthdy", formattedDate);
 	}
 	
+	//휴대폰번호 유효성 검사
+	function isValidPhoneNumber(phoneNumber) {
+        let phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+        return phoneRegex.test(phoneNumber);
+    }
+	
+	function validateForm() {
+        let phoneNumber = document.getElementById("mbtlnum").value;
+
+        let phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
+        if (!phoneRegex.test(phoneNumber)) {
+            alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
+            return false;
+        }
+
+        return true;
+    }
+	
 	//주소록 등록
 	function registAdrGMAAct() {
+		
+		if (!validateForm()) return;
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -175,7 +196,8 @@
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
-													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+													size="50" value="" maxlength="50" class="f_txt w_full"
+													placeholder="010-0000-0000 형식으로 입력해주세요."></input>
 													<form:errors path="mbtlnum" /></td>
 											</tr>
 											<tr>
