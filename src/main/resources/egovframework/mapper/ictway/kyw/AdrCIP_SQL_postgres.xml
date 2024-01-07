@@ -46,7 +46,7 @@
 				</if>
 			</if>
 		</trim>
-		ORDER BY nm ASC
+		ORDER BY adbk_id DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
