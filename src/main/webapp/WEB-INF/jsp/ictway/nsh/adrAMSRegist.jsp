@@ -42,26 +42,36 @@
 	
 	//주소록 등록
 	function registAdrAMSAct() {
-    	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
-        	const formData = new FormData(formElement);
-        	
-        	fetch("<c:url value='/ictway/nsh/registAdrAMSAct.do'/>",{
-    			method: "POST",
-    			cache: "no-cache",
-     			headers: {},
-     			body: formData
-        	})
-        	.then(response => response.json())
-        	.then(data => {
-        		alert("<spring:message code="success.common.insert"/>");
-        		location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
-        	})
-        	.catch(error => {
-    			console.log(error);
-    			alert("에러가 발생하였습니다.");
-    		});
-    	}
+		// 필수 입력란 먼저 확인
+		requiredForm = document.registForm;
+		if (requiredForm.nm.value==""
+				|| requiredForm.sexdstnCode.value==""
+				|| requiredForm.telno.value==""
+				|| requiredForm.emailaddr.value==""
+				|| requiredForm.groupId.value=="")
+			alert("필수 입력란을 확인해 주세요.");
+		else {
+	    	if (confirm('<spring:message code="common.regist.msg" />')) {
+	    		const formElement = document.registForm;
+	        	const formData = new FormData(formElement);
+	        	
+	        	fetch("<c:url value='/ictway/nsh/registAdrAMSAct.do'/>",{
+	    			method: "POST",
+	    			cache: "no-cache",
+	     			headers: {},
+	     			body: formData
+	        	})
+	        	.then(response => response.json())
+	        	.then(data => {
+	        		alert("<spring:message code="success.common.insert"/>");
+	        		location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
+	        	})
+	        	.catch(error => {
+	    			console.log(error);
+	    			alert("에러가 발생하였습니다.");
+	    		});
+	    	}
+		}
     }
 	
 	// 전화번호 입력 시 하이픈 자동 추가
@@ -138,15 +148,7 @@
 			resultDiv.innerHTML = '유효하지 않은 이메일 주소입니다.';
 		}
 	}
-	
-	// 필수 입력값 확인
-	function required () { 
-     this.aa = new Array("nm", "이름은 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
-     this.ab = new Array("sexdstnCode", "성별은 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
-     this.ac = new Array("telno", "전화번호는 필수 입력값입니다.", new Function ("varName", " return this[varName];"));
-     this.ad = new Array("emailaddr", "이메일주소는 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
-     this.ae = new Array("groupId", "최초작성자명은 필수 입력값입니다.", new Function ("varName", " return this[varName];"));
-    } 
+
 </script>
     
 </script>
