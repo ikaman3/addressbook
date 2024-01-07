@@ -149,8 +149,7 @@
 													class="req">필수</span></td>
 												<td><input id="userNm" name="userNm" type="text"
 													size="50" value="" maxlength="50" class="f_txt w_full">
-													<br />
-												<form:errors path="userNm" /></td>
+													<br /> <form:errors path="userNm" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="brthdy">생년월일</label> <span
@@ -199,9 +198,16 @@
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>
 												</td>
-												<td><input id="adresGroupCode" name="adresGroupCode"
-													type="text" size="50" value="" maxlength="50"
-													class="f_txt w_full"></input></td>
+												<td><select id="adresGroupCode" name="adresGroupCode"
+													class="f_txt w_full">
+														<option value="">선택 안 함</option>
+														<option value="GR001">가족</option>
+														<option value="GR002">친구</option>
+														<option value="GR003">현 직장</option>
+														<option value="GR004">구 직장</option>
+														<option value="GR005">동호회</option>
+														<option value="GR006">기타</option>
+												</select></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="cmpnyNm">회사</label></td>
