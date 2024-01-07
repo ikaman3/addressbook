@@ -62,8 +62,16 @@
 	}
 	
 	function validateForm() {
-        let phoneNumber = document.getElementById("mbtlnum").value;
+		let userNm = document.getElementById("userNm").value;
+        let brthdy = document.getElementById("brthdy").value;
+        let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
+        let mbtlnum = document.getElementById("mbtlnum").value;
         let emailaddr = document.getElementById("emailaddr").value;
+        
+        if (userNm.trim() === '' || brthdy.trim() === '' || !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
+            alert("필수 입력값을 모두 입력해주세요.");
+            return false;
+        }
 
         if (!isValidPhoneNumber(phoneNumber)) {
             alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
