@@ -106,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -120,12 +120,16 @@
                                         <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
+                                                <dt>이름</dt>
+                                                <dd><c:out value="${resultVO.nm}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
