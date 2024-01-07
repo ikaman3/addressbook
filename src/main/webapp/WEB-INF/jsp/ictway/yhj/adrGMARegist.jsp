@@ -55,12 +55,23 @@
         return phoneRegex.test(phoneNumber);
     }
 	
+	//이메일형식 유효성검사
+	function isValidEmail(emailaddr) {
+    	let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    	return emailRegex.test(emailaddr);
+	}
+	
 	function validateForm() {
         let phoneNumber = document.getElementById("mbtlnum").value;
+        let emailaddr = document.getElementById("emailaddr").value;
 
-        let phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
-        if (!phoneRegex.test(phoneNumber)) {
+        if (!isValidPhoneNumber(phoneNumber)) {
             alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
+            return false;
+        }
+        
+        if (!isValidEmail(emailaddr)) {
+            alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
             return false;
         }
 
