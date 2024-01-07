@@ -24,22 +24,22 @@
 
 	//주소록 목록조회
 	function selectAdrGMAList(pageIndex){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrGMADetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrGMADetail(adbkId){
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMADetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrGMARegist(){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMARegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -86,7 +86,7 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
