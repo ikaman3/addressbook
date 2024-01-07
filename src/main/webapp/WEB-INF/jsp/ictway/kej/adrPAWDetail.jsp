@@ -117,7 +117,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbk_id}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>이름</dt>
