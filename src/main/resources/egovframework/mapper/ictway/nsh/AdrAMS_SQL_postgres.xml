@@ -119,8 +119,8 @@
 			 adbk_id
 			,nm
 			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
-			,adbk_frst_wrter_nm
 			,adbk_delete_at
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
 		FROM nsh.address_info
 		WHERE
 			adbk_delete_at = 'N'
