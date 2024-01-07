@@ -44,7 +44,7 @@
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 윤현종</title>
+<title>샘플 포털 > 주소록 > 윤현종</title> 
 
 </head>
 <body>
@@ -90,8 +90,9 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>휴대폰번호</option>
 											</select>
 										</label>
 										<span class="item f_search">

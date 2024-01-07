@@ -13,7 +13,7 @@ import lombok.Setter;
 * @version 1.0
 * @Modification
 * <pre>
-*2024.01.05 / ??? / 최초생성
+*2024.01.05 / 김은지 / 최초생성
 * </pre>
 * @see
 */

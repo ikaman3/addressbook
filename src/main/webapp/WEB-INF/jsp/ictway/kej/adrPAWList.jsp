@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">ICTWAY 신입사원 김은지의 샘플 주소록입니다.</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -90,8 +90,9 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>즐겨찾기 여부</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,16 +110,18 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
+											<col style="width: 100px;">
+											<col style="width: 150px;">
+											<col style="width: 180px;">
 											<col style="width: auto;">
-											<col style="width: 100px;">
-											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
-												<th scope="col">등록일</th>
+												<th scope="col">이름</th>
+												<th scope="col">전화번호</th>
+												<th scope="col">이메일</th>
+												<th scope="col">즐겨찾기 여부</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -126,8 +129,23 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrPAWId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.nm}" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.telno}" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.emailaddr}" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al">
+													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.bkmk_at}" escapeXml="false"/>
 													</a>
 												</td>
 												<td><c:out value="${resultVO.frstRegisterNm}" /></td>

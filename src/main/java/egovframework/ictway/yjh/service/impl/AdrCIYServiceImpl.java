@@ -68,7 +68,7 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrCIYVO.setAdbkWrterId(user.getUniqId());
 		
-		adrCIYDAO.insertAdrAct(adrCIYVO);
+		adrCIYDAO.insertAdrCIYAct(adrCIYVO);
 		return uniqId;
 	}
 	
