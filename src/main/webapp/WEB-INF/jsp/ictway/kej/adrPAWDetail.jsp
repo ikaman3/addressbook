@@ -111,21 +111,65 @@
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">ICTWAY 신입사원 김은지의 샘플 주소록입니다.</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.adbk_id}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dt>이름</dt>
+                                                <dd><c:out value="${resultVO.nm}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                             <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                            </dl>
+                                             <dl>
+                                                <dt>주소</dt>
+                                                <dd><c:out value="${resultVO.adres}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>상세주소</dt>
+                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>전화번호</dt>
+                                                <dd><c:out value="${resultVO.telno}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>이메일</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>메모</dt>
+                                                <dd><c:out value="${resultVO.memo}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>그룹코드</dt>
+                                                <dd><c:out value="${resultVO.groupCode}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>회사소속명</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>회사소속팀명</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnTeamNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>회사소속직급명</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnClsfNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>즐겨찾기여부</dt>
+                                                <dd><c:out value="${resultVO.bkmkAt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
