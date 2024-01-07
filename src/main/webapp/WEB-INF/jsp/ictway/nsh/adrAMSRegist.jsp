@@ -138,6 +138,15 @@
 			resultDiv.innerHTML = '유효하지 않은 이메일 주소입니다.';
 		}
 	}
+	
+	// 필수 입력값 확인
+	function required () { 
+     this.aa = new Array("nm", "이름은 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
+     this.ab = new Array("sexdstnCode", "성별은 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
+     this.ac = new Array("telno", "전화번호는 필수 입력값입니다.", new Function ("varName", " return this[varName];"));
+     this.ad = new Array("emailaddr", "이메일주소는 필수 입력값입니다.", new Function ("varName", "return this[varName];"));
+     this.ae = new Array("groupId", "최초작성자명은 필수 입력값입니다.", new Function ("varName", " return this[varName];"));
+    } 
 </script>
     
 </script>
@@ -210,7 +219,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" required>
 	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
@@ -258,7 +267,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요">
+	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요" required>
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
@@ -286,7 +295,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="groupCode">그룹코드</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <select id="groupCode" name="groupCode" class="f_txt w_full">
@@ -298,16 +306,6 @@
 	                                                	<option value="GRP05">동호회</option>
 	                                                </select>
 	                                                <form:errors path="groupCode" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adbkFrstWrterNm">최초작성자명</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="adbkFrstWrterNm" name="adbkFrstWrterNm" class="f_txt w_full" cols="30" rows="10" ></input>
-	                                                <form:errors path="adbkFrstWrterNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
