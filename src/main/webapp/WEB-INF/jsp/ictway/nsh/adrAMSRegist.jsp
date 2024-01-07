@@ -42,36 +42,26 @@
 	
 	//주소록 등록
 	function registAdrAMSAct() {
-		// 필수 입력란 먼저 확인
-		requiredForm = document.registForm;
-		if (requiredForm.nm.value==""
-				|| requiredForm.sexdstnCode.value==""
-				|| requiredForm.telno.value==""
-				|| requiredForm.emailaddr.value==""
-				|| requiredForm.groupId.value=="")
-			alert("필수 입력란을 확인해 주세요.");
-		else {
-	    	if (confirm('<spring:message code="common.regist.msg" />')) {
-	    		const formElement = document.registForm;
-	        	const formData = new FormData(formElement);
+		if (confirm('<spring:message code="common.regist.msg" />')) {
+	    	const formElement = document.registForm;
+	        const formData = new FormData(formElement);
 	        	
-	        	fetch("<c:url value='/ictway/nsh/registAdrAMSAct.do'/>",{
-	    			method: "POST",
-	    			cache: "no-cache",
-	     			headers: {},
-	     			body: formData
-	        	})
-	        	.then(response => response.json())
-	        	.then(data => {
-	        		alert("<spring:message code="success.common.insert"/>");
-	        		location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
-	        	})
-	        	.catch(error => {
-	    			console.log(error);
-	    			alert("에러가 발생하였습니다.");
-	    		});
-	    	}
-		}
+	        fetch("<c:url value='/ictway/nsh/registAdrAMSAct.do'/>",{
+	    		method: "POST",
+	    		cache: "no-cache",
+	     		headers: {},
+	     		body: formData
+	        })
+	        .then(response => response.json())
+	        .then(data => {
+	        	alert("<spring:message code="success.common.insert"/>");
+	        	location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
+	        })
+	        .catch(error => {
+	    		console.log(error);
+	    		alert("에러가 발생하였습니다.");
+	    	});
+	    }
     }
 	
 	// 전화번호 입력 시 하이픈 자동 추가
@@ -147,6 +137,17 @@
 		} else {
 			resultDiv.innerHTML = '유효하지 않은 이메일 주소입니다.';
 		}
+	}
+	
+	// 필수 입력란 확인
+	function checkRequiredForm() {
+		requiredForm = document.registForm;
+		if (requiredForm.nm.value==""
+				|| requiredForm.sexdstnCode.value==""
+				|| requiredForm.telno.value==""
+				|| requiredForm.emailaddr.value==""
+				|| requiredForm.groupId.value=="")
+			alert("필수 입력란을 확인해 주세요.");
 	}
 
 </script>
