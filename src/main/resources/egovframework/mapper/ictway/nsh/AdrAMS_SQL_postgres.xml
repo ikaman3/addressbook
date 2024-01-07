@@ -72,7 +72,7 @@
 			,bkmk_at
 			,adbk_frst_writng_dt
 			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
