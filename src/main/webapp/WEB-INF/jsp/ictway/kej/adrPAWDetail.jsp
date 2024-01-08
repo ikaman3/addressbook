@@ -106,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrPAWId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -117,7 +117,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbk_id}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>이름</dt>
@@ -175,7 +175,7 @@
                                     </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
