@@ -118,6 +118,7 @@
 		SELECT
 			 adbk_id
 			,nm
+			,brthdy
 			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,adbk_delete_at
 			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm

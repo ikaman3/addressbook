@@ -117,7 +117,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
@@ -130,8 +130,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="board_article"> <!-- board_article 표시를 주소록 이름으로 했습니다. -->
-                                    	<c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" />
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
