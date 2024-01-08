@@ -117,19 +117,118 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
+                                        <%-- <div class="tit"><c:out value="${resultVO.adbkId}" /></div> --%>
                                         <div class="info">
                                             <dl>
                                                 <dt>이름</dt>
                                                 <dd><c:out value="${resultVO.nm}" /></dd>
                                             </dl>
                                             <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                            </dl>
+                                            <dl>
                                                 <dt>생년월일</dt>
                                                 <dd><c:out value="${resultVO.brthdy}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                                <dt>즐겨찾기</dt>
+                                                <dd><c:out value="${resultVO.bkmkAt}" /></dd>
+                                            </dl>
+                                        </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>전화번호</dt>
+                                                <dd><c:out value="${resultVO.telno}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>이메일 주소</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>그룹</dt>
+                                                <dd><c:out value="${resultVO.groupCode}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>주소</dt>
+                                                <dd><c:out value="${resultVO.adres}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>상세주소</dt>
+                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>회사명</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>회사 팀명</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnTeamNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>직급</dt>
+                                                <dd><c:out value="${resultVO.cmpnyPsitnClsfNm}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>메모</dt>
+                                                <dd><c:out value="${resultVO.memo}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>최초 작성자명</dt>
+                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>최초 작성자 아이디</dt>
+                                                <dd><c:out value="${resultVO.adbkFrstWrterId}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>최초 작성 일시</dt>
+                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>최종 수정자명</dt>
+                                                <dd><c:out value="${resultVO.adbkLastUpdusrNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>최종 수정자 아이디</dt>
+                                                <dd><c:out value="${resultVO.adbkLastUpdusrId}" /></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="board_view_top">
+                                        <div class="info">
+                                            <dl>
+                                                <dt>최종 수정 일시</dt>
+                                                <dd><c:out value="${resultVO.adbkLastUpdtDt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
