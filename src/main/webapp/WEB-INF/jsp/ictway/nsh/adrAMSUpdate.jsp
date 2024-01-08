@@ -103,6 +103,7 @@
 	
 	// 다음 우편번호 API
 	function sample4_execDaumPostcode() {
+		debugger;
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -268,6 +269,7 @@
 	                                        	<td>
 	                                        		<input type="text" id="sample4_postcode" title="주소" class="f_txt w_full" placeholder="우편번호">
 													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"/><br>
+													<span id="guide" style="color:#999;display:none"></span>
 													<form:input id="sample4_roadAddress" path="adres" htmlEscape="false" class="f_txt w_full"/>
 													<form:input id="sample4_detailAddress" path="detailAdres" htmlEscape="false" class="f_txt w_full"/>
 													<form:errors path="adres" />
