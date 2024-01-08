@@ -143,9 +143,7 @@
 	<update id="updateAdrGMAAct" parameterType="egovframework.ictway.yhj.service.AdrGMAVO">
 		UPDATE yhj.address_info
 		SET 
-			user_nm = #{userNm}
-			,brthdy = #{brthdy}
-			,sexdstn_code = #{sexdstnCode}
+			sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
 			,detail_adres = #{detailAdres}
 			,mbtlnum = #{mbtlnum}

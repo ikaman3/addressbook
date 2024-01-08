@@ -48,13 +48,6 @@
 		}
 	}
 	
-	// 날짜 파싱
-	function processDate(formData) {
-    const inputDate = formData.get("brthdy");
-    const formattedDate = inputDate.replace(/-/g, '');
-    formData.set("brthdy", formattedDate);
-	}
-	
 	//휴대폰번호 유효성 검사
 	function isValidPhoneNumber(phoneNumber) {
         let phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
@@ -68,13 +61,11 @@
 	}
 	
 	function validateForm() {
-		let userNm = document.getElementById("userNm").value;
-        let brthdy = document.getElementById("brthdy").value;
         let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
         let mbtlnum = document.getElementById("mbtlnum").value;
         let emailaddr = document.getElementById("emailaddr").value;
         
-        if (userNm.trim() === '' || brthdy.trim() === '' || !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
+        if ( !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
             alert("필수 입력값을 모두 입력해주세요.");
             return false;
         }
@@ -100,8 +91,6 @@
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
-        	
-        	processDate(formData);
         	
         	fetch("<c:url value='/ictway/yhj/updateAdrGMAAct.do'/>",{
     			method: "POST",
