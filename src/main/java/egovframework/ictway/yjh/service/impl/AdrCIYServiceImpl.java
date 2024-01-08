@@ -51,6 +51,22 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 		return map;
 	}
 	
+		// 주소정보 목록 조회
+		@Override
+		public Map<String, Object> selectAdrCIYBkmkList(AdrCIYVO adrCIYVO) throws Exception {
+
+			/** 목록 조회 */
+			List<?> list = adrCIYDAO.selectAdrCIYList(adrCIYVO);
+			/** 목록 조회 건 수 */
+			int cnt = adrCIYDAO.selectAdrCIYListCnt(adrCIYVO);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resultList", list);
+			map.put("resultCnt", Integer.toString(cnt));
+			
+			return map;
+		}
+	
 	// 주소정보 상세조회
 	@Override
 	public AdrCIYVO selectAdrCIYDetail(AdrCIYVO adrCIYVO) throws Exception {
