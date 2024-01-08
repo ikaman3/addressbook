@@ -204,11 +204,16 @@
 											<tr>
 												<td class="lb"><label for="brthdy">생년월일</label> <span
 													class="req">필수</span></td>
-												<td><input id="brthdy" name="brthdy" type="date"
+												<td><input id="brthdy" name="brthdy" type="text"
 													value="<c:out value="${resultVO.brthdy}" />" class="f_txt w_full"></input> <form:errors
 														path="brthdy" /></td>
 											</tr>
 											<tr>
+											<script>
+												const sexdstnCodeMeanings = {SX001: "여성", SX002: "남성"};
+												const sexdstnCode = <c:out value="${resultVO.sexdstnCode}" />
+												
+											</script>
 												<td class="lb"><label for="sexdstnCode">성별</label> <span
 													class="req">필수</span></td>
 												<td><input type="radio" name="sexdstnCode"
