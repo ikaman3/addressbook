@@ -115,7 +115,7 @@
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-								<form name="registForm" method="post" enctype="multipart/form-data" >
+								<form name="registForm" method="post">
 
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
