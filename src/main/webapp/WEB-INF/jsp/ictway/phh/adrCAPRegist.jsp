@@ -129,7 +129,15 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="adrSj">이름</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="adrSj">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
@@ -137,16 +145,147 @@
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                        </tr>
-	                                        <tr>
+	                                        
+							                <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="adrSj">휴대폰</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="adrSj">이메일</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrSj">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="adrSj">그룹</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">주소</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">상세주소</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">메모</label>
+	                                            </td>
+	                                            <td colspan = "3">
 	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">사진파일명칭</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">사진확장자명칭</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">사진파일경로</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">회사명</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">회사소속팀명</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">회사직급</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adrCn">즐겨찾기 유무</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="adrSj" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        
 	                                    </table>
 	                                </div>
 
