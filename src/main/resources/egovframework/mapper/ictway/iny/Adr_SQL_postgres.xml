@@ -96,7 +96,7 @@
 			,delete_at
 			,regist_user_id
 		FROM iny.address_info
-		<!-- WHERE  -->
+		WHERE adbk_sn = #{adbkSn}
 	</select>
 
 
@@ -163,16 +163,14 @@
 			,cmpny_nm = #{cmpnyNm}
 			,dept_nm = #{deptNm}
 			,clsf_nm = #{clsfNm}
-			<!-- ,bkmk_at = 0 -->
 			,photo_nm = #{photoNm}
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
 			,updt_dt = now()
-			<!-- ,regist_dt = #{registDt}
-			
+			<!-- ,regist_dt = #{registDt}ㄴ
 			,regist_user_nm = #{registUserNm}
 			,delete_at = #{deleteAt} -->
-			WHERE regist_user_id= #{regist_user_id}
+			<!-- WHERE regist_user_id= #{regist_user_id} -->
 	</update>
 	
 	<update id="deleteAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
