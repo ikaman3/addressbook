@@ -24,22 +24,22 @@
 
 	//주소록 목록조회
 	function selectAdrPAWList(pageIndex){
-		document.searchListForm.adrPAWId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrPAWDetail(adrPAWId){
-		document.searchListForm.adrPAWId.value = adrPAWId;
+	function selectAdrPAWDetail(adbkId){
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrPAWRegist(){
-		document.searchListForm.adrPAWId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -86,7 +86,7 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrPAWId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
@@ -133,7 +133,7 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+													<a href="javascript:void(0);" onclick="selectAdrPAWDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.nm}" escapeXml="false"/>
 													</a>
 												</td>
