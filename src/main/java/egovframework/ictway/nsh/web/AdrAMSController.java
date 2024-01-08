@@ -88,7 +88,6 @@ public class AdrAMSController {
 	 */
 	@RequestMapping("/ictway/nsh/selectAdrAMSDetail.do")
 	public String selectAdrAMSDetail(@ModelAttribute("searchVO") AdrAMSVO adrAMSVO, ModelMap model) throws Exception {
-		
 		AdrAMSVO resultVO = adrAMSService.selectAdrAMSDetail(adrAMSVO);
 		model.addAttribute("resultVO", resultVO);
 		
@@ -134,7 +133,6 @@ public class AdrAMSController {
 	 */
 	@RequestMapping("/ictway/nsh/selectAdrAMSUpdate.do")
 	public String selectAdrAMSUpdate(@ModelAttribute("searchVO") AdrAMSVO adrVO, ModelMap model) throws Exception {
-		
 		AdrAMSVO resultVO = adrAMSService.selectAdrAMSDetail(adrVO);
 		model.addAttribute("resultVO", resultVO);
 		

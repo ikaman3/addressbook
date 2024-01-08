@@ -23,7 +23,7 @@
 <script type="text/javascript">
 
 	//주소록 목록조회
-	function selectAdrList(pageIndex){
+	function selectAdrCIYList(pageIndex){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
@@ -38,7 +38,7 @@
 	}
 	
 	//주소록 등록 화면
-	function selectAdrRegist(){
+	function selectAdrCIYRegist(){
 		document.searchListForm.adrId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYRegist.do'/>";
 		document.searchListForm.submit();
@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">Contact ICTWAY</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -96,9 +96,9 @@
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="selectAdrList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
+											<button class="btn" type="submit" onclick="selectAdrCIYList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+										<a href="javascript:void(0);" onclick="selectAdrCIYRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
 								</div>
@@ -127,7 +127,7 @@
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
 													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
 												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
@@ -146,7 +146,7 @@
 								<div class="board_list_bot">
 									<div class="paging" id="paging_div">
 										<ul>
-											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrList" />
+											<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="selectAdrCIYList" />
 										</ul>
 									</div>
 								</div>

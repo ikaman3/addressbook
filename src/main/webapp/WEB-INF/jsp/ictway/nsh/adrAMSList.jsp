@@ -126,8 +126,8 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrAMSDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adbkId }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrAMSDetail('<c:out value="${resultVO.nm}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.nm }" escapeXml="false"/>
 													</a>
 												</td>
 												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>

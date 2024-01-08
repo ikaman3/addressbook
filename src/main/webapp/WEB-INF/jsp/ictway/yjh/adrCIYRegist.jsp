@@ -34,13 +34,13 @@
 <script type="text/javascript">
     
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록
-	function registAdrAct() {
+	function registAdrCIYAct() {
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -118,7 +118,7 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">Contact ICTWAY</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -129,22 +129,142 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="userNm">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="brthdy">생년월일</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" value="" maxlength="8" class="f_txtar w_full" ></input>
+	                                                <br/><form:errors path="brthdy" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002"> 남성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001"> 여성</input>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">상세주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">휴대폰번호</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">이메일</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">사진</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">그룹</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">회사</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">소속부서</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">직급</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">즐겨찾기</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">메모</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
@@ -155,8 +275,8 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrAct();"><spring:message code="button.save" /></a>
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();"><spring:message code="button.list" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="registAdrCIYAct();"><spring:message code="button.save" /></a>
+	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCIYList();"><spring:message code="button.list" /></a>
 	                                    </div>
 	                                </div>
 	                                
