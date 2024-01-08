@@ -91,16 +91,13 @@
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>휴대폰번호</option>
-												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>그룹</option>
-												<option value="3" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>회사</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
 											<button class="btn" type="submit" onclick="selectAdrCIYList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrCIYList('1'); return false;" class="item btn btn_blue_46 w_100">즐겨찾기 조회</a><!-- 즐겨찾기 조회 -->	
 										<a href="javascript:void(0);" onclick="selectAdrCIYRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
