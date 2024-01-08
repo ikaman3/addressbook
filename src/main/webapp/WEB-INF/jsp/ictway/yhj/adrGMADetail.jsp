@@ -254,6 +254,18 @@ caption {
 													</div>
 												</td>
 											</tr>
+											
+											<tr>
+												<td class="lb"><label for="photo">사진</label></td>
+
+												<td>
+													<div id="photo" , name="photo">
+														<img
+															src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'
+															alt="파일보기링크" />
+													</div>
+												</td>
+											</tr>
 
 											<tr>
 												<td class="lb"><label for="cmpnyNm">회사명칭</label></td>
@@ -290,18 +302,19 @@ caption {
 													</div>
 												</td>
 											</tr>
-
+											
 											<tr>
-												<td class="lb"><label for="photo">사진</label></td>
+												<td class="lb"><label for=adbkCreatDt>작성날짜</label></td>
 
 												<td>
-													<div id="photo" , name="photo">
-														<img
-															src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'
-															alt="파일보기링크" />
+													<div id="adbkCreatDt" , name="adbkCreatDt">
+														<fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                		<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>	
 													</div>
 												</td>
 											</tr>
+
+											
 
 										</table>
 									</div>
