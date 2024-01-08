@@ -95,12 +95,17 @@
 		target.checked = true;
 	}
 	
-	//숫자만 입력
-	function oninputPhone(target) {
-	    target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	//이메일 검증 스크립트
+	function verifyEmail(){
+		var emailVal = $("#emailaddr").val();
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if (emailVal.match(regExp) == null){
+			alert("올바른 이메일 형식을 입력해주세요.");
+		}
 	}
+	
+	
+	
 	
     
 </script>
@@ -197,7 +202,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="telno" name="telno" type="text" title="전화번호" oninput="oninputPhone(this)" size="20" value="" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full required">
+	                                                <input id="telno" name="telno" type="text" title="전화번호" oninput="oninputPhone(this);" size="20" value="" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full required">
 	                                                <br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
@@ -213,16 +218,16 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" title="이메일 주소" size="50" value="" maxlength="500" class="f_txt w_full required">
+	                                                <input id="emailaddr" name="emailaddr" type="text" onchange="verifyEmail(this)" title="이메일 주소" size="50" value="" maxlength="500" class="f_txt w_full required">
 	                                            	<br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        	<td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td style="text-align: center ">
-	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" onclick="clickCheck(this)" value="Y">
+	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" value="Y">
 	                                            	<label for="bkmkAt">O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" onclick="clickCheck(this)" value="N" checked="checked">
+	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" value="N" checked="checked">
 	                                            	<label for="bkmkAt">X</label>
 	                                            </td>
 	                                        </tr>
