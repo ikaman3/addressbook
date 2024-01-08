@@ -115,7 +115,7 @@
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-								<form name="registForm" method="post" enctype="multipart/form-data" >
+								<form name="registForm" method="post" enctype="multipart/form-data" class="required">
 
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">Contact ICTWAY</p>
@@ -287,4 +287,29 @@
     </div>
     
 </body>
+<script>
+	const formElement = document.registForm;
+	let validFailAt = "N"; //유효성검사실패여부
+	let validMsg = "";
+	let focusObject;
+	console.log(formElemnt.bkmkAt);
+	
+	formElement.querySelectorAll(".required").forEach(v=>{
+		//debugger;
+		
+		if(!!!v.value) {
+			if("Y" === ""){
+				focusObject = v;
+			}
+			validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+			validFailAt = "Y";
+		}
+	});
+	
+	if("Y" === validFailAt){
+		alert(validMsg);
+		focusObject.focus();
+		return;
+	}
+</script>
 </html>
