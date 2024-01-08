@@ -24,22 +24,22 @@
 
 	//주소록 목록조회
 	function selectAdrCIPList(pageIndex){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrCIPDetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrCIPDetail(adbkId){
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrCIPRegist(){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
+								<p class="txt_1">주머니 속 연락처</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -86,12 +86,12 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
 											</select>
 										</label>
 										<span class="item f_search">
