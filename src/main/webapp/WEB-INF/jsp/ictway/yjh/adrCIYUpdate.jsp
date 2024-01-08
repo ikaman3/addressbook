@@ -204,30 +204,20 @@
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
-	            							<tr>
-	                                            <td class="lb">
-                                                	<label for="photoFileNm">사진</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="photoFileNm" />
-	                                            </td>
-	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-													<select name="adresGroupCode" id="adresGroupCode" size="1">
-														<option value="" <c:if test="${resultVO.adresGroupCode == ''}">selected</c:if>>해당 없음</option>
-													    <option value="GR001" <c:if test="${resultVO.adresGroupCode == 'GR001'}">selected</c:if>>가족</option>
-													    <option value="GR002" <c:if test="${resultVO.adresGroupCode == 'GR002'}">selected</c:if>>친구</option>
-													    <option value="GR003" <c:if test="${resultVO.adresGroupCode == 'GR003'}">selected</c:if>>현 직장</option>
-													    <option value="GR004" <c:if test="${resultVO.adresGroupCode == 'GR004'}">selected</c:if>>구 직장</option>
-													    <option value="GR005" <c:if test="${resultVO.adresGroupCode == 'GR005'}">selected</c:if>>동호회</option>
-													    <option value="GR006" <c:if test="${resultVO.adresGroupCode == 'GR006'}">selected</c:if>>기타</option>
-													</select>
-	                                                <!-- <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full"> -->
+		                                           	<form:select action="#" path="adresGroupCode">
+														<form:option value="">해당 없음</form:option>
+														<form:option value="GR001">가족</form:option>
+														<form:option value="GR002">친구</form:option>
+														<form:option value="GR003">현 직장</form:option>
+														<form:option value="GR004">구 직장</form:option>
+														<form:option value="GR005">동호회</form:option>
+														<form:option value="GR006">기타</form:option>
+													</form:select>
 	                                                <br/><form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>

@@ -128,29 +128,24 @@
                                         <div class="tit"><c:out value="주소록 상세조회" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.adbkWrterId}" /></dd>
-                                            </dl>
-                                            <dl>
                                                 <dt>등록일</dt>
-                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkCreatDt}" /></dd>
+                                                <fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                <dd><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd HH:mm:ss"/></dd>
                                             </dl>
-                                            <dl>
-                                                <dt>수정자</dt>
-                                                <dd><c:out value="${resultVO.adbkUpdusrId}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>수정일</dt>
-                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkUpdtDt}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>삭제자</dt>
-                                                <dd><c:out value="${resultVO.adbkDltrId}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>삭제일</dt>
-                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkDeleteDt}" /></dd>
-                                            </dl>
+                                            <c:if test="${resultVO.adbkUpdtDt != null}">
+	                                            <dl>
+	                                                <dt>수정일</dt>
+	                                                <fmt:parseDate value="${resultVO.adbkUpdtDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                	<dd><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd HH:mm:ss"/></dd>
+	                                            </dl>                                            
+                                            </c:if>
+                                            <c:if test="${resultVO.adbkDeleteDt != null}">
+	                                            <dl>
+	                                                <dt>삭제일</dt>
+	                                                <fmt:parseDate value="${resultVO.adbkDeleteDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                	<dd><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd HH:mm:ss"/></dd>
+	                                            </dl>                                            
+                                            </c:if>
                                         </div>
                                     </div>
                                     
@@ -172,16 +167,8 @@
                                     </div>
                                     <div class="board_article">
                                     	<label>성별</label>
-                                    	<c:choose>
-										    <c:when test="${resultVO.sexdstnCode == 'SX001'}">
-										        <!-- condition이 true인 경우 실행되는 내용 -->
-                                   				<c:out value="${fn:replace('여성' , crlf , '<br/>')}" escapeXml="false" />
-										    </c:when>
-										    <c:otherwise>
-										        <!-- condition이 false일 때 실행되는 내용 -->
-										        <c:out value="${fn:replace('남성' , crlf , '<br/>')}" escapeXml="false" />
-										    </c:otherwise>
-										</c:choose>
+										<input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001" <c:if test="${resultVO.sexdstnCode == 'SX001'}">checked</c:if> disabled >여성</input>
+                                        <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002" <c:if test="${resultVO.sexdstnCode == 'SX002'}">checked</c:if> disabled >남성</input>
                                     </div>
                                     <div class="board_article">
                                     	<label>주소</label>
@@ -193,7 +180,16 @@
                                     </div>
                                     <div class="board_article">
 										<label>그룹</label>
-                                    	<c:out value="${fn:replace(resultVO.adresGroupCode , crlf , '<br/>')}" escapeXml="false" />
+                                    	<form:select action="#" path="resultVO.adresGroupCode" >
+											<form:option value="">해당 없음</form:option>
+											<form:option value="GR001">가족</form:option>
+											<form:option value="GR002">친구</form:option>
+											<form:option value="GR003">현 직장</form:option>
+											<form:option value="GR004">구 직장</form:option>
+											<form:option value="GR005">동호회</form:option>
+											<form:option value="GR006">기타</form:option>
+										</form:select>
+                                        <br/><form:errors path="resultVO.adresGroupCode" />
                                     </div>
                                     <div class="board_article">
 										<label>회사</label>
@@ -208,8 +204,9 @@
                                     	<c:out value="${fn:replace(resultVO.cmpnyClsfNm , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
                                     <div class="board_article">
-										<label>즐겨찾기</label>
-                                    	<c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+										<label for="bkmkAt">즐겨찾기</label>
+										<input id="bkmkAt" name="bkmkAt" type="radio" value="Y" <c:if test="${resultVO.bkmkAt == 'Y'}">checked</c:if> disabled >등록</input>
+                                        <input id="bkmkAt" name="bkmkAt" type="radio" value="N" <c:if test="${resultVO.bkmkAt == 'N'}">checked</c:if> disabled >미등록</input>
                                     </div>
                                     <div class="board_article">
                                     	<label>메모</label>
@@ -244,4 +241,8 @@
     </div>
     
 </body>
+<script>
+    // JavaScript를 사용하여 select 요소를 비활성화 상태로 만듭니다.
+    document.getElementById("adresGroupCode").disabled = true;
+</script>
 </html>
