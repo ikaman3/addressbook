@@ -90,6 +90,7 @@
 			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
+			AND adbk_sn = #{adbkSn}
 	</select>
 
 	<insert id="insertAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
