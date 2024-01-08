@@ -54,6 +54,14 @@ public class AdrAMSServiceImpl implements AdrAMSService {
 	@Override
 	public AdrAMSVO selectAdrAMSDetail(AdrAMSVO adrAMSVO) throws Exception {
 		// TODO 상세조회에 대한 조건 로직 추가
+		adrAMSVO.getAdbkFrstWrterNm();
+		/*
+		 * String uniqId = idgenService.getNextStringId(); adrAMSVO.setAdbkId(uniqId);
+		 * 
+		 * LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		 * adrAMSVO.setAdbkFrstWrterId(user.getUniqId());
+		 */
+		
 		return adrAMSDAO.selectAdrAMSDetail(adrAMSVO);
 	}
 

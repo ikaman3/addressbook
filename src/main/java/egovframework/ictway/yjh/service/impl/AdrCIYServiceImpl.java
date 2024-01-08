@@ -62,7 +62,7 @@ public class AdrCIYServiceImpl implements AdrCIYService {
 	@Override
 	public String registAdrCIYAct(AdrCIYVO adrCIYVO) throws FdlException, Exception {
 		//고유아이디 셋팅
-		String uniqId = "ㅇㅇ";
+		String uniqId = idgenService.getNextStringId();
 		adrCIYVO.setAdbkId(uniqId);
 		// 생성자 아이디 셋팅
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
