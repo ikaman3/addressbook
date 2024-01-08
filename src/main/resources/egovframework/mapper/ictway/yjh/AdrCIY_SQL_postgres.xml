@@ -38,6 +38,25 @@
 			,cmpny_nm
 		FROM yjh.address_info
 		WHERE adbk_delete_at = 'N'
+		<if test="searchCondition != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchCondition == 1">
+					AND mbtlnum LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchCondition == 2">
+					AND adres_group_code LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchCondition == 3">
+					AND cmpny_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				<when test="searchCondition == 4">
+					AND bkmk_at = 'Y'
+				</when>
+			</choose>
+		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -81,13 +100,8 @@
 			adbk_id
 			,user_nm
 			,mbtlnum
-			,photo_flpth
-			,photo_file_nm
-			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
-			,cmpny_team_nm
-			,cmpny_clsf_nm
 		FROM yjh.address_info
 		WHERE adbk_delete_at = 'N' AND bkmk_at = 'Y'
 		ORDER BY 1 DESC
