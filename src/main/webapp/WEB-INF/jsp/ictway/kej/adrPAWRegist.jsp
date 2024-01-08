@@ -177,8 +177,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <label><input type="checkbox" name="bkmkAt" value="Y" >Y</label>
-	                                                <label><input type="checkbox" name="bkmkAt" value="N" checked>N</label>
+	                                                <label><input type="radio" name="bkmkAt" value="Y">Y</label>
+	                                                <label><input type="radio" name="bkmkAt" value="N">N</label>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
