@@ -32,6 +32,71 @@
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 --%>
 <script type="text/javascript">
+	//유효성 검사
+	function validateForm(formElement) {
+		// 필드명을 객체로 관리
+		const fields = {
+		    userNm: formElement.querySelector("#userNm").value,
+		    brthdy: formElement.querySelector("#brthdy").value,
+		    sexdstnCode: formElement.querySelector('input[name="sexdstnCode"]:checked') ? 
+		    		formElement.querySelector('input[name="sexdstnCode"]:checked').value : "",
+		    mbtlnum: formElement.querySelector("#mbtlnum").value,
+		    emailaddr: formElement.querySelector("#emailaddr").value
+		};
+		
+		let validMsg = "";
+		let isValid = true;
+		// 필드값을 담은 객체를 이용하여 반복문으로 접근
+		for (const fieldName in fields) {
+		    const fieldValue = fields[fieldName];
+			switch(fieldName) {
+				case "userNm":
+					if (fieldValue === "") {
+						validMsg = "이름을 입력하세요";
+						isValid = false;
+					}
+					break;
+				case "brthdy":
+					const brthdyPattern = /^[0-9]{8}$/;
+					if (!brthdyPattern.test(fieldValue)) {
+						validMsg = "생년월일은 8자리의 숫자여야 합니다 (예: 19990213)";
+				        isValid = false;
+				    }
+					break;
+				case "sexdstnCode":
+					if (fieldValue === "") {
+						validMsg = "성별을 선택해주세요";
+						isValid = false;
+					}
+					break;
+				case "mbtlnum":
+				    const mbtlnumPattern = /^[0-9]{11}$/;
+				    if (!mbtlnumPattern.test(fieldValue)) {
+				        validMsg = "휴대폰 번호는 11자리의 숫자여야 합니다 (예: 01012345678)";
+				        isValid = false;
+				    }
+					break;
+				case "emailaddr":
+				    const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+\.?[a-zA-Z]*$/;
+				    if (!emailPattern.test(fieldValue)) {
+				        validMsg = "올바른 이메일 주소를 입력하세요 (예: yes@myemail.com)";
+				        isValid = false;
+				    }
+					break;
+				default:
+					break;
+				}
+			
+				if (!isValid) {
+					alert(validMsg);
+			        return false;
+			    }
+		}
+		
+	    // 모든 조건을 통과하면 제출
+	    return true;
+	}
+	
 	//주소록 목록조회
 	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
@@ -47,8 +112,12 @@
 	
 	//주소록 수정
 	function updateAdrCIYAct(){
+   		const formElement = document.updateForm;
+	    if (!validateForm(formElement)) {
+	        throw new Error('유효성 검사에 실패했습니다.');
+	    }
+	    
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yjh/updateAdrCIYAct.do'/>",{
@@ -143,7 +212,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="예)홍길동" value="${resultVO.userNm}">
+	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="예)홍길동" value="${resultVO.userNm}" >
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -152,7 +221,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" pattern="[0-9]{8,8}" title="yyyymmdd와 같은 8자리 숫자" value="${resultVO.brthdy}">
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" title="yyyymmdd와 같은 8자리 숫자" value="${resultVO.brthdy}">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -190,7 +259,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.mbtlnum}">
+	                                            	<input id="mbtlnum" name="mbtlnum" type="tel" maxlength="11" class="f_txt w_full" placeholder="01012345678" value="${resultVO.mbtlnum}" >
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
@@ -200,17 +269,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" value="${resultVO.emailaddr}">
+	                                            	<input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" placeholder="yes@myemail.com" value="${resultVO.emailaddr}">
 	                                                <br/><form:errors path="emailaddr" />
-	                                            </td>
-	                                        </tr>
-	            							<tr>
-	                                            <td class="lb">
-                                                	<label for="photoFileNm">사진</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="photoFileNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -218,16 +278,15 @@
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-													<select name="adresGroupCode" id="adresGroupCode" size="1">
-														<option value="" <c:if test="${resultVO.adresGroupCode == ''}">selected</c:if>>해당 없음</option>
-													    <option value="GR001" <c:if test="${resultVO.adresGroupCode == 'GR001'}">selected</c:if>>가족</option>
-													    <option value="GR002" <c:if test="${resultVO.adresGroupCode == 'GR002'}">selected</c:if>>친구</option>
-													    <option value="GR003" <c:if test="${resultVO.adresGroupCode == 'GR003'}">selected</c:if>>현 직장</option>
-													    <option value="GR004" <c:if test="${resultVO.adresGroupCode == 'GR004'}">selected</c:if>>구 직장</option>
-													    <option value="GR005" <c:if test="${resultVO.adresGroupCode == 'GR005'}">selected</c:if>>동호회</option>
-													    <option value="GR006" <c:if test="${resultVO.adresGroupCode == 'GR006'}">selected</c:if>>기타</option>
-													</select>
-	                                                <!-- <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full"> -->
+		                                           	<form:select action="#" path="adresGroupCode">
+														<form:option value="">해당 없음</form:option>
+														<form:option value="GR001">가족</form:option>
+														<form:option value="GR002">친구</form:option>
+														<form:option value="GR003">현 직장</form:option>
+														<form:option value="GR004">구 직장</form:option>
+														<form:option value="GR005">동호회</form:option>
+														<form:option value="GR006">기타</form:option>
+													</form:select>
 	                                                <br/><form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>

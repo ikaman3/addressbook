@@ -51,7 +51,7 @@
 	</sql>
 
 	<select id="selectAdrAMSList" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="egovMap">
-		<include refid="withAdrAMSTb"/>
+		<!-- <include refid="withAdrAMSTb"/> -->
 		SELECT
 			 adbk_id
 			,nm
@@ -81,15 +81,22 @@
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		FROM nsh.address_info
-		WHERE
-				adbk_delete_at = 'N'
+		<!-- WHERE
+				adbk_delete_at = 'N' -->
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			adbk_delete_at = 'N'
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<if test="searchCondition == 0">
-					AND adbk_id LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
-					AND adbk_frst_wrter_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 2">
+					AND telno '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
 		</trim>
@@ -100,15 +107,22 @@
 
 
 	<select id="selectAdrAMSListCnt" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="java.lang.Integer">
-		<include refid="withAdrAMSTb"/>
+		<!-- <include refid="withAdrAMSTb"/> -->
 		SELECT COUNT(*) FROM nsh.address_info
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			adbk_delete_at = 'N'
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<if test="searchCondition == 0">
-					AND adbk_id LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
-					AND adbk_frst_wrter_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 2">
+					AND telno '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
 		</trim>

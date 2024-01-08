@@ -48,6 +48,29 @@
 	
 	//주소록 수정
 	function updateAdrAMSAct(){
+		const formElement = document.updateForm;
+		let validFailAt = "N"; // 유효성 검사 여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			if (!!!v.value) {
+				if ("Y" === firstAt) {
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if ("Y" === validFailAt) {
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -71,8 +94,16 @@
     	}
 	}
 	
+	// 전화번호 입력 시 하이픈 자동 추가
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	}
+	
 	// 다음 우편번호 API
 	function sample4_execDaumPostcode() {
+		debugger;
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -115,6 +146,21 @@
             }
         }).open();
     }
+	
+	// 이메일 유효성 검사
+	function validEmail(obj){
+	    if(validEmailCheck(obj)==false){
+	        alert('올바른 이메일 주소를 입력해주세요.')
+	        obj.value='';
+	        obj.focus();
+	        return false;
+    	}
+	}
+
+	function validEmailCheck(obj){
+	    var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	    return (obj.value.match(pattern)!=null);
+	}
 	
 </script>
 
@@ -189,7 +235,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="nm" class="f_txt w_full" title="이름" size="60" maxlength="60"/>
+	                                            	<form:input path="nm" class="f_txt w_full required" title="이름" size="60" maxlength="60"/>
 	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
@@ -208,7 +254,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:select path="sexdstnCode" size="60" value="" title="성별" htmlEscape="false" class="f_txt w_full">
+	                                            	<form:select path="sexdstnCode" value="" title="성별" htmlEscape="false" class="f_txt w_full required">
 	                                                	<form:option value="SEX01">남자</form:option>
 	                                                	<form:option value="SEX02">여자</form:option>
 	                                                	<form:option value="SEX03">공개 안 함</form:option>
@@ -223,6 +269,7 @@
 	                                        	<td>
 	                                        		<input type="text" id="sample4_postcode" title="주소" class="f_txt w_full" placeholder="우편번호">
 													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"/><br>
+													<span id="guide" style="color:#999;display:none"></span>
 													<form:input id="sample4_roadAddress" path="adres" htmlEscape="false" class="f_txt w_full"/>
 													<form:input id="sample4_detailAddress" path="detailAdres" htmlEscape="false" class="f_txt w_full"/>
 													<form:errors path="adres" />
@@ -235,7 +282,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="telno" oninput="oninputPhone(this)" title="전화번호" size="60" maxlength="14" htmlEscape="false" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요"/>
+	                                                <form:input path="telno" oninput="oninputPhone(this)" title="전화번호" size="60" maxlength="13" htmlEscape="false" class="f_txt w_full required" placeholder="하이픈(-) 없이 입력하세요"/>
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
@@ -245,8 +292,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="emailaddr" class="f_txt w_full" title="이메일주소" htmlEscape="false" placeholder="gildong@gmail.com"/>
-	                                            	<button onclick="validateEmail()">확인</button>
+	                                            	<form:input path="emailaddr" class="f_txt w_full required" onchange="validEmail(this)" title="이메일주소" htmlEscape="false" placeholder="gildong@gmail.com"/>
 													<div id="result"></div>
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
@@ -265,7 +311,8 @@
 	                                                <label for="groupCode">그룹코드</label>
 	                                            </td>
 	                                            <td>
-		                                            <form:select path="groupCode" title="그룹코드" size="60" value="" htmlEscape="false" class="f_txt w_full">
+		                                            <form:select path="groupCode" title="그룹코드" value="" htmlEscape="false" class="f_txt w_full">
+		                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
 		                                                	<form:option value="GRP01">가족</form:option>
 		                                                	<form:option value="GRP02">친구</form:option>
 		                                                	<form:option value="GRP03">현직장</form:option>
@@ -307,8 +354,12 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td>
-	                                                <form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="N"/>추가하지 않음
-	                                                <form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="Y"/>추가
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="N"/>추가하지 않음</br>
+	                                            	</label>
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="Y"/>추가</br>
+	                                            	</label>
 	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>

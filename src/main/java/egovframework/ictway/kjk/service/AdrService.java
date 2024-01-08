@@ -45,16 +45,16 @@ public interface AdrService {
 	/**
 	 * 정보를 수정한다.
 	 * @param adrVO - 수정할 정보가 담긴 VO
-	 * @return void
+	 * @return true/false - 성공 실패 여부
 	 * @exception Exception
 	 */	
-	void updateAdrAct(AdrVO adrVO) throws Exception;
+	Boolean updateAdrAct(AdrVO adrVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
 	 * @param adrVO - 삭제할 정보가 담긴 VO
-	 * @return void
+	 * @return true/false - 성공 실패 여부
 	 * @exception Exception
 	 */	
-	void deleteAdrAct(AdrVO adrVO) throws Exception;
+	Boolean deleteAdrAct(AdrVO adrVO) throws Exception;
 }

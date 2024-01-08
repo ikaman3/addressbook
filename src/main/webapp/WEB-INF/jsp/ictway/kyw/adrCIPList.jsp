@@ -143,7 +143,10 @@
 												</td>
 												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.sexdstnCode }" escapeXml="false"/>
+													<c:choose>
+														<c:when test="${resultVO.sexdstnCode eq 'SE001'}">남자</br></c:when>
+														<c:when test="${resultVO.sexdstnCode eq 'SE002'}">여자</br></c:when>
+													</c:choose>
 													</a>
 												</td>
 												<td class="al" style="text-align: center">
@@ -158,7 +161,13 @@
 												</td>
 												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.groupCode }" escapeXml="false"/>
+													<c:choose>
+														<c:when test="${resultVO.groupCode eq 'GR001'}">가족</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR002'}">친구</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR003'}">현직장</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR004'}">구직장</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR005'}">동호회</br></c:when>
+													</c:choose>
 													</a>
 												</td>
 											</tr>

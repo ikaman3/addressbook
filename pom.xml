@@ -216,6 +216,20 @@
             <version>2.13.3</version>
         </dependency>
 
+		<!-- validation체크 (@valid) 시작 -->		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<!-- validation체크 (@valid) 끝 -->
+
 	</dependencies>
 
     <build>

@@ -130,32 +130,121 @@
                                         </div>
                                     </div>
 
-                                    <div class="board_article">
-                                    	이름: <c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	생년월일: <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	성별:
-                                    	<c:choose>
-                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
-                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
-                                    		<c:otherwise>공개 안 함</br></c:otherwise>
-                                    	</c:choose>
-                                    	주소: <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
-                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	전화번호: <c:out value="${fn:replace(resultVO.telno , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	이메일주소: <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	메모: <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	그룹코드:
-                                    	<c:choose>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP01'}">가족</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
-                                    		<c:otherwise>동호회</br></c:otherwise>
-                                    	</c:choose>
-                                    	회사소속명: <c:out value="${fn:replace(resultVO.cmpnyPsitnNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	회사팀명: <c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	회사직급명: <c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	즐겨찾기: <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+                                    <div class="board_view2">
+                                    	<table>
+                                    		<colgroup>
+	                                            <col style="width: 190px;">
+	                                            <col style="width: auto;">
+	                                        </colgroup>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="nm"><b>이름</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" /></br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="brthdy"><b>생년월일</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="sexdstnCode"><b>성별</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:choose>
+			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
+			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
+			                                    		<c:otherwise>공개 안 함</br></c:otherwise>
+                                    				</c:choose>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="adres"><b>주소</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="telno"><b>전화번호</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.telno , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="emailaddr"><b>이메일주소</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="memo"><b>메모</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="groupCode"><b>그룹코드</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:choose>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP01'}">가족</br></c:when>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP05'}">동호회</br></c:when>
+			                                    		<c:otherwise></br></c:otherwise>
+                                    				</c:choose>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="cmpnyPsitnNm"><b>회사소속명</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.cmpnyPsitnNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="cmpnyPsitnTeamNm"><b>회사팀명</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="cmpnyPsitnClsfNm"><b>회사직급명</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="bkmkAt"><b>즐겨찾기</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+                                    	</table>
                                     </div>
 
 									<!-- 버튼 시작 -->

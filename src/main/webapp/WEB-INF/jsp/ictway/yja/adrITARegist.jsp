@@ -41,8 +41,33 @@
 	
 	//주소록 등록
 	function registAdrITAAct() {
+		
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yja/registAdrITAAct.do'/>",{
@@ -133,7 +158,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="10" class="f_txt w_full required" title="이름">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -143,7 +168,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<select name="sexdstnCode" class="f_txt w_full">
+	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="성별">
 	                                            		<option value="">선택</option>
 	                                            		<option value="남성">남성</option>
 	                                            		<option value="여성">여성</option>
@@ -156,7 +181,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="moblphonNo" name="moblphonNo" placeholder="'-' 없이 11자리로 입력해 주세요 ex) 01085967102" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="moblphonNo" name="moblphonNo" placeholder="'-' 없이 11자리로 입력해 주세요 ex) 01085967102" type="text" size="60" value=""  maxlength="11" class="f_txt w_full required" title="휴대폰번호">
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -166,7 +191,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이메일주소">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -190,7 +215,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 20010731" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 20010731" type="text" size="60" value=""  maxlength="8" class="f_txt w_full">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>

@@ -53,7 +53,6 @@ public class AdrServiceImpl implements AdrService {
 
 	@Override
 	public AdrVO selectAdrDetail(AdrVO adrVO) throws Exception {
-		// TODO 상세조회에 대한 조건 로직 추가
 		return adrDAO.selectAdrDetail(adrVO);
 	}
 
@@ -71,17 +70,37 @@ public class AdrServiceImpl implements AdrService {
 	}
 
 	@Override
-	public void updateAdrAct(AdrVO adrVO) throws Exception {
+	public Boolean updateAdrAct(AdrVO adrVO) throws Exception {
+		boolean result = false;
+		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrVO.setLastUpdusrId(user.getUniqId());
-		adrDAO.updateAdrAct(adrVO);
+		AdrVO resultVO = adrDAO.selectAdrDetail(adrVO);
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		
+		if(resultVO.getFrstRegisterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			adrVO.setLastUpdusrId(user.getUniqId());
+			adrDAO.updateAdrAct(adrVO);
+			result = true;
+		}
+		
+		return result;
 	}
 
 	@Override
-	public void deleteAdrAct(AdrVO adrVO) throws Exception {
+	public Boolean deleteAdrAct(AdrVO adrVO) throws Exception {
+		boolean result = false;
+		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrVO.setLastUpdusrId(user.getUniqId());
-		adrDAO.deleteAdrAct(adrVO);
+		AdrVO resultVO = adrDAO.selectAdrDetail(adrVO);
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		
+		if(resultVO.getFrstRegisterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			adrVO.setLastUpdusrId(user.getUniqId());
+			adrDAO.deleteAdrAct(adrVO);
+			result = true;
+		}
+		
+		return result;
 	}
 
 }
