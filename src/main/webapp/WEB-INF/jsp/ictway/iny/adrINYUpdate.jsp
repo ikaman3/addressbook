@@ -47,7 +47,8 @@
 	
 	//주소록 수정
 	function updateAdrINYAct(){
-		if (confirm('<spring:message code="common.update.msg" />')) {
+			
+			if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
@@ -120,12 +121,12 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="registUserId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="registUserId"/>
+									<form:hidden path="adbkSn"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">INY 주소록 수정 입니다.</p>
@@ -210,7 +211,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="memo">메모</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:textarea path="memo" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
@@ -220,7 +220,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="groupNm">그룹명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="groupNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -230,7 +229,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="cmpnyNm">회사명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="cmpnyNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -240,7 +238,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="deptNm">부서명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="deptNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -250,7 +247,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="clsfNm">직급명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="clsfNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -260,7 +256,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoNm">사진명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="photoNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -270,7 +265,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoCours">사진경로</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="photoCours" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -280,7 +274,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoExtsnNm">사진확장자명칭</label>
-													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            	<form:input path="photoExtsnNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
@@ -288,7 +281,6 @@
 	                                            </td>
 	                                        </tr>
 	                                    </table>
-										
 	                                </div>
 	
 									<!-- 목록/저장버튼  시작-->
@@ -298,7 +290,7 @@
 	
 	                                    <div class="right_col btn1">
 	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrINYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
+											<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>
 	                                <!-- 목록/저장버튼  끝-->

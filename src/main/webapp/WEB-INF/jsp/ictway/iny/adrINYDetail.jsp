@@ -27,7 +27,8 @@
 	}
 	
 	//주소록 수정 화면
-	function selectAdrINYUpdate(){
+	function selectAdrINYUpdate(adbkSn){
+		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYUpdate.do'/>";
 		document.searchListForm.submit();
 	}
@@ -93,8 +94,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">윤현종</a></li>
-										<li><a href="<c:url value="/ictway/iny/selectAdrINYList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">윤현종</a></li>
+										<li><a href="<c:url value="/ictway/psp/selectAdrPSPList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -106,7 +107,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<%-- <form:hidden path="adrId"/> --%>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -118,74 +119,145 @@
                                 <div class="board_view">
                                     <div class="board_view_top">
                                         <div class="tit"><c:out value="${resultVO.userNm}" /></div>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>이름</dt>
-                                                <dd><c:out value="${resultVO.userNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>생년월일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>주소</dt>
-                                                <dd><c:out value="${resultVO.adres}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>상세주소</dt>
-                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>그룹명칭</dt>
-                                                <dd><c:out value="${resultVO.groupNm}" /></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>회사명칭</dt>
-                                                <dd><c:out value="${resultVO.cmpnyNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>부서명칭</dt>
-                                                <dd><c:out value="${resultVO.deptNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>직급명칭</dt>
-                                                <dd><c:out value="${resultVO.clsfNm}" /></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>메모</dt>
-                                                <dd><c:out value="${resultVO.memo}" /></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>사진명칭</dt>
-                                                <dd><c:out value="${resultVO.photoNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>사진경로</dt>
-                                                <dd><c:out value="${resultVO.photoCours}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>사진확장자</dt>
-                                                <dd><c:out value="${resultVO.photoExtsnNm}" /></dd>
-                                            </dl>
-                                        </div>
                                     </div>
-
+                                    
+                                    <div class="board_view2">
+                                    <table>
+										<colgroup>
+	                                    	<col style="width: 190px;">
+	                                        <col style="width: auto;">
+	                                    </colgroup>
+	                                   
+	                                   
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="brthdy">생년월일</label>
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<c:out value="${resultVO.brthdy}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="sexdstnCode">성별</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.sexdstnCode}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="adres">주소</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<c:out value="${resultVO.adres}" /> <c:out value="${resultVO.detailAdres}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="moblphonNo">휴대폰번호</label>
+	                                        </td>
+	                                        <td>
+	                                        	<div id="moblphonNo", name="moblphonNo">
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="emailaddr">이메일주소</label>
+	                                        </td>
+	                                        <td>
+												<c:out value="${resultVO.emailaddr}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">그룹명칭</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.groupNm}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">회사명칭</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.cmpnyNm}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">부서명칭</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.deptNm}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">직급명칭</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.clsfNm}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">메모</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.memo}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">사진명칭</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.photoNm}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">사진경로</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.photoCours}" />
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">사진확장자</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:out value="${resultVO.photoExtsnNm}" />
+	                                        </td>
+	                                    </tr>
+	                                   
+	                                    
+                                    
+                                    </table>
+                                    </div>
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrINYUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrINYUpdate('<c:out value="${resultVO.adbkSn}"/>');">수정</a>
                                             <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrINYAct();">삭제</a>
                                         </div>
 
@@ -210,4 +282,33 @@
     </div>
     
 </body>
+<script>
+	function phoneFormatter() {
+			const num = "<c:out value="${resultVO.moblphonNo}"/>";
+			var formatNum = '';
+			try{
+				if (num.length == 11) {
+					formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+				} else if (num.length == 8) {
+					formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+				} else {
+					if (num.indexOf('02') == 0) {
+						formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+					} else {
+						formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+					}
+				}
+			} catch(e) {
+				formatNum = num;
+			}
+			
+			document.getElementById("moblphonNo").innerHTML= formatNum;
+	
+		} 
+	 	
+	 	
+		
+		phoneFormatter();
+	
+	</script>
 </html>
