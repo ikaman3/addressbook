@@ -38,11 +38,13 @@
 		const fields = {
 		    userNm: formElement.querySelector("#userNm").value,
 		    brthdy: formElement.querySelector("#brthdy").value,
-		    sexdstnCode: formElement.querySelector("#sexdstnCode").value,
+		    sexdstnCode: formElement.querySelector('input[name="sexdstnCode"]:checked') ? 
+		    		formElement.querySelector('input[name="sexdstnCode"]:checked').value : "",
 		    mbtlnum: formElement.querySelector("#mbtlnum").value,
 		    emailaddr: formElement.querySelector("#emailaddr").value
 		};
 		
+		let validMsg = "";
 		let isValid = true;
 		// 필드값을 담은 객체를 이용하여 반복문으로 접근
 		for (const fieldName in fields) {
@@ -50,34 +52,34 @@
 			switch(fieldName) {
 				case "userNm":
 					if (fieldValue === "") {
-						alert("이름을 입력하세요");
+						validMsg = "이름을 입력하세요";
 						isValid = false;
 					}
 					break;
 				case "brthdy":
 					const brthdyPattern = /^[0-9]{8}$/;
 					if (!brthdyPattern.test(fieldValue)) {
-				        alert("생년월일은 8자리의 숫자여야 합니다 (예: 19990213)");
+						validMsg = "생년월일은 8자리의 숫자여야 합니다 (예: 19990213)";
 				        isValid = false;
 				    }
 					break;
 				case "sexdstnCode":
 					if (fieldValue === "") {
-						alert("성별을 선택해주세요");
+						validMsg = "성별을 선택해주세요";
 						isValid = false;
 					}
 					break;
 				case "mbtlnum":
 				    const mbtlnumPattern = /^[0-9]{11}$/;
 				    if (!mbtlnumPattern.test(fieldValue)) {
-				        alert("휴대폰 번호는 11자리의 숫자여야 합니다 (예: 01012345678)");
+				        validMsg = "휴대폰 번호는 11자리의 숫자여야 합니다 (예: 01012345678)";
 				        isValid = false;
 				    }
 					break;
 				case "emailaddr":
 				    const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+\.?[a-zA-Z]*$/;
 				    if (!emailPattern.test(fieldValue)) {
-				        alert("올바른 이메일 주소를 입력하세요 (예: yes@myemail.com)");
+				        validMsg = "올바른 이메일 주소를 입력하세요 (예: yes@myemail.com)";
 				        isValid = false;
 				    }
 					break;
@@ -86,6 +88,7 @@
 				}
 			
 				if (!isValid) {
+					alert(validMsg);
 			        return false;
 			    }
 		}
@@ -216,8 +219,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001"> 여성</input>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002"> 남성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001">여성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002">남성</input>
 	                                                <br/><form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
