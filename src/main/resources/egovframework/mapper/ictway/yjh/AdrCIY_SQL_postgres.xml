@@ -34,13 +34,8 @@
 			adbk_id
 			,user_nm
 			,mbtlnum
-			,photo_flpth
-			,photo_file_nm
-			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
-			,cmpny_team_nm
-			,cmpny_clsf_nm
 		FROM yjh.address_info
 		WHERE adbk_delete_at = 'N'
 		ORDER BY 1 DESC

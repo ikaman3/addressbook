@@ -90,7 +90,7 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
 											</select>
 										</label>
@@ -103,22 +103,18 @@
 									<!-- 검색 form 끝 -->
 								</div>
 								<!--// 검색조건 -->
-
-								<!-- 주소록 -->
 								<div class="board_list">
 									<table>
 										<colgroup>
-											<col style="width: 80px;">
 											<col style="width: auto;">
-											<col style="width: 100px;">
-											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
-												<th scope="col">등록일</th>
+												<th scope="col">휴대폰 번호</th>
+												<th scope="col">그룹</th>
+												<th scope="col">회사</th>
 											</tr>
 										</thead>
 										<tbody>
