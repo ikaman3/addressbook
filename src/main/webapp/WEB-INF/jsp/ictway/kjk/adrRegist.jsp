@@ -77,6 +77,13 @@
         	})
         	.then(response => response.json())
         	.then(data => {
+        		if("FAIL" === data.returnResult){
+        			console.log(returnErrors);
+        			alert("실패하였습니다. 다시 입력해주세요.");
+        			location.reload();
+        			return;
+        		}
+        		
         		alert("<spring:message code="success.common.insert"/>");
         		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
         	})
