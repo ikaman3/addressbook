@@ -61,10 +61,10 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 	public String registAdrPAWAct(AdrPAWVO adrPAWVO) throws FdlException, Exception {
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
-		//adrPAWVO.setAdrId(uniqId);
+		adrPAWVO.setAdbkId(uniqId);
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		//adrPAWVO.setFrstRegisterId(user.getUniqId());
+		adrPAWVO.setAdbkFrstWrterId(user.getUniqId());
 		
 		adrPAWDAO.insertAdrPAWAct(adrPAWVO);
 		return uniqId;
@@ -73,14 +73,14 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 	@Override
 	public void updateAdrPAWAct(AdrPAWVO adrPAWVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		//adrPAWVO.setLastUpdusrId(user.getUniqId());
+		adrPAWVO.setAdbkLastUpdusrId(user.getUniqId());
 		adrPAWDAO.updateAdrPAWAct(adrPAWVO);
 	}
 
 	@Override
 	public void deleteAdrPAWAct(AdrPAWVO adrPAWVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		//adrPAWVO.setLastUpdusrId(user.getUniqId());
+		adrPAWVO.setAdbkDltrId(user.getUniqId());
 		adrPAWDAO.deleteAdrPAWAct(adrPAWVO);
 	}
 

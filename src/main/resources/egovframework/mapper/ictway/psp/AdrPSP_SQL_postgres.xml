@@ -55,6 +55,21 @@
 			,usr_id
 		FROM psp.address_info
 		WHERE delete_at = 'N'
+		
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND emailaddr LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+			
+		</if>
+		
+		
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -95,7 +110,7 @@
 			,delete_at
 			,usr_id
 		FROM psp.address_info
-		WHERE adbk_sn = #{adbksn}
+		WHERE adbk_sn = #{adbkSn}
 	</select>
 
 
@@ -115,14 +130,10 @@
 			,cmpny_nm
 			,dept_nm
 			,clsf_nm
-			,bkmk_at
 			,photo_nm
 			,photo_cours
 			,photo_extsn_nm
-			,regist_dt
-			,updt_dt
 			,regist_user_nm
-			,delete_at
 			,usr_id
 		) VALUES(
 			#{adbkSn}
@@ -138,14 +149,10 @@
 			,#{cmpnyNm}
 			,#{deptNm}
 			,#{clsfNm}
-			,#{bkmkAt}
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
-			,#{registDt}
-			,#{updtDt}
 			,#{registUserNm}
-			,#{deleteAt}
 			,#{usrId}
 		)
 	</insert>
@@ -155,8 +162,7 @@
 	 <update id="updateAdrPSPAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
 		UPDATE psp.address_info
 		SET 
-			adbk_sn = #{adbkSn}
-			,user_nm = #{userNm}
+			user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
@@ -168,16 +174,19 @@
 			,cmpny_nm = #{cmpnyNm}
 			,dept_nm = #{deptNm}
 			,clsf_nm = #{clsfNm}
-			,bkmk_at = #{bkmkAt}
 			,photo_nm = #{photoNm}
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
-			,regist_dt = #{registDt}
-			,updt_dt = #{updtDt}
 			,regist_user_nm = #{registUserNm}
-			,delete_at = #{deleteAt}
 			,usr_id = #{usrId}
-		WHERE usr_id = #{usrId}
+		WHERE adbk_sn = #{adbkSn}
+	</update>
+	
+	 <update id="deleteAdrPSPAct" parameterType="egovframework.ictway.psp.service.AdrPSPVO">
+		UPDATE psp.address_info
+		SET 
+			delete_at = 'Y'
+		WHERE adbk_sn = #{adbkSn}
 	</update>
 	
 	

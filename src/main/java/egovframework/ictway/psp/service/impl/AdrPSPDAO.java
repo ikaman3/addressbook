@@ -28,7 +28,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public List<?> selectAdrPSPList(AdrPSPVO AdrPSPVO) {
-		return selectList("AdrPSPDAO.selectAdrList", AdrPSPVO);
+		return selectList("AdrPSPDAO.selectAdrPSPList", AdrPSPVO);
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return 목록 건 수
 	 */
 	public int selectAdrPSPListCnt(AdrPSPVO AdrPSPVO) {
-		return (Integer)selectOne("AdrPSPDAO.selectAdrListCnt", AdrPSPVO);
+		return (Integer)selectOne("AdrPSPDAO.selectAdrPSPListCnt", AdrPSPVO);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public AdrPSPVO selectAdrPSPDetail(AdrPSPVO AdrPSPVO) {
-		return selectOne("AdrPSPDAO.selectAdrDetail", AdrPSPVO);
+		return selectOne("AdrPSPDAO.selectAdrPSPDetail", AdrPSPVO);
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void insertAdrPSPAct(AdrPSPVO AdrPSPVO) {
-		insert("AdrPSPDAO.insertAdrAct", AdrPSPVO);
+		insert("AdrPSPDAO.insertAdrPSPAct", AdrPSPVO);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void updateAdrPSPAct(AdrPSPVO AdrPSPVO) {
-		update("AdrPSPDAO.updateAdrAct", AdrPSPVO);
+		update("AdrPSPDAO.updateAdrPSPAct", AdrPSPVO);
 	}
 
 	/**
@@ -73,6 +73,6 @@ public class AdrPSPDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void deleteAdrPSPAct(AdrPSPVO AdrPSPVO) {
-		update("AdrPSPDAO.deleteAdrAct", AdrPSPVO);
+		update("AdrPSPDAO.deleteAdrPSPAct", AdrPSPVO);
 	}
 }

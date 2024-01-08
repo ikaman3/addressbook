@@ -118,33 +118,44 @@
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 190px;">
+	                                            <col style="width: 150px;">
+	                                            <col style="width: 150px;">
+	                                            <col style="width: 120px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="nm">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="nm" name="nm" type="text" size="100" value=""  maxlength="20" class="f_txt w_full">
+	                                                <br/><form:errors path="nm" />
+	                                            </td>	                                            
+	                                        	<td class="lb">	                                        		
+	                                                <label for="sexdstnCode">성별</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                        	<td>	                                        	
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="5" class="f_txt w_full">
+	                                                <br/><form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
+	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="memo">메모</label>
+	                                                <!-- <span class="req">필수</span> -->
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="20" rows="10" ></textarea>
+	                                                <form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
