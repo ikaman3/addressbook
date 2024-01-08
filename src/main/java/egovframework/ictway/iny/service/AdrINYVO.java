@@ -8,18 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
-* 주소록 정보 처리를 위한 VO 클래스
-* @author ICTWAY
-* @since 2023.12.29
-* @version 1.0
-* @Modification
-* <pre>
-*2023.12.29 / 김진광 / 최초생성
-* </pre>
-* @see
-*/
-
-/**
 * 주소정보 정보 처리를 위한 VO 클래스
 * @author ICTWAY
 * @since 2024.01.04

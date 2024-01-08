@@ -42,6 +42,32 @@
 	
 	//주소록 등록
 	function registAdrINYAct() {
+		
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			//debugger;
+			
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}		
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -97,10 +123,10 @@
 	                    extraAddr = ' (' + extraAddr + ')';
 	                }
 	                // 조합된 참고항목을 해당 필드에 넣는다.
-	                document.getElementById("sample_extraAddress").value = extraAddr;
+	                //document.getElementById("sample_extraAddress").value = extraAddr;
 	            
 	            } else {
-	                document.getElementById("sample_extraAddress").value = '';
+	                //document.getElementById("sample_extraAddress").value = '';
 	            }
 
 	            adres = addr + extraAddr;
@@ -190,7 +216,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="제목">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -200,7 +226,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="생년월일">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
@@ -210,7 +236,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="성별">
 	                                                <br/><form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
@@ -222,10 +248,10 @@
 	                                            <td>
 	                                              	<input type="text" id="sample_postcode" placeholder="우편번호">
 												    <input type="button" onclick="sample_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="주소"><br>
+												    <input type="text" id="adres" name="adres" placeholder="주소" class="required" title="주소" size="40">
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소">
-												    <input type="text" id="sample_extraAddress" placeholder="참고항목">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="30">
+												   	<!-- <input type="text" id="sample_extraAddress" placeholder="동"> -->
 	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
@@ -235,7 +261,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰번호">
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -245,7 +271,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이메일주소">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>

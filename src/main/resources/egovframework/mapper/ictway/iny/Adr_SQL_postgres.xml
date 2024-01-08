@@ -56,7 +56,7 @@
 			,regist_user_id
 		FROM iny.address_info
 		WHERE delete_at = 'N'
-		<!-- WHERE 
+		
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex} -->
 	</select>
@@ -150,8 +150,7 @@
  	<update id="updateAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
 		UPDATE iny.address_info
 		SET 
-			 adbk_sn = #{adbkSn}
-			,user_nm = #{userNm}
+			 user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
@@ -167,10 +166,8 @@
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
 			,updt_dt = now()
-			<!-- ,regist_dt = #{registDt}ㄴ
-			,regist_user_nm = #{registUserNm}
-			,delete_at = #{deleteAt} -->
-			<!-- WHERE regist_user_id= #{regist_user_id} -->
+			,regist_user_id = #{registUserId}
+			WHERE adbk_sn= #{adbkSn}
 	</update>
 	
 	<update id="deleteAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
@@ -178,7 +175,7 @@
 		SET 
 			 delete_at = 'Y'
 		WHERE
-			 delete_at = 'N'
+			 adbk_sn = #{adbkSn}
 	</update>	
 
 </mapper>
