@@ -24,22 +24,22 @@
 
 	//주소록 목록조회
 	function selectAdrCIPList(pageIndex){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrCIPDetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrCIPDetail(adbkId){
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrCIPRegist(){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/kyw/selectAdrCIPRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 - 김예원 주소록입니다.</p>
+								<p class="txt_1">주머니 속 연락처</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -86,12 +86,12 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -110,50 +110,62 @@
 										<colgroup>
 											<col style="width: 80px;">
 											<col style="width: 80px;">
+											<col style="width: 150px;">
 											<col style="width: 80px;">
-											<col style="width: 200px;">
+											<col style="width: 150px;">
 											<col style="width: auto;">
+											<col style="width: 150px">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">이름</th>
+												<th scope="col">생년월일</th>
 												<th scope="col">성별</th>
 												<th scope="col">전화번호</th>
 												<th scope="col">이메일 주소</th>
+												<th scope="col">그룹</th>
 											</tr>
 										</thead>
 										<tbody>
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.nm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.brthdy }" escapeXml="false"/>
+													</a>
+												</td>
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.sexdstnCode }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.telno }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td class="al" style="text-align: center">
 													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.adbkfrstWrtingDt }" pattern="yyyy-MM-dd"/></td>
+												<td class="al" style="text-align: center">
+													<a href="javascript:void(0);" onclick="selectAdrCIPDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.groupCode }" escapeXml="false"/>
+													</a>
+												</td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="6"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>

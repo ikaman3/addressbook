@@ -63,7 +63,15 @@
 <style type="text/css">
 	h1 {font-size:12px;}
 	caption {visibility:hidden; font-size:0; height:0; margin:0; padding:0; line-height:0;}
-	.board_article {padding: 20px 10px 50px 25px;}
+	.board_article {
+		padding: 20px 10px 20px 25px;
+        display: flex;
+        align-items: center; /* 세로 가운데 정렬 */
+	}
+	.board_article label {
+        margin-right: 10px; /* 레이블과 컨텐츠 사이 여백 */
+        min-width: 100px; /* 레이블의 최소 너비 설정 (필요에 따라 조절) */
+    }
 </style>
 
 
@@ -106,32 +114,106 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">Contact ICTWAY</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="주소록 상세조회" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dd><c:out value="${resultVO.adbkWrterId}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkCreatDt}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>수정자</dt>
+                                                <dd><c:out value="${resultVO.adbkUpdusrId}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>수정일</dt>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkUpdtDt}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>삭제자</dt>
+                                                <dd><c:out value="${resultVO.adbkDltrId}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>삭제일</dt>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkDeleteDt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                    	<label>이름</label>	
+                                    	<c:out value="${fn:replace(resultVO.userNm , crlf , '<br/>')}" escapeXml="false" />                                 
+                                    </div>
+                                    <div class="board_article">
+                                        <label>휴대폰 번호</label>
+                                    	<c:out value="${fn:replace(resultVO.mbtlnum , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>이메일</label>
+                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>생년월일</label>
+                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>성별</label>
+                                    	<c:choose>
+										    <c:when test="${resultVO.sexdstnCode == 'SX001'}">
+										        <!-- condition이 true인 경우 실행되는 내용 -->
+                                   				<c:out value="${fn:replace('여성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:when>
+										    <c:otherwise>
+										        <!-- condition이 false일 때 실행되는 내용 -->
+										        <c:out value="${fn:replace('남성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:otherwise>
+										</c:choose>
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>주소</label>
+                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>상세주소</label>
+                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>그룹</label>
+                                    	<c:out value="${fn:replace(resultVO.adresGroupCode , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>회사</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>부서</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyTeamNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>직급</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyClsfNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>즐겨찾기</label>
+                                    	<c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>메모</label>
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->

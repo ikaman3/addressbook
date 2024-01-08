@@ -6,13 +6,17 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.yhj.service.AdrGMAVO;
+import egovframework.ictway.yhj.utils.UploadFileService;
 import egovframework.ictway.yhj.service.AdrGMAService;
 
 /**
@@ -31,6 +35,9 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 
 	@Resource(name = "adrGMADAO")
     private AdrGMADAO adrGMADAO;
+	
+	@Autowired
+	private UploadFileService uploadFileService;
 	
 	/** yhj-adrIdGnrService */
 	@Resource(name="yhj-adrGMAIdGnrService")
@@ -58,10 +65,20 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	}
 
 	@Override
-	public String registAdrGMAAct(AdrGMAVO adrGMAVO) throws FdlException, Exception {
+	public String registAdrGMAAct(AdrGMAVO adrGMAVO,
+			MultipartFile image) throws FdlException, Exception {
+		
+		if(! image.isEmpty()) {
+			String fileName = uploadFileService.uploadFile(image);
+			adrGMAVO.setPhotoFlpth(UploadFileService.saveFilePathGMA);
+			adrGMAVO.setPhotoFileNm(FilenameUtils.getBaseName(fileName));
+			adrGMAVO.setPhotoExtsnNm(FilenameUtils.getExtension(fileName));
+		}
+		
 		//고유아이디 셋팅
 		String uniqId = idgenService.getNextStringId();
 		adrGMAVO.setAdbkId(uniqId);
+	
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrGMAVO.setAdbkWrterId(user.getUniqId());
@@ -71,8 +88,16 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	}
 
 	@Override
-	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
+	public void updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		
+		if(! image.isEmpty()) {
+			String fileName = uploadFileService.uploadFile(image);
+			adrGMAVO.setPhotoFlpth(UploadFileService.saveFilePathGMA);
+			adrGMAVO.setPhotoFileNm(FilenameUtils.getBaseName(fileName));
+			adrGMAVO.setPhotoExtsnNm(FilenameUtils.getExtension(fileName));
+		}
+		
 		adrGMAVO.setAdbkUpdusrId(user.getUniqId());
 		adrGMADAO.updateAdrGMAAct(adrGMAVO);
 	}

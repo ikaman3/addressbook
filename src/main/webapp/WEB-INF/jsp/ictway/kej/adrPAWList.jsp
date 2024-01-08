@@ -24,22 +24,22 @@
 
 	//주소록 목록조회
 	function selectAdrPAWList(pageIndex){
-		document.searchListForm.adrPAWId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrPAWDetail(adrPAWId){
-		document.searchListForm.adrPAWId.value = adrPAWId;
+	function selectAdrPAWDetail(adbkId){
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrPAWRegist(){
-		document.searchListForm.adrPAWId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/kej/selectAdrPAWRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">ICTWAY 신입사원 김은지의 샘플 주소록입니다.</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -86,12 +86,13 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrPAWId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>즐겨찾기 여부</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,16 +110,22 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
+											<col style="width: 100px;">
+											<col style="width: 150px;">
+											<col style="width: 180px;">
 											<col style="width: auto;">
-											<col style="width: 100px;">
-											<col style="width: 100px;">
+											<col style="width: auto;">
+											<col style="width: auto;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
-												<th scope="col">등록일</th>
+												<th scope="col">이름</th>
+												<th scope="col">전화번호</th>
+												<th scope="col">이메일</th>
+												<th scope="col">즐겨찾기 여부</th>
+												<th scope="col">작성자</th>
+												<th scope="col">작성일시</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -126,12 +133,15 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrDetail('<c:out value="${resultVO.adrPAWId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrPAWDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.nm}" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.telno}" /></td>
+												<td><c:out value="${resultVO.emailaddr}" /></td>
+												<td><c:out value="${resultVO.bkmkAt}" /></td>
+												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
+												<td><fmt:formatDate value="${resultVO.adbkFrstWritngDt}" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

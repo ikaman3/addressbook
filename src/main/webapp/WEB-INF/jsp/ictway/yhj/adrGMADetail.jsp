@@ -21,24 +21,24 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrAMSList(){
-		document.searchListForm.action = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
+	function selectAdrGMAList(){
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 수정 화면
-	function selectAdrAMSUpdate(){
-		document.searchListForm.action = "<c:url value='/ictway/nsh/selectAdrAMSUpdate.do'/>";
+	function selectAdrGMAUpdate(){
+		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAUpdate.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 정보 삭제
-	function deleteAdrAMSAct(){
+	function deleteAdrGMAAct(){
 		if (confirm('<spring:message code="common.delete.msg" />')) {
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/nsh/deleteAdrAMSAct.do'/>",{
+        	fetch("<c:url value='/ictway/yhj/deleteAdrGMAAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -47,7 +47,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.delete"/>");
-        		location.href = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
+        		location.href = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
         	})
         	.catch(error => {
     			console.log(error);
@@ -58,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 남시현</title>
+<title>샘플 포털 > 주소록 > 염혜정</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -93,8 +93,8 @@
                                     <ul>
                                         <li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">남시현</a></li>
-										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/yhj/selectAdrGMAList.do"/>">염혜정</a></li>
+										<li><a href="<c:url value="/ictway/yhj/selectAdrGMAList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 상세</a></li>
                                     </ul>
                                 </div>
@@ -111,62 +111,39 @@
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">AMS 주소록입니다.</p>
+								<p class="txt_1">염혜정 - 주소록입니다.</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
+                                        <div class="tit">주소록</div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
+                                                <dt>이름</dt>
+                                                <dd><c:out value="${resultVO.userNm}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
+                                                <fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                <dd><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/></dd>
                                             </dl>
                                         </div>
                                     </div>
 
                                     <div class="board_article">
-                                    	이름: <c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	생년월일: <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	성별:
-                                    	<c:choose>
-                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
-                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
-                                    		<c:otherwise>공개 안 함</br></c:otherwise>
-                                    	</c:choose>
-                                    	주소: <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
-                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	전화번호: <c:out value="${fn:replace(resultVO.telno , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	이메일주소: <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	메모: <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	그룹코드:
-                                    	<c:choose>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP01'}">가족</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
-                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
-                                    		<c:otherwise>동호회</br></c:otherwise>
-                                    	</c:choose>
-                                    	회사소속명: <c:out value="${fn:replace(resultVO.cmpnyPsitnNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	회사팀명: <c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	회사직급명: <c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm , crlf , '<br/>')}" escapeXml="false" /> </br>
-                                    	즐겨찾기: <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrAMSUpdate();">수정</a>
-                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrAMSAct();">삭제</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrGMAUpdate();">수정</a>
+                                            <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrGMAAct();">삭제</a>
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrAMSList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrGMAList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
