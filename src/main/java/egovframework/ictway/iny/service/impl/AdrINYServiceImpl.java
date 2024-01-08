@@ -22,7 +22,7 @@ import egovframework.ictway.iny.service.AdrINYVO;
  * @version 1.0
  * @Modification
  * <pre>
- *2024.12.29 / 김진광 / 최초생성
+ *2024.12.29 / 윤현종 / 최초생성
  * </pre>
  * @see
  */
@@ -32,8 +32,7 @@ public class AdrINYServiceImpl implements AdrINYService {
 	@Resource(name = "adrINYDAO")
     private AdrINYDAO adrINYDAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	@Resource(name="iny-adrINYIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
