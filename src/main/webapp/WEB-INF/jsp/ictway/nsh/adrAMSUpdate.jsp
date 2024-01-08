@@ -354,8 +354,12 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td>
-	                                                <form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="N"/>추가하지 않음
-	                                                <form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="Y"/>추가
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="N"/>추가하지 않음</br>
+	                                            	</label>
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" title="즐겨찾기" htmlEscape="false" value="Y"/>추가</br>
+	                                            	</label>
 	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
