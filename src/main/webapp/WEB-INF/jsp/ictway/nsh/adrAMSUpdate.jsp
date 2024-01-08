@@ -48,6 +48,29 @@
 	
 	//주소록 수정
 	function updateAdrAMSAct(){
+		const formElement = document.updateForm;
+		let validFailAt = "N"; // 유효성 검사 여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			if (!!!v.value) {
+				if ("Y" === firstAt) {
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if ("Y" === validFailAt) {
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -69,6 +92,13 @@
     			alert("에러가 발생하였습니다.");
     		});
     	}
+	}
+	
+	// 전화번호 입력 시 하이픈 자동 추가
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
 	
 	// 다음 우편번호 API
@@ -115,6 +145,21 @@
             }
         }).open();
     }
+	
+	// 이메일 유효성 검사
+	function validEmail(obj){
+	    if(validEmailCheck(obj)==false){
+	        alert('올바른 이메일 주소를 입력해주세요.')
+	        obj.value='';
+	        obj.focus();
+	        return false;
+    	}
+	}
+
+	function validEmailCheck(obj){
+	    var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	    return (obj.value.match(pattern)!=null);
+	}
 	
 </script>
 
@@ -189,7 +234,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="nm" class="f_txt w_full" title="이름" size="60" maxlength="60"/>
+	                                            	<form:input path="nm" class="f_txt w_full required" title="이름" size="60" maxlength="60"/>
 	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
@@ -208,7 +253,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:select path="sexdstnCode" size="60" value="" title="성별" htmlEscape="false" class="f_txt w_full">
+	                                            	<form:select path="sexdstnCode" size="60" value="" title="성별" htmlEscape="false" class="f_txt w_full required">
 	                                                	<form:option value="SEX01">남자</form:option>
 	                                                	<form:option value="SEX02">여자</form:option>
 	                                                	<form:option value="SEX03">공개 안 함</form:option>
@@ -235,7 +280,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="telno" oninput="oninputPhone(this)" title="전화번호" size="60" maxlength="14" htmlEscape="false" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요"/>
+	                                                <form:input path="telno" oninput="oninputPhone(this)" title="전화번호" size="60" maxlength="13" htmlEscape="false" class="f_txt w_full required" placeholder="하이픈(-) 없이 입력하세요"/>
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
@@ -245,8 +290,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="emailaddr" class="f_txt w_full" title="이메일주소" htmlEscape="false" placeholder="gildong@gmail.com"/>
-	                                            	<button onclick="validateEmail()">확인</button>
+	                                            	<form:input path="emailaddr" class="f_txt w_full required" onchange="validEmail(this)" title="이메일주소" htmlEscape="false" placeholder="gildong@gmail.com"/>
 													<div id="result"></div>
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
