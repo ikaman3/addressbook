@@ -117,7 +117,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
@@ -130,8 +130,32 @@
                                         </div>
                                     </div>
 
-                                    <div class="board_article"> <!-- board_article 표시를 주소록 이름으로 했습니다. -->
-                                    	<c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" />
+                                    <div class="board_article">
+                                    	이름: <c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	생년월일: <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	성별:
+                                    	<c:choose>
+                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
+                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
+                                    		<c:otherwise>공개 안 함</br></c:otherwise>
+                                    	</c:choose>
+                                    	주소: <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	전화번호: <c:out value="${fn:replace(resultVO.telno , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	이메일주소: <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	메모: <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	그룹코드:
+                                    	<c:choose>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP01'}">가족</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
+                                    		<c:otherwise>동호회</br></c:otherwise>
+                                    	</c:choose>
+                                    	회사소속명: <c:out value="${fn:replace(resultVO.cmpnyPsitnNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	회사팀명: <c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	회사직급명: <c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	즐겨찾기: <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->

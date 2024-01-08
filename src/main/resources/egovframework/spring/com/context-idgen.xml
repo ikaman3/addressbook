@@ -2117,7 +2117,7 @@
     <bean name="kyw-adrCIPIdStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
         <property name="prefix" value="ADRCIP" />
-        <property name="cipers" value="20" />
+        <property name="cipers" value="14" />
         <property name="fillChar" value="0" />
     </bean>
     
