@@ -130,14 +130,9 @@
 			,cmpny_psitn_team_nm
 			,cmpny_psitn_clsf_nm
 			,bkmk_at
-			,adbk_frst_writng_dt
 			,adbk_frst_wrter_id
 			,adbk_frst_wrter_nm
-			,adbk_last_updt_dt
-			,adbk_last_updusr_id
-			,adbk_last_updusr_nm
 			,adbk_delete_at
-			,adbk_delete_dt
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		) VALUES(
@@ -158,14 +153,9 @@
 			,#{cmpnyPsitnTeamNm}
 			,#{cmpnyPsitnClsfNm}
 			,#{bkmkAt}
-			,#{adbkFrstWritngDt}
 			,#{adbkFrstWrterId}
 			,#{adbkFrstWrterNm}
-			,#{adbkLastUpdtDt}
-			,#{adbkLastUpdusrId}
-			,#{adbkLastUpdusrNm}
-			,#{adbkDeleteAt}
-			,#{adbkDeleteDt}
+			,'N'
 			,#{adbkDltrId}
 			,#{adbkDltrNm}
 		)
