@@ -106,32 +106,32 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-                              	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+                              	<h1 class="tit_1">알려주소</h1>
+								<p class="txt_1">주소록 상세화면</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dd><c:out value="${resultVO.registUserNm}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dd><c:out value="${resultVO.registDt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
