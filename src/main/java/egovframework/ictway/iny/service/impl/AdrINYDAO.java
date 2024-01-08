@@ -27,7 +27,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public List<?> selectAdrINYList(AdrINYVO adrINYVO) {
-		return selectList("AdrDAO.selectAdrINYList", adrINYVO);
+		return selectList("AdrINYDAO.selectAdrINYList", adrINYVO);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return 목록 건 수
 	 */
 	public int selectAdrINYListCnt(AdrINYVO adrINYVO) {
-		return (Integer)selectOne("AdrDAO.selectAdrINYListCnt", adrINYVO);
+		return (Integer)selectOne("AdrINYDAO.selectAdrINYListCnt", adrINYVO);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public AdrINYVO selectAdrINYDetail(AdrINYVO adrINYVO) {
-		return selectOne("AdrDAO.selectAdrINYDetail", adrINYVO);
+		return selectOne("AdrINYDAO.selectAdrINYDetail", adrINYVO);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void insertAdrINYAct(AdrINYVO adrINYVO) {
-		insert("AdrDAO.insertAdrINYAct", adrINYVO);
+		insert("AdrINYDAO.insertAdrINYAct", adrINYVO);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void updateAdrINYAct(AdrINYVO adrINYVO) {
-		update("AdrDAO.updateAdrINYAct", adrINYVO);
+		update("AdrINYDAO.updateAdrINYAct", adrINYVO);
 	}
 
 	/**
@@ -72,6 +72,6 @@ public class AdrINYDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void deleteAdrINYAct(AdrINYVO adrINYVO) {
-		update("AdrDAO.deleteAdrINYAct", adrINYVO);
+		update("AdrINYDAO.deleteAdrINYAct", adrINYVO);
 	}
 }

@@ -33,8 +33,8 @@
 --%>
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrAMSList(){
-		document.searchListForm.action = "<c:url value='/ictway/nsh/selectAdrAMSList.do'/>";
+	function selectAdrCIYList(){
+		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
 	
@@ -46,12 +46,12 @@
 	}
 	
 	//주소록 수정
-	function updateAdrAMSAct(){
+	function updateAdrCIYAct(){
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
-        	fetch("<c:url value='/ictway/nsh/updateAdrAMSAct.do'/>",{
+        	fetch("<c:url value='/ictway/yjh/updateAdrCIYAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
      			headers: {},
@@ -60,7 +60,7 @@
         	.then(response => response.json())
         	.then(data => {
         		alert("<spring:message code="success.common.update"/>");
-        		document.searchListForm.action = "<c:url value='/ictway/nsh/selectAdrAMSDetail.do'/>";
+        		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYDetail.do'/>";
         		document.searchListForm.submit();
         	})
         	.catch(error => {
@@ -72,7 +72,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 남시현</title>
+<title>샘플 포털 > 주소록 > 윤준현</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -107,8 +107,8 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">남시현</a></li>
-										<li><a href="<c:url value="/ictway/nsh/selectAdrAMSList.do"/>">주소록 목록</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">윤준현</a></li>
+										<li><a href="<c:url value="/ictway/yjh/selectAdrCIYList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 수정</a></li>
 									</ul>
                                 </div>
@@ -120,15 +120,15 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adbkId"/>
+									<form:hidden path="adrId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adbkId"/>
+									<form:hidden path="adrId"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">AMS 주소록입니다.</p>
+									<p class="txt_1">Contact ICTWAY</p>
 									<h2 class="tit_2">주소록 수정</h2>
 	
 	                                <div class="board_view2">
@@ -139,22 +139,22 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adbkId">제목</label>
+	                                                <label for="userNm">이름</label>
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adbkId" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adbkId" />
+	                                            	<form:input path="userNm" class="f_txt w_full" title="이름" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="nm">내용</label>
+	                                                <label for="adrCn">내용</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="nm" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="nm" />
+	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+													<form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
@@ -167,7 +167,7 @@
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
-	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrAMSAct();"><spring:message code='button.save' /></a><!-- 저장 -->
+	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrCIYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
 	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>

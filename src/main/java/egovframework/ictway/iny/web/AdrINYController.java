@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 1.0
  * @Modification
  * <pre>
- *2023.12.28 / 김진광 / 최초생성
+ *2023.12.29 / 윤현종 / 최초생성
  * </pre>
  * @see
  */

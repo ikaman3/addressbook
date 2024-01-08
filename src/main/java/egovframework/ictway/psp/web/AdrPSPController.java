@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.service.EgovFileMngUtil;
 import egovframework.ictway.psp.service.AdrPSPVO;
 import egovframework.ictway.psp.service.AdrPSPService;
 import lombok.extern.slf4j.Slf4j;
@@ -88,9 +92,10 @@ public class AdrPSPController {
 	 */
 	@RequestMapping("/ictway/psp/selectAdrPSPDetail.do")
 	public String selectAdrPSPDetail(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
-		
+		System.out.println(AdrPSPVO);
 		AdrPSPVO resultVO = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
 		model.addAttribute("resultVO", resultVO);
+		
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
 		return "ictway/psp/adrPSPDetail";
@@ -116,10 +121,33 @@ public class AdrPSPController {
      * @throws Exception
      */
     @RequestMapping("/ictway/psp/registAdrPSPAct.do")
-    public ModelAndView registAdrPSPAct(AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrPSPAct(@ModelAttribute("file_1") MultipartFile file, AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
+//    	 if (!file.isEmpty()) {
+//             try {
+//                 String uploadsDir = "/uploads/"; // 파일이 업로드될 디렉토리 경로
+//                 String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+//                 if (!new File(realPathtoUploads).exists()) {
+//                     new File(realPathtoUploads).mkdir();
+//                 }
+//
+//                 // 파일 업로드
+//                 String orgName = file.getOriginalFilename();
+//                 String filePath = realPathtoUploads + orgName;
+//                 File dest = new File(filePath);
+//                 file.transferTo(dest);
+//                 
+//                 // 파일 업로드 성공 시 처리
+//                 // ...
+//
+//             } catch (IOException e) {
+//                 e.printStackTrace();
+//                 // 파일 업로드 실패 시 처리
+//                 // ...
+//             }
+//         }
 		Long AdrPSPId = AdrPSPService.registAdrPSPAct(AdrPSPVO);
 		mav.addObject("AdrPSPId", AdrPSPId);
 		

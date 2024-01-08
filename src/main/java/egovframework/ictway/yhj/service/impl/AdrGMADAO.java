@@ -27,7 +27,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public List<?> selectAdrGMAList(AdrGMAVO adrGMAVO) {
-		return selectList("AdrGMAGMADAO.selectAdrGMAList", adrGMAVO);
+		return selectList("adrGMADAO.selectAdrGMAList", adrGMAVO);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return 목록 건 수
 	 */
 	public int selectAdrGMAListCnt(AdrGMAVO adrGMAVO) {
-		return (Integer)selectOne("AdrGMAGMADAO.selectAdrGMAListCnt", adrGMAVO);
+		return (Integer)selectOne("adrGMADAO.selectAdrGMAListCnt", adrGMAVO);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return 목록
 	 */
 	public AdrGMAVO selectAdrGMADetail(AdrGMAVO adrGMAVO) {
-		return selectOne("AdrGMAGMADAO.selectAdrGMADetail", adrGMAVO);
+		return selectOne("adrGMADAO.selectAdrGMADetail", adrGMAVO);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void insertAdrGMAAct(AdrGMAVO adrGMAVO) {
-		insert("AdrGMAGMADAO.insertAdrGMAAct", adrGMAVO);
+		insert("adrGMADAO.insertAdrGMAAct", adrGMAVO);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) {
-		update("AdrGMAGMADAO.updateAdrGMAAct", adrGMAVO);
+		update("adrGMADAO.updateAdrGMAAct", adrGMAVO);
 	}
 
 	/**
@@ -72,6 +72,6 @@ public class AdrGMADAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void deleteAdrGMAAct(AdrGMAVO adrGMAVO) {
-		update("AdrGMAGMADAO.deleteAdrGMAAct", adrGMAVO);
+		update("adrGMADAO.deleteAdrGMAAct", adrGMAVO);
 	}
 }
