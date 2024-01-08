@@ -145,7 +145,7 @@
 			,3
 			,4
 			,'N'
-			,#{regist_user_id}
+			,5
 		)
 	</insert>
 
