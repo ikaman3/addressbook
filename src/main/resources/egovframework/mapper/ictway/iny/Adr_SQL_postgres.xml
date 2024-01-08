@@ -26,6 +26,7 @@
 		<result property="registUserNm" column="regist_user_nm"/>	<!-- 등록사용자명칭 -->
 		<result property="deleteAt" column="delete_at"/>	<!-- 삭제여부 -->
 		<result property="registUserId" column="regist_user_id"/>	<!-- 등록사용자아이디 -->
+		<result property="usrId" column="usr_id"/>	<!-- 유저고유아이디 -->
 	</resultMap>
 
 
@@ -54,6 +55,7 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
+			,usr_id
 		FROM iny.address_info
 		<!-- WHERE 
 		ORDER BY 1 DESC
@@ -95,10 +97,10 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
+			,usr_id
 		FROM iny.address_info
 		<!-- WHERE  -->
 	</select>
-
 
 
 	<insert id="insertAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
@@ -125,6 +127,7 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
+			,usr_id
 		) VALUES(
 			 #{adbkSn}
 			,#{userNm}
@@ -139,19 +142,20 @@
 			,#{cmpnyNm}
 			,#{deptNm}
 			,#{clsfNm}
-			,#{bkmkAt}
+			,1
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
-			,#{registDt}
-			,#{updtDt}
-			,#{registUserNm}
-			,#{deleteAt}
-			,#{registUserId}
+			,2
+			,3
+			,4
+			,5
+			,6
+			,7
 		)
 	</insert>
 
-<!--  
+  
  	<update id="updateAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
 		UPDATE iny.address_info
 		SET 
@@ -177,7 +181,8 @@
 			,regist_user_nm = #{registUserNm}
 			,delete_at = #{deleteAt}
 			,regist_user_id = #{registUserId}
-		WHERE = #{}
+			,usr_id = #{usr_id}
+		WHERE regist_user_id= #{regist_user_id}
 	</update>
--->
+
 </mapper>
