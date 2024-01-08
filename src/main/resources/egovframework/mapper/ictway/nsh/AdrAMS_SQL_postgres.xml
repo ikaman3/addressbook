@@ -81,6 +81,8 @@
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		FROM nsh.address_info
+		WHERE
+				adbk_delete_at = 'N'
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<if test="searchCondition == 0">
@@ -237,11 +239,12 @@
 	<update id="deleteAdrAMSAct" parameterType="egovframework.ictway.nsh.service.AdrAMSVO">
 		UPDATE nsh.address_info
 		SET 
-			 use_at = 'Y'
+			 adbk_delete_at = 'Y'
 			,adbk_delete_dt = now()
-			,adbk_last_updusr_id = #{adbkDltrId}
+			,adbk_dltr_id = #{adbkId}
+			,adbk_dltr_nm = #{adbkFrstWrterNm}
 		WHERE
-			use_at = 'N'
+			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
 	</update>
 </mapper>
