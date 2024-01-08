@@ -26,7 +26,6 @@
 		<result property="registUserNm" column="regist_user_nm"/>	<!-- 등록사용자명칭 -->
 		<result property="deleteAt" column="delete_at"/>	<!-- 삭제여부 -->
 		<result property="registUserId" column="regist_user_id"/>	<!-- 등록사용자아이디 -->
-		<result property="usrId" column="usr_id"/>	<!-- 유저고유아이디 -->
 	</resultMap>
 
 
@@ -55,7 +54,6 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
-			,usr_id
 		FROM iny.address_info
 		<!-- WHERE 
 		ORDER BY 1 DESC
@@ -70,7 +68,6 @@
 		FROM iny.address_info
 		WHERE delete_at = 'N'
 	</select>
-
 
 
 	<select id="selectAdrINYDetail" parameterType="egovframework.ictway.iny.service.AdrINYVO" resultMap="adrINYVO">
@@ -97,7 +94,6 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
-			,usr_id
 		FROM iny.address_info
 		<!-- WHERE  -->
 	</select>
@@ -127,7 +123,6 @@
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
-			,usr_id
 		) VALUES(
 			 #{adbkSn}
 			,#{userNm}
@@ -146,12 +141,11 @@
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
-			,2
+			,now()
 			,3
 			,4
-			,5
-			,6
-			,7
+			,'N'
+			,#{regist_user_id}
 		)
 	</insert>
 
@@ -172,17 +166,23 @@
 			,cmpny_nm = #{cmpnyNm}
 			,dept_nm = #{deptNm}
 			,clsf_nm = #{clsfNm}
-			,bkmk_at = #{bkmkAt}
+			,bkmk_at = 0
 			,photo_nm = #{photoNm}
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
-			,regist_dt = #{registDt}
+			<!-- ,regist_dt = #{registDt}
 			,updt_dt = #{updtDt}
 			,regist_user_nm = #{registUserNm}
-			,delete_at = #{deleteAt}
-			,regist_user_id = #{registUserId}
-			,usr_id = #{usr_id}
-		WHERE regist_user_id= #{regist_user_id}
+			,delete_at = #{deleteAt} -->
+		<!-- WHERE regist_user_id= #{regist_user_id} -->
 	</update>
+	
+	<update id="deleteAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
+		UPDATE iny.address_info
+		SET 
+			 delete_at = 'Y'
+		WHERE
+			 delete_at = 'N'
+	</update>	
 
 </mapper>

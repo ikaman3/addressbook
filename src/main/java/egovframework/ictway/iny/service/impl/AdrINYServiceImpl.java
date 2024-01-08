@@ -66,11 +66,11 @@ public class AdrINYServiceImpl implements AdrINYService {
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		abrINYVO.setRegistUserId(user.getUniqId());
-		
+		abrINYVO.setRegistUserNm(user.getUniqId());
 		adrINYDAO.insertAdrINYAct(abrINYVO);
 		return uniqId;
 	}
-	
+		
 	@Override
 	public void updateAdrINYAct(AdrINYVO abrINYVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
