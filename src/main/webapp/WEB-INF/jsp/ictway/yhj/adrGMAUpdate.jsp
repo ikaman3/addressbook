@@ -282,8 +282,10 @@
 											</tr>
 											<tr>
 												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><input id="photoFlpth" name="image" type="file"
-													value="" class="f_txt w_full"></input></td>
+												<td>
+													<img src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'/>
+													<input id="photoFlpth" name="image" type="file" value="" class="f_txt w_full">
+												</td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>

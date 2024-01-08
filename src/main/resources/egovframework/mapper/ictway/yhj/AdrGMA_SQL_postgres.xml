@@ -79,9 +79,9 @@
 			,mbtlnum
 			,emailaddr
 			,memo
-			,photo_flpth
+			<!-- ,photo_flpth
 			,photo_file_nm
-			,photo_extsn_nm
+			,photo_extsn_nm -->
 			,adres_group_code
 			,cmpny_nm
 			,cmpny_team_nm
