@@ -253,7 +253,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:select path="sexdstnCode" size="60" value="" title="성별" htmlEscape="false" class="f_txt w_full required">
+	                                            	<form:select path="sexdstnCode" value="" title="성별" htmlEscape="false" class="f_txt w_full required">
 	                                                	<form:option value="SEX01">남자</form:option>
 	                                                	<form:option value="SEX02">여자</form:option>
 	                                                	<form:option value="SEX03">공개 안 함</form:option>
@@ -309,7 +309,8 @@
 	                                                <label for="groupCode">그룹코드</label>
 	                                            </td>
 	                                            <td>
-		                                            <form:select path="groupCode" title="그룹코드" size="60" value="" htmlEscape="false" class="f_txt w_full">
+		                                            <form:select path="groupCode" title="그룹코드" value="" htmlEscape="false" class="f_txt w_full">
+		                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
 		                                                	<form:option value="GRP01">가족</form:option>
 		                                                	<form:option value="GRP02">친구</form:option>
 		                                                	<form:option value="GRP03">현직장</form:option>

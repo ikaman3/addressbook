@@ -207,7 +207,8 @@
 			                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
 			                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
 			                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
-			                                    		<c:otherwise>동호회</br></c:otherwise>
+			                                    		<c:when test="${resultVO.groupCode eq 'GRP05'}">동호회</br></c:when>
+			                                    		<c:otherwise></br></c:otherwise>
                                     				</c:choose>
 	                                            </td>
 	                                        </tr>
