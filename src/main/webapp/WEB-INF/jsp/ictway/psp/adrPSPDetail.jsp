@@ -28,7 +28,6 @@
 	
 	//주소록 수정 화면
 	function selectAdrPSPUpdate(adbkSn){
-		console.log("눌리나");
 		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPUpdate.do'/>";
 		document.searchListForm.submit();

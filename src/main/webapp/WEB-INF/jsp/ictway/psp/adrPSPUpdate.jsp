@@ -49,6 +49,88 @@
 	
 	//주소록 수정
 	function updateAdrPSPAct(){
+		
+		
+		var form = updateForm;
+		/* alert("사용자 함수를 호출함"); */
+	if (form.userNm.value == "")
+	{
+		alert("아이디를 입력하여 주시기 바랍니다.");
+		document.getElementById("userNm").focus();
+		return false;
+	}
+		
+	if (form.year.value == "")
+	{
+		alert("생년을 입력하여 주시기 바랍니다.");
+		document.getElementById("year").focus();
+		return false;
+	}
+	
+	if (form.month.value == "")
+	{
+		alert("월을 입력하여 주시기 바랍니다.");
+		document.getElementById("month").focus();
+		return false;
+	}
+	
+	if (form.day.value == "")
+	{
+		alert("일을 입력하여 주시기 바랍니다.");
+		document.getElementById("day").focus();
+		return false;
+	}
+	
+	if (form.sexdstnCode.value == "")
+	{
+		alert("성별을 입력하여 주시기 바랍니다.");
+		return false;
+	}
+	
+	if (form.adres.value == "")
+	{
+		alert("주소를 입력하여 주시기 바랍니다.");
+		return false;
+	}
+	
+	if (form.moblphonNo.value == "")
+	{
+		alert("휴대전화를를 입력하여 주시기 바랍니다.");
+		document.getElementById("moblphonNo").focus();
+		return false;
+	}
+	
+	if (form.emailaddr.value == "")
+	{
+		alert("이메일을 입력하여 주시기 바랍니다.");
+		document.getElementById("emailaddr").focus();
+		return false;
+	}
+	
+	
+	
+	
+	if (form.cmpnyNm.value == "")
+	{
+		alert("회사명칭을 입력하여 주시기 바랍니다.");
+		document.getElementById("cmpnyNm").focus();
+		return false;
+	}
+	
+	if (form.deptNm.value == "")
+	{
+		alert("부서명칭을 입력하여 주시기 바랍니다.");
+		document.getElementById("deptNm").focus();
+		return false;
+	}
+	
+	if (form.clsfNm.value == "")
+	{
+		alert("직급명칭을 입력하여 주시기 바랍니다.");
+		document.getElementById("clsfNm").focus();
+		return false;
+	}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -132,12 +214,7 @@
 	    }).open();
 	}
     
-	var maxFileNum = document.frm.posblAtchFileNumber.value;
-	if(maxFileNum==null || maxFileNum==""){
-		maxFileNum = 3;
-	}     
-	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
-	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );	
+
 	
 </script>
 
@@ -212,25 +289,25 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="60" value="${resultVO.userNm }"  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>
+	                                                <label for="brthdy">생년월일</label>    
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <select id="year" name="year" class="form-control">
-													  <option value="">년</option>
+	                                                <select id="year" name="year" class="form-control" style="width:100px; height:30px">
+													  <option value="${fn:substring(resultVO.brthdy, 0, 4)}">${fn:substring(resultVO.brthdy, 0, 4)}</option>
 													  <c:forEach var="i" begin="1924" end="2024">
 													    <option value="${i}">${i}</option>
 													  </c:forEach>
 													</select>
 													  
-													<select id="month" name="month" class="form-control">
-													  <option value="">월</option>
+													<select id="month" name="month" class="form-control" style="width:100px; height:30px">
+													  <option value="${fn:substring(resultVO.brthdy, 4, 6)}">${fn:substring(resultVO.brthdy, 4, 6)}</option>
 													  <c:forEach var="i" begin="1" end="12">
 													  <c:choose>
 													      <c:when test="${i lt 10 }">
@@ -242,9 +319,8 @@
 													  </c:choose>
 													  </c:forEach>
 													</select>
-													  
-													<select id="day" name="day" class="form-control">
-													  <option value="">일</option>
+													<select id="day" name="day" class="form-control" style="width:100px; height:30px">
+													  <option value="${fn:substring(resultVO.brthdy, 6, 8)}">${fn:substring(resultVO.brthdy, 6, 8)}</option>
 													  <c:forEach var="i" begin="1" end="31">
 													  <c:choose>
 													      <c:when test="${i lt 10 }">
@@ -260,14 +336,16 @@
 	                                        </tr>
 	                                        
 	                                        <tr>
+	                                        													  
+	                                        
 	                                            <td class="lb">
 	                                                <label for="sexdstnCode">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                            
-	                                            	<input type='radio' name='sexdstnCode' value='0' />남성
-                                                	<input type='radio' name='sexdstnCode' value='1' />여성
+	                                            	<input type='radio' id = "sexdstnCode" name='sexdstnCode' value='0' <c:out value="${resultVO.sexdstnCode eq '0' ? 'checked' : '' }"/>/>남성
+                                                	<input type='radio' id = "sexdstnCode" name='sexdstnCode' value='1' <c:out value="${resultVO.sexdstnCode eq '1' ? 'checked' : '' }"/> style= "margin-left:20px"/>여성
 	                                               
 	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
@@ -279,12 +357,12 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                              	<input type="text" id="sample6_postcode" placeholder="우편번호">
+	                                              	<input type="hidden" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px; margin-bottom:30px;">
 												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="주소"><br>
+												    <input type="text" id="adres" name="adres" placeholder="" value="${resultVO.adres }" style="width:400px; height:30px; margin-bottom:30px;"><br>
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소">
-												    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" value="${resultVO.detailAdres }"style="width:100px; height:30px">
+												    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
 	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
@@ -295,7 +373,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" title="11자리 숫자만 입력하세요" maxlength="11" required>
+	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" value="${resultVO.moblphonNo }"title="11자리 숫자만 입력하세요" maxlength="11" required>
 	                                                <form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -305,27 +383,25 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="emailaddr" name="emailaddr"  >
+	                                                <input type="text" id="emailaddr" name="emailaddr" value="${resultVO.emailaddr }"  >
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="memo">메모</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" value="${resultVO.memo}">${resultVO.memo}</textarea>
 	                                                <form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="groupNm">그룹명칭</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="groupNm" name="groupNm"  >
+	                                                <input type="text" id="groupNm" name="groupNm" value="${resultVO.groupNm }"  >
 	                                                <form:errors path="groupNm" />
 	                                            </td>
 	                                        </tr>
@@ -335,7 +411,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="cmpnyNm" name="cmpnyNm"  >
+	                                                <input type="text" id="cmpnyNm" name="cmpnyNm" value="${resultVO.cmpnyNm }" >
 	                                                <form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
@@ -346,7 +422,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="deptNm" name="deptNm"  >
+	                                                <input type="text" id="deptNm" name="deptNm" value="${resultVO.deptNm }" >
 	                                                <form:errors path="deptNm" />
 	                                            </td>
 	                                        </tr>
@@ -354,15 +430,16 @@
 	                                         <tr>
 	                                            <td class="lb">
 	                                                <label for="clsfNm">직급 명칭</label>
+	                                                
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="clsfNm" name="clsfNm"  >
+	                                                <input type="text" id="clsfNm" name="clsfNm" value="${resultVO.clsfNm }" >
 	                                                <form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
 	                                        
-	                                         <tr>
+	                                        <!--  <tr>
 	                                            <td class="lb">
 	                                                <label for="phto">사진 첨부</label>
 	                                            </td>
@@ -373,7 +450,7 @@
 														<input type="submit" value="저장">
 													</td>
 												                                            
-	                                        </tr>
+	                                        </tr> -->
 	                                        
 	                                    </table>
 										
@@ -381,7 +458,7 @@
 	
 									<!-- 목록/저장버튼  시작-->
 	                                <div class="board_view_bot">
-	                                    <div class="left_col btn3">
+	                                    <div class="left_col btn3"> 
 	                                    </div>
 	
 	                                    <div class="right_col btn1">
