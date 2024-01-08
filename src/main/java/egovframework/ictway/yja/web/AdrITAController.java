@@ -155,11 +155,14 @@ public class AdrITAController {
     	String adrs = "";
 
 		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		
 		if (!files.isEmpty()) {
 			result = fileUtil.parseFileInf(files, "ITA_", 0, "", "");
+			if(result.size() > 0) {
 			atchFileId = result.get(0).getStreFileNm();
 			extension = result.get(0).fileExtsn;
 			adrs = result.get(0).getFileStreCours();
+			}
 		}
     	
     	adrITAVO.setPhotoNm(atchFileId);

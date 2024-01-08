@@ -41,8 +41,32 @@
 	
 	//주소록 등록
 	function registAdrAct() {
+		
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = ""; //유효성검사메세지
+		let firstObjectAt = "Y"; //첫번째 object 여부
+		let focusObject; //focus해야할 object
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			
+			if(!!!v.value) {
+				if("Y" === firstObjectAt){
+					focusObject = v;
+					firstObjectAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/kjk/registAdrAct.do'/>",{
@@ -53,6 +77,13 @@
         	})
         	.then(response => response.json())
         	.then(data => {
+        		if("FAIL" === data.returnResult){
+        			console.log(returnErrors);
+        			alert("실패하였습니다. 다시 입력해주세요.");
+        			location.reload();
+        			return;
+        		}
+        		
         		alert("<spring:message code="success.common.insert"/>");
         		location.href = "<c:url value='/ictway/kjk/selectAdrList.do'/>";
         	})
@@ -115,7 +146,7 @@
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-								<form name="registForm" method="post" enctype="multipart/form-data" >
+								<form name="registForm" method="post">
 
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
@@ -133,7 +164,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="제목">
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                        </tr>
@@ -143,7 +174,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200 required" cols="30" rows="10" title="내용"></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>

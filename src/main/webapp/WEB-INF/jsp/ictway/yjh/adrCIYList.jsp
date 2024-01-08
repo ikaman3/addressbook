@@ -127,9 +127,14 @@
 													</a>
 												</td>
 												<td><c:out value="${resultVO.mbtlnum}" /></td>
-												<td><c:out value="${resultVO.adresGroupCode}" /></td>
+												<c:if test="${resultVO.adresGroupCode == ''}"><td></td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR001'}"><td>가족</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR002'}"><td>친구</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR003'}"><td>현 직장</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR004'}"><td>전 직장</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR005'}"><td>동호회</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR006'}"><td>기타</td></c:if>
 												<td><c:out value="${resultVO.cmpnyNm}" /></td>
-												<%-- <td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td> --%>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

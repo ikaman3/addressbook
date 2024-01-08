@@ -48,7 +48,7 @@ public interface AdrCIPService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
+	Boolean updateAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
@@ -56,5 +56,5 @@ public interface AdrCIPService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
+	Boolean deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
 }

@@ -53,6 +53,19 @@
 			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
+		
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND moblphonNo LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+			
+		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -140,8 +153,7 @@
 	<update id="updateAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
 		UPDATE yja.address_info
 		SET 
-			adbk_sn = #{adbkSn}
-			,user_nm = #{userNm}
+			user_nm = #{userNm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
@@ -157,12 +169,8 @@
 			,photo_nm = #{photoNm}
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
-			,regist_dt = #{registDt}
-			,updt_dt = #{updtDt}
-			,regist_user_nm = #{registUserNm}
-			,delete_at = #{deleteAt}
-			,regist_user_id = #{registUserId}
-		WHERE delete_at = #{N}
+			,updt_dt = now()
+		WHERE adbk_sn = #{adbkSn}
 	</update>
 	
 	<update id="deleteAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">

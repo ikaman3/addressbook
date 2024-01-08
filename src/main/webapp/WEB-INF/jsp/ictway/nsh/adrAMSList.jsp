@@ -90,8 +90,10 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
+												<option value="3" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
+												<option value="4" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>이메일주소</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -150,7 +152,7 @@
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="8"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>

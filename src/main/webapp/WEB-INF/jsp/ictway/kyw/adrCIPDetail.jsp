@@ -116,121 +116,128 @@
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
-                                    <div class="board_view_top">
-                                        <%-- <div class="tit"><c:out value="${resultVO.adbkId}" /></div> --%>
-                                        <div class="info">
-                                            <dl>
-                                                <dt>이름</dt>
-                                                <dd><c:out value="${resultVO.nm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>생년월일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>즐겨찾기</dt>
-                                                <dd><c:out value="${resultVO.bkmkAt}" /></dd>
-                                            </dl>
-                                        </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>전화번호</dt>
-                                                <dd><c:out value="${resultVO.telno}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>이메일 주소</dt>
-                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>그룹</dt>
-                                                <dd><c:out value="${resultVO.groupCode}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>주소</dt>
-                                                <dd><c:out value="${resultVO.adres}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>상세주소</dt>
-                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>회사명</dt>
-                                                <dd><c:out value="${resultVO.cmpnyPsitnNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>회사 팀명</dt>
-                                                <dd><c:out value="${resultVO.cmpnyPsitnTeamNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>직급</dt>
-                                                <dd><c:out value="${resultVO.cmpnyPsitnClsfNm}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>메모</dt>
-                                                <dd><c:out value="${resultVO.memo}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>최초 작성자명</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>최초 작성자 아이디</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterId}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>최초 작성 일시</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>최종 수정자명</dt>
-                                                <dd><c:out value="${resultVO.adbkLastUpdusrNm}" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>최종 수정자 아이디</dt>
-                                                <dd><c:out value="${resultVO.adbkLastUpdusrId}" /></dd>
-                                            </dl>
-                                        </div>
-                                    </div>
-                                    <div class="board_view_top">
-                                        <div class="info">
-                                            <dl>
-                                                <dt>최종 수정 일시</dt>
-                                                <dd><c:out value="${resultVO.adbkLastUpdtDt}" /></dd>
-                                            </dl>
-                                        </div>
+                                <div class="board_view2">
+                                    <table>
+	                                        <colgroup>
+	                                            <col style="width: 150px;">
+	                                            <col style="width: 335px;">
+	                                            <col style="width: 150px;">
+	                                            <col style="width: auto;">
+	                                        </colgroup>
+                                    
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="nm">이름</label>
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.nm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td class="lb">	                                        		
+	                                                <label for="sexdstnCode">성별</label>
+	                                            </td>
+                                                <td>
+                                                	<c:choose>
+														<c:when test="${resultVO.sexdstnCode eq 'SE001'}">남자</br></c:when>
+														<c:when test="${resultVO.sexdstnCode eq 'SE002'}">여자</br></c:when>
+													</c:choose>
+												</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="telno">전화번호</label>
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.telno, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td class="lb">
+	                                                <label for="brthdy">생년월일</label>	                                                
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.brthdy, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                            	<td class="lb">
+	                                                <label for="emailaddr">이메일 주소</label>
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.emailaddr, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기</label>
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.bkmkAt, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                            	<td class="lb">
+	                                                <label for="adres">주소</label>	                                                
+	                                            </td>
+	                                            <td colspan="3"><c:out value="${fn:replace(resultVO.adres, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>	                                                
+	                                            </td>
+	                                            <td colspan="3"><c:out value="${fn:replace(resultVO.detailAdres, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">	                                        		
+	                                                <label for="groupCode">그룹</label>	
+	                                            </td>
+                                                <td>
+                                                	<c:choose>
+														<c:when test="${resultVO.groupCode eq 'GR001'}">가족</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR002'}">친구</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR003'}">현직장</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR004'}">구직장</br></c:when>
+														<c:when test="${resultVO.groupCode eq 'GR005'}">동호회</br></c:when>
+													</c:choose>
+												</td>
+                                                <td class="lb">
+	                                                <label for="cmpnyPsitnNm">회사명</label>	                                                
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.cmpnyPsitnNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="cmpnyPsitnTeamNm">회사 팀명</label>	                                                
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td class="lb">
+	                                                <label for="cmpnyPsitnClsfNm">직급</label>	                                                
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="memo">메모</label>	                                                
+	                                            </td>
+                                                <td colspan="3"><c:out value="${fn:replace(resultVO.memo, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+	                                                <label for="adbkFrstWrterNm">최초 작성자 이름</label>                                          
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.adbkFrstWrterNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            	<td class="lb">
+                                              		<label for="adbkFrstWrterId">최초 작성자 아이디</label>
+                                              	</td>
+                                                <td><c:out value="${fn:replace(resultVO.adbkFrstWrterId, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+                                              		<label for="adbkFrstWritngDt">최초 작성 일시</label>
+                                              	</td>
+                                                <td colspan="3"><c:out value="${fn:replace(resultVO.adbkFrstWritngDt, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                                <td class="lb">
+                                              		<label for="adbkLastUpdusrNm">최종 수정자명</label>
+                                              	</td>
+                                                <td><c:out value="${fn:replace(resultVO.adbkLastUpdusrNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td class="lb">
+                                              		<label for="adbkLastUpdusrId">최종 수정자 아이디</label>
+                                              	</td>
+                                                <td><c:out value="${fn:replace(resultVO.adbkLastUpdusrId, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="lb">
+                                              		<label for="adbkLastUpdtDt">최종 수정 일시</label>
+                                              	</td>
+                                                <td colspan="3"><c:out value="${fn:replace(resultVO.adbkLastUpdtDt, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            </tr>
+                                        </table>
                                     </div>
 
                                     <%-- <div class="board_article">
@@ -249,9 +256,8 @@
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
-                                </div>
                                 <!-- 게시판 상세보기 -->
-                                
+                                </div>
                             </div>
                         </div>
                     </div>

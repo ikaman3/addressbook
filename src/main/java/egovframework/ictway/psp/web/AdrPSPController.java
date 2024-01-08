@@ -78,7 +78,7 @@ public class AdrPSPController {
 	/**
 	 * 주소록 목록조회
 	 * @param request - session에 menuNo set 
-	 * @param addrVO - 주소록 VO
+	 * @param AdrPSPVO - 주소록 VO
 	 * @return 주소록 목록
 	 * @exception Exception
 	 */
@@ -115,7 +115,7 @@ public class AdrPSPController {
 	/**
 	 * 주소록 상세조회
 	 * @param request
-	 * @param addrVO - 주소록 VO
+	 * @param AdrPSPVO - 주소록 VO
 	 * @return 주소록 상세
 	 * @exception Exception
 	 */
@@ -132,7 +132,7 @@ public class AdrPSPController {
 	
 	/**
 	 * 주소록 등록 화면
-	 * @param addrVO - 주소록 VO
+	 * @param AdrPSPVO - 주소록 VO
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
@@ -201,7 +201,7 @@ public class AdrPSPController {
 	
 	/**
 	 * 주소록 수정 화면
-	 * @param addrVO - 주소록 VO
+	 * @param AdrPSPVO - 주소록 VO
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */

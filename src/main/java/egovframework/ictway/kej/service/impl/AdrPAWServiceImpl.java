@@ -65,6 +65,7 @@ public class AdrPAWServiceImpl implements AdrPAWService {
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrPAWVO.setAdbkFrstWrterId(user.getUniqId());
+		adrPAWVO.setAdbkFrstWrterNm(user.getName());
 		
 		adrPAWDAO.insertAdrPAWAct(adrPAWVO);
 		return uniqId;
