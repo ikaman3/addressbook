@@ -131,7 +131,31 @@
                                     </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
+                                    	이름: <c:out value="${fn:replace(resultVO.nm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	생년월일: <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	성별:
+                                    	<c:choose>
+                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
+                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
+                                    		<c:otherwise>공개 안 함</br></c:otherwise>
+                                    	</c:choose>
+                                    	주소: <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	전화번호: <c:out value="${fn:replace(resultVO.telno , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	이메일주소: <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	메모: <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	그룹코드:
+                                    	<c:choose>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP01'}">가족</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP02'}">친구</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP03'}">현직장</br></c:when>
+                                    		<c:when test="${resultVO.groupCode eq 'GRP04'}">구직장</br></c:when>
+                                    		<c:otherwise>동호회</br></c:otherwise>
+                                    	</c:choose>
+                                    	회사소속명: <c:out value="${fn:replace(resultVO.cmpnyPsitnNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	회사팀명: <c:out value="${fn:replace(resultVO.cmpnyPsitnTeamNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	회사직급명: <c:out value="${fn:replace(resultVO.cmpnyPsitnClsfNm , crlf , '<br/>')}" escapeXml="false" /> </br>
+                                    	즐겨찾기: <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
