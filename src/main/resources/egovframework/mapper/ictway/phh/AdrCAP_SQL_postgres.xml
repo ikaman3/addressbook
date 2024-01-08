@@ -93,7 +93,9 @@
 			,cmpny_team_nm
 			,cmpny_clsf_nm
 			,bkmk_at
-			,adbk_creat_dt
+			<!-- ,adbk_creat_dt -->
+			,TO_CHAR(adbk_creat_dt,  'YYYY-MM-DD HH24:mm:ss') AS adbk_creat_dt
+			
 			,adbk_wrter_id
 			,adbk_updt_dt
 			,adbk_updusr_id
@@ -150,11 +152,8 @@
 			,#{cmpnyNm}
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
-			,'N'
-			
-			<!-- ,TO_CHAR(now(), 'yyyy/mm/dd PM hh12:mi:ss') -->
+			,#{bkmkAt}
 			,NOW()
-			
 			,1
 			<!-- ,2 -->
 			,3
