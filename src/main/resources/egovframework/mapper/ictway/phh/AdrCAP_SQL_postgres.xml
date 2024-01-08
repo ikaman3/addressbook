@@ -128,10 +128,10 @@
 			,bkmk_at
 			,adbk_creat_dt
 			,adbk_wrter_id
-			,adbk_updt_dt
+			<!-- ,adbk_updt_dt -->
 			,adbk_updusr_id
 			,adbk_dltr_id
-			,adbk_delete_dt
+			<!-- ,adbk_delete_dt -->
 			,adbk_delete_at
 		) VALUES(
 			 #{adbkId}
@@ -150,14 +150,17 @@
 			,#{cmpnyNm}
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
-			,#{bkmkAt}
-			,#{adbkCreatDt}
-			,#{adbkWrterId}
-			,#{adbkUpdtDt}
-			,#{adbkUpdusrId}
-			,#{adbkDltrId}
-			,#{adbkDeleteDt}
-			,#{adbkDeleteAt}
+			,'N'
+			
+			<!-- ,TO_CHAR(now(), 'yyyy/mm/dd PM hh12:mi:ss') -->
+			,NOW()
+			
+			,1
+			<!-- ,2 -->
+			,3
+			,4
+			<!-- ,5 -->
+			,'N'
 		)
 	</insert>
 

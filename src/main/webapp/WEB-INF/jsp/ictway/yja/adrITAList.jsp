@@ -39,7 +39,7 @@
 	
 	//주소록 등록 화면
 	function selectAdrITARegist(){
-		document.searchListForm.adbkSn.value = "";
+		document.searchListForm.adbkSn.value = 0;
 		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITARegist.do'/>";
 		document.searchListForm.submit();
 	}
