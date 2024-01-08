@@ -53,6 +53,19 @@
 			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
+		
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND moblphonNo LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+			
+		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
