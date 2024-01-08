@@ -252,7 +252,7 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="sexdstnCode">주소</label>
+	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
 	                                                <input type="text" id="sample4_postcode" class="f_txt w_full" placeholder="우편번호">
