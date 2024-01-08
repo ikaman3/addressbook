@@ -111,7 +111,7 @@
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
+												<th scope="col">이름</th>
 												<th scope="col">휴대폰 번호</th>
 												<th scope="col">그룹</th>
 												<th scope="col">회사</th>
@@ -126,8 +126,10 @@
 														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.mbtlnum}" /></td>
+												<td><c:out value="${resultVO.adresGroupCode}" /></td>
+												<td><c:out value="${resultVO.cmpnyNm}" /></td>
+												<%-- <td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td> --%>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

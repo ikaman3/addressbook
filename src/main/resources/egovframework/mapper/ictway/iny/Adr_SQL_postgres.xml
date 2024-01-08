@@ -55,6 +55,7 @@
 			,delete_at
 			,regist_user_id
 		FROM iny.address_info
+		WHERE delete_at = 'N'
 		<!-- WHERE 
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex} -->
@@ -68,7 +69,6 @@
 		FROM iny.address_info
 		WHERE delete_at = 'N'
 	</select>
-
 
 
 	<select id="selectAdrINYDetail" parameterType="egovframework.ictway.iny.service.AdrINYVO" resultMap="adrINYVO">
@@ -96,9 +96,8 @@
 			,delete_at
 			,regist_user_id
 		FROM iny.address_info
-		<!-- WHERE  -->
+		WHERE adbk_sn = #{adbkSn}
 	</select>
-
 
 
 	<insert id="insertAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
@@ -120,8 +119,6 @@
 			,photo_nm
 			,photo_cours
 			,photo_extsn_nm
-			,regist_dt
-			,updt_dt
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
@@ -139,19 +136,17 @@
 			,#{cmpnyNm}
 			,#{deptNm}
 			,#{clsfNm}
-			,#{bkmkAt}
+			,1
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
-			,#{registDt}
-			,#{updtDt}
 			,#{registUserNm}
-			,#{deleteAt}
+			,'N'
 			,#{registUserId}
 		)
 	</insert>
 
-<!--  
+  
  	<update id="updateAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
 		UPDATE iny.address_info
 		SET 
@@ -168,16 +163,22 @@
 			,cmpny_nm = #{cmpnyNm}
 			,dept_nm = #{deptNm}
 			,clsf_nm = #{clsfNm}
-			,bkmk_at = #{bkmkAt}
 			,photo_nm = #{photoNm}
 			,photo_cours = #{photoCours}
 			,photo_extsn_nm = #{photoExtsnNm}
-			,regist_dt = #{registDt}
-			,updt_dt = #{updtDt}
+			,updt_dt = now()
+			<!-- ,regist_dt = #{registDt}ㄴ
 			,regist_user_nm = #{registUserNm}
-			,delete_at = #{deleteAt}
-			,regist_user_id = #{registUserId}
-		WHERE = #{}
+			,delete_at = #{deleteAt} -->
+			<!-- WHERE regist_user_id= #{regist_user_id} -->
 	</update>
--->
+	
+	<update id="deleteAdrINYAct" parameterType="egovframework.ictway.iny.service.AdrINYVO">
+		UPDATE iny.address_info
+		SET 
+			 delete_at = 'Y'
+		WHERE
+			 delete_at = 'N'
+	</update>	
+
 </mapper>
