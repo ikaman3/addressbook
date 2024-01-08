@@ -31,8 +31,8 @@
 	}
 	
 	//주소록 상세조회
-	function selectAdrITADetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrITADetail(adbkSn){
+		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITADetail.do'/>";
 		document.searchListForm.submit();
 	}
@@ -128,7 +128,7 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td>
-													<a href="javascript:void(0);" onclick="selectAdrITADetail('<c:out value="${resultVO.userNm}"/>'); return false;" class="lnk">
+													<a href="javascript:void(0);" onclick="selectAdrITADetail('<c:out value="${resultVO.adbkSn}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.userNm}" escapeXml="false"/>
 													</a>
 												</td>
