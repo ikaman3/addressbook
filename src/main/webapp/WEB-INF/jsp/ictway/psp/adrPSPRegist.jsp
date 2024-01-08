@@ -214,14 +214,14 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <select id="year" name="year" class="form-control">
+	                                                <select id="year" name="year" class="form-control" style="width:100px; height:30px">
 													  <option value="">년</option>
 													  <c:forEach var="i" begin="1924" end="2024">
 													    <option value="${i}">${i}</option>
 													  </c:forEach>
 													</select>
 													  
-													<select id="month" name="month" class="form-control">
+													<select id="month" name="month" class="form-control" style="width:100px; height:30px">
 													  <option value="">월</option>
 													  <c:forEach var="i" begin="1" end="12">
 													  <c:choose>
@@ -235,7 +235,7 @@
 													  </c:forEach>
 													</select>
 													  
-													<select id="day" name="day" class="form-control">
+													<select id="day" name="day" class="form-control" style="width:100px; height:30px">
 													  <option value="">일</option>
 													  <c:forEach var="i" begin="1" end="31">
 													  <c:choose>
@@ -259,7 +259,7 @@
 	                                            <td>
 	                                            
 	                                            	<input type='radio' name='sexdstnCode' value='0' />남성
-                                                	<input type='radio' name='sexdstnCode' value='1' />여성
+                                                	<input type='radio' name='sexdstnCode' value='1'style= "margin-left:20px" />여성
 	                                               
 	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
@@ -271,12 +271,12 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                              	<input type="text" id="sample6_postcode" placeholder="우편번호">
+	                                              	<input type="text" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px">
 												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="주소"><br>
+												    <input type="text" id="adres" name="adres" placeholder="주소" style="width:400px; height:30px"><br>
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소">
-												    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" style="width:100px; height:30px">
+												    <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
 	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
