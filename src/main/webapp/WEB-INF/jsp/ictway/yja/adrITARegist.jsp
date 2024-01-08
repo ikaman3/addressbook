@@ -117,8 +117,8 @@
 
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 
-	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1"><알려주소> 주소록 등록 페이지</p>
+	                                <h1 class="tit_1">알려주소</h1>
+									<p class="txt_1">주소록 등록 페이지</p>
 									<h2 class="tit_2">주소록 등록</h2>
 
 	                                <div class="board_view2">
@@ -190,7 +190,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 010731" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 20010731" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>

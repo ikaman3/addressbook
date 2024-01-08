@@ -2007,7 +2007,7 @@
     <!-- 유지애-주소록 ID Generation  Strategy Config -->
     <bean name="yja-adrITAIdStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="ADRITA" />
+<!--         <property name="prefix" value="" /> -->
         <property name="cipers" value="12" />
         <property name="fillChar" value="0" />
     </bean>            
@@ -2117,7 +2117,7 @@
     <bean name="kyw-adrCIPIdStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
         <property name="prefix" value="ADRCIP" />
-        <property name="cipers" value="20" />
+        <property name="cipers" value="14" />
         <property name="fillChar" value="0" />
     </bean>
     

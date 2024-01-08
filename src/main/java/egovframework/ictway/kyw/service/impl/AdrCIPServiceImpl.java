@@ -53,7 +53,7 @@ public class AdrCIPServiceImpl implements AdrCIPService {
 
 	@Override
 	public AdrCIPVO selectAdrCIPDetail(AdrCIPVO adrCIPVO) throws Exception {
-		// TODO 상세조회에 대한 조건 로직 추가
+		adrCIPVO.getAdbkFrstWrterNm();
 		return adrCIPDAO.selectAdrCIPDetail(adrCIPVO);
 	}
 
