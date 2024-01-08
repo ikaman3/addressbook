@@ -32,8 +32,8 @@ public class AdrCAPServiceImpl implements AdrCAPService {
 	@Resource(name = "adrCAPDAO")
     private AdrCAPDAO adrCAPDAO;
 	
-	/** kjk-adrIdGnrService */
-	@Resource(name="kjk-adrIdGnrService")
+	/** phh-adrCAPIdGnrService */
+	@Resource(name="phh-adrCAPIdGnrService")
 	private EgovIdGnrService idgenService;
 	
 	@Override
