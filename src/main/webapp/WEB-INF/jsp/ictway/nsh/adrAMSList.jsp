@@ -150,7 +150,7 @@
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="8"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>
