@@ -32,6 +32,67 @@
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 --%>
 <script type="text/javascript">
+    // 유효성 검사
+	function validateForm(formElement) {
+		// 필드명을 객체로 관리
+		const fields = {
+		    userNm: formElement.querySelector("#userNm").value,
+		    brthdy: formElement.querySelector("#brthdy").value,
+		    sexdstnCode: formElement.querySelector("#sexdstnCode").value,
+		    mbtlnum: formElement.querySelector("#mbtlnum").value,
+		    emailaddr: formElement.querySelector("#emailaddr").value
+		};
+		
+		let isValid = true;
+		// 필드값을 담은 객체를 이용하여 반복문으로 접근
+		for (const fieldName in fields) {
+		    const fieldValue = fields[fieldName];
+			switch(fieldName) {
+				case "userNm":
+					if (fieldValue === "") {
+						alert("이름을 입력하세요");
+						isValid = false;
+					}
+					break;
+				case "brthdy":
+					const brthdyPattern = /^[0-9]{8}$/;
+					if (!brthdyPattern.test(fieldValue)) {
+				        alert("생년월일은 8자리의 숫자여야 합니다 (예: 19990213)");
+				        isValid = false;
+				    }
+					break;
+				case "sexdstnCode":
+					if (fieldValue === "") {
+						alert("성별을 선택해주세요");
+						isValid = false;
+					}
+					break;
+				case "mbtlnum":
+				    const mbtlnumPattern = /^[0-9]{11}$/;
+				    if (!mbtlnumPattern.test(fieldValue)) {
+				        alert("휴대폰 번호는 11자리의 숫자여야 합니다 (예: 01012345678)");
+				        isValid = false;
+				    }
+					break;
+				case "emailaddr":
+				    const emailPattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+\.?[a-zA-Z]*$/;
+				    if (!emailPattern.test(fieldValue)) {
+				        alert("올바른 이메일 주소를 입력하세요 (예: yes@myemail.com)");
+				        isValid = false;
+				    }
+					break;
+				default:
+					break;
+				}
+			
+				if (!isValid) {
+			        return false;
+			    }
+		}
+		
+	    // 모든 조건을 통과하면 제출
+	    return true;
+	}
     
 	//주소록 목록조회
 	function selectAdrCIYList(){
@@ -41,8 +102,12 @@
 	
 	//주소록 등록
 	function registAdrCIYAct() {
+   		const formElement = document.registForm;
+	    if (!validateForm(formElement)) {
+	        throw new Error('유효성 검사에 실패했습니다.');
+	    }
+	    
     	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yjh/registAdrCIYAct.do'/>",{
@@ -115,7 +180,7 @@
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-								<form name="registForm" method="post" enctype="multipart/form-data" class="required">
+								<form name="registForm" method="post" enctype="multipart/form-data" ">
 
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">Contact ICTWAY</p>
@@ -180,7 +245,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="tel" class="f_txt w_full" pattern="[0-9]{11}" >
+	                                                <input id="mbtlnum" name="mbtlnum" type="tel" maxlength="11" class="f_txt w_full" placeholder="01012345678" >
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
@@ -190,7 +255,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*">
+	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" placeholder="yes@myemail.com">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -253,7 +318,7 @@
 	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="memo" name="memo" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="memo" name="memo" type="text" size="50"  maxlength="50" class="f_txt w_full" placeholder="아무말이나 쓰시오">
 	                                                <br/><form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
@@ -287,29 +352,5 @@
     </div>
     
 </body>
-<script>
-	const formElement = document.registForm;
-	let validFailAt = "N"; //유효성검사실패여부
-	let validMsg = "";
-	let focusObject;
-	console.log(formElemnt.bkmkAt);
-	
-	formElement.querySelectorAll(".required").forEach(v=>{
-		//debugger;
-		
-		if(!!!v.value) {
-			if("Y" === ""){
-				focusObject = v;
-			}
-			validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
-			validFailAt = "Y";
-		}
-	});
-	
-	if("Y" === validFailAt){
-		alert(validMsg);
-		focusObject.focus();
-		return;
-	}
-</script>
+
 </html>
