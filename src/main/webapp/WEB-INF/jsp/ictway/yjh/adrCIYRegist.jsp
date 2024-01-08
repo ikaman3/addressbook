@@ -190,19 +190,19 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
-	                                        <!--<tr>
+	            							<tr>
 	                                            <td class="lb">
-	                                                <label for="photoFileNm">사진</label>
+                                                	<label for="photoFileNm">사진</label>
 	                                            </td>
 	                                            <td>
 	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
 	                                                <br/><form:errors path="photoFileNm" />
 	                                            </td>
-	                                        </tr>-->
+	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
