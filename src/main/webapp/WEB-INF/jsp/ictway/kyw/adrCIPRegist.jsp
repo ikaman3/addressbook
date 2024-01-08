@@ -143,7 +143,7 @@
 	                                            </td>
 	                                            <td>
 	                                                <input id="nm" name="nm" type="text" size="20" value="" maxlength="20" class="f_txt w_full">
-	                                                <br>
+	                                                <br/><form:errors path="nm" />
 	                                            </td>	                                            
 	                                        	<td class="lb">	                                        		
 	                                                <label for="sexdstnCode">성별</label>
@@ -155,6 +155,7 @@
 	                                        			<option value="SE001">남자</option>
 	                                        			<option value="SE002">여자</option>
 	                                        		</select>
+	                                        		<br/><form:errors path="sexdstnCode" />
 	                                            </td>	                                            
 	                                        </tr>
 	                                        <tr>
@@ -164,7 +165,7 @@
 	                                            </td>
 	                                            <td>
 	                                                <input id="telno" name="telno" type="text" size="20" value="" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full">
-	                                            	<br>
+	                                            	<br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
 	                                                <label for="brthdy">생년월일</label>	                                                
@@ -180,10 +181,10 @@
 	                                            </td>
 	                                            <td>
 	                                                <input id="emailaddr" name="emailaddr" type="text" size="50" value="" maxlength="500" class="f_txt w_full">
-	                                            	<br>
+	                                            	<br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        	<td class="lb">
-	                                                <label for="bkmkAt">즐겨찾기</label> <!--NN이긴 한데 default값 있으면 필수 안해도되나?-->
+	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td style="text-align: center ">
 	                                            	<label for="bkmkAt">O</label>
@@ -220,15 +221,14 @@
 	                                                <label for="groupCode">그룹</label>	
 	                                            </td>
 	                                        	<td>
-	                                        		
-	                                        			<select name="groupCode" id="groupCode" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
-	                                        				<option value="">▼ 선택</option>
-	                                        				<option value="GR001">가족</option>
-	                                        				<option value="GR002">친구</option>
-	                                        				<option value="GR003">현직장</option>
-	                                        				<option value="GR004">구직장</option>
-	                                        				<option value="GR005">동호회</option>
-	                                        			</select>
+	                                        		<select name="groupCode" id="groupCode" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
+	                                        			<option value="">▼ 선택</option>
+	                                        			<option value="GR001">가족</option>
+	                                        			<option value="GR002">친구</option>
+	                                        			<option value="GR003">현직장</option>
+	                                        			<option value="GR004">구직장</option>
+	                                        			<option value="GR005">동호회</option>
+	                                        		</select>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -241,16 +241,16 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="cmpnyTeamNm">회사 팀명</label>	                                                
+	                                                <label for="cmpnyPsitnTeamNm">회사 팀명</label>	                                                
 	                                            </td>
 	                                            <td>
-	                                                <input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text" size="100" value="" maxlength="100" class="f_txt w_full">
+	                                                <input id="cmpnyPsitnTeamNm" name="cmpnyPsitnTeamNm" type="text" size="100" value="" maxlength="100" class="f_txt w_full">
 	                                            </td>
 	                                            <td class="lb">
-	                                                <label for="cmpnyClsfNm">직급</label>	                                                
+	                                                <label for="cmpnyPsitnClsfNm">직급</label>	                                                
 	                                            </td>
 	                                            <td>
-	                                                <input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text" size="50" value="" maxlength="50" class="f_txt w_full">
+	                                                <input id="cmpnyPsitnClsfNm" name="cmpnyPsitnClsfNm" type="text" size="50" value="" maxlength="50" class="f_txt w_full">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -258,7 +258,7 @@
 	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td colspan="3">
-	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_50" cols="20" rows="10"></textarea>
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_35" cols="20" rows="10"></textarea>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -268,14 +268,14 @@
 	                                            </td>
 	                                            <td>
 	                                                <input id="adbkFrstWrterNm" name="adbkFrstWrterNm" type="text" size="50" value="" maxlength="50" class="f_txt w_full">
-	                                            	<br>
+	                                            	<br/><form:errors path="adbkFrstWrterNm" />
 	                                            </td>
-	                                            <td class="lb">
+	                                            <!-- <td class="lb">
 	                                                <label for="adbkFrstWrterId">작성자 아이디</label>	                                                
 	                                            </td>
 	                                            <td>
 	                                                <input id="adbkFrstWrterId" name="adbkFrstWrterId" type="text" size="20" value="" maxlength="20" class="f_txt w_full">
-	                                            </td>
+	                                            </td> -->
 	                                        </tr>
 	                                    </table>
 	                                </div>
