@@ -259,7 +259,7 @@
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
-													size="50" value="" maxlength="50" class="f_txt w_full"
+													size="50" value="" maxlength="13" class="f_txt w_full"
 													placeholder="010-0000-0000 형식으로 입력해주세요."></input> <form:errors
 														path="mbtlnum" /></td>
 											</tr>
