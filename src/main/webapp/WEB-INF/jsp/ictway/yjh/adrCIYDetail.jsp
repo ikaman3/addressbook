@@ -125,7 +125,7 @@
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.adbkCreatDt}" /></dd>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkCreatDt}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>수정자</dt>
@@ -133,7 +133,7 @@
                                             </dl>
                                             <dl>
                                                 <dt>수정일</dt>
-                                                <dd><c:out value="${resultVO.adbkUpdtDt}" /></dd>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkUpdtDt}" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>삭제자</dt>
@@ -141,7 +141,7 @@
                                             </dl>
                                             <dl>
                                                 <dt>삭제일</dt>
-                                                <dd><c:out value="${resultVO.adbkDeleteDt}" /></dd>
+                                                <dd pattern="yyyy-MM-dd"><c:out value="${resultVO.adbkDeleteDt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
