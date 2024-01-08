@@ -117,7 +117,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
+                                        <div class="tit"><c:out value="주소록 상세조회" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
@@ -127,12 +127,66 @@
                                                 <dt>등록일</dt>
                                                 <dd><c:out value="${resultVO.adbkCreatDt}" /></dd>
                                             </dl>
+                                            <dl>
+                                                <dt>수정자</dt>
+                                                <dd><c:out value="${resultVO.adbkUpdusrId}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>수정일</dt>
+                                                <dd><c:out value="${resultVO.adbkUpdtDt}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>삭제자</dt>
+                                                <dd><c:out value="${resultVO.adbkDltrId}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>삭제일</dt>
+                                                <dd><c:out value="${resultVO.adbkDeleteDt}" /></dd>
+                                            </dl>
                                         </div>
                                     </div>
                                     
-									<!-- 주소정보 내용 -->
                                     <div class="board_article">
                                     	<c:out value="${fn:replace(resultVO.userNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.mbtlnum , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.sexdstnCode , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.adresGroupCode , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.cmpnyTeamNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.cmpnyClsfNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<c:out value="${fn:replace(resultVO.cmpnyTeamNm , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
 
 									<!-- 버튼 시작 -->
