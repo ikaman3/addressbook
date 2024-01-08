@@ -109,9 +109,9 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
-											<col style="width: 150px;">
-											<col style="width: 150px;">
-											<col style="width: 150px;">
+											<col style="width: 200px;">
+											<col style="width: 220px;">
+											<col style="width: 250px;">
 											<col style="width: auto;">
 										</colgroup>
 										<thead>
@@ -127,18 +127,18 @@
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<a href="javascript:void(0);" onclick="selectAdrGMADetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<c:out value="${resultVO.brthdy }" escapeXml="false"/>
 												</td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>
 												</td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
                                                 	<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
 												</td>
