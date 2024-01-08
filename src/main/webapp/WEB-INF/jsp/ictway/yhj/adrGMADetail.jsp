@@ -145,61 +145,70 @@ caption {
 													<c:out value="${resultVO.userNm}" />
 												</dd>
 											</dl>
-											<dl>
-												<dt>등록일</dt>
-												<fmt:parseDate value="${resultVO.adbkCreatDt}"
-													var="dateValue" pattern="yyyy-MM-dd HH:mm:ss" />
-												<dd>
-													<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" />
-												</dd>
-											</dl>
 										</div>
 									</div>
-
-									<div class="board_article">
-										<table border="1">
-											<colgroup>
-												<col style="width: 190px;">
-												<col style="width: auto;">
-											</colgroup>
-											<tr>
-												<td class="lb"><label for="brthdy">생년월일</label></td>
-												<td><c:out value="${resultVO.brthdy}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="sexdstnCode">성별</label></td>
-												<td id="sexdstnCode"></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="adres">주소</label></td>
-												<td><c:out value="${resultVO.adres}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="mbtlnum">휴대폰번호</label></td>
-												<td><c:out value="${resultVO.mbtlnum}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="emailaddr">이메일주소</label></td>
-												<td><c:out value="${resultVO.emailaddr}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="memo">메모</label></td>
-												<td><c:out value="${resultVO.memo}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><img src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>' /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="adresGroupCode">소속그룹</label></td>
-												<td><c:out value="${resultVO.adresGroupCode}" /></td>
-											</tr>
-											<tr>
-												<td class="lb"><label for="cmpnyNm">회사</label></td>
-												<td><c:out value="${resultVO.cmpnyNm}" /></td>
-											</tr>
-										</table>
-									</div>
+										
+                                    <div class="board_article">
+                                        <label>휴대폰 번호</label>
+                                    	<c:out value="${fn:replace(resultVO.mbtlnum , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>이메일</label>
+                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>생년월일</label>
+                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>성별</label>
+                                    	<c:choose>
+										    <c:when test="${resultVO.sexdstnCode == 'SX001'}">
+										        <!-- condition이 true인 경우 실행되는 내용 -->
+                                   				<c:out value="${fn:replace('여성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:when>
+										    <c:otherwise>
+										        <!-- condition이 false일 때 실행되는 내용 -->
+										        <c:out value="${fn:replace('남성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:otherwise>
+										</c:choose>
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>주소</label>
+                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>상세주소</label>
+                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>그룹</label>
+                                    	<c:out value="${fn:replace(resultVO.adresGroupCode , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>회사</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>부서</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyTeamNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>직급</label>
+                                    	<c:out value="${fn:replace(resultVO.cmpnyClsfNm , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+										<label>즐겨찾기</label>
+                                    	<c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+                                    <div class="board_article">
+                                    	<label>메모</label>
+                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
+										<div class="board_article">
+                                    	<label>작성일자</label>
+                                    	<c:out value="${fn:replace(resultVO.adbkCreatDt , crlf , '<br/>')}" escapeXml="false" />
+                                    </div>
 
 									<!-- 버튼 시작 -->
 									<div class="board_view_bot">
