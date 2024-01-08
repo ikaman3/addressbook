@@ -194,16 +194,6 @@
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
-	            							<%-- <tr>
-	                                            <td class="lb">
-                                                	<label for="photoFileNm">사진</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="photoFileNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr> --%>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
