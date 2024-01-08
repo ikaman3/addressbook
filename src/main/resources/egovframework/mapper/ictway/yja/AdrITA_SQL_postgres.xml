@@ -165,4 +165,14 @@
 		WHERE delete_at = #{N}
 	</update>
 	
+	<update id="deleteAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
+		UPDATE yja.address_info
+		SET
+			 delete_at = 'Y'
+			,updt_dt = now()
+		WHERE
+			delete_at = 'N'
+			AND adbk_sn = #{adbkSn}
+	</update>
+	
 </mapper>
