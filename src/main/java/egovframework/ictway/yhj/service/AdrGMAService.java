@@ -3,6 +3,7 @@ package egovframework.ictway.yhj.service;
 import java.util.Map;
 
 import org.egovframe.rte.fdl.cmmn.exception.FdlException;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 주소록 정보 관리를 위한 서비스 인터페이스
@@ -40,7 +41,7 @@ public interface AdrGMAService {
 	 * @exception FdlException
 	 * @throws Exception 
 	 */
-	String registAdrGMAAct(AdrGMAVO adrGMAVO) throws FdlException, Exception;
+	String registAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws FdlException, Exception;
 
 	/**
 	 * 정보를 수정한다.
