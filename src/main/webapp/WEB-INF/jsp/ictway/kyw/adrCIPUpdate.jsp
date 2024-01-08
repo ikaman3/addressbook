@@ -47,6 +47,31 @@
 	
 	//주소록 수정
 	function updateAdrCIPAct(){
+		
+		//TODO Validation 추가
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성 검사 실패 여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			if(!!!v.value){
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다. \n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -70,12 +95,6 @@
     	}
 	}
 	
-	//주소록 등록 - 체크박스 1개만 선택
-	function clickCheck(target) {
-		document.querySelectorAll('input[type=checkbox]')
-			.forEach(el => el.checked = false);
-		target.checked = true;
-	}
 	
 	
 </script>
@@ -153,7 +172,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="nm" size="20" maxlength="20" class="f_txt w_full"/>
+	                                                <form:input path="nm" title="이름" size="20" maxlength="20" class="f_txt w_full"/>
 	                                                <br/><form:errors path="nm" />
 	                                            </td>	                                            
 	                                        	<td class="lb">	                                        		
@@ -161,7 +180,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                        	<td>
-	                                        		<form:select path="sexdstnCode" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
+	                                        		<form:select path="sexdstnCode" title="성별" class="required" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
 	                                        			<form:option value="SE001">남자</form:option>
 	                                        			<form:option value="SE002">여자</form:option>
 	                                        		</form:select>
@@ -174,7 +193,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="telno" size="20" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full"/>
+	                                                <form:input path="telno" size="20" title="전화번호" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full required"/>
 	                                            	<br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
@@ -190,17 +209,17 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="emailaddr" size="50" maxlength="500" htmlEscape="false" class="f_txt w_full"/>
+	                                                <form:input path="emailaddr" size="50" title="이메일 주소" maxlength="500" htmlEscape="false" class="f_txt w_full required"/>
 	                                            	<br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        	<td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td style="text-align: center ">
-	                                            	<label for="bkmkAt">O</label>
-	                                            	<form:input path="bkmkAt" onclick="clickCheck(this);" value="Y"/>
-	                                            	<label for="bkmkAt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X</label>	                                            	
-	                                            	<form:input path="bkmkAt" onclick="clickCheck(this);" value="N"/>
+	                                            	<form:input path="bkmkAt" />
+	                                            	<label for="bkmkAt">O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	                                            	<form:input path="bkmkAt" />
+	                                            	<label for="bkmkAt">X</label>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>

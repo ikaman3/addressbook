@@ -93,10 +93,6 @@
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
-			,adbk_delete_at
-			,adbk_delete_dt
-			,adbk_dltr_id
-			,adbk_dltr_nm
 		FROM kyw.address_info
 		WHERE
 			adbk_delete_at = 'N'
