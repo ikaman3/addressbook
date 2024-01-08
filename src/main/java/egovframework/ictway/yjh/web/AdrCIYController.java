@@ -102,7 +102,7 @@ public class AdrCIYController {
 	 * @return 주소록 등록 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/yjh/selectAdrRegist.do")
+	@RequestMapping("/ictway/yjh/selectAdrCIYRegist.do")
 	public String selectAdrRegist(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
 		
 		/*return "cop/bbs/EgovNoticeRegist";*/
@@ -132,9 +132,8 @@ public class AdrCIYController {
 	 * @return 주소록 수정 화면
 	 * @exception Exception
 	 */
-	@RequestMapping("/ictway/yjh/selectAdrUpdate.do")
-	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
-		
+	@RequestMapping("/ictway/yjh/selectAdrCIYUpdate.do")
+	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model, HttpServletRequest request) throws Exception {
 		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		

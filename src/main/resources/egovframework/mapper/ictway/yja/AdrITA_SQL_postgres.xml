@@ -90,6 +90,7 @@
 			,regist_user_id
 		FROM yja.address_info
 		WHERE delete_at = 'N'
+			AND adbk_sn = #{adbkSn}
 	</select>
 
 	<insert id="insertAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
@@ -111,10 +112,7 @@
 			,photo_nm
 			,photo_cours
 			,photo_extsn_nm
-			,regist_dt
-			,updt_dt
 			,regist_user_nm
-			,delete_at
 			,regist_user_id
 		) VALUES(
 			#{adbkSn}
@@ -134,10 +132,7 @@
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
-			,#{registDt}
-			,#{updtDt}
 			,#{registUserNm}
-			,#{deleteAt}
 			,#{registUserId}
 		)
 	</insert>
@@ -168,6 +163,16 @@
 			,delete_at = #{deleteAt}
 			,regist_user_id = #{registUserId}
 		WHERE delete_at = #{N}
+	</update>
+	
+	<update id="deleteAdrITAAct" parameterType="egovframework.ictway.yja.service.AdrITAVO">
+		UPDATE yja.address_info
+		SET
+			 delete_at = 'Y'
+			,updt_dt = now()
+		WHERE
+			delete_at = 'N'
+			AND adbk_sn = #{adbkSn}
 	</update>
 	
 </mapper>

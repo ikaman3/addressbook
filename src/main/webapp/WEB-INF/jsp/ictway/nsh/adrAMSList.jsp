@@ -116,7 +116,11 @@
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
+												<th scope="col">이름</th>
+												<th scope="col">생년월일</th>
+												<th scope="col">성별</th>
+												<th scope="col">전화번호</th>
+												<th scope="col">이메일주소</th>
 												<th scope="col">등록자</th>
 												<th scope="col">등록일</th>
 											</tr>
@@ -126,10 +130,20 @@
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrAMSDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adbkId }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrAMSDetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.nm }" escapeXml="false"/>
 													</a>
 												</td>
+												<td><c:out value="${resultVO.brthdy}" /></td>
+												<td>
+													<c:choose>
+			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX01'}">남자</br></c:when>
+			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
+			                                    		<c:otherwise>공개 안 함</br></c:otherwise>
+			                                    	</c:choose>
+												</td>
+												<td><c:out value="${resultVO.telno}" /></td>
+												<td><c:out value="${resultVO.emailaddr}" /></td>
 												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
 												<td><fmt:formatDate value="${resultVO.adbkFrstWritngDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>

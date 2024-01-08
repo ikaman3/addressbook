@@ -129,13 +129,95 @@
                                                 <dt>등록일</dt>
                                                 <dd><c:out value="${resultVO.registDt}" /></dd>
                                             </dl>
+                                            
+                                            <dl>
+                                                <dt>수정일</dt>
+                                                <dd><c:out value="${resultVO.updtDt}" /></dd>
+                                            </dl>
                                         </div>
                                     </div>
-
-                                    <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
-                                    </div>
-
+                                    
+                                    <table>
+										<colgroup>
+	                                    	<col style="width: 190px;">
+	                                        <col style="width: auto;">
+	                                    </colgroup>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="userNm">이름</label>
+	                                           
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div class="board_article">
+		                                    	<c:out value="${fn:replace(resultVO.userNm , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
+	                                   
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+											<div>
+											    <c:choose>
+											        <c:when test="${resultVO.sexdstnCode == '0'}">
+											            <c:out value="남자" escapeXml="false" />
+											        </c:when>
+											        <c:when test="${resultVO.sexdstnCode == '1'}">
+											            <c:out value="여자" escapeXml="false" />
+											        </c:when>
+											        <c:otherwise>
+											            <!-- 다른 값이 올 경우에 대한 처리 -->
+											            <c:out value="${resultVO.sexdstnCode}" />
+											        </c:otherwise>
+											    </c:choose>
+											</div>
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.moblphonNo , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+										<div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.groupNm , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.deptNm , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div class="board_article">
+	                                    	<c:out value="${fn:replace(resultVO.clsfNm , crlf , '<br/>')}" escapeXml="false" />
+	                                    </div>
+	                                    
+	                                    <div>
+	                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+	                                    </div>
+                                    
+                                    </table>
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">

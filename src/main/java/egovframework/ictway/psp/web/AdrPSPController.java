@@ -1,21 +1,39 @@
 package egovframework.ictway.psp.web;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
-import egovframework.ictway.psp.service.AdrPSPVO;
+import egovframework.com.cmm.SessionVO;
+import egovframework.com.cmm.service.EgovFileMngService;
+import egovframework.com.cmm.service.EgovFileMngUtil;
+import egovframework.com.cmm.service.FileVO;
+import egovframework.com.cmm.web.EgovImageProcessController;
 import egovframework.ictway.psp.service.AdrPSPService;
+import egovframework.ictway.psp.service.AdrPSPVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -41,6 +59,21 @@ public class AdrPSPController {
 
 	@Resource(name = "egovMessageSource")
 	EgovMessageSource egovMessageSource;
+	
+	@Resource(name="EgovFileMngService")
+	private EgovFileMngService fileMngService;	
+	 
+	@Resource(name="EgovFileMngUtil")
+	private EgovFileMngUtil fileUtil;
+	
+	@Value("${Globals.fileStorePath}")
+	private String storePath;
+	
+	@Resource(name = "EgovFileMngService")
+	private EgovFileMngService fileService;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(EgovImageProcessController.class);
+
 	
 	/**
 	 * 주소록 목록조회
@@ -88,9 +121,11 @@ public class AdrPSPController {
 	 */
 	@RequestMapping("/ictway/psp/selectAdrPSPDetail.do")
 	public String selectAdrPSPDetail(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
+		System.out.println(AdrPSPVO);
 		
 		AdrPSPVO resultVO = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
 		model.addAttribute("resultVO", resultVO);
+		
 		
 		/* return "cop/bbs/EgovNoticeInqire"; */
 		return "ictway/psp/adrPSPDetail";
@@ -116,10 +151,49 @@ public class AdrPSPController {
      * @throws Exception
      */
     @RequestMapping("/ictway/psp/registAdrPSPAct.do")
-    public ModelAndView registAdrPSPAct(AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrPSPAct(final MultipartHttpServletRequest multiRequest, AdrPSPVO AdrPSPVO, ModelMap model) throws Exception { 
 
+    
     	ModelAndView mav = new ModelAndView("jsonView");
     	
+    	List<FileVO> _result = null;
+    	String _atchFileId = "";
+    	
+    	
+    	
+    	final Map<String, MultipartFile> files = multiRequest.getFileMap();
+    	
+    	if(!files.isEmpty()){
+    	 _result = fileUtil.parseFileInf(files, "ADR_", 0, "", ""); 
+    	 _atchFileId = fileMngService.insertFileInfs(_result);  //파일이 생성되고나면 생성된 첨부파일 ID를 리턴한다.
+    	}
+    	
+    	AdrPSPVO.setPhotoNm(_result.get(0).streFileNm);
+    	AdrPSPVO.setPhotoCours(_result.get(0).fileStreCours);
+    	AdrPSPVO.setPhotoExtsnNm(_result.get(0).fileExtsn);
+//    	 if (!file.isEmpty()) {
+//             try {
+//                 String uploadsDir = "/uploads/"; // 파일이 업로드될 디렉토리 경로
+//                 String realPathtoUploads = request.getServletContext().getRealPath(uploadsDir);
+//                 if (!new File(realPathtoUploads).exists()) {	
+//                     new File(realPathtoUploads).mkdir();
+//                 }
+//
+//                 // 파일 업로드
+//                 String orgName = file.getOriginalFilename();
+//                 String filePath = realPathtoUploads + orgName;
+//                 File dest = new File(filePath);
+//                 file.transferTo(dest);
+//                 
+//                 // 파일 업로드 성공 시 처리
+//                 // ...
+//
+//             } catch (IOException e) {
+//                 e.printStackTrace();
+//                 // 파일 업로드 실패 시 처리
+//                 // ...
+//             }
+//         }
 		Long AdrPSPId = AdrPSPService.registAdrPSPAct(AdrPSPVO);
 		mav.addObject("AdrPSPId", AdrPSPId);
 		
@@ -172,4 +246,74 @@ public class AdrPSPController {
 		
 		return mav;
     }
+    
+    @RequestMapping("/ictway/psp/getImage.do")
+	public void getImageInf(AdrPSPVO AdrPSPVO, SessionVO sessionVO, ModelMap model, @RequestParam Map<String, Object> commandMap, HttpServletResponse response) throws Exception {
+
+    	AdrPSPVO fvo = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
+		
+    	String fileStreCours = fvo.getPhotoCours();
+    	String streFileNm = fvo.getPhotoNm();
+    	
+		File file = new File(fileStreCours, streFileNm);
+		FileInputStream fis = null;
+//		new FileInputStream(file);
+
+		BufferedInputStream in = null;
+		ByteArrayOutputStream bStream = null;
+		try {
+			fis = new FileInputStream(file);
+			in = new BufferedInputStream(fis);
+			bStream = new ByteArrayOutputStream();
+			int imgByte;
+			while ((imgByte = in.read()) != -1) {
+				bStream.write(imgByte);
+			}
+
+			String type = "";
+
+			if (fvo.getPhotoExtsnNm() != null && !"".equals(fvo.getPhotoExtsnNm())) {
+				if ("jpg".equals(fvo.getPhotoExtsnNm().toLowerCase())) {
+					type = "image/jpeg";
+				} else {
+					type = "image/" + fvo.getPhotoExtsnNm().toLowerCase();
+				}
+				type = "image/" + fvo.getPhotoExtsnNm().toLowerCase();
+
+			} else {
+				LOGGER.debug("Image fileType is null.");
+			}
+
+			response.setHeader("Content-Type", type);
+			response.setContentLength(bStream.size());
+			bStream.writeTo(response.getOutputStream());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+
+		} catch (IOException e) {
+			LOGGER.debug("{}", e);
+		} finally {
+			if (bStream != null) {
+				try {
+					bStream.close();
+				} catch (IOException est) {
+					LOGGER.debug("IGNORED: {}", est.getMessage());
+				}
+			}
+			if (in != null) {
+				try {
+					in.close();
+				} catch (IOException ei) {
+					LOGGER.debug("IGNORED: {}", ei.getMessage());
+				}
+			}
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException efis) {
+					LOGGER.debug("IGNORED: {}", efis.getMessage());
+				}
+			}
+		}
+	}
 }

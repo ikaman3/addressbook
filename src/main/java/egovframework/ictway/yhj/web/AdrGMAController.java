@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
@@ -116,11 +118,11 @@ public class AdrGMAController {
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/registAdrGMAAct.do")
-    public ModelAndView registAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrGMAAct(AdrGMAVO adrGMAVO, @RequestPart MultipartFile image, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		String adrGMAId = adrGMAService.registAdrGMAAct(adrGMAVO);
+		String adrGMAId = adrGMAService.registAdrGMAAct(adrGMAVO, image);
 		mav.addObject("adrGMAId", adrGMAId);
 		
 		return mav;
@@ -148,11 +150,11 @@ public class AdrGMAController {
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/updateAdrGMAAct.do")
-    public ModelAndView updateAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrGMAAct(AdrGMAVO adrGMAVO, @RequestPart MultipartFile image, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.updateAdrGMAAct(adrGMAVO);
+		adrGMAService.updateAdrGMAAct(adrGMAVO, image);
 		
 		return mav;
     }

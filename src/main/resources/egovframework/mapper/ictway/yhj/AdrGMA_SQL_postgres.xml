@@ -158,7 +158,6 @@
 			,cmpny_nm = #{cmpnyNm}
 			,cmpny_team_nm = #{cmpnyTeamNm}
 			,cmpny_clsf_nm = #{cmpnyClsfNm}
-			,bkmk_at = #{bkmkAt}
 			,adbk_updt_dt = now()
 			,adbk_updusr_id = #{adbkUpdusrId}
 		WHERE adbk_id = #{adbkId}
