@@ -96,7 +96,8 @@
 
 	<insert id="insertAdrCIYAct" parameterType="egovframework.ictway.yjh.service.AdrCIYVO">
 		INSERT INTO yjh.address_info (
-			user_nm
+			adbk_id
+			,user_nm
 			,brthdy
 			,sexdstn_code
 			,adres
@@ -115,7 +116,8 @@
 			,adbk_creat_dt
 			,adbk_wrter_id
 		) VALUES(
-			#{userNm}
+			#{adbkId}
+			,#{userNm}
 			,#{brthdy}
 			,#{sexdstnCode}
 			,#{adres}
