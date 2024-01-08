@@ -107,7 +107,8 @@
 			,adbk_dltr_nm
 		FROM kej.address_info
 		WHERE 
-			adbk_delete_at = 'N'
+			adbk_id = #{adbkId}
+			AND adbk_delete_at = 'N'
 	</select>
 
 	<insert id="insertAdrPAWAct" parameterType="egovframework.ictway.kej.service.AdrPAWVO">
