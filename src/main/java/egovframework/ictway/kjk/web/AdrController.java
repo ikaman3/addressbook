@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.kjk.service.AdrService;
 import egovframework.ictway.kjk.service.AdrVO;
 import lombok.extern.slf4j.Slf4j;
@@ -144,7 +146,11 @@ public class AdrController {
 	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
 		
 		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
-		model.addAttribute("resultVO", resultVO);
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		if(resultVO.getFrstRegisterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			model.addAttribute("resultVO", resultVO);
+		}
 		
 		return "ictway/kjk/adrUpdate";
 	}
@@ -160,13 +166,11 @@ public class AdrController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
 
-    	if (bindingResult.hasErrors()) {
+    	if (bindingResult.hasErrors() || !adrService.updateAdrAct(adrVO)) {
 			mav.addObject("returnResult", "FAIL");
 			mav.addObject("returnErrors", bindingResult.getFieldErrors());
 		    return mav;
 		}
-    	
-		adrService.updateAdrAct(adrVO);
 		
 		return mav;
     }
@@ -182,7 +186,10 @@ public class AdrController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrService.deleteAdrAct(adrVO);
+    	if (!adrService.deleteAdrAct(adrVO)) {
+			mav.addObject("returnResult", "FAIL");
+		    return mav;
+		}
 		
 		return mav;
     }
