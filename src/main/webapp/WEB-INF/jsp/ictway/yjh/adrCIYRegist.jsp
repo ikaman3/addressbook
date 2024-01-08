@@ -132,7 +132,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="홍길동" value="">
+	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="예)홍길동" value="">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -141,7 +141,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" >
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" pattern="[0-9]{8,8}" title="yyyymmdd와 같은 8자리 숫자" >
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -207,7 +207,16 @@
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full">
+													<select name="adresGroupCode" id="adresGroupCode" size="1">
+														<option value="">해당 없음</option>
+													    <option value="GR001">가족</option>
+													    <option value="GR002">친구</option>
+													    <option value="GR003">현 직장</option>
+													    <option value="GR004">구 직장</option>
+													    <option value="GR005">동호회</option>
+													    <option value="GR006">기타</option>
+													</select>
+	                                                <!-- <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full"> -->
 	                                                <br/><form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>
@@ -244,7 +253,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="bkmkAt" name="bkmkAt" type="text" size="50"  maxlength="50" class="f_txt w_full">
+                                	                <input id="bkmkAt" name="bkmkAt" type="radio" value="Y"> 등록</input>
+	                                                <input id="bkmkAt" name="bkmkAt" type="radio" value="N" checked> 미등록</input>
 	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
