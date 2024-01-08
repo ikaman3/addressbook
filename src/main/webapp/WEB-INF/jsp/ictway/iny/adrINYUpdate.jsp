@@ -120,12 +120,12 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="registUserId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
+									<form:hidden path="registUserId"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">INY 주소록 수정 입니다.</p>
@@ -139,22 +139,152 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="userNm">이름</label>
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adrSj" />
+	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="brthdy">생년월일</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="brthdy" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="brthdy" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="sexdstnCode" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="adres" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="adres" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="detailAdres" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="detailAdres" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="moblphonNo">휴대폰번호</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="moblphonNo" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="emailaddr" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                            	<form:textarea path="memo" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+													<form:errors path="memo" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="groupNm">그룹명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="groupNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="groupNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyNm">회사명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="cmpnyNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="cmpnyNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="deptNm">부서명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="deptNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="deptNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="clsfNm">직급명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="clsfNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="clsfNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoNm">사진명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoCours">사진경로</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoCours" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoCours" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoExtsnNm">사진확장자명칭</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoExtsnNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoExtsnNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
