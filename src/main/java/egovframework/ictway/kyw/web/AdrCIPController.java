@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.kyw.service.AdrCIPService;
 import egovframework.ictway.kyw.service.AdrCIPVO;
 import lombok.extern.slf4j.Slf4j;
@@ -118,6 +120,7 @@ public class AdrCIPController {
     @RequestMapping("/ictway/kyw/registAdrCIPAct.do")
     public ModelAndView registAdrCIPAct(AdrCIPVO adrCIPVO, ModelMap model) throws Exception { 
 
+    	LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
     	ModelAndView mav = new ModelAndView("jsonView");
     	
 		String adrCIPId = adrCIPService.registAdrCIPAct(adrCIPVO);
