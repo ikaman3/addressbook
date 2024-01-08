@@ -106,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<%-- <form:hidden path="adrId"/> --%>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -117,21 +117,69 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dt>이름</dt>
+                                                <dd><c:out value="${resultVO.userNm}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
                                             </dl>
                                         </div>
-                                    </div>
-
-                                    <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                        <div class="info">
+                                            <dl>
+                                                <dt>주소</dt>
+                                                <dd><c:out value="${resultVO.adres}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>상세주소</dt>
+                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>그룹명칭</dt>
+                                                <dd><c:out value="${resultVO.groupNm}" /></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="info">
+                                            <dl>
+                                                <dt>회사명칭</dt>
+                                                <dd><c:out value="${resultVO.cmpnyNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>부서명칭</dt>
+                                                <dd><c:out value="${resultVO.deptNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>직급명칭</dt>
+                                                <dd><c:out value="${resultVO.clsfNm}" /></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="info">
+                                            <dl>
+                                                <dt>메모</dt>
+                                                <dd><c:out value="${resultVO.memo}" /></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="info">
+                                            <dl>
+                                                <dt>사진명칭</dt>
+                                                <dd><c:out value="${resultVO.photoNm}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>사진경로</dt>
+                                                <dd><c:out value="${resultVO.photoCours}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>사진확장자</dt>
+                                                <dd><c:out value="${resultVO.photoExtsnNm}" /></dd>
+                                            </dl>
+                                        </div>
                                     </div>
 
 									<!-- 버튼 시작 -->
