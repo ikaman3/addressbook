@@ -128,6 +128,10 @@
                                                 <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" /></dd>
                                             </dl>
                                         </div>
+                                        <div style="border: 1px solid green; width: 400px; height: 300px; text-align: center; margin: 0 auto;">
+                                        	<img src="./images/logo.png">
+                                        	<p>사진 들어가는자리</p>
+                                        </div>
                                         <div class="info">
                                         	 <dl>
                                                 <dt>성별</dt>
