@@ -187,7 +187,7 @@
 
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 									<input type="hidden" name="posblAtchFileNumber" value="1" />
-
+									<input type="hidden" name="photoCours" value="Globals.fileStorePath"
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
@@ -350,24 +350,19 @@
 	                                            </td>
 	                                            <td>
 	                                                <input type="text" id="clsfNm" name="clsfNm"  >
-	                                                <form:errors path="adrCn" />
+	                                                <form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
 	                                        
 	                                         <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">사진 첨부</label>
+	                                                <label for="photo">사진 첨부</label>
 	                                            </td>
-	                                            
-	                                            
-													<td><input name="file_1" id="egovComFileUploader" type="file" />
+													<td><input name="photoNmTest" id="egovComFileUploader" type="file" />
 														<div id="egovComFileList"></div>
-														<input type="submit" value="저장">
+													
 													</td>
-												                                            
 	                                        </tr>
-	                                        
-	                         				
 	                                    </table>
 	                                 
 	                                </div>
