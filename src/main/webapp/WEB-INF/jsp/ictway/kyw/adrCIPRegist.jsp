@@ -187,9 +187,9 @@
 	                                            </td>
 	                                            <td style="text-align: center ">
 	                                            	<label for="bkmkAt">O</label>
-	                                            	<input id="bkmkAt" type="checkbox" onclick="clickCheck(this)">
+	                                            	<input id="bkmkAt" name="bkmkAt" type="checkbox" onclick="clickCheck(this)" value="Y">
 	                                            	<label for="bkmkAt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X</label>	                                            	
-	                                            	<input id="bkmkAt" type="checkbox" onclick="clickCheck(this)">
+	                                            	<input id="bkmkAt" name="bkmkAt" type="checkbox" onclick="clickCheck(this)" value="N" checked="checked">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -213,8 +213,8 @@
 	                                                <label for="photoNm">사진</label>	
 	                                            </td>
 	                                            <td>
-	                                            	
-	                                                <input id="photoNm" name="photoNm" type="file">
+	                                            	<input id="photoNm" name="photoNm" type="text" size="40" value="" maxlength="40" class="f_txt w_full">
+	                                                <!-- <input id="photoNm" name="photoNm" type="file"> -->
 	                                            </td>
 	                                        	<td class="lb">	                                        		
 	                                                <label for="groupCode">그룹</label>	
@@ -222,7 +222,7 @@
 	                                        	<td>
 	                                        		
 	                                        			<select name="groupCode" id="groupCode" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
-	                                        				<option>▼ 선택</option>
+	                                        				<option value="">▼ 선택</option>
 	                                        				<option value="GR001">가족</option>
 	                                        				<option value="GR002">친구</option>
 	                                        				<option value="GR003">현직장</option>
