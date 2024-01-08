@@ -124,61 +124,73 @@
                                                 <dd><c:out value="${resultVO.nm}" /></dd>
                                             </dl>
                                             <br>
-                                            <dl>
-                                                <dt>생년월일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
-                                            </dl>
-                                            <br>
-                                             <dl>
-                                                <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
-                                            </dl>
-                                            <br>
-                                             <dl>
-                                                <dt>주소</dt>
-                                                <dd><c:out value="${resultVO.adres}" /></dd>
-                                            </dl>
-                                            <br>
-                                            <dl>
-                                                <dt>상세주소</dt>
-                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
-                                            </dl>
-                                            <br>
+                                            <hr>
                                             <dl>
                                                 <dt>전화번호</dt>
                                                 <dd><c:out value="${resultVO.telno}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
-                                                <dt>이메일</dt>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <hr>
+                                             <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <hr>
+                                             <dl>
+                                                <dt>주소</dt>
+                                                <dd><c:out value="${resultVO.adres}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <hr>
+                                            <dl>
+                                                <dt>상세주소</dt>
+                                                <dd><c:out value="${resultVO.detailAdres}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <hr>
+                                            <dl>
+                                                <dt>이메일주소</dt>
                                                 <dd><c:out value="${resultVO.emailaddr}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>메모</dt>
                                                 <dd><c:out value="${resultVO.memo}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>그룹코드</dt>
                                                 <dd><c:out value="${resultVO.groupCode}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>회사소속명</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnNm}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>회사소속팀명</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnTeamNm}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>회사소속직급명</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnClsfNm}" /></dd>
                                             </dl>
                                             <br>
+                                            <hr>
                                             <dl>
                                                 <dt>즐겨찾기여부</dt>
                                                 <dd><c:out value="${resultVO.bkmkAt}" /></dd>
