@@ -212,6 +212,10 @@
 	                                    <div class="board_article">
 	                                    	<c:out value="${fn:replace(resultVO.clsfNm , crlf , '<br/>')}" escapeXml="false" />
 	                                    </div>
+	                                    
+	                                    <div>
+	                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+	                                    </div>
                                     
                                     </table>
 									<!-- 버튼 시작 -->
