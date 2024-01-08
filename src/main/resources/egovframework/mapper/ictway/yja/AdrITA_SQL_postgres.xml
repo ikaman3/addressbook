@@ -108,7 +108,14 @@
 			,dept_nm
 			,clsf_nm
 			,bkmk_at
+			,photo_nm
+			,photo_cours
+			,photo_extsn_nm
+			,regist_dt
+			,updt_dt
+			,regist_user_nm
 			,delete_at
+			,regist_user_id
 		) VALUES(
 			#{adbkSn}
 			,#{userNm}
@@ -124,7 +131,14 @@
 			,#{deptNm}
 			,#{clsfNm}
 			,#{bkmkAt}
-			,'N'
+			,#{photoNm}
+			,#{photoCours}
+			,#{photoExtsnNm}
+			,#{registDt}
+			,#{updtDt}
+			,#{registUserNm}
+			,#{deleteAt}
+			,#{registUserId}
 		)
 	</insert>
 
