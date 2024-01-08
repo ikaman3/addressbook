@@ -346,8 +346,12 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td>
-	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="N" checked="checked">추가하지 않음</input></br>
-	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="Y">추가</input>
+	                                            	<label for="bkmkAt">
+	                                                	<input type="radio" id="bkmkAt" name="bkmkAt" value="N" checked="checked">추가하지 않음</input></br>
+	                                                </label>
+	                                                <label for="bkmkAt">
+	                                                	<input type="radio" id="bkmkAt" name="bkmkAt" value="Y">추가</input>
+	                                                </label>
 	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
