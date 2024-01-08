@@ -121,7 +121,6 @@ public class AdrPSPController {
 	 */
 	@RequestMapping("/ictway/psp/selectAdrPSPDetail.do")
 	public String selectAdrPSPDetail(@ModelAttribute("searchVO") AdrPSPVO AdrPSPVO, ModelMap model) throws Exception {
-		System.out.println(AdrPSPVO);
 		
 		AdrPSPVO resultVO = AdrPSPService.selectAdrPSPDetail(AdrPSPVO);
 		model.addAttribute("resultVO", resultVO);
