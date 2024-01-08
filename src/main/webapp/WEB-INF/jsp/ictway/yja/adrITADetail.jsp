@@ -117,8 +117,13 @@
                                 <div class="board_view">
                                     <div class="board_view_top">
                                         <div class="tit"><c:out value="${resultVO.userNm}" /></div>
+                                      
+                                        <div style="text-align:center;">
+	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+                                        </div>
+                                        <div class="board_faq_top"></div>
                                         <div class="info">
-                                            <dl>
+                                            <dl style="width:200px;">
                                                 <dt>그룹</dt>
                                                 <dd><c:out value="${resultVO.groupNm}" /></dd>
                                             </dl>
@@ -127,25 +132,26 @@
                                                 <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" /></dd>
                                             </dl>
                                         </div>
-                                      	<div style="text-align:center;">
-	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
-                                        </div>
+                                      	
+                                        <div class="board_faq_top"></div>
                                         <div class="info">
-                                        	 <dl>
+                                        	 <dl style="width:200px;">
                                                 <dt>성별</dt>
                                                 <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
                                             </dl>
-                                            <dl>
+                                           
+                                            <dl style="width:150px;">
                                                 <dt>생일</dt>
                                                 <dd><c:out value="${resultVO.brthdy}" /></dd>
                                             </dl>
-                                            <dl>
+                                            <dl style="width:150px;">
                                                 <dt>휴대폰번호</dt>
                                                 <dd><c:out value="${resultVO.moblphonNo}" /></dd>
                                             </dl>
                                         </div>
+                                        <div class="board_faq_top"></div>
                                         <div class="info">
-                                            <dl>
+                                            <dl style="width:200px;">
                                                 <dt>주소</dt>
                                                 <dd><c:out value="${resultVO.adres}" /></dd>
                                             </dl>
