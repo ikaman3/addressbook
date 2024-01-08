@@ -120,12 +120,36 @@
                                         <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.registUserNm}" /></dd>
+                                                <dt>그룹</dt>
+                                                <dd><c:out value="${resultVO.groupNm}" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.registDt}" /></dd>
+                                                <dt>소속</dt>
+                                                <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" /></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="info">
+                                        	 <dl>
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>생일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>휴대폰번호</dt>
+                                                <dd><c:out value="${resultVO.moblphonNo}" /></dd>
+                                            </dl>
+                                        </div>
+                                        <div class="info">
+                                            <dl>
+                                                <dt>주소</dt>
+                                                <dd><c:out value="${resultVO.adres}" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>이메일주소</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
@@ -133,9 +157,9 @@
                                     <div class="board_article">
                                     	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
                                     </div>
-
+                                    
 									<!-- 버튼 시작 -->
-                                    <div class="board_view_bot">
+                                    <div class="board_view_bot" style="margin-top: 10px">
                                         <div class="left_col btn3">
                                             <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrITAUpdate();">수정</a>
                                             <a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrITAAct();">삭제</a>
