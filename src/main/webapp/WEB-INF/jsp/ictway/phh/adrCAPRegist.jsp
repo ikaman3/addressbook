@@ -65,7 +65,7 @@
     
 </script>
 
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 박현희</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -133,7 +133,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                            <td class="lb">
@@ -141,8 +141,14 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="sexdstnCode" />
+	                                            	
+	                                            	<select name="sexdstnCode" id="sexdstnCode" class="f_txt w_full required">
+	                                            		<option>선택</option>
+	                                            		<option value="SX001">여성</option>
+	                                            		<option value="SX002">남성</option>
+	                                            		
+	                                            	</select>
+	                                            
 	                                            </td>
 	                                        </tr>
 	                                        
@@ -152,7 +158,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required">
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                            <td class="lb">
@@ -160,7 +166,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -177,8 +183,19 @@
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adresGroupCode" />
+	                                            
+	                                            	<select name="adresGroupCode" id="adresGroupCode" class="f_txt w_full">
+	                                            		<option>선택</option>
+	                                            		<option value="GR001">가족</option>
+	                                            		<option value="GR002">친구</option>
+	                                            		<option value="GR003">현직장</option>
+	                                            		<option value="GR004">구직장</option>
+	                                            		<option value="GR005">동호회</option>
+	                                            		<option value="GR006">기타</option>
+	                                            		
+	                                            		
+	                                            	</select>
+	                              
 	                                            </td>
 	                                        </tr>
 	                                        
@@ -273,19 +290,17 @@
 	                                            </td>
 	                                        </tr>
 	                                        
-	                                        
-	                                        <%-- <tr>
+	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">즐겨찾기 여부</label>
+	                                                <label for="cmpnyClsfNm">즐겨찾기 여부</label>
 	                                            </td>
 	                                            <td colspan="3">
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="Y">예 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	                                                <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="N">아니요
+	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
-	                                        </tr> --%>
-	                                        
-	                                        
-	                                        
+	                                        </tr>
+   
 	                                    </table>
 	                                </div>
 
