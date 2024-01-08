@@ -88,8 +88,16 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	}
 
 	@Override
-	public void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
+	public void updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		
+		if(! image.isEmpty()) {
+			String fileName = uploadFileService.uploadFile(image);
+			adrGMAVO.setPhotoFlpth(UploadFileService.saveFilePathGMA);
+			adrGMAVO.setPhotoFileNm(FilenameUtils.getBaseName(fileName));
+			adrGMAVO.setPhotoExtsnNm(FilenameUtils.getExtension(fileName));
+		}
+		
 		adrGMAVO.setAdbkUpdusrId(user.getUniqId());
 		adrGMADAO.updateAdrGMAAct(adrGMAVO);
 	}

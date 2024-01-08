@@ -150,11 +150,11 @@ public class AdrGMAController {
      * @throws Exception
      */
     @RequestMapping("/ictway/yhj/updateAdrGMAAct.do")
-    public ModelAndView updateAdrGMAAct(AdrGMAVO adrGMAVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrGMAAct(AdrGMAVO adrGMAVO, @RequestPart MultipartFile image, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.updateAdrGMAAct(adrGMAVO);
+		adrGMAService.updateAdrGMAAct(adrGMAVO, image);
 		
 		return mav;
     }
