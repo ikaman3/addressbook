@@ -138,7 +138,10 @@
 												<td class="al">
 													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>
 												</td>
-												<td class="al"><c:out value="${resultVO.adbkCreatDt}" /></td>
+												<td class="al">
+													<fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                	<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
+												</td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
