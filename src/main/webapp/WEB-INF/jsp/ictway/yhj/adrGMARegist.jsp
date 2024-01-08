@@ -73,7 +73,7 @@
             return false;
         }
 
-        if (!isValidPhoneNumber(phoneNumber)) {
+        if (!isValidPhoneNumber(mbtlnum)) {
             alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
             return false;
         }
@@ -100,7 +100,9 @@
         	fetch("<c:url value='/ictway/yhj/registAdrGMAAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
-     			headers: {},
+     			headers: {
+     				//'Content-Type': 'multipart/form-data'
+     			},
      			body: formData
         	})
         	.then(response => response.json())
@@ -233,8 +235,8 @@
 											</tr>
 											<tr>
 												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><input id="photoFlpth" name="photoFlpth"
-													type="text" value="" class="f_txt w_full"></input></td>
+												<td><input id="photoFlpth" name="image"
+													type="file" value="" class="f_txt w_full"></input></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>
