@@ -137,125 +137,115 @@
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                            <td class="lb">
-	                                                <label for="nm">생년월일</label>
+	                                                <label for="brthdy">생년월일</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">전화번호</label>
+	                                                <label for="telno">전화번호</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="adrCn" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">이메일주소</label>
+	                                                <label for="sexdstnCode">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="sexdstnCode" name="sexdstnCode" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="adrCn" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기 여부</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <label><input type="checkbox" name="bkmkAt" value="Y" >Y</label>
+	                                                <label><input type="checkbox" name="bkmkAt" value="N" checked>N</label>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">성별</label>
+	                                                <label for="adres">주소</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="adrCn" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="detailAdres" name="detailAdres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">주소</label>
+	                                                <label for="memo">메모</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">상세주소</label>
+	                                                <label for="groupCode">그룹코드</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="groupCode" name="groupCode" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="adrCn" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnNm">회사소속명</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="cmpnyPsitnNm" name="cmpnyPsitnNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">메모</label>
+	                                                <label for="cmpnyPsitnTeamNm">회사소속팀명</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="cmpnyPsitnTeamNm" name="cmpnyPsitnTeamNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
-	                                        </tr>
-	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">그룹코드</label>
+	                                                <label for="cmpnyPsitnClsfNm">회사소속직급명</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="cmpnyPsitnClsfNm" name="cmpnyPsitnClsfNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrCn">회사소속명</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrCn">회사소속팀명</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrCn">회사소속직급명</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrCn">즐겨찾기 여부</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
-	                                            </td>
-	                                        </tr>
-	                                        
 	                                    </table>
 	                                </div>
 
