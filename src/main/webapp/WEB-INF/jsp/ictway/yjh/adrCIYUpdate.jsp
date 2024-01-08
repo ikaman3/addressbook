@@ -264,8 +264,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-                                	                <input id="bkmkAt" name="bkmkAt" type="radio" value="Y"> 등록</input>
-	                                                <input id="bkmkAt" name="bkmkAt" type="radio" value="N" checked> 미등록</input>
+                                	                <input id="bkmkAt" name="bkmkAt" type="radio" value="Y" <c:if test="${resultVO.bkmkAt == 'Y'}">checked</c:if>>등록</input>
+	                                                <input id="bkmkAt" name="bkmkAt" type="radio" value="N" <c:if test="${resultVO.bkmkAt == 'N'}">checked</c:if>>미등록</input>
 	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>

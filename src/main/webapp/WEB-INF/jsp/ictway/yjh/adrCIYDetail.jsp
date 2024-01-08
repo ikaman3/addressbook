@@ -172,7 +172,16 @@
                                     </div>
                                     <div class="board_article">
                                     	<label>성별</label>
-                                    	<c:out value="${fn:replace(resultVO.sexdstnCode , crlf , '<br/>')}" escapeXml="false" />
+                                    	<c:choose>
+										    <c:when test="${resultVO.sexdstnCode == 'SX001'}">
+										        <!-- condition이 true인 경우 실행되는 내용 -->
+                                   				<c:out value="${fn:replace('여성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:when>
+										    <c:otherwise>
+										        <!-- condition이 false일 때 실행되는 내용 -->
+										        <c:out value="${fn:replace('남성' , crlf , '<br/>')}" escapeXml="false" />
+										    </c:otherwise>
+										</c:choose>
                                     </div>
                                     <div class="board_article">
                                     	<label>주소</label>
