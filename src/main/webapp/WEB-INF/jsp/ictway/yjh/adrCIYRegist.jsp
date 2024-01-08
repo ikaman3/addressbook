@@ -133,18 +133,16 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="홍길동" value="">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="brthdy">생년월일</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" value="" maxlength="8" class="f_txtar w_full" ></input>
-	                                                <br/><form:errors path="brthdy" />
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" >
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -153,118 +151,111 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002"> 남성</input>
 	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001"> 여성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002"> 남성</input>
+	                                                <br/><form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">주소</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="adres" name="adres" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">상세주소</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="detailAdres">상세주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="detailAdres" name="detailAdres" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="detailAdres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">휴대폰번호</label>
+	                                                <label for="mbtlnum">휴대폰번호</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">이메일</label>
+	                                                <label for="emailaddr">이메일</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        <!--<tr>
+	                                            <td class="lb">
+	                                                <label for="photoFileNm">사진</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="photoFileNm" />
+	                                            </td>
+	                                        </tr>-->
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adresGroupCode">그룹</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">사진</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="cmpnyNm">회사</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="cmpnyNm" name="cmpnyNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">그룹</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="cmpnyTeamNm">소속부서</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="cmpnyTeamNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">회사</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="cmpnyClsfNm">직급</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="cmpnyClsfNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">소속부서</label>
+	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="bkmkAt" name="bkmkAt" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="userNm">직급</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="userNm">즐겨찾기</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="userNm">메모</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" value=""  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="userNm" />
+	                                                <input id="memo" name="memo" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <br/><form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
