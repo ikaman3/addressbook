@@ -106,10 +106,6 @@
 								<div class="board_list">
 									<table>
 										<colgroup>
-											<col style="width: 60px;">
-											<col style="width: 150;">
-											<col style="width: auto;">
-											<col style="width: auto;">
 											<col style="width: auto;">
 										</colgroup>
 										<thead>
