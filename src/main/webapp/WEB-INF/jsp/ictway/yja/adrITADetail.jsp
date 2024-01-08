@@ -132,7 +132,6 @@
                                                 <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" /></dd>
                                             </dl>
                                         </div>
-                                      	
                                         <div class="board_faq_top"></div>
                                         <div class="info">
                                         	 <dl style="width:200px;">
