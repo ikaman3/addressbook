@@ -195,30 +195,32 @@
 												<col style="width: auto;">
 											</colgroup>
 											<tr>
-												<td class="lb"><label for="adrSj">이름</label> <span
-													class="req">필수</span></td>
-												<td><input id="userNm" name="userNm" type="text"
-													size="50" value="<c:out value="${resultVO.userNm}" />" maxlength="50" class="f_txt w_full">
-													<br /> <form:errors path="userNm" /></td>
+												<td class="lb"><label for="adrSj">이름</label></td>
+												<td><c:out value="${resultVO.userNm}" /></td>
 											</tr>
 											<tr>
-												<td class="lb"><label for="brthdy">생년월일</label> <span
-													class="req">필수</span></td>
-												<td><input id="brthdy" name="brthdy" type="text"
-													value="<c:out value="${resultVO.brthdy}" />" class="f_txt w_full"></input> <form:errors
-														path="brthdy" /></td>
+												<td class="lb"><label for="brthdy">생년월일</label></td>
+												<td><fmt:parseDate value="${resultVO.brthdy}"
+															pattern="yyyyMMdd" var="date" />
+														<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" /></td>
 											</tr>
 											<tr>
-											<script>
-												const sexdstnCodeMeanings = {SX001: "여성", SX002: "남성"};
-												const sexdstnCode = <c:out value="${resultVO.sexdstnCode}" />
-												
-											</script>
 												<td class="lb"><label for="sexdstnCode">성별</label> <span
 													class="req">필수</span></td>
-												<td><input type="radio" name="sexdstnCode"
-													value="SX001" /> 여성 <input type="radio" name="sexdstnCode"
-													value="SX002" /> 남성</td>
+												<td><c:choose>
+															<c:when test="${resultVO.sexdstnCode == 'SX001'}">
+																<input type="radio" name="sexdstnCode" value="SX001" checked="checked" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" /> 남성
+															</c:when>
+															<c:when test="${resultVO.sexdstnCode == 'SX002'}">
+																<input type="radio" name="sexdstnCode" value="SX001" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" checked="checked" /> 남성
+															</c:when>
+															<c:otherwise>
+																<!-- 다른 값이 올 경우에 대한 처리 -->
+																<c:out value="${resultVO.sexdstnCode}" />
+															</c:otherwise>
+														</c:choose></td>
 											</tr>
 											<tr>
 												<script
