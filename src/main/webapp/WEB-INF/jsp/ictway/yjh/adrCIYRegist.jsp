@@ -124,7 +124,6 @@
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 190px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
