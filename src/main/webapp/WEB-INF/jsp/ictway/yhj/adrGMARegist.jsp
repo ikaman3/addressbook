@@ -73,7 +73,7 @@
             return false;
         }
 
-        if (!isValidPhoneNumber(phoneNumber)) {
+        if (!isValidPhoneNumber(mbtlnum)) {
             alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
             return false;
         }
@@ -100,7 +100,9 @@
         	fetch("<c:url value='/ictway/yhj/registAdrGMAAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
-     			headers: {},
+     			headers: {
+     				//'Content-Type': 'multipart/form-data'
+     			},
      			body: formData
         	})
         	.then(response => response.json())
@@ -206,18 +208,60 @@
 													value="SX002" /> 남성</td>
 											</tr>
 											<tr>
+												<script
+													src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+												<script>
+												    function sample6_execDaumPostcode() {
+												        new daum.Postcode({
+												            oncomplete: function(data) {
+												                var addr = '';
+												                var extraAddr = '';
+												
+												                if (data.userSelectedType === 'R') { 
+												                    addr = data.roadAddress;
+												                } else { 
+												                    addr = data.jibunAddress;
+												                }
+												
+												                if(data.userSelectedType === 'R'){
+												                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+												                        extraAddr += data.bname;
+												                    }
+												                    if(data.buildingName !== '' && data.apartment === 'Y'){
+												                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+												                    }
+												                    if(extraAddr !== ''){
+												                        extraAddr = ' (' + extraAddr + ')';
+												                    }
+												                    document.getElementById("sample6_extraAddress").value = extraAddr;
+												                
+												                } else {
+												                    document.getElementById("sample6_extraAddress").value = '';
+												                }
+												
+												                document.getElementById('sample6_postcode').value = data.zonecode;
+												                document.getElementById("sample6_address").value = addr;
+												                document.getElementById("sample6_detailAddress").focus();
+												            }
+												        }).open();
+												    }
+												</script>
 												<td class="lb"><label for="adres">주소</label></td>
-												<td><input id="adres" name="adres" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full"></input>
-												</td>
+												<td><input type="text" id="sample6_postcode"
+													placeholder="우편번호"> <input type="button"
+													onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+													<input name="adres" type="text" id="sample6_address" placeholder="주소"><br>
+													<input name="detailAdres" type="text" id="sample6_detailAddress"
+													placeholder="상세주소"> <input type="text"
+													id="sample6_extraAddress" placeholder="참고항목"></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
 													size="50" value="" maxlength="50" class="f_txt w_full"
-													placeholder="010-0000-0000 형식으로 입력해주세요."></input>
-													<form:errors path="mbtlnum" /></td>
+													placeholder="010-0000-0000 형식으로 입력해주세요."></input> <form:errors
+														path="mbtlnum" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="emailaddr">이메일주소</label> <span
@@ -233,8 +277,8 @@
 											</tr>
 											<tr>
 												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><input id="photoFlpth" name="photoFlpth"
-													type="text" value="" class="f_txt w_full"></input></td>
+												<td><input id="photoFlpth" name="image" type="file"
+													value="" class="f_txt w_full"></input></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>
