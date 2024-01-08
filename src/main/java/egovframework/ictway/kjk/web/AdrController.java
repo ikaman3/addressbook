@@ -156,9 +156,15 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
+
+    	if (bindingResult.hasErrors()) {
+			mav.addObject("returnResult", "FAIL");
+			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+		    return mav;
+		}
     	
 		adrService.updateAdrAct(adrVO);
 		
