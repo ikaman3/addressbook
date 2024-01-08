@@ -133,8 +133,7 @@ public class AdrCIYController {
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/yjh/selectAdrCIYUpdate.do")
-	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model) throws Exception {
-		
+	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrCIYVO adrCIYVO, ModelMap model, HttpServletRequest request) throws Exception {
 		AdrCIYVO resultVO = adrCIYService.selectAdrCIYDetail(adrCIYVO);
 		model.addAttribute("resultVO", resultVO);
 		

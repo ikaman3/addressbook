@@ -49,7 +49,7 @@ public interface AdrGMAService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	void updateAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
+	void updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.

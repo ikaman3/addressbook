@@ -75,10 +75,10 @@
 <title>샘플 포털 > 주소록 > 윤준현</title>
 
 <style type="text/css">
-.ui-datepicker-trigger {
-	margin-left: 10px;
-	vertical-align: middle;
-}
+	.ui-datepicker-trigger {
+		margin-left: 10px;
+		vertical-align: middle;
+	}
 </style>
 
 </head>
@@ -134,16 +134,16 @@
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 190px;">
+	                                        	<col style="width: 190px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
-<tr>
+											<tr>
 	                                            <td class="lb">
 	                                                <label for="userNm">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="홍길동" value="">
+	                                                <input id="userNm" name="userNm" type="text" size="50" maxlength="50" class="f_txt w_full" placeholder="예)홍길동" value="${resultVO.userNm}">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -152,7 +152,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" >
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" pattern="[0-9]{8,8}" title="yyyymmdd와 같은 8자리 숫자" value="${resultVO.brthdy}">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -161,8 +161,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001"> 여성</input>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002"> 남성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001" <c:if test="${resultVO.sexdstnCode == 'SX001'}">checked</c:if>>여성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002" <c:if test="${resultVO.sexdstnCode == 'SX002'}">checked</c:if>>남성</input>
 	                                                <br/><form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
@@ -171,7 +171,7 @@
 	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adres" name="adres" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="adres" name="adres" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.adres}">
 	                                                <br/><form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
@@ -180,7 +180,7 @@
 	                                                <label for="detailAdres">상세주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="detailAdres" name="detailAdres" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="detailAdres" name="detailAdres" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.detailAdres}">
 	                                                <br/><form:errors path="detailAdres" />
 	                                            </td>
 	                                        </tr>
@@ -190,7 +190,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.mbtlnum}">
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
@@ -200,7 +200,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*">
+	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" value="${resultVO.emailaddr}">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -218,7 +218,16 @@
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full">
+													<select name="adresGroupCode" id="adresGroupCode" size="1">
+														<option value="" <c:if test="${resultVO.adresGroupCode == ''}">selected</c:if>>해당 없음</option>
+													    <option value="GR001" <c:if test="${resultVO.adresGroupCode == 'GR001'}">selected</c:if>>가족</option>
+													    <option value="GR002" <c:if test="${resultVO.adresGroupCode == 'GR002'}">selected</c:if>>친구</option>
+													    <option value="GR003" <c:if test="${resultVO.adresGroupCode == 'GR003'}">selected</c:if>>현 직장</option>
+													    <option value="GR004" <c:if test="${resultVO.adresGroupCode == 'GR004'}">selected</c:if>>구 직장</option>
+													    <option value="GR005" <c:if test="${resultVO.adresGroupCode == 'GR005'}">selected</c:if>>동호회</option>
+													    <option value="GR006" <c:if test="${resultVO.adresGroupCode == 'GR006'}">selected</c:if>>기타</option>
+													</select>
+	                                                <!-- <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full"> -->
 	                                                <br/><form:errors path="adresGroupCode" />
 	                                            </td>
 	                                        </tr>
@@ -227,7 +236,7 @@
 	                                                <label for="cmpnyNm">회사</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="cmpnyNm" name="cmpnyNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="cmpnyNm" name="cmpnyNm" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.cmpnyNm}">
 	                                                <br/><form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
@@ -236,7 +245,7 @@
 	                                                <label for="cmpnyTeamNm">소속부서</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.cmpnyTeamNm}">
 	                                                <br/><form:errors path="cmpnyTeamNm" />
 	                                            </td>
 	                                        </tr>
@@ -245,7 +254,7 @@
 	                                                <label for="cmpnyClsfNm">직급</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.cmpnyClsfNm}">
 	                                                <br/><form:errors path="cmpnyClsfNm" />
 	                                            </td>
 	                                        </tr>
@@ -255,7 +264,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="bkmkAt" name="bkmkAt" type="text" size="50"  maxlength="50" class="f_txt w_full">
+                                	                <input id="bkmkAt" name="bkmkAt" type="radio" value="Y" <c:if test="${resultVO.bkmkAt == 'Y'}">checked</c:if>>등록</input>
+	                                                <input id="bkmkAt" name="bkmkAt" type="radio" value="N" <c:if test="${resultVO.bkmkAt == 'N'}">checked</c:if>>미등록</input>
 	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
@@ -264,7 +274,7 @@
 	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="memo" name="memo" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="memo" name="memo" type="text" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.memo}">
 	                                                <br/><form:errors path="memo" />
 	                                            </td>
 	                                        </tr>

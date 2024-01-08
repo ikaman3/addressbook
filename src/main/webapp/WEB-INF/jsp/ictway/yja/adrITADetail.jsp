@@ -105,7 +105,6 @@
 									<form:hidden path="pageIndex"/>
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
-									
 									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
