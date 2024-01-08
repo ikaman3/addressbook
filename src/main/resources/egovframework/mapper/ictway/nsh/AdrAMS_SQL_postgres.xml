@@ -215,7 +215,7 @@
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_last_updt_dt = #{adbkLastUpdtDt}::timestamp
+			,adbk_last_updt_dt = now()
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
 		WHERE
@@ -228,7 +228,7 @@
 		SET 
 			 adbk_delete_at = 'Y'
 			,adbk_delete_dt = now()
-			,adbk_dltr_id = #{adbkId}
+			,adbk_dltr_id = #{adbkDltrId}
 			,adbk_dltr_nm = #{adbkFrstWrterNm}
 		WHERE
 			adbk_delete_at = 'N'
