@@ -120,10 +120,11 @@
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">Contact ICTWAY</p>
 									<h2 class="tit_2">주소록 등록</h2>
-
+									
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
+	                                            <col style="width: 190px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
@@ -179,7 +180,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="50"  maxlength="50" class="f_txt w_full">
+	                                                <input id="mbtlnum" name="mbtlnum" type="tel" class="f_txt w_full" pattern="[0-9]{11}" >
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                        </tr>
@@ -193,7 +194,7 @@
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
-	            							<tr>
+	            							<%-- <tr>
 	                                            <td class="lb">
                                                 	<label for="photoFileNm">사진</label>
 	                                            </td>
@@ -202,22 +203,21 @@
 	                                                <br/><form:errors path="photoFileNm" />
 	                                            </td>
 	                                        </tr>
-	                                        <tr>
+	                                        <tr> --%>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-													<select name="adresGroupCode" id="adresGroupCode" size="1">
-														<option value="">해당 없음</option>
-													    <option value="GR001">가족</option>
-													    <option value="GR002">친구</option>
-													    <option value="GR003">현 직장</option>
-													    <option value="GR004">구 직장</option>
-													    <option value="GR005">동호회</option>
-													    <option value="GR006">기타</option>
-													</select>
-	                                                <!-- <input id="adresGroupCode" name="adresGroupCode" type="text" size="50"  maxlength="50" class="f_txt w_full"> -->
-	                                                <br/><form:errors path="adresGroupCode" />
+													<form:select action="#" path="searchVO.adresGroupCode">
+														<form:option value="">해당 없음</form:option>
+														<form:option value="GR001">가족</form:option>
+														<form:option value="GR002">친구</form:option>
+														<form:option value="GR003">현 직장</form:option>
+														<form:option value="GR004">구 직장</form:option>
+														<form:option value="GR005">동호회</form:option>
+														<form:option value="GR006">기타</form:option>
+													</form:select>
+	                                                <br/><form:errors path="searchVO.adresGroupCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
