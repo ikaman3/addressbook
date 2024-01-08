@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 	//주소록 목록조회
-	function selectAdrList(){
+	function selectAdrCIYList(){
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYList.do'/>";
 		document.searchListForm.submit();
 	}
@@ -111,13 +111,13 @@
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">Contact ICTWAY</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
@@ -142,7 +142,7 @@
                                         </div>
 
                                         <div class="right_col btn1">
-                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrList();">목록</a>
+                                            <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="selectAdrCIYList();">목록</a>
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
