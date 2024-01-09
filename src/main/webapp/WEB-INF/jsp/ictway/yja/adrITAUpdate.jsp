@@ -45,6 +45,20 @@
 		}
 	}
 	
+	// 전화번호 입력 시 하이픈
+	function addHyphenPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+	
+	// 날짜 입력 시 하이픈
+	function addHyphenBrth(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
+	}
+	
 	//주소록 수정
 	function updateAdrITAAct(){
 		
@@ -191,7 +205,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="moblphonNo" class="f_txt w_full required" size="60" maxlength="11" title="수정할 휴대폰번호"/>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full required" oninput="addHyphenPhone(this)" size="60" maxlength="13" title="수정할 휴대폰번호"/>
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -228,7 +242,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="brthdy" class="f_txt w_full" title="제목" size="60" maxlength="8"/>
+	                                            	<form:input path="brthdy" class="f_txt w_full" oninput="addHyphenBrth(this)" title="제목" size="60" maxlength="10"/>
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
