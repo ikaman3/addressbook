@@ -261,8 +261,7 @@ caption {
 												<td>
 													<div id="photo" , name="photo">
 														<img
-															src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'
-															alt="파일보기링크" />
+															src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'/>
 													</div>
 												</td>
 											</tr>

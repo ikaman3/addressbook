@@ -61,30 +61,50 @@
     	return emailRegex.test(emailaddr);
 	}
 	
+	// 필수 입력값 유효성 검사
+	function isEmpty(inputElement) {
+	    return inputElement.value.trim() === '';
+	}
+
+	// 포커싱
+	function focusOnEmptyField(...inputElements) {
+	    for (const inputElement of inputElements) {
+	        if (isEmpty(inputElement)) {
+		        //alert("필수 입력값을 모두 입력해주세요: " + inputElement.getAttribute("title"));
+	            inputElement.focus();
+	            break;
+	        }
+	    }
+	}
+
 	function validateForm() {
-		let userNm = document.getElementById("userNm").value;
-        let brthdy = document.getElementById("brthdy").value;
-        let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
-        let mbtlnum = document.getElementById("mbtlnum").value;
-        let emailaddr = document.getElementById("emailaddr").value;
-        
-        if (userNm.trim() === '' || brthdy.trim() === '' || !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
-            alert("필수 입력값을 모두 입력해주세요.");
-            return false;
-        }
+	    let userNm = document.getElementById("userNm");
+	    let brthdy = document.getElementById("brthdy");
+	    let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
+	    let mbtlnum = document.getElementById("mbtlnum");
+	    let emailaddr = document.getElementById("emailaddr");
 
-        if (!isValidPhoneNumber(mbtlnum)) {
-            alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
-            return false;
-        }
-        
-        if (!isValidEmail(emailaddr)) {
-            alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
-            return false;
-        }
+	    if (isEmpty(userNm) || isEmpty(brthdy) || !sexdstnCode || isEmpty(mbtlnum) || isEmpty(emailaddr)) {
+	        alert("필수 입력값을 모두 입력해주세요.");
+	        focusOnEmptyField(userNm, brthdy, mbtlnum, emailaddr);
+	        return false;
+	    }
 
-        return true;
-    }
+	    if (!isValidPhoneNumber(mbtlnum.value)) {
+	        alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
+	        mbtlnum.focus();
+	        return false;
+	    }
+
+	    if (!isValidEmail(emailaddr.value)) {
+	        alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
+	        emailaddr.focus();
+	        return false;
+	    }
+
+	    return true;
+	}
+
 	
 	//주소록 등록
 	function registAdrGMAAct() {
@@ -101,7 +121,6 @@
     			method: "POST",
     			cache: "no-cache",
      			headers: {
-     				//'Content-Type': 'multipart/form-data'
      			},
      			body: formData
         	})
@@ -190,22 +209,22 @@
 												<td class="lb"><label for="adrSj">이름</label> <span
 													class="req">필수</span></td>
 												<td><input id="userNm" name="userNm" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full">
+													size="50" value="" maxlength="50" class="f_txt w_full" title="이름">
 													<br /> <form:errors path="userNm" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="brthdy">생년월일</label> <span
 													class="req">필수</span></td>
 												<td><input id="brthdy" name="brthdy" type="date"
-													value="" class="f_txt w_full"></input> <form:errors
+													value="" class="f_txt w_full" title="생년월일"></input> <form:errors
 														path="brthdy" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="sexdstnCode">성별</label> <span
 													class="req">필수</span></td>
-												<td><input type="radio" name="sexdstnCode"
+												<td><input type="radio" name="sexdstnCode" title="성별"
 													value="SX001" /> 여성 <input type="radio" name="sexdstnCode"
-													value="SX002" /> 남성</td>
+													value="SX002" title="성별"/> 남성</td>
 											</tr>
 											<tr>
 												<script
@@ -259,15 +278,15 @@
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
-													size="50" value="" maxlength="50" class="f_txt w_full"
-													placeholder="010-0000-0000 형식으로 입력해주세요."></input> <form:errors
+													size="50" value="" maxlength="13" class="f_txt w_full"
+													placeholder="010-0000-0000 형식으로 입력해주세요." title="휴대폰번호"></input> <form:errors
 														path="mbtlnum" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="emailaddr">이메일주소</label> <span
 													class="req">필수</span></td>
 												<td><input id="emailaddr" name="emailaddr" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+													size="50" value="" maxlength="50" class="f_txt w_full" title="이메일주소"></input>
 													<form:errors path="emailaddr" /></td>
 											</tr>
 											<tr>
