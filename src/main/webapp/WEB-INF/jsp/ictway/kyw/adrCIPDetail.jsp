@@ -215,13 +215,13 @@
                                             </tr>
                                             <tr>
                                                 <td class="lb">
-                                              		<label for="adbkFrstWritngDt">최초 작성 일시</label>
+                                              		<label for="adbkFrstWritngDt">최초 작성일</label>
                                               	</td>
                                                 <td colspan="3"><c:out value="${fn:replace(resultVO.adbkFrstWritngDt, crlf , '<br/>')}" escapeXml="false" /></td>
                                             </tr>
                                             <tr>
                                                 <td class="lb">
-                                              		<label for="adbkLastUpdtDt">최종 수정 일시</label>
+                                              		<label for="adbkLastUpdtDt">최종 수정일</label>
                                               	</td>
                                                 <td colspan="3"><c:out value="${fn:replace(resultVO.adbkLastUpdtDt, crlf , '<br/>')}" escapeXml="false" /></td>
                                             </tr>
