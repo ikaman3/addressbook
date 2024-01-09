@@ -175,19 +175,20 @@
 	                                                <input id="userNm" name="userNm" type="text" placeholder="필수 입력" size="60" value=""  maxlength="10" class="f_txt w_full required" title="이름">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
+	                                           
 	                                        </tr>
 	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="sexdstnCode">성별</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="성별">
-	                                            		<option value="">선택</option>
-	                                            		<option value="남성">남성</option>
-	                                            		<option value="여성">여성</option>
-	                                            	</select>
-	                                            </td>
+		                                         <td class="lb">
+		                                                <label for="sexdstnCode">성별</label>
+		                                                <span class="req">필수</span>
+		                                            </td>
+		                                            <td>
+		                                            	<select name="sexdstnCode" class="f_txt w_full required" title="성별">
+		                                            		<option value="">필수 선택</option>
+		                                            		<option value="남성">남성</option>
+		                                            		<option value="여성">여성</option>
+		                                            	</select>
+		                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">

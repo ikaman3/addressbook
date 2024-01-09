@@ -192,7 +192,7 @@
 	                                            </td>
 	                                            <td>
 	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="수정할 성별">
-	                                            		<option value="">선택</option>
+	                                            		<option value="">필수 선택</option>
 	                                            		<option value="남성">남성</option>
 	                                            		<option value="여성">여성</option>
 	                                            	</select>
