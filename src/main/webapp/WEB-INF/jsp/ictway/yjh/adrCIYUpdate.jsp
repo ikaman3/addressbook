@@ -197,6 +197,24 @@
 		margin-left: 10px;
 		vertical-align: middle;
 	}
+	
+ 	.board_view2 table {
+		display: flex;
+	    flex-direction: column;
+	    height: auto;
+	}
+	
+	.board_view2 table tr {
+		height: 85px;
+	}	
+	
+	.board_view2 table tr td.lb {
+	    width: 15%;
+	}
+	
+	.board_view2 table tr td:not(.lb) {
+	    width: 85%;
+	}
 </style>
 
 </head>

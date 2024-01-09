@@ -320,10 +320,22 @@
 												</td>
 											</tr>
 											<tr>
+												<td class="lb"><label for="cmpnyTeamNm">팀</label></td>
+												<td><input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text"
+													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+												</td>
+											</tr>
+											<tr>
+												<td class="lb"><label for="cmpnyClsfNm">직급</label></td>
+												<td><input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text"
+													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+												</td>
+											</tr>
+											<tr>
 												<td class="lb"><label for="bkmkAt">즐겨찾기</label></td>
 												<td><input type="radio" name="bkmkAt"
-													value="Y" /> Y <input type="radio" name="bkmkAt"
-													value="N" checked="checked"/> N</td>
+													value="Y" /> 즐겨찾기 등록 <input type="radio" name="bkmkAt"
+													value="N" checked="checked"/> 즐겨찾기 미등록</td>
 											</tr>
 										</table>
 									</div>
