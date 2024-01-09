@@ -125,13 +125,21 @@
                                             </dl>
                                             <br>
                                             <dl>
+                                                <dt>전화번호</dt>
+                                                <dd><c:out value="${resultVO.telno}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <dl>
                                                 <dt>생년월일</dt>
                                                 <dd><c:out value="${resultVO.brthdy}" /></dd>
                                             </dl>
                                             <br>
                                              <dl>
                                                 <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                                <dd>
+                                                <c:if test="${resultVO.sexdstnCode eq 'gen01'}">남자</c:if>
+                                                <c:if test="${resultVO.sexdstnCode eq 'gen02'}">여자</c:if>
+                                                </dd>
                                             </dl>
                                             <br>
                                              <dl>
@@ -145,12 +153,7 @@
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>전화번호</dt>
-                                                <dd><c:out value="${resultVO.telno}" /></dd>
-                                            </dl>
-                                            <br>
-                                            <dl>
-                                                <dt>이메일</dt>
+                                                <dt>이메일주소</dt>
                                                 <dd><c:out value="${resultVO.emailaddr}" /></dd>
                                             </dl>
                                             <br>
@@ -161,7 +164,13 @@
                                             <br>
                                             <dl>
                                                 <dt>그룹코드</dt>
-                                                <dd><c:out value="${resultVO.groupCode}" /></dd>
+                                                <dd>
+                                                <c:if test="${resultVO.groupCode eq 'grp01'}">가족</c:if>
+                                                <c:if test="${resultVO.groupCode eq 'grp02'}">친구</c:if>
+                                                <c:if test="${resultVO.groupCode eq 'grp03'}">동호회</c:if>
+                                                <c:if test="${resultVO.groupCode eq 'grp04'}">현직장</c:if>
+                                                <c:if test="${resultVO.groupCode eq 'grp05'}">구직장</c:if>
+                                                </dd>
                                             </dl>
                                             <br>
                                             <dl>
@@ -185,10 +194,7 @@
                                             </dl>
                                         </div>
                                     </div>
-
-                                    <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
-                                    </div>
+                                    <br>
 
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">

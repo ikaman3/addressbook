@@ -45,10 +45,48 @@
 		}
 	}
 	
+	// 전화번호 입력 시 하이픈
+	function addHyphenPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+	
+	// 날짜 입력 시 하이픈
+	function addHyphenBrth(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
+	}
+	
 	//주소록 수정
 	function updateAdrITAAct(){
+		
+		const formElement = document.updateForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yja/updateAdrITAAct.do'/>",{
@@ -142,7 +180,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="userNm" class="f_txt w_full required" size="60" maxlength="10" title="수정할 이름"/>
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -153,8 +191,8 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<select name="sexdstnCode" class="f_txt w_full">
-	                                            		<option value="">선택</option>
+	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="수정할 성별">
+	                                            		<option value="">필수 선택</option>
 	                                            		<option value="남성">남성</option>
 	                                            		<option value="여성">여성</option>
 	                                            	</select>
@@ -167,7 +205,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="moblphonNo" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full required" oninput="addHyphenPhone(this)" size="60" maxlength="13" title="수정할 휴대폰번호"/>
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -178,7 +216,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="emailaddr" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="emailaddr" class="f_txt w_full required" size="60" maxlength="60" title="수정할 이메일주소"/>
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -204,7 +242,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="brthdy" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="brthdy" class="f_txt w_full" oninput="addHyphenBrth(this)" title="제목" size="60" maxlength="10"/>
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>

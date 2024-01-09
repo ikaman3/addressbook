@@ -128,7 +128,7 @@
 									<form:hidden path="adrId"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+									<p class="txt_1">ICTWAY 신입사원 김은지의 샘플 주소록입니다.</p>
 									<h2 class="tit_2">주소록 수정</h2>
 	
 	                                <div class="board_view2">

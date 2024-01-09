@@ -52,7 +52,25 @@
 			,bkmk_at
 			,adbk_creat_dt
 		FROM yhj.address_info
-		WHERE adbk_delete_at = 'N' 
+		WHERE adbk_delete_at = 'N'
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm like CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND emailaddr like CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+		</if>
+		<if test="searchKeyword == '' or searchKeyword == null">
+			<choose>
+				<when test="searchCondition == 2">
+					AND bkmk_at = 'Y'
+				</when>
+			</choose>
+		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -114,6 +132,7 @@
 			,cmpny_nm
 			,cmpny_team_nm
 			,cmpny_clsf_nm
+			,bkmk_at
 			,adbk_creat_dt
 			,adbk_wrter_id
 		) VALUES(
@@ -133,6 +152,7 @@
 			,#{cmpnyNm}
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
+			,#{bkmkAt}
 			,now()
 			,#{adbkWrterId}
 		)
@@ -143,17 +163,15 @@
 	<update id="updateAdrGMAAct" parameterType="egovframework.ictway.yhj.service.AdrGMAVO">
 		UPDATE yhj.address_info
 		SET 
-			user_nm = #{userNm}
-			,brthdy = #{brthdy}
-			,sexdstn_code = #{sexdstnCode}
+			sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
 			,detail_adres = #{detailAdres}
 			,mbtlnum = #{mbtlnum}
 			,emailaddr = #{emailaddr}
 			,memo = #{memo}
-			,photo_flpth = #{photoFlpth}
+<!-- 			,photo_flpth = #{photoFlpth}
 			,photo_file_nm = #{photoFileNm}
-			,photo_extsn_nm = #{photoExtsnNm}
+			,photo_extsn_nm = #{photoExtsnNm} -->
 			,adres_group_code = #{adresGroupCode}
 			,cmpny_nm = #{cmpnyNm}
 			,cmpny_team_nm = #{cmpnyTeamNm}

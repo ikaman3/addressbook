@@ -136,7 +136,7 @@
 			,#{cmpnyNm}
 			,#{deptNm}
 			,#{clsfNm}
-			,1
+			,'BKM002'
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}
@@ -167,6 +167,7 @@
 			,photo_extsn_nm = #{photoExtsnNm}
 			,updt_dt = now()
 			,regist_user_id = #{registUserId}
+			,bkmk_at = #{bkmkAt}
 			WHERE adbk_sn= #{adbkSn}
 	</update>
 	

@@ -151,7 +151,7 @@
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 100px;">
+	                                            <col style="width: 200px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
@@ -160,14 +160,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이름">
-	                                                <br/><form:errors path="adrSj" />
-	                                            </td>
-	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input title="이름" id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required"  placeholder="예)김길동">
+	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -176,16 +170,16 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200 required" title = "전화번호" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea title = "전화번호" id="telno" name="telno" class="textarea f_txtar w_full h_200 required" placeholder="예)01012345678"></textarea>
+	                                                <form:errors path="telno" />
 	                                            </td>
+	                                       </tr>
+	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="emailaddr">이메일주소</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200 required" title = "이메일주소" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" placeholder="예)20001010">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -194,15 +188,12 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="sexdstnCode" name="sexdstnCode" class="textarea f_txtar w_full h_200 required" title = "성별" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
-	                                            </td>
-	                                            <td class="lb">
-	                                                <label for="bkmkAt">즐겨찾기 여부</label>
-	                                            </td>
-	                                            <td>
-	                                                <label><input type="radio" name="bkmkAt" value="Y">Y</label>
-	                                                <label><input type="radio" name="bkmkAt" value="N">N</label>
+	                                           		<select title="성별" id="sexdstnCode" name="sexdstnCode" class="f_txt w_full required" >
+	                                                	<option hidden=""  value="" selected>성별 선택</option>
+	                                                	<option value="gen01">남자</option>
+	                                                	<option value="gen02">여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -210,8 +201,10 @@
 	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10"></textarea>
 	                                            </td>
+	                                        </tr>
+	                                        <tr>    
 	                                            <td class="lb">
 	                                                <label for="detailAdres">상세주소</label>
 	                                            </td>
@@ -219,7 +212,18 @@
 	                                                <textarea id="detailAdres" name="detailAdres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                            </td>
 	                                        </tr>
+	                                        
 	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <textarea title = "이메일주소" id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200 required" cols="30" rows="10" placeholder="예)eunzi@gmail.com" ></textarea>
+	                                                <form:errors path="adrCn" />
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
 	                                            <td class="lb">
 	                                                <label for="memo">메모</label>
 	                                            </td>
@@ -232,8 +236,18 @@
 	                                                <label for="groupCode">그룹코드</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="groupCode" name="groupCode" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            <select id="groupCode" name="groupCode" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value="" selected>그룹코드</option>
+	                                                	<option value="grp01">가족</option>
+	                                                	<option value="grp02">친구</option>
+	                                                	<option value="grp03">동호회</option>
+	                                                	<option value="grp04">현직장</option>
+	                                                	<option value="grp05">구직장</option>
+	                                                	
+	                                                </select>
 	                                            </td>
+	                                       </tr>
+	                                       <tr>     
 	                                            <td class="lb">
 	                                                <label for="cmpnyPsitnNm">회사소속명</label>
 	                                            </td>
@@ -248,6 +262,8 @@
 	                                            <td>
 	                                                <textarea id="cmpnyPsitnTeamNm" name="cmpnyPsitnTeamNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                            </td>
+	                                        </tr>
+	                                        <tr>    
 	                                            <td class="lb">
 	                                                <label for="cmpnyPsitnClsfNm">회사소속직급명</label>
 	                                            </td>
@@ -255,6 +271,16 @@
 	                                                <textarea id="cmpnyPsitnClsfNm" name="cmpnyPsitnClsfNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
 	                                            </td>
 	                                        </tr>
+	                                        <tr>    
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기 여부</label>
+	                                            </td>
+	                                            <td>
+	                                                <label><input type="radio" name="bkmkAt" value="Y">즐겨찾기 추가</label>
+	                                                <label><input type="radio" name="bkmkAt" value="N" checked>즐겨찾기 미추가 </label>
+	                                            </td>
+	                                        </tr>
+	                                        
 	                                    </table>
 	                                </div>
 
