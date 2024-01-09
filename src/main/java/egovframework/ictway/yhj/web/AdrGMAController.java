@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.SessionVO;
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.EgovFileMngUtil;
 import egovframework.com.cmm.web.EgovImageProcessController;
 import egovframework.ictway.yhj.service.AdrGMAService;
 import egovframework.ictway.yhj.service.AdrGMAVO;
-import egovframework.ictway.yhj.service.AdrGMAService;
-import egovframework.ictway.yhj.service.AdrGMAVO;
+import egovframework.ictway.yhj.utils.AuthGMA;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -117,11 +118,8 @@ public class AdrGMAController {
 	 */
 	@RequestMapping("/ictway/yhj/selectAdrGMADetail.do")
 	public String selectAdrGMADetail(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
-		
 		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
 		model.addAttribute("resultVO", resultVO);
-		
-		/* return "cop/bbs/EgovNoticeInqire"; */
 		return "ictway/yhj/adrGMADetail";
 	}
 	
@@ -165,7 +163,11 @@ public class AdrGMAController {
 	public String selectAdrGMAUpdate(@ModelAttribute("searchVO") AdrGMAVO adrGMAVO, ModelMap model) throws Exception {
 		
 		AdrGMAVO resultVO = adrGMAService.selectAdrGMADetail(adrGMAVO);
-		model.addAttribute("resultVO", resultVO);
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		
+		if(AuthGMA.isSameUserAsAdrGMAWrter(resultVO, user)) {
+			model.addAttribute("resultVO", resultVO);
+		}
 		
 		return "ictway/yhj/adrGMAUpdate";
 	}
@@ -181,7 +183,10 @@ public class AdrGMAController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.updateAdrGMAAct(adrGMAVO, image);
+    	if (!adrGMAService.updateAdrGMAAct(adrGMAVO, image)) {
+			mav.addObject("returnResult", "FAIL");
+		    return mav;
+		}
 		
 		return mav;
     }
