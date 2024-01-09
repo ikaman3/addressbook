@@ -28,18 +28,47 @@
 		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
-
+	
 	<select id="selectAdrCIYList" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="egovMap">
-		SELECT
-			adbk_id
-			,user_nm
-			,mbtlnum
-			,adres_group_code
-			,cmpny_nm
-		FROM yjh.address_info
-		WHERE adbk_delete_at = 'N'
-		ORDER BY 1 DESC
-		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	    SELECT
+	        adbk_id
+	        , user_nm
+	        , mbtlnum
+	        , adres_group_code
+	        , cmpny_nm
+	    FROM yjh.address_info
+	    WHERE adbk_delete_at = 'N'
+	    <if test="searchCondition != '' and searchKeyword != ''">
+	        AND (
+	            <choose>
+	                <when test="searchCondition == 0">
+	                    user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition == 1">
+	                    mbtlnum LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition == 2">
+				        (#{searchKeyword} = '가족' AND adres_group_code = 'GR001')
+				        OR (#{searchKeyword} = '친구' AND adres_group_code = 'GR002')
+				        OR (#{searchKeyword} = '현 직장' AND adres_group_code = 'GR003')
+				        OR (#{searchKeyword} = '구 직장' AND adres_group_code = 'GR004')
+				        OR (#{searchKeyword} = '동호회' AND adres_group_code = 'GR005')
+				        OR (#{searchKeyword} = '기타' AND adres_group_code = 'GR006')
+				        OR ('가족' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR001')
+				        OR ('친구' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR002')
+				        OR ('현 직장' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR003')
+				        OR ('구 직장' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR004')
+				        OR ('동호회' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR005')
+				        OR ('기타' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR006')
+					</when>
+	            </choose>
+	        )
+	    </if>
+	    <if test="searchCondition == 4">
+	    	AND bkmk_at = 'Y'
+	    </if>
+	    ORDER BY adbk_id DESC
+	    LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<select id="selectAdrCIYListCnt" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="java.lang.Integer">
@@ -81,13 +110,8 @@
 			adbk_id
 			,user_nm
 			,mbtlnum
-			,photo_flpth
-			,photo_file_nm
-			,photo_extsn_nm
 			,adres_group_code
 			,cmpny_nm
-			,cmpny_team_nm
-			,cmpny_clsf_nm
 		FROM yjh.address_info
 		WHERE adbk_delete_at = 'N' AND bkmk_at = 'Y'
 		ORDER BY 1 DESC
