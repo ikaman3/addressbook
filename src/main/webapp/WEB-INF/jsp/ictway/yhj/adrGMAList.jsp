@@ -90,8 +90,8 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>사용자 이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>이메일</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -118,7 +118,7 @@
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">사용자 이름</th>
-												<th scope="col">생년월일</th>
+												<th scope="col">이메일</th>
 												<th scope="col">휴대폰번호</th>
 												<th scope="col">등록일</th>
 											</tr>
@@ -133,7 +133,7 @@
 													</a>
 												</td>
 												<td style="text-align: center;" class="al">
-													<c:out value="${resultVO.brthdy }" escapeXml="false"/>
+													<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
 												</td>
 												<td style="text-align: center;" class="al">
 													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>

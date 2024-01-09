@@ -52,7 +52,19 @@
 			,bkmk_at
 			,adbk_creat_dt
 		FROM yhj.address_info
-		WHERE adbk_delete_at = 'N' 
+		WHERE adbk_delete_at = 'N'
+		<if test="searchKeyword != '' and searchKeyword != null">
+			<choose>
+				<when test="searchCondition == 0">
+					AND user_nm like CONCAT('%', #{searchKeyword}, '%')
+				</when>
+				
+				<when test="searchCondition == 1">
+					AND emailaddr like CONCAT('%', #{searchKeyword}, '%')
+				</when>
+			</choose>
+			
+		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
