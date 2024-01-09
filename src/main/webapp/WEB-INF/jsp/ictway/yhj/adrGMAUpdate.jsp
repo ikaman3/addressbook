@@ -48,13 +48,6 @@
 		}
 	}
 	
-	// 날짜 파싱
-	function processDate(formData) {
-    const inputDate = formData.get("brthdy");
-    const formattedDate = inputDate.replace(/-/g, '');
-    formData.set("brthdy", formattedDate);
-	}
-	
 	//휴대폰번호 유효성 검사
 	function isValidPhoneNumber(phoneNumber) {
         let phoneRegex = /^\d{3}-\d{4}-\d{4}$/;
@@ -67,30 +60,47 @@
     	return emailRegex.test(emailaddr);
 	}
 	
+	// 필수 입력값 유효성 검사
+	function isEmpty(inputElement) {
+	    return inputElement.value.trim() === '';
+	}
+
+	// 포커싱
+	function focusOnEmptyField(...inputElements) {
+	    for (const inputElement of inputElements) {
+	        if (isEmpty(inputElement)) {
+		        //alert("필수 입력값을 모두 입력해주세요: " + inputElement.getAttribute("title"));
+	            inputElement.focus();
+	            break;
+	        }
+	    }
+	}
+
 	function validateForm() {
-		let userNm = document.getElementById("userNm").value;
-        let brthdy = document.getElementById("brthdy").value;
-        let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
-        let mbtlnum = document.getElementById("mbtlnum").value;
-        let emailaddr = document.getElementById("emailaddr").value;
-        
-        if (userNm.trim() === '' || brthdy.trim() === '' || !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
-            alert("필수 입력값을 모두 입력해주세요.");
-            return false;
-        }
+	    let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
+	    let mbtlnum = document.getElementById("mbtlnum");
+	    let emailaddr = document.getElementById("emailaddr");
 
-        if (!isValidPhoneNumber(mbtlnum)) {
-            alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
-            return false;
-        }
-        
-        if (!isValidEmail(emailaddr)) {
-            alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
-            return false;
-        }
+	    if (!sexdstnCode || isEmpty(mbtlnum) || isEmpty(emailaddr)) {
+	        alert("필수 입력값을 모두 입력해주세요.");
+	        focusOnEmptyField(mbtlnum, emailaddr);
+	        return false;
+	    }
 
-        return true;
-    }
+	    if (!isValidPhoneNumber(mbtlnum.value)) {
+	        alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
+	        mbtlnum.focus();
+	        return false;
+	    }
+
+	    if (!isValidEmail(emailaddr.value)) {
+	        alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
+	        emailaddr.focus();
+	        return false;
+	    }
+
+	    return true;
+	}
 	
 	//주소록 수정
 	function updateAdrGMAAct(){
@@ -100,8 +110,6 @@
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
-        	
-        	processDate(formData);
         	
         	fetch("<c:url value='/ictway/yhj/updateAdrGMAAct.do'/>",{
     			method: "POST",
@@ -195,30 +203,32 @@
 												<col style="width: auto;">
 											</colgroup>
 											<tr>
-												<td class="lb"><label for="adrSj">이름</label> <span
-													class="req">필수</span></td>
-												<td><input id="userNm" name="userNm" type="text"
-													size="50" value="<c:out value="${resultVO.userNm}" />" maxlength="50" class="f_txt w_full">
-													<br /> <form:errors path="userNm" /></td>
+												<td class="lb"><label for="adrSj">이름</label></td>
+												<td><c:out value="${resultVO.userNm}" /></td>
 											</tr>
 											<tr>
-												<td class="lb"><label for="brthdy">생년월일</label> <span
-													class="req">필수</span></td>
-												<td><input id="brthdy" name="brthdy" type="text"
-													value="<c:out value="${resultVO.brthdy}" />" class="f_txt w_full"></input> <form:errors
-														path="brthdy" /></td>
+												<td class="lb"><label for="brthdy">생년월일</label></td>
+												<td><fmt:parseDate value="${resultVO.brthdy}"
+															pattern="yyyyMMdd" var="date" />
+														<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" /></td>
 											</tr>
 											<tr>
-											<script>
-												const sexdstnCodeMeanings = {SX001: "여성", SX002: "남성"};
-												const sexdstnCode = <c:out value="${resultVO.sexdstnCode}" />
-												
-											</script>
 												<td class="lb"><label for="sexdstnCode">성별</label> <span
 													class="req">필수</span></td>
-												<td><input type="radio" name="sexdstnCode"
-													value="SX001" /> 여성 <input type="radio" name="sexdstnCode"
-													value="SX002" /> 남성</td>
+												<td><c:choose>
+															<c:when test="${resultVO.sexdstnCode == 'SX001'}">
+																<input type="radio" name="sexdstnCode" value="SX001" checked="checked" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" /> 남성
+															</c:when>
+															<c:when test="${resultVO.sexdstnCode == 'SX002'}">
+																<input type="radio" name="sexdstnCode" value="SX001" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" checked="checked" /> 남성
+															</c:when>
+															<c:otherwise>
+																<!-- 다른 값이 올 경우에 대한 처리 -->
+																<c:out value="${resultVO.sexdstnCode}" />
+															</c:otherwise>
+														</c:choose></td>
 											</tr>
 											<tr>
 												<script
@@ -273,7 +283,7 @@
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
-													size="50" value="<c:out value="${resultVO.mbtlnum}" />" maxlength="50" class="f_txt w_full"
+													maxlength="13" value="<c:out value="${resultVO.mbtlnum}" />" class="f_txt w_full"
 													placeholder="010-0000-0000 형식으로 입력해주세요."></input> <form:errors
 														path="mbtlnum" /></td>
 											</tr>
@@ -291,8 +301,10 @@
 											</tr>
 											<tr>
 												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><input id="photoFlpth" name="image" type="file"
-													value="" class="f_txt w_full"></input></td>
+												<td>
+													<img src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'/>
+													<input id="photoFlpth" name="image" type="file" value="" class="f_txt w_full">
+												</td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>
@@ -313,6 +325,22 @@
 												<td><input id="cmpnyNm" name="cmpnyNm" type="text"
 													size="50" value="<c:out value="${resultVO.cmpnyNm}" />" maxlength="50" class="f_txt w_full"></input>
 												</td>
+											</tr>
+											<tr>
+												<td class="lb"><label for="bkmkAt">즐겨찾기</label></td>
+												<td><c:choose>
+															<c:when test="${resultVO.bkmkAt == 'Y'}">
+																<input type="radio" name="bkmkAt" value="Y" checked="checked"/> Y 
+																<input type="radio" name="bkmkAt" value="N" /> N
+															</c:when>
+															<c:when test="${resultVO.bkmkAt == 'N'}">
+																<input type="radio" name="bkmkAt" value="Y" /> Y 
+																<input type="radio" name="bkmkAt" value="N" checked="checked"/> N
+															</c:when>
+															<c:otherwise>
+																<c:out value="${resultVO.bkmkAt}" />
+															</c:otherwise>
+														</c:choose></td>
 											</tr>
 										</table>
 									</div>

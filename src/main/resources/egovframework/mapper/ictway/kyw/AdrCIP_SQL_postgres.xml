@@ -42,7 +42,13 @@
 					AND nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
+					AND brthdy LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 2">
 					AND telno LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
 		</trim>
@@ -61,7 +67,13 @@
 					AND nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
+					AND brthdy LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 2">
 					AND telno LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
 		</trim>
@@ -89,10 +101,10 @@
 			,bkmk_at
 			,adbk_frst_writng_dt
 			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
-			,adbk_last_updusr_nm
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
+			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_last_updusr_id) AS adbk_last_updusr_nm
 		FROM kyw.address_info
 		WHERE
 			adbk_delete_at = 'N'
@@ -120,11 +132,10 @@
 			,cmpny_psitn_clsf_nm
 			,bkmk_at
 			,adbk_frst_wrter_id
-			,adbk_frst_wrter_nm
 		) VALUES(
 			 #{adbkId}
 			,#{nm}
-			,#{brthdy}
+			,replace(#{brthdy},'-','')
 			,#{sexdstnCode}
 			,#{adres}
 			,#{detailAdres}
@@ -140,7 +151,6 @@
 			,#{cmpnyPsitnClsfNm}
 			,#{bkmkAt}
 			,#{adbkFrstWrterId}
-			,#{adbkFrstWrterNm}
 		)
 	</insert>
 
@@ -150,7 +160,7 @@
 		SET 
 			 adbk_id = #{adbkId}
 			,nm = #{nm}
-			,brthdy = #{brthdy}
+			,brthdy = replace(#{brthdy},'-','')
 			,sexdstn_code = #{sexdstnCode}
 			,adres = #{adres}
 			,detail_adres = #{detailAdres}
@@ -165,16 +175,8 @@
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_frst_writng_dt = #{adbkFrstWritngDt}::timestamp
-			,adbk_frst_wrter_id = #{adbkFrstWrterId}
-			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
-			,adbk_last_updt_dt = #{adbkLastUpdtDt}::timestamp
+			,adbk_last_updt_dt = now()
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
-			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
-			,adbk_delete_at = #{adbkDeleteAt}
-			,adbk_delete_dt = #{adbkDeleteDt}::timestamp
-			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_dltr_nm = #{adbkDltrNm}
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}

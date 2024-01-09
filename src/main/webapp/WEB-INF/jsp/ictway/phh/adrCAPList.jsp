@@ -24,22 +24,23 @@
 
 	//주소록 목록조회
 	function selectAdrCAPList(pageIndex){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 상세조회
-	function selectAdrCAPDetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrCAPDetail(adbkId){
+		debugger;
+		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrCAPRegist(){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkId.value = "";
 		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -77,7 +78,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">주소록</h1>
-								<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+								<p class="txt_1">박현희 - 주소록 제작 프로젝트(CAP)</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -86,7 +87,7 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrId">
+										<input type="hidden" name="adbkId">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
@@ -131,7 +132,7 @@
 													</a>
 												</td>
 												<td><c:out value="${resultVO.mbtlnum}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><fmt:formatDate value="${resultVO.adbkCreatDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

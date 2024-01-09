@@ -123,7 +123,7 @@
                                                 <dt>등록자</dt>
                                                 <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
                                             </dl>
-                                            <dl>
+                                            <dl style="float:right; margin-right:20px;">
                                                 <dt>등록일</dt>
                                                 <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
                                             </dl>

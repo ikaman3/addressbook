@@ -235,9 +235,13 @@
 	                                                <label for="sexdstnCode">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
-	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="성별">
-	                                                <br/><form:errors path="sexdstnCode" />
+                                                <td>
+	                                                <select id="sexdstnCode" title="성별" name="sexdstnCode" class="f_txt w_full required">
+	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
+	                                                	<option value="SEX001">남자</option>
+	                                                	<option value="SEX002">여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -320,6 +324,7 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
+	                                        <%-- 
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoNm">사진명칭</label>
@@ -347,6 +352,7 @@
 	                                                <br/><form:errors path="photoExtsnNm" />
 	                                            </td>
 	                                        </tr>
+	                                         --%>
 	                                    </table>
 	                                </div>
 

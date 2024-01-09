@@ -49,7 +49,7 @@
 	function updateAdrCIPAct(){
 		
 		//TODO Validation 추가
-		const formElement = document.registForm;
+		const formElement = document.updateForm;
 		let validFailAt = "N"; //유효성 검사 실패 여부
 		let validMsg = "";
 		let firstAt = "Y";
@@ -94,7 +94,29 @@
     		});
     	}
 	}
+
+	//주소록 등록 - 체크박스 1개만 선택
+	function clickCheck(target) {
+		document.querySelectorAll('input[type=checkbox]')
+			.forEach(el => el.checked = false);
+		target.checked = true;
+	}
 	
+	//숫자만 입력
+	function oninputPhone(target) {
+	    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{4,5})([0-9]{4})/g, "$1-$2-$3");
+	}
+	
+	//이메일 검증 스크립트
+	function verifyEmail(){
+		var emailVal = $("#emailaddr").val();
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if (emailVal.match(regExp) == null){
+			alert("올바른 이메일 형식을 입력해주세요.");
+		}
+	}
 	
 	
 </script>
@@ -183,6 +205,7 @@
 	                                        		<form:select path="sexdstnCode" title="성별" class="required" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
 	                                        			<form:option value="SE001">남자</form:option>
 	                                        			<form:option value="SE002">여자</form:option>
+	                                        			<form:option value="SE003">없음</form:option>
 	                                        		</form:select>
 	                                        		<br/><form:errors path="sexdstnCode" />
 	                                            </td>	                                            
@@ -193,7 +216,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="telno" size="20" title="전화번호" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full required"/>
+	                                                <form:input path="telno" size="20" title="전화번호" oninput="oninputPhone(this);" maxlength="11" placeholder="-제외 11자리 입력  ex.01012345678" class="f_txt w_full required"/>
 	                                            	<br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
@@ -209,17 +232,19 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <form:input path="emailaddr" size="50" title="이메일 주소" maxlength="500" htmlEscape="false" class="f_txt w_full required"/>
+	                                                <form:input path="emailaddr" size="50" title="이메일 주소" onchange="verifyEmail(this)" maxlength="500" htmlEscape="false" class="f_txt w_full required"/>
 	                                            	<br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        	<td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td style="text-align: center ">
-	                                            	<form:input path="bkmkAt" />
-	                                            	<label for="bkmkAt">O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	                                            	<form:input path="bkmkAt" />
-	                                            	<label for="bkmkAt">X</label>
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" value="Y"/>&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                            	</label>
+	                                            	<label>
+	                                            		<form:radiobutton path="bkmkAt" value="N"/>&nbsp;&nbsp;X&nbsp;&nbsp;
+	                                            	</label>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -240,30 +265,22 @@
 	                                        </tr>
 	                                        <tr>
 	                                        	<td class="lb">	                                        		
-	                                                <label for="photoNm">사진</label>	
-	                                            </td>
-	                                            <td>
-	                                            	<form:input path="photoNm" size="40" maxlength="40" class="f_txt w_full"/>
-	                                            </td>
-	                                        	<td class="lb">	                                        		
 	                                                <label for="groupCode">그룹</label>	
 	                                            </td>
 	                                        	<td>
 	                                        		<form:select path="groupCode" style="width: 100px; height: 45px; font-size: 15px; text-align: center">
-	                                        			<form:option value="GR001">없음</form:option>
-	                                        			<form:option value="GR002">가족</form:option>
-	                                        			<form:option value="GR003">친구</form:option>
-	                                        			<form:option value="GR004">현직장</form:option>
-	                                        			<form:option value="GR005">구직장</form:option>
-	                                        			<form:option value="GR006">동호회</form:option>
+	                                        			<form:option value="">▼ 선택</form:option>
+	                                        			<form:option value="GR001">가족</form:option>
+	                                        			<form:option value="GR002">친구</form:option>
+	                                        			<form:option value="GR003">현직장</form:option>
+	                                        			<form:option value="GR004">구직장</form:option>
+	                                        			<form:option value="GR005">동호회</form:option>
 	                                        		</form:select>
 	                                            </td>
-	                                        </tr>
-	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="cmpnyPsitnNm">회사명</label>	                                                
 	                                            </td>
-	                                            <td colspan="3">
+	                                            <td>
 	                                                <form:input path="cmpnyPsitnNm" size="50" maxlength="50" class="f_txt w_full"/>
 	                                            </td>
 	                                        </tr>
@@ -287,16 +304,6 @@
 	                                            </td>
 	                                            <td colspan="3">
 	                                                <form:textarea path="memo" class="textarea f_txtar w_full h_35" cols="20" rows="10"/>
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adbkLastUpdusrNm">수정자 이름</label>	
-	                                                <span class="req">필수</span>                                                
-	                                            </td>
-	                                            <td>
-	                                                <form:input path="adbkLastUpdusrNm" size="50" value="" maxlength="50" class="f_txt w_full"/>
-	                                            	<br/><form:errors path="adbkLastUpdusrNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>

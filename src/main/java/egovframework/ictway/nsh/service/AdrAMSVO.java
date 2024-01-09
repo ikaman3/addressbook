@@ -35,6 +35,9 @@ public class AdrAMSVO extends ComDefaultVO implements Serializable {
 
 	/** 성별코드 */
 	private String sexdstnCode;
+	
+	/** 우편번호 */
+	private String adresNo;
 
 	/** 주소 */
 	private String adres;
