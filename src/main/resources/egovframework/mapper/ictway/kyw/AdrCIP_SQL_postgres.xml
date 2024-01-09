@@ -36,8 +36,8 @@
 	<select id="selectAdrCIPList" parameterType="egovframework.ictway.kyw.service.AdrCIPVO" resultType="egovMap">
 		SELECT *
 		FROM kyw.address_info
-		<trim prefix="WHERE" prefixOverrides="AND |OR">
-			<if test="searchKeyword != null and searchKeyword != ''">
+		WHERE adbk_delete_at = 'N'
+			<if test="searchKeyword != null and searchKeyword != ''"> 
 				<if test="searchCondition == 0">
 					AND nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
@@ -51,7 +51,6 @@
 					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
-		</trim>
 		ORDER BY adbk_id DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
@@ -61,8 +60,8 @@
 		SELECT
 			COUNT(*)
 		FROM kyw.address_info
-		<trim prefix="WHERE" prefixOverrides="AND |OR">
-			<if test="searchKeyword != null and searchKeyword != ''">
+		WHERE adbk_delete_at = 'N'
+			<if test="searchKeyword != null and searchKeyword != ''"> 
 				<if test="searchCondition == 0">
 					AND nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
@@ -73,10 +72,9 @@
 					AND telno LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 3">
-					AND emailaddr LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
-		</trim>
 	</select>
 
 
@@ -99,9 +97,9 @@
 			,cmpny_psitn_team_nm
 			,cmpny_psitn_clsf_nm
 			,bkmk_at
-			,adbk_frst_writng_dt
+			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd HH:mm:ss') AS adbk_frst_writng_dt
 			,adbk_frst_wrter_id
-			,adbk_last_updt_dt
+			,to_char(adbk_last_updt_dt, 'yyyy-mm-dd HH:mm:ss') AS adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
 			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_last_updusr_id) AS adbk_last_updusr_nm

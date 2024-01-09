@@ -147,16 +147,6 @@
 	                                            </td>
                                                 <td><c:out value="${fn:replace(resultVO.telno, crlf , '<br/>')}" escapeXml="false" /></td>
                                                 <td class="lb">
-	                                                <label for="brthdy">생년월일</label>	                                                
-	                                            </td>
-                                                <td><c:out value="${fn:replace(resultVO.brthdy, crlf , '<br/>')}" escapeXml="false" /></td>
-                                            </tr>
-                                            <tr>
-                                            	<td class="lb">
-	                                                <label for="emailaddr">이메일 주소</label>
-	                                            </td>
-                                                <td><c:out value="${fn:replace(resultVO.emailaddr, crlf , '<br/>')}" escapeXml="false" /></td>
-                                                <td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
                                                 <td>
@@ -165,6 +155,17 @@
 														<c:when test="${resultVO.bkmkAt eq 'N'}">X</br></c:when>
 													</c:choose>
                                                </td>
+                                            </tr>
+                                            <tr>
+                                            	<td class="lb">
+	                                                <label for="brthdy">생년월일</label>	                                                
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.brthdy, crlf , '<br/>')}" escapeXml="false" /></td>
+                                            	<td class="lb">
+	                                                <label for="emailaddr">이메일 주소</label>
+	                                            </td>
+                                                <td><c:out value="${fn:replace(resultVO.emailaddr, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                
                                             </tr>
                                             <tr>
                                             	<td class="lb">
@@ -214,29 +215,9 @@
                                             </tr>
                                             <tr>
                                                 <td class="lb">
-	                                                <label for="adbkFrstWrterNm">최초 작성자 이름</label>                                          
-	                                            </td>
-                                                <td><c:out value="${resultVO.adbkFrstWrterNm}" escapeXml="false" /></td>
-                                            	<td class="lb">
-                                              		<label for="adbkFrstWrterId">최초 작성자 아이디</label>
-                                              	</td>
-                                                <td><c:out value="${resultVO.adbkFrstWrterId}" escapeXml="false" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="lb">
                                               		<label for="adbkFrstWritngDt">최초 작성 일시</label>
                                               	</td>
                                                 <td colspan="3"><c:out value="${fn:replace(resultVO.adbkFrstWritngDt, crlf , '<br/>')}" escapeXml="false" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="lb">
-                                              		<label for="adbkLastUpdusrNm">최종 수정자명</label>
-                                              	</td>
-                                                <td><c:out value="${fn:replace(resultVO.adbkLastUpdusrNm, crlf , '<br/>')}" escapeXml="false" /></td>
-                                                <td class="lb">
-                                              		<label for="adbkLastUpdusrId">최종 수정자 아이디</label>
-                                              	</td>
-                                                <td><c:out value="${fn:replace(resultVO.adbkLastUpdusrId, crlf , '<br/>')}" escapeXml="false" /></td>
                                             </tr>
                                             <tr>
                                                 <td class="lb">
