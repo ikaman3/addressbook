@@ -38,15 +38,16 @@
 		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPList.do'/>";
 		document.searchListForm.submit();
 	}
-	
 		
+	
 	//생년월일 숫자인지 유효성 검사
 	function isNumeric(str) {
 		
 		const strVal = str.value;
 		const regExp = /^[0-9]*$/;
-		if(strVal.length > 7 && !regExp.test(strVal)) {
+		if(!regExp.test(strVal)) {
 			alert("숫자만 입력 가능합니다. 다시 입력해주세요.");
+			str.value = strVal.substring(0,strVal.length-1);
 			return false;
 		} 
 		return true;
@@ -57,7 +58,6 @@
 	
 	//주소록 등록
 	function registAdrCAPAct() {
-		
 		const formElement = document.registForm;
 		let validFailAt = "N"; //유효성검사실패여부
 		let validMsg = "";
@@ -65,8 +65,7 @@
 		let focusObject;
 		
 		formElement.querySelectorAll(".required").forEach(v=>{
-			//debugger;
-			
+
 			if(!!!v.value) {
 				if("Y" === firstAt){
 					focusObject = v;
@@ -202,7 +201,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰">
+	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="11" class="f_txt w_full required" title="휴대폰" placeholder="ex) 01012345678" oninput="isNumeric(this);">
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                            <td class="lb">
@@ -220,7 +219,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" placeholder="ex)19980101" oninput="isNumeric(this);">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="8" class="f_txt w_full" placeholder="ex) 19980101" oninput="isNumeric(this);">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                            <td class="lb">
@@ -274,35 +273,6 @@
 	                                            </td>
 	                                        </tr>
 	                                        
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoFileNm">사진파일명칭</label>
-	                                            </td>
-	                                            <td colspan="3">
-	                                                <input id="photoFileNm" name="photoFileNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoFileNm" />
-	                                            </td>
-	                                        </tr>
-	                                        
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for=photoExtsnNm>사진확장자명칭</label>
-	                                            </td>
-	                                            <td colspan="3">
-	                                                <input id="photoExtsnNm" name="photoExtsnNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoExtsnNm" />
-	                                            </td>
-	                                        </tr>
-	                                        
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for=photoFlpth>사진파일경로</label>
-	                                            </td>
-	                                            <td colspan="3">
-	                                                <input id="photoFlpth" name="photoFlpth" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoFlpth" />
-	                                            </td>
-	                                        </tr>
 	                                        
 	                                        <tr>
 	                                            <td class="lb">

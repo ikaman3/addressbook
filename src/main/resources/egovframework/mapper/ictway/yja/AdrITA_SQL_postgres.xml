@@ -63,6 +63,10 @@
 				<when test="searchCondition == 1">
 					AND moblphon_no LIKE CONCAT('%', #{searchKeyword}, '%')
 				</when>
+				
+				<when test="searchCondition == 2">
+					AND group_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+				</when>
 			</choose>
 			
 		</if>

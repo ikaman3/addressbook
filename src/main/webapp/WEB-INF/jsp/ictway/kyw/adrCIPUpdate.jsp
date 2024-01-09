@@ -221,25 +221,9 @@
 	                                            	<br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>	                                                
-	                                            </td>
-	                                            <td>
-	                                                <form:input path="brthdy" size="8" maxlength="8" placeholder="8자리 입력  ex.20001231" class="f_txt w_full"/>
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                         <td class="lb">
-	                                                <label for="emailaddr">이메일 주소</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <form:input path="emailaddr" size="50" title="이메일 주소" onchange="verifyEmail(this)" maxlength="500" htmlEscape="false" class="f_txt w_full required"/>
-	                                            	<br/><form:errors path="emailaddr" />
-	                                            </td>
-	                                        	<td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
-	                                            <td style="text-align: center ">
+	                                            <td>
 	                                            	<label>
 	                                            		<form:radiobutton path="bkmkAt" value="Y"/>&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                                            	</label>
@@ -247,6 +231,22 @@
 	                                            		<form:radiobutton path="bkmkAt" value="N"/>&nbsp;&nbsp;X&nbsp;&nbsp;
 	                                            	</label>
 	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>	                                                
+	                                            </td>
+	                                            <td>
+	                                                <form:input path="brthdy" size="8" maxlength="8" placeholder="8자리 입력  ex.20001231" class="f_txt w_full"/>
+	                                            </td>
+	                                         	<td class="lb">
+	                                                <label for="emailaddr">이메일 주소</label>
+	                                            </td>
+	                                            <td>
+	                                                <form:input path="emailaddr" size="50" title="이메일 주소" onchange="verifyEmail(this)" maxlength="500" htmlEscape="false" class="f_txt w_full"/>
+	                                            	<br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        	
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">

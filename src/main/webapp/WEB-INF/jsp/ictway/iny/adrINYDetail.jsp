@@ -183,22 +183,16 @@
 	                                    
 	                                    <tr>
 	                                    	<td class="lb">
-	                                        	<label for="memo">그룹명칭</label>
+	                                        	<label for="groupNm">그룹명칭</label>
 	                                        </td>
 	                                        <td>
-                                                <c:choose>
-		                                    		<c:when test="${resultVO.groupNm eq 'REL001'}">가족</br></c:when>
-		                                    		<c:when test="${resultVO.groupNm eq 'REL002'}">친구</br></c:when>
-		                                    		<c:when test="${resultVO.groupNm eq 'REL003'}">직장</br></c:when>
-		                                    		<c:when test="${resultVO.groupNm eq 'REL004'}">동호회</br></c:when>
-		                                    		<c:when test="${resultVO.groupNm eq 'REL005'}">기타</br></c:when>
-                                   				</c:choose>
+	                                        	<c:out value="${resultVO.groupNm}" />
                                             </td>
 	                                    </tr>
 	                                    
 	                                    <tr>
 	                                    	<td class="lb">
-	                                        	<label for="memo">회사명칭</label>
+	                                        	<label for="cmpnyNm">회사명칭</label>
 	                                        </td>
 	                                        <td>
 	                                        	<c:out value="${resultVO.cmpnyNm}" />
@@ -207,7 +201,7 @@
 	                                    
 	                                    <tr>
 	                                    	<td class="lb">
-	                                        	<label for="memo">부서명칭</label>
+	                                        	<label for="deptNm">부서명칭</label>
 	                                        </td>
 	                                        <td>
 	                                        	<c:out value="${resultVO.deptNm}" />
@@ -216,7 +210,7 @@
 	                                    
 	                                    <tr>
 	                                    	<td class="lb">
-	                                        	<label for="memo">직급명칭</label>
+	                                        	<label for="clsfNm">직급명칭</label>
 	                                        </td>
 	                                        <td>
 	                                        	<c:out value="${resultVO.clsfNm}" />
@@ -228,37 +222,9 @@
 	                                        	<label for="memo">메모</label>
 	                                        </td>
 	                                        <td>
-	                                        	<c:out value="${resultVO.memo}" />
+	                                        	<c:out value="${resultVO.memo}" escapeXml="false"/>
 	                                        </td>
 	                                    </tr>
-	                                    
-	                                    <tr>
-	                                    	<td class="lb">
-	                                        	<label for="memo">사진명칭</label>
-	                                        </td>
-	                                        <td>
-	                                        	<c:out value="${resultVO.photoNm}" />
-	                                        </td>
-	                                    </tr>
-	                                    
-	                                    <tr>
-	                                    	<td class="lb">
-	                                        	<label for="memo">사진경로</label>
-	                                        </td>
-	                                        <td>
-	                                        	<c:out value="${resultVO.photoCours}" />
-	                                        </td>
-	                                    </tr>
-	                                    
-	                                    <tr>
-	                                    	<td class="lb">
-	                                        	<label for="memo">사진확장자</label>
-	                                        </td>
-	                                        <td>
-	                                        	<c:out value="${resultVO.photoExtsnNm}" />
-	                                        </td>
-	                                    </tr>
-	                                    
 	                                    <tr>
 	                                    	<td class="lb">
 	                                        	<label for="bkmkAt">즐겨찾기</label>

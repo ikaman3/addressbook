@@ -192,9 +192,9 @@
 	                                            </td>
 	                                            <td>
 	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="수정할 성별">
-	                                            		<option value="">필수 선택</option>
-	                                            		<option value="남성">남성</option>
-	                                            		<option value="여성">여성</option>
+	                                            		<option value="남성" <c:if test="${resultVO.sexdstnCode eq '남성' }">selected</c:if> >남성</option>
+	                                            		<option value="여성" <c:if test="${resultVO.sexdstnCode eq '여성' }">selected</c:if> >여성</option>
+<%-- 	                                            		<option value="여성" <c:out value="${resultVO.sexdstnCode eq '여성' ? 'selected' : '' }"/> >여성</option> --%>
 	                                            	</select>
 	                                            </td>
 	                                        </tr>
@@ -227,12 +227,11 @@
 	                                            </td>
 	                                            <td>
 	                                                <select name="groupNm" class="f_txt w_full">
-	                                            		<option value="">선택</option>
-	                                            		<option value="가족">가족</option>
-	                                            		<option value="친구">친구</option>
-	                                            		<option value="현직장">현직장</option>
-	                                            		<option value="구직장">구직장</option>
-	                                            		<option value="동호회">동호회</option>
+	                                            		<option value="가족" <c:if test="${resultVO.groupNm eq '가족' }">selected</c:if>>가족</option>
+	                                            		<option value="친구" <c:if test="${resultVO.groupNm eq '친구' }">selected</c:if>>친구</option>
+	                                            		<option value="현직장" <c:if test="${resultVO.groupNm eq '현직장' }">selected</c:if>>현직장</option>
+	                                            		<option value="구직장" <c:if test="${resultVO.groupNm eq '구직장' }">selected</c:if>>구직장</option>
+	                                            		<option value="동호회" <c:if test="${resultVO.groupNm eq '동호회' }">selected</c:if>>동호회</option>
 	                                            	</select>
 	                                            </td>
 	                                        </tr>
@@ -303,9 +302,8 @@
 	                                            </td>
 	                                            <td>
 	                                                <select name="bkmkAt" class="f_txt w_full">
-	                                            		<option value="">선택</option>
-	                                            		<option value="Y">예</option>
-	                                            		<option value="N">아니오</option>
+	                                            		<option value="Y" <c:if test="${resultVO.bkmkAt eq 'Y' }">selected</c:if>>예</option>
+	                                            		<option value="N" <c:if test="${resultVO.bkmkAt eq 'N' }">selected</c:if>>아니오</option>
 	                                            	</select>
 	                                            </td>
 	                                        </tr>
