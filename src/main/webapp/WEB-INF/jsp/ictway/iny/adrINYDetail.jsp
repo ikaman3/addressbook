@@ -144,8 +144,11 @@
 	                                        	<label for="sexdstnCode">성별</label>
 	                                        </td>
 	                                        <td>
-	                                        	<c:out value="${resultVO.sexdstnCode}" />
-	                                        </td>
+                                                <c:choose>
+		                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX001'}">남자</br></c:when>
+		                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX002'}">여자</br></c:when>
+                                   				</c:choose>
+                                            </td>
 	                                    </tr>
 	                                    
 	                                    <tr>
@@ -183,8 +186,14 @@
 	                                        	<label for="memo">그룹명칭</label>
 	                                        </td>
 	                                        <td>
-	                                        	<c:out value="${resultVO.groupNm}" />
-	                                        </td>
+                                                <c:choose>
+		                                    		<c:when test="${resultVO.groupNm eq 'REL001'}">가족</br></c:when>
+		                                    		<c:when test="${resultVO.groupNm eq 'REL002'}">친구</br></c:when>
+		                                    		<c:when test="${resultVO.groupNm eq 'REL003'}">직장</br></c:when>
+		                                    		<c:when test="${resultVO.groupNm eq 'REL004'}">동호회</br></c:when>
+		                                    		<c:when test="${resultVO.groupNm eq 'REL005'}">기타</br></c:when>
+                                   				</c:choose>
+                                            </td>
 	                                    </tr>
 	                                    
 	                                    <tr>
@@ -249,9 +258,19 @@
 	                                        	<c:out value="${resultVO.photoExtsnNm}" />
 	                                        </td>
 	                                    </tr>
-	                                   
 	                                    
-                                    
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="bkmkAt">즐겨찾기</label>
+	                                        </td>
+	                                        <td>
+	                                        	<c:choose>
+		                                    		<c:when test="${resultVO.bkmkAt eq 'BKM001'}">예</br></c:when>
+		                                    		<c:when test="${resultVO.bkmkAt eq 'BKM002'}">아니요</br></c:when>
+                                   				</c:choose>
+	                                        </td>
+	                                    </tr>
+	                                   
                                     </table>
                                     </div>
 									<!-- 버튼 시작 -->

@@ -235,9 +235,13 @@
 	                                                <label for="sexdstnCode">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
-	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="성별">
-	                                                <br/><form:errors path="sexdstnCode" />
+                                                <td>
+	                                                <select id="sexdstnCode" title="성별" name="sexdstnCode" class="f_txt w_full required">
+	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
+	                                                	<option value="SEX001">남자</option>
+	                                                	<option value="SEX002">여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -345,6 +349,19 @@
 	                                            <td>
 	                                                <input id="photoExtsnNm" name="photoExtsnNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
 	                                                <br/><form:errors path="photoExtsnNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기</label>
+	                                            </td>
+                                                <td>
+	                                                <select id="bkmkAt" title="즐겨찾기" name="bkmkAt" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value="BKM002" selected>아니요</option>
+	                                                	<option value="BKM001">예</option>
+	                                                	<option value="BKM002">아니요</option>
+	                                                </select>
+	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
