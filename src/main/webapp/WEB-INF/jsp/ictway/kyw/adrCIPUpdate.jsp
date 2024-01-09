@@ -22,6 +22,7 @@
 	<script src="<c:url value='/'/>js/ui.js"></script>
 	<script src="<c:url value='/'/>js/jquery.js"></script>
 	<script src="<c:url value='/'/>js/jqueryui.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
 
 <script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
