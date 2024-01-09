@@ -116,7 +116,7 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.userNm}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.userNm}" escapeXml="false"/></div>
                                       
                                         <div style="text-align:center;">
 	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" style="width: 300px; height: 300px; margin: 20px;"/>
@@ -125,11 +125,11 @@
                                         <div class="info">
                                             <dl style="width:300px;">
                                                 <dt>그룹</dt>
-                                                <dd><c:out value="${resultVO.groupNm}" /></dd>
+                                                <dd><c:out value="${resultVO.groupNm}" escapeXml="false" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>소속</dt>
-                                                <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" /></dd>
+                                                <dd><c:out value="${resultVO.cmpnyNm} ${resultVO.deptNm} ${resultVO.clsfNm}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
                                         
@@ -137,19 +137,19 @@
                                         <div class="info">
                                         <dl>
                                                 <dt>휴대폰번호</dt>
-                                                <dd><c:out value="${resultVO.moblphonNo}" /></dd>
+                                                <dd><c:out value="${resultVO.moblphonNo}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
                                         <div class="board_faq_top"></div>
                                         <div class="info">
                                         	 <dl style="width:300px;">
                                                 <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" /></dd>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" escapeXml="false" /></dd>
                                             </dl>
                                            
                                             <dl style="width: 300px;">
                                                 <dt>생일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                                <dd><c:out value="${resultVO.brthdy}" escapeXml="false" /></dd>
                                             </dl>
                                             
                                         </div>
@@ -157,11 +157,11 @@
                                         <div class="info">
                                             <dl style="width:300px;">
                                                 <dt>주소</dt>
-                                                <dd style="margin-right:0px;"><c:out value="${resultVO.adres}" /></dd>
+                                                <dd style="margin-right:0px;"><c:out value="${resultVO.adres}" escapeXml="false" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>이메일주소</dt>
-                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
+                                                <dd><c:out value="${resultVO.emailaddr}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
                                     </div>
