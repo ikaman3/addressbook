@@ -114,8 +114,10 @@
 	
 	//카카오 주소 API
     function sample4_execDaumPostcode() {
+
         new daum.Postcode({
             oncomplete: function(data) {
+            	
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -140,14 +142,14 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+               // document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
                 
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+               /*  // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
                 } else {
                     document.getElementById("sample4_extraAddress").value = '';
-                }
+                } */
 
                 var guideTextBox = document.getElementById("guide");
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
@@ -269,26 +271,10 @@
 	                                                <br/><form:errors path="telno" />
 	                                            </td>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>	                                                
-	                                            </td>
-	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="date" size="8" value="" maxlength="8" class="f_txt w_full">
-	                                                <!--  placeholder="8자리 입력  ex.20001231" -->
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                         <td class="lb">
-	                                                <label for="emailaddr">이메일 주소</label>
+	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" onchange="verifyEmail(this)" title="이메일 주소" size="50" value="" maxlength="500" class="f_txt w_full required">
-	                                            	<br/><form:errors path="emailaddr" />
-	                                            </td>
-	                                        	<td class="lb">
-	                                                <label for="bkmkAt">즐겨찾기</label>
-	                                            </td>
-	                                            <td style="text-align: center ">
 	                                            	<label>
 	                                            		<input id="bkmkAt" name="bkmkAt" type="radio" value="Y">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	                                            	</label>
@@ -298,13 +284,28 @@
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
+	                                        	<td class="lb">
+	                                                <label for="brthdy">생년월일</label>	                                                
+	                                            </td>
+	                                            <td>
+	                                                <input id="brthdy" name="brthdy" type="date" size="8" value="" maxlength="8" class="f_txt w_full">
+	                                            </td>
+	                                         	<td class="lb">
+	                                                <label for="emailaddr">이메일 주소</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="emailaddr" name="emailaddr" type="text" onchange="verifyEmail(this)" title="이메일 주소" size="50" value="" maxlength="500" class="f_txt w_full">
+	                                            	<br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="adres">주소</label>	                                                
 	                                            </td>
 	                                            <td colspan="3">
-	                                            	<input type="text" id="sample4_postcode" placeholder="우편번호" class="f_txt w_400">
+	                                            	<input type="text" id="sample4_postcode" placeholder="우편번호" class="f_txt w_400 read only">
 	                                            	<input type="button" class="f_txt w_150" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-	                                            	<input type="text" id="sample4_roadAddress" name="adres" placeholder="도로명주소" class="f_txt w_full">
+	                                            	<input type="text" id="sample4_roadAddress" name="adres" placeholder="도로명주소" class="f_txt w_full read only">
 	                                            	<span id="guide" style="color:#999;display:none"></span>
 	                                            	<input type="text" id="sample4_detailAddress" name="detailAdres" placeholder="상세주소" class="f_txt w_full">
 	                                            	<form:errors path="adres" />
