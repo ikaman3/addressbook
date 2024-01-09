@@ -31,6 +31,7 @@
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 --%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
     
 	//주소록 목록조회
@@ -41,6 +42,32 @@
 	
 	//주소록 등록
 	function registAdrINYAct() {
+		
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			//debugger;
+			
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}		
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -62,7 +89,63 @@
     		});
     	}
     }
+	
+	function sample_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var addr = ''; // 주소 변수
+	            var extraAddr = ''; // 참고항목 변수
+
+	            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                addr = data.roadAddress;
+	            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                addr = data.jibunAddress;
+	            }
+
+	            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	            if(data.userSelectedType === 'R'){
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                if(extraAddr !== ''){
+	                    extraAddr = ' (' + extraAddr + ')';
+	                }
+	                // 조합된 참고항목을 해당 필드에 넣는다.
+	                //document.getElementById("sample_extraAddress").value = extraAddr;
+	            
+	            } else {
+	                //document.getElementById("sample_extraAddress").value = '';
+	            }
+
+	            adres = addr + extraAddr;
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('sample_postcode').value = data.zonecode;
+	            document.getElementById("adres").value = addr;
+	            document.getelementbyid("adres") = addr + extraAddr;
+	            // 커서를 상세주소 필드로 이동한다.
+	            document.getElementById("detailAdres").focus();
+	        }
+	    }).open();
+	}
     
+	var maxFileNum = document.frm.posblAtchFileNumber.value;
+	if(maxFileNum==null || maxFileNum==""){
+		maxFileNum = 3;
+	}     
+	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
+	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
 </script>
 
 <title>샘플 포털 > 주소록 > 윤현종</title>
@@ -129,142 +212,156 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="userNm">이름</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="제목">
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">생년월일</label>
+	                                                <label for="brthdy">생년월일</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="생년월일">
+	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">성별</label>
+	                                                <label for="sexdstnCode">성별</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+                                                <td>
+	                                                <select id="sexdstnCode" title="성별" name="sexdstnCode" class="f_txt w_full required">
+	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
+	                                                	<option value="SEX001">남자</option>
+	                                                	<option value="SEX002">여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                              	<input type="text" id="sample_postcode" placeholder="우편번호">
+												    <input type="button" onclick="sample_execDaumPostcode()" value="우편번호 찾기"><br>
+												    <input type="text" id="adres" name="adres" placeholder="주소" class="required" title="주소" size="40">
+		
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="30">
+												   	<!-- <input type="text" id="sample_extraAddress" placeholder="동"> -->
+	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">주소</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrSj">상세주소</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adrSj">휴대폰번호</label>
+	                                                <label for="moblphonNo">휴대폰번호</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰번호">
+	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">이메일주소</label>
+	                                                <label for="emailaddr">이메일주소</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이메일주소">
+	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">메모</label>
+	                                                <label for="memo">메모</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">그룹명칭</label>
+	                                                <label for="groupNm">그룹명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="groupNm" name="groupNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="groupNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">회사명칭</label>
+	                                                <label for="cmpnyNm">회사명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="cmpnyNm" name="cmpnyNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">부서명칭</label>
+	                                                <label for="deptNm">부서명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="deptNm" name="deptNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="deptNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">직급명칭</label>
+	                                                <label for="clsfNm">직급명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="clsfNm" name="clsfNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">사진명칭</label>
+	                                                <label for="photoNm">사진명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adrCn" name="adrCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="adrCn" />
+	                                                <textarea id="photoNm" name="photoNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <form:errors path="photoNm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">사진경로</label>
+	                                                <label for="photoCours">사진경로</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="photoCours" name="photoCours" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="photoCours" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">사진확장자명칭</label>
+	                                                <label for="photoExtsnNm">사진확장자명칭</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id="photoExtsnNm" name="photoExtsnNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="photoExtsnNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기</label>
+	                                            </td>
+                                                <td>
+	                                                <select id="bkmkAt" title="즐겨찾기" name="bkmkAt" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value="BKM002" selected>아니요</option>
+	                                                	<option value="BKM001">예</option>
+	                                                	<option value="BKM002">아니요</option>
+	                                                </select>
+	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>

@@ -45,10 +45,48 @@
 		}
 	}
 	
+	// 전화번호 입력 시 하이픈
+	function addHyphenPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+	
+	// 날짜 입력 시 하이픈
+	function addHyphenBrth(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
+	}
+	
 	//주소록 수정
 	function updateAdrITAAct(){
+		
+		const formElement = document.updateForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yja/updateAdrITAAct.do'/>",{
@@ -119,16 +157,15 @@
 									<form:hidden path="pageIndex"/>
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
-									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 									
-	                                <h1 class="tit_1">주소록</h1>
-									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
+	                                <h1 class="tit_1">알려주소</h1>
+									<p class="txt_1">주소록 수정 화면</p>
 									<h2 class="tit_2">주소록 수정</h2>
 	
 	                                <div class="board_view2">
@@ -139,22 +176,164 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
+	                                                <label for="userNm">이름</label>
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adrSj" />
+	                                            	<form:input path="userNm" class="f_txt w_full required" size="60" maxlength="10" title="수정할 이름"/>
+	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
+	                                        
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="sexdstnCode">성별</label>
+													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="수정할 성별">
+	                                            		<option value="">필수 선택</option>
+	                                            		<option value="남성">남성</option>
+	                                            		<option value="여성">여성</option>
+	                                            	</select>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="moblphonNo">휴대폰번호</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full required" oninput="addHyphenPhone(this)" size="60" maxlength="13" title="수정할 휴대폰번호"/>
+	                                                <br/><form:errors path="moblphonNo" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="emailaddr" class="f_txt w_full required" size="60" maxlength="60" title="수정할 이메일주소"/>
+	                                                <br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                         <tr>
+	                                            <td class="lb">
+	                                                <label for="groupNm">그룹</label>                                              
+	                                            </td>
+	                                            <td>
+	                                                <select name="groupNm" class="f_txt w_full">
+	                                            		<option value="">선택</option>
+	                                            		<option value="가족">가족</option>
+	                                            		<option value="친구">친구</option>
+	                                            		<option value="현직장">현직장</option>
+	                                            		<option value="구직장">구직장</option>
+	                                            		<option value="동호회">동호회</option>
+	                                            	</select>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="brthdy" class="f_txt w_full" oninput="addHyphenBrth(this)" title="제목" size="60" maxlength="10"/>
+	                                                <br/><form:errors path="brthdy" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="adres" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="adres" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="detailAdres" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="detailAdres" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyNm">회사명</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="cmpnyNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="cmpnyNm" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="deptNm">부서명</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="deptNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="deptNm" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="clsfNm">직급명</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="clsfNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="clsfNm" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기</label>
+	                                            </td>
+	                                            <td>
+	                                                <select name="bkmkAt" class="f_txt w_full">
+	                                            		<option value="">선택</option>
+	                                            		<option value="Y">예</option>
+	                                            		<option value="N">아니오</option>
+	                                            	</select>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoNm">사진첨부</label>
+	                                            </td>
+	                                            <td>
+	                                                <div class="board_attach2" id="file_upload_posbl">
+	                                                    <input name="file_1" id="egovComFileUploader" type="file" />
+	                                                    <div id="egovComFileList"></div>
+	                                                </div>
+	                                                <div class="board_attach2" id="file_upload_imposbl">
+	                                                </div>
+	                                                <c:if test="${empty result.atchFileId}">
+											            <input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
+											        </c:if>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:textarea path="memo" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+													<form:errors path="memo" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>

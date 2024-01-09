@@ -7,6 +7,7 @@
 		<result property="nm" column="nm"/>	<!-- 이름 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
 		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
+		<result property="adresNo" column="adres_no"/> <!-- 우편번호 -->
 		<result property="adres" column="adres"/>	<!-- 주소 -->
 		<result property="detailAdres" column="detail_adres"/>	<!-- 상세주소 -->
 		<result property="telno" column="telno"/>	<!-- 전화번호 -->
@@ -51,12 +52,13 @@
 	</sql>
 
 	<select id="selectAdrAMSList" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="egovMap">
-		<include refid="withAdrAMSTb"/>
+		<!-- <include refid="withAdrAMSTb"/> -->
 		SELECT
 			 adbk_id
 			,nm
 			,brthdy
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -81,14 +83,26 @@
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		FROM nsh.address_info
+		<!-- WHERE
+				adbk_delete_at = 'N' -->
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			adbk_delete_at = 'N'
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<if test="searchCondition == 0">
-					AND adbk_id LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
-					AND adbk_frst_wrter_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
+				<if test="searchCondition == 2">
+					AND telno LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
 			</if>
 		</trim>
 		ORDER BY adbk_frst_writng_dt DESC
@@ -98,16 +112,26 @@
 
 
 	<select id="selectAdrAMSListCnt" parameterType="egovframework.ictway.nsh.service.AdrAMSVO" resultType="java.lang.Integer">
-		<include refid="withAdrAMSTb"/>
+		<!-- <include refid="withAdrAMSTb"/> -->
 		SELECT COUNT(*) FROM nsh.address_info
 		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			adbk_delete_at = 'N'
 			<if test="searchKeyword != null and searchKeyword != ''">
 				<if test="searchCondition == 0">
-					AND adbk_id LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 1">
-					AND adbk_frst_wrter_nm LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
+				<if test="searchCondition == 2">
+					AND telno LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 3">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
 			</if>
 		</trim>
 	</select>
@@ -121,6 +145,7 @@
 			,brthdy
 			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -147,6 +172,7 @@
 			,nm
 			,brthdy
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -161,18 +187,16 @@
 			,cmpny_psitn_clsf_nm
 			,bkmk_at
 			,adbk_frst_wrter_id
-			<!-- ,adbk_frst_wrter_nm -->
 			,adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,adbk_last_updusr_nm
 			,adbk_delete_dt
-			<!-- ,adbk_dltr_id
-			,adbk_dltr_nm -->
 		) VALUES(
 			#{adbkId}
 			,#{nm}
 			,#{brthdy}
 			,#{sexdstnCode}
+			,#{adresNo}
 			,#{adres}
 			,#{detailAdres}
 			,#{telno}
@@ -187,13 +211,10 @@
 			,#{cmpnyPsitnClsfNm}
 			,#{bkmkAt}
 			,#{adbkFrstWrterId}
-			<!-- ,#{adbkFrstWrterNm} -->
 			,#{adbkLastUpdtDt}::timestamp
 			,#{adbkLastUpdusrId}
 			,#{adbkLastUpdusrNm}
 			,#{adbkDeleteDt}::timestamp
-			<!-- ,#{adbkDltrId}
-			,#{adbkDltrNm} -->
 		)
 	</insert>
 
@@ -206,6 +227,7 @@
 			,nm = #{nm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
+			,adres_no = #{adresNo}
 			,adres = #{adres}
 			,detail_adres = #{detailAdres}
 			,telno = #{telno}
@@ -218,17 +240,10 @@
 			,cmpny_psitn_nm = #{cmpnyPsitnNm}
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
-			<!-- ,bkmk_at = #{bkmkAt} -->
-			<!-- ,adbk_frst_writng_dt = #{adbkFrstWritngDt} -->
-			<!-- ,adbk_frst_wrter_id = #{adbkFrstWrterId}
-			,adbk_frst_wrter_nm = #{adbkFrstWrterNm} -->
-			<!-- ,adbk_last_updt_dt = #{adbkLastUpdtDt}
+			,bkmk_at = #{bkmkAt}
+			,adbk_last_updt_dt = now()
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
-			,adbk_delete_at = #{adbkDeleteAt}
-			,adbk_delete_dt = #{adbkDeleteDt}
-			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_dltr_nm = #{adbkDltrNm} -->
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
@@ -237,11 +252,12 @@
 	<update id="deleteAdrAMSAct" parameterType="egovframework.ictway.nsh.service.AdrAMSVO">
 		UPDATE nsh.address_info
 		SET 
-			 use_at = 'Y'
+			 adbk_delete_at = 'Y'
 			,adbk_delete_dt = now()
-			,adbk_last_updusr_id = #{adbkDltrId}
+			,adbk_dltr_id = #{adbkDltrId}
+			,adbk_dltr_nm = #{adbkFrstWrterNm}
 		WHERE
-			use_at = 'N'
+			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}
 	</update>
 </mapper>

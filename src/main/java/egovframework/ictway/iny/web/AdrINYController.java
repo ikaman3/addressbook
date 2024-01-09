@@ -142,7 +142,7 @@ public class AdrINYController {
 	}
 	
 	/**
-     * 주소록 정보 수정
+     * 주소록 정보 수정	
      * @param adrINYVO - 주소록 VO
      * @return 
      * @throws Exception

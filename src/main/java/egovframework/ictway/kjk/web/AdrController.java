@@ -6,14 +6,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
+import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.kjk.service.AdrService;
 import egovframework.ictway.kjk.service.AdrVO;
 import lombok.extern.slf4j.Slf4j;
@@ -116,9 +120,15 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/registAdrAct.do")
-    public ModelAndView registAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    public ModelAndView registAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
+    	
+    	if (bindingResult.hasErrors()) {
+			mav.addObject("returnResult", "FAIL");
+			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+		    return mav;
+		}
     	
 		String adrId = adrService.registAdrAct(adrVO);
 		mav.addObject("adrId", adrId);
@@ -136,7 +146,11 @@ public class AdrController {
 	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
 		
 		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
-		model.addAttribute("resultVO", resultVO);
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		if(resultVO.getFrstRegisterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			model.addAttribute("resultVO", resultVO);
+		}
 		
 		return "ictway/kjk/adrUpdate";
 	}
@@ -148,11 +162,15 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/updateAdrAct.do")
-    public ModelAndView updateAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
-    	
-		adrService.updateAdrAct(adrVO);
+
+    	if (bindingResult.hasErrors() || !adrService.updateAdrAct(adrVO)) {
+			mav.addObject("returnResult", "FAIL");
+			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+		    return mav;
+		}
 		
 		return mav;
     }
@@ -168,7 +186,10 @@ public class AdrController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrService.deleteAdrAct(adrVO);
+    	if (!adrService.deleteAdrAct(adrVO)) {
+			mav.addObject("returnResult", "FAIL");
+		    return mav;
+		}
 		
 		return mav;
     }

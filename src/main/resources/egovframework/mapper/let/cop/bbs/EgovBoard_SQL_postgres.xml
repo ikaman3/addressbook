@@ -95,7 +95,7 @@
 			( #{nttId}, #{bbsId}, #{nttSj}, #{nttCn}, #{nttNo}, 
 			  #{ntcrId}, #{ntcrNm}, #{password}, #{inqireCo}, 
 			  #{ntceBgnde}, #{ntceEndde}, #{replyAt}, 
-			  #{parnts}, 1, #{replyLc}, #{atchFileId},
+			  #{parnts}::numeric, 1, #{replyLc}::numeric, #{atchFileId},
 			  #{frstRegisterId}, now(), 'Y'
 			 )			
 		
@@ -118,7 +118,7 @@
 			( #{nttId}, #{bbsId}, #{nttSj}, #{nttCn}, #{sortOrdr}, 
 			  #{ntcrId}, #{ntcrNm}, #{password}, #{inqireCo}, 
 			  #{ntceBgnde}, #{ntceEndde}, #{replyAt}, 
-			  #{parnts}, 1, #{replyLc}, #{atchFileId},
+			  #{parnts}::numeric, 1, #{replyLc}::numeri, #{atchFileId},
 			  #{frstRegisterId}, now(), 'Y'
 			 )			
 		

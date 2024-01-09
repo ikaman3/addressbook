@@ -54,7 +54,7 @@ public class AdrPAWDAO extends EgovAbstractMapper {
 	 * @return void
 	 */
 	public void insertAdrPAWAct(AdrPAWVO adrPAWVO) {
-		insert("AdrPAWDAO.insertAdPAWrAct", adrPAWVO);
+		insert("AdrPAWDAO.insertAdrPAWAct", adrPAWVO);
 	}
 
 	/**
