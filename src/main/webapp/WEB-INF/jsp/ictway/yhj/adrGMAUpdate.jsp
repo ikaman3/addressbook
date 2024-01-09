@@ -60,28 +60,47 @@
     	return emailRegex.test(emailaddr);
 	}
 	
+	// 필수 입력값 유효성 검사
+	function isEmpty(inputElement) {
+	    return inputElement.value.trim() === '';
+	}
+
+	// 포커싱
+	function focusOnEmptyField(...inputElements) {
+	    for (const inputElement of inputElements) {
+	        if (isEmpty(inputElement)) {
+		        //alert("필수 입력값을 모두 입력해주세요: " + inputElement.getAttribute("title"));
+	            inputElement.focus();
+	            break;
+	        }
+	    }
+	}
+
 	function validateForm() {
-        let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
-        let mbtlnum = document.getElementById("mbtlnum").value;
-        let emailaddr = document.getElementById("emailaddr").value;
-        
-        if ( !sexdstnCode || mbtlnum.trim() === '' || emailaddr.trim() === '') {
-            alert("필수 입력값을 모두 입력해주세요.");
-            return false;
-        }
+	    let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
+	    let mbtlnum = document.getElementById("mbtlnum");
+	    let emailaddr = document.getElementById("emailaddr");
 
-        if (!isValidPhoneNumber(mbtlnum)) {
-            alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
-            return false;
-        }
-        
-        if (!isValidEmail(emailaddr)) {
-            alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
-            return false;
-        }
+	    if (!sexdstnCode || isEmpty(mbtlnum) || isEmpty(emailaddr)) {
+	        alert("필수 입력값을 모두 입력해주세요.");
+	        focusOnEmptyField(mbtlnum, emailaddr);
+	        return false;
+	    }
 
-        return true;
-    }
+	    if (!isValidPhoneNumber(mbtlnum.value)) {
+	        alert("휴대폰 번호 형식이 올바르지 않습니다. (000-0000-0000)");
+	        mbtlnum.focus();
+	        return false;
+	    }
+
+	    if (!isValidEmail(emailaddr.value)) {
+	        alert("이메일 형식이 올바르지 않습니다. ex) example@naver.com");
+	        emailaddr.focus();
+	        return false;
+	    }
+
+	    return true;
+	}
 	
 	//주소록 수정
 	function updateAdrGMAAct(){
