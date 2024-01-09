@@ -324,6 +324,7 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
+	                                        <%-- 
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoNm">사진명칭</label>
@@ -351,19 +352,7 @@
 	                                                <br/><form:errors path="photoExtsnNm" />
 	                                            </td>
 	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="bkmkAt">즐겨찾기</label>
-	                                            </td>
-                                                <td>
-	                                                <select id="bkmkAt" title="즐겨찾기" name="bkmkAt" class="f_txt w_full">
-	                                                	<option hidden="" disabled="disabled" value="BKM002" selected>아니요</option>
-	                                                	<option value="BKM001">예</option>
-	                                                	<option value="BKM002">아니요</option>
-	                                                </select>
-	                                                <form:errors path="bkmkAt" />
-	                                            </td>
-	                                        </tr>
+	                                         --%>
 	                                    </table>
 	                                </div>
 
