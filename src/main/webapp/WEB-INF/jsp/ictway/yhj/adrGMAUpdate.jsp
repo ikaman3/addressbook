@@ -326,6 +326,22 @@
 													size="50" value="<c:out value="${resultVO.cmpnyNm}" />" maxlength="50" class="f_txt w_full"></input>
 												</td>
 											</tr>
+											<tr>
+												<td class="lb"><label for="bkmkAt">즐겨찾기</label></td>
+												<td><c:choose>
+															<c:when test="${resultVO.bkmkAt == 'Y'}">
+																<input type="radio" name="bkmkAt" value="Y" checked="checked"/> Y 
+																<input type="radio" name="bkmkAt" value="N" /> N
+															</c:when>
+															<c:when test="${resultVO.bkmkAt == 'N'}">
+																<input type="radio" name="bkmkAt" value="Y" /> Y 
+																<input type="radio" name="bkmkAt" value="N" checked="checked"/> N
+															</c:when>
+															<c:otherwise>
+																<c:out value="${resultVO.bkmkAt}" />
+															</c:otherwise>
+														</c:choose></td>
+											</tr>
 										</table>
 									</div>
 
