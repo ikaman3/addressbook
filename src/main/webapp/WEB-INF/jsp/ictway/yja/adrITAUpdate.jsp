@@ -166,7 +166,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="10"/>
+	                                            	<form:input path="userNm" class="f_txt w_full required" size="60" maxlength="10" title="수정할 이름"/>
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -177,7 +177,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<select name="sexdstnCode" class="f_txt w_full">
+	                                            	<select name="sexdstnCode" class="f_txt w_full required" title="수정할 성별">
 	                                            		<option value="">선택</option>
 	                                            		<option value="남성">남성</option>
 	                                            		<option value="여성">여성</option>
@@ -191,7 +191,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="moblphonNo" class="f_txt w_full" title="제목" size="60" maxlength="11"/>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full required" size="60" maxlength="11" title="수정할 휴대폰번호"/>
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -202,7 +202,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="emailaddr" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="emailaddr" class="f_txt w_full required" size="60" maxlength="60" title="수정할 이메일주소"/>
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
