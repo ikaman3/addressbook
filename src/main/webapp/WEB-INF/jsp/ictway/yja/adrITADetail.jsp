@@ -152,7 +152,7 @@
                                             </dl>
                                            
                                             <dl style="width: 300px;">
-                                                <dt>생일</dt>
+                                                <dt>생년월일</dt>
                                                 <dd><c:out value="${resultVO.brthdy}" escapeXml="false" /></dd>
                                             </dl>
                                             
