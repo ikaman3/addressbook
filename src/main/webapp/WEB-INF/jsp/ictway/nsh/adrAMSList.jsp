@@ -92,8 +92,8 @@
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
-												<option value="3" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
-												<option value="4" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>이메일주소</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
+												<option value="3" <c:out value="${searchVO.searchCondition eq '3' ? 'selected' : ''}"/>>이메일주소</option>
 											</select>
 										</label>
 										<span class="item f_search">
