@@ -47,6 +47,32 @@
 	
 	//주소록 수정
 	function updateAdrPAWAct{
+		//validation 추가 코드
+		const formElement = document.updateForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			//debugger;
+			
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
     		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
@@ -119,13 +145,12 @@
 									<form:hidden path="pageIndex"/>
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
-									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">ICTWAY 신입사원 김은지의 샘플 주소록입니다.</p>
@@ -134,31 +159,135 @@
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 190px;">
+	                                            <col style="width: 200px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
-													<span class="req">필수</span>
+	                                                <label for="nm">이름</label>
+	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input title="이름" id="nm" name="nm" type="text" size="60" value="${resultVO.nm}"  maxlength="60" class="f_txt w_full required" placeholder="예)김길동">
+	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
+	                                                <label for="telno">전화번호</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                                <textarea title = "전화번호" id="telno" name="telno" class="textarea f_txtar w_full h_200 required" placeholder="예)01012345678"></textarea>
+	                                                <form:errors path="telno" />
+	                                            </td>
+	                                       </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value="${resultVO.brthdy}" maxlength="60" class="f_txt w_full" placeholder="예)20001010">
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                           		<select title="성별" id="sexdstnCode" name="sexdstnCode" class="f_txt w_full required" >
+	                                                	<option hidden=""  value="" selected>성별 선택</option>
+	                                                	<option value="gen01">남자</option>
+	                                                	<option value="gen02">여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10"></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>    
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="detailAdres" name="detailAdres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <textarea title = "이메일주소" id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200 required" cols="30" rows="10" placeholder="예)eunzi@gmail.com" ></textarea>
+	                                                <form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                         <tr>
+	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="groupCode">그룹코드</label>
+	                                            </td>
+	                                            <td>
+	                                            <select id="groupCode" name="groupCode" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value="" selected>그룹코드</option>
+	                                                	<option value="grp01">가족</option>
+	                                                	<option value="grp02">친구</option>
+	                                                	<option value="grp03">동호회</option>
+	                                                	<option value="grp04">현직장</option>
+	                                                	<option value="grp05">구직장</option>
+	                                                </select>
+	                                            </td>
+	                                       </tr>
+	                                       <tr>     
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnNm">회사소속명</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="cmpnyPsitnNm" name="cmpnyPsitnNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnTeamNm">회사소속팀명</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="cmpnyPsitnTeamNm" name="cmpnyPsitnTeamNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>    
+	                                            <td class="lb">
+	                                                <label for="cmpnyPsitnClsfNm">회사소속직급명</label>
+	                                            </td>
+	                                            <td>
+	                                                <textarea id="cmpnyPsitnClsfNm" name="cmpnyPsitnClsfNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>    
+	                                            <td class="lb">
+	                                                <label for="bkmkAt">즐겨찾기 여부</label>
+	                                            </td>
+	                                            <td>
+	                                                <label><input type="radio" name="bkmkAt" value="Y">즐겨찾기 추가</label>
+	                                                <label><input type="radio" name="bkmkAt" value="N" checked>즐겨찾기 미추가 </label>
 	                                            </td>
 	                                        </tr>
 	                                    </table>
-										
 	                                </div>
 	
 									<!-- 목록/저장버튼  시작-->
