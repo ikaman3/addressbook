@@ -354,7 +354,7 @@
 	                                            <td>
 	                                              	<input type="hidden" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px; margin-bottom:30px;">
 												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="주소" style="width:400px; height:30px; margin-bottom:30px;"><br>
+												    <input type="text" id="adres" name="adres" placeholder="주소" style="width:400px; height:30px; margin-bottom:30px;" readonly><br>
 		
 												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" style="width:100px; height:30px">
 												    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
