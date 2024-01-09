@@ -232,15 +232,6 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="date" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="brthdy" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
 	                                                <label for="sexdstnCode">성별</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
@@ -252,20 +243,6 @@
 	                                                	<option value="SEX03">공개 안 함</option>
 	                                                </select>
 	                                                <form:errors path="sexdstnCode" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adres">주소</label>
-	                                            </td>
-	                                            <td>
-	                                                <input type="text" id="sample4_postcode" name="adresNo" class="f_txt" placeholder="우편번호" style="width:45%;">
-													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width:130px; height:46px; border-radius:5px; border:none; color:#fff; font-size:16px; text-align:center; line-height:46px; background:#169bd5; margin-left: 10px;"><br>
-													<input type="text" id="sample4_roadAddress" name="adres" class="f_txt w_full" placeholder="도로명주소" style="margin-top: 10px; margin-bottom:10px">
-													<span id="guide" style="color:#999;display:none"></span>
-													<input type="text" id="sample4_detailAddress" name="detailAdres" class="f_txt w_full" placeholder="상세주소">
-													<form:errors path="adres" />
-													<form:errors path="detailAdres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -288,6 +265,29 @@
 													<div id="result"></div>
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="brthdy" name="brthdy" type="date" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <br/><form:errors path="brthdy" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+	                                            </td>
+	                                            <td>
+	                                                <input type="text" id="sample4_postcode" name="adresNo" class="f_txt" placeholder="우편번호" style="width:45%;" readonly>
+													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width:130px; height:46px; border-radius:5px; border:none; color:#fff; font-size:16px; text-align:center; line-height:46px; background:#169bd5; margin-left: 10px;"><br>
+													<input type="text" id="sample4_roadAddress" name="adres" class="f_txt w_full" placeholder="도로명주소" style="margin-top: 10px; margin-bottom:10px" readonly>
+													<span id="guide" style="color:#999;display:none"></span>
+													<input type="text" id="sample4_detailAddress" name="detailAdres" class="f_txt w_full" placeholder="상세주소">
+													<form:errors path="adres" />
+													<form:errors path="detailAdres" />
+	                                            </td>
+	                                        </tr>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
@@ -300,7 +300,7 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="groupCode">그룹코드</label>
+	                                                <label for="groupCode">그룹 지정</label>
 	                                            </td>
 	                                            <td>
 	                                                <select id="groupCode" name="groupCode" class="f_txt w_full">

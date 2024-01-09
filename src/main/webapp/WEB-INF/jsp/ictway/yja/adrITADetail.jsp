@@ -121,11 +121,36 @@
                                         <div style="text-align:center;">
 	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" style="width: 300px; height: 300px; margin: 20px;"/>
                                         </div>
+                                        
+                                         <div class="board_faq_top"></div>
+                                        <div class="info">
+                                            <dl style="width:300px;">
+                                                <dt>성별</dt>
+                                                <dd><c:out value="${resultVO.sexdstnCode}" escapeXml="false" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>휴대폰번호</dt>
+                                                <dd><c:out value="${resultVO.moblphonNo}" escapeXml="false" /></dd>
+                                            </dl>
+                                        </div>
+                                        
                                         <div class="board_faq_top"></div>
                                         <div class="info">
                                             <dl style="width:300px;">
+                                                <dt>이메일주소</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" escapeXml="false" /></dd>
+                                            </dl>
+                                            <dl>
                                                 <dt>그룹</dt>
                                                 <dd><c:out value="${resultVO.groupNm}" escapeXml="false" /></dd>
+                                            </dl>
+                                        </div>
+                                        
+                                        <div class="board_faq_top"></div>
+                                        <div class="info">
+                                            <dl style="width:300px;">
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" escapeXml="false" /></dd>
                                             </dl>
                                             <dl>
                                                 <dt>소속</dt>
@@ -133,30 +158,6 @@
                                             </dl>
                                         </div>
                                         
-                                        <div class="board_faq_top"></div>
-                                        <div class="info">
-                                        <dl style="width:300px;">
-                                                <dt>휴대폰번호</dt>
-                                                <dd><c:out value="${resultVO.moblphonNo}" escapeXml="false" /></dd>
-                                            </dl>
-                                            <dl>
-                                                <dt>이메일주소</dt>
-                                                <dd><c:out value="${resultVO.emailaddr}" escapeXml="false" /></dd>
-                                            </dl>
-                                        </div>
-                                        <div class="board_faq_top"></div>
-                                        <div class="info">
-                                        	 <dl style="width:300px;">
-                                                <dt>성별</dt>
-                                                <dd><c:out value="${resultVO.sexdstnCode}" escapeXml="false" /></dd>
-                                            </dl>
-                                           
-                                            <dl style="width: 300px;">
-                                                <dt>생년월일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" escapeXml="false" /></dd>
-                                            </dl>
-                                            
-                                        </div>
                                         <div class="board_faq_top"></div>
                                         <div class="info">
                                             <dl style="width:300px;">
@@ -168,7 +169,6 @@
                                                 <dd><c:out value="${resultVO.detailAdres}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
-                                    </div>
 
                                     <div class="board_article">
                                     	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />

@@ -89,19 +89,11 @@ public class AdrCIPServiceImpl implements AdrCIPService {
 	}
 
 	@Override
-	public Boolean deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
-		boolean result = false;
+	public void deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
 		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		AdrCIPVO resultVO = adrCIPDAO.selectAdrCIPDetail(adrCIPVO);
-		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		adrCIPDAO.deleteAdrCIPAct(adrCIPVO);
 		
-		if(resultVO.getAdbkFrstWrterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
-			adrCIPVO.setAdbkLastUpdusrId(user.getUniqId());
-			adrCIPDAO.deleteAdrCIPAct(adrCIPVO);
-			result = true;
-		}
-		
-		return result;
 	}
 }
