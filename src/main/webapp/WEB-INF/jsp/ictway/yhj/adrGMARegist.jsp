@@ -319,6 +319,12 @@
 													size="50" value="" maxlength="50" class="f_txt w_full"></input>
 												</td>
 											</tr>
+											<tr>
+												<td class="lb"><label for="bkmkAt">즐겨찾기</label></td>
+												<td><input type="radio" name="bkmkAt"
+													value="Y" /> Y <input type="radio" name="bkmkAt"
+													value="N" checked="checked"/> N</td>
+											</tr>
 										</table>
 									</div>
 
