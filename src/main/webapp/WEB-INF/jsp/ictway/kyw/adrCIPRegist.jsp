@@ -192,6 +192,7 @@
 	                                        			<option value="">▼ 선택</option>
 	                                        			<option value="SE001">남자</option>
 	                                        			<option value="SE002">여자</option>
+	                                        			<option value="SE003">없음</option>
 	                                        		</select>
 	                                        		<br/><form:errors path="sexdstnCode" />
 	                                            </td>	                                            
@@ -209,7 +210,8 @@
 	                                                <label for="brthdy">생년월일</label>	                                                
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" value="" maxlength="8" placeholder="8자리 입력  ex.20001231" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" type="date" size="8" value="" maxlength="8" class="f_txt w_full">
+	                                                <!--  placeholder="8자리 입력  ex.20001231" -->
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -225,10 +227,12 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td style="text-align: center ">
-	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" value="Y">
-	                                            	<label for="bkmkAt">O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	                                            	<input id="bkmkAt" name="bkmkAt" type="radio" value="N" checked="checked">
-	                                            	<label for="bkmkAt">X</label>
+	                                            	<label>
+	                                            		<input id="bkmkAt" name="bkmkAt" type="radio" value="Y">&nbsp;&nbsp;O&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                                            	</label>
+	                                            	<label>
+	                                            		<input id="bkmkAt" name="bkmkAt" type="radio" value="N" checked="checked">&nbsp;&nbsp;X&nbsp;&nbsp;
+	                                            	</label>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -248,13 +252,6 @@
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
-	                                        	<!-- <td class="lb">	                                        		
-	                                                <label for="photoNm">사진</label>	
-	                                            </td>
-	                                            <td>
-	                                            	<input id="photoNm" name="photoNm" type="text" size="40" value="" maxlength="40" class="f_txt w_full">
-	                                                <input id="photoNm" name="photoNm" type="file"> -->
-	                                            </td>
 	                                        	<td class="lb">	                                        		
 	                                                <label for="groupCode">그룹</label>	
 	                                            </td>
@@ -296,22 +293,6 @@
 	                                            <td colspan="3">
 	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_35" cols="20" rows="10"></textarea>
 	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <!-- <td class="lb">
-	                                                <label for="adbkFrstWrterNm">작성자 이름</label>	
-	                                                <span class="req">필수</span>                                                
-	                                            </td>
-	                                            <td>
-	                                                <input id="adbkFrstWrterNm" name="adbkFrstWrterNm" type="text" size="50" value="" maxlength="50" class="f_txt w_full">
-	                                            	<br/><form:errors path="adbkFrstWrterNm" />
-	                                            </td>
-	                                            <td class="lb">
-	                                                <label for="adbkFrstWrterId">작성자 아이디</label>	                                                
-	                                            </td>
-	                                            <td>
-	                                                <input id="adbkFrstWrterId" name="adbkFrstWrterId" type="text" size="20" value="" maxlength="20" class="f_txt w_full">
-	                                            </td> -->
 	                                        </tr>
 	                                    </table>
 	                                </div>
