@@ -28,41 +28,49 @@
 		<result property="adbkDeleteDt" column="adbk_delete_dt"/>	<!-- 주소록삭제일시 -->
 		<result property="adbkDeleteAt" column="adbk_delete_at"/>	<!-- 주소록삭제여부 -->
 	</resultMap>
-
+	
 	<select id="selectAdrCIYList" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="egovMap">
-		SELECT
-			adbk_id
-			,user_nm
-			,mbtlnum
-			,adres_group_code
-			,cmpny_nm
-		FROM yjh.address_info
-		WHERE adbk_delete_at = 'N'
-		<if test="searchCondition != '' and searchKeyword != null">
-			<choose>
-				<when test="searchCondition == 0">
-					AND user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
-				</when>
-				<when test="searchCondition == 1">
-					AND mbtlnum LIKE CONCAT('%', #{searchKeyword}, '%')
-				</when>
-				<when test="searchCondition == 2">
-					AND adres_group_code LIKE CONCAT('%', #{searchKeyword}, '%')
-				</when>
-				<when test="searchCondition == 3">
-					AND cmpny_nm LIKE CONCAT('%', #{searchKeyword}, '%')
-				</when>
-			</choose>
-		</if>
-	    <if test="searchCondition != ''">
-	    	<choose>
-	    		<when test="searchCondition == 4">
-	        		AND bkmk_at = 'Y'
-	    		</when>
-	    	</choose>
+	    SELECT
+	        adbk_id
+	        , user_nm
+	        , mbtlnum
+	        , adres_group_code
+	        , cmpny_nm
+	    FROM yjh.address_info
+	    WHERE adbk_delete_at = 'N'
+	    <if test="searchCondition != '' and searchKeyword != ''">
+	        AND (
+	            <choose>
+	                <when test="searchCondition == 0">
+	                    user_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition == 1">
+	                    mbtlnum LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	                <when test="searchCondition == 2">
+	                    <!-- 각 그룹명에 해당하는 코드로 매핑하고, 없으면 기본적으로 '' -->
+	                    adres_group_code = 
+	                        CASE 
+	                            WHEN '가족' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR001'
+	                            WHEN '친구' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR002'
+	                            WHEN '현 직장' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR003'
+	                            WHEN '구 직장' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR004'
+	                            WHEN '동호회' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR005'
+	                            WHEN '기타' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR006'
+	                            ELSE ''
+	                        END
+	                </when>
+	                <when test="searchCondition == 3">
+	                    cmpny_nm LIKE CONCAT('%', #{searchKeyword}, '%')
+	                </when>
+	            </choose>
+	        )
 	    </if>
-		ORDER BY 1 DESC
-		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	    <if test="searchCondition == 4">
+	    	AND bkmk_at = 'Y'
+	    </if>
+	    ORDER BY adbk_id DESC
+	    LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<select id="selectAdrCIYListCnt" parameterType="egovframework.ictway.yjh.service.AdrCIYVO" resultType="java.lang.Integer">
