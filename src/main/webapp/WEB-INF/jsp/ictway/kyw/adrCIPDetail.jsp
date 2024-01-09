@@ -137,6 +137,7 @@
                                                 	<c:choose>
 														<c:when test="${resultVO.sexdstnCode eq 'SE001'}">남자</br></c:when>
 														<c:when test="${resultVO.sexdstnCode eq 'SE002'}">여자</br></c:when>
+														<c:when test="${resultVO.sexdstnCode eq 'SE003'}">없음</br></c:when>
 													</c:choose>
 												</td>
                                             </tr>
@@ -210,11 +211,11 @@
                                                 <td class="lb">
 	                                                <label for="adbkFrstWrterNm">최초 작성자 이름</label>                                          
 	                                            </td>
-                                                <td><c:out value="${fn:replace(resultVO.adbkFrstWrterNm, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td><c:out value="${resultVO.adbkFrstWrterNm}" escapeXml="false" /></td>
                                             	<td class="lb">
                                               		<label for="adbkFrstWrterId">최초 작성자 아이디</label>
                                               	</td>
-                                                <td><c:out value="${fn:replace(resultVO.adbkFrstWrterId, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td><c:out value="${resultVO.adbkFrstWrterId}" escapeXml="false" /></td>
                                             </tr>
                                             <tr>
                                                 <td class="lb">
@@ -222,6 +223,7 @@
                                               	</td>
                                                 <td colspan="3"><c:out value="${fn:replace(resultVO.adbkFrstWritngDt, crlf , '<br/>')}" escapeXml="false" /></td>
                                             </tr>
+                                            <tr>
                                                 <td class="lb">
                                               		<label for="adbkLastUpdusrNm">최종 수정자명</label>
                                               	</td>
