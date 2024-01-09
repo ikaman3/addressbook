@@ -151,7 +151,7 @@
 	                                <div class="board_view2">
 	                                    <table>
 	                                        <colgroup>
-	                                            <col style="width: 100px;">
+	                                            <col style="width: 200px;">
 	                                            <col style="width: auto;">
 	                                        </colgroup>
 	                                        <tr>
@@ -170,7 +170,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200 required" title = "전화번호" cols="30" rows="10" ></textarea>
+	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200 required" title = "전화번호"></textarea>
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                       </tr>
@@ -277,12 +277,9 @@
 	                                            </td>
 	                                            <td>
 	                                                <label><input type="radio" name="bkmkAt" value="Y">즐겨찾기 추가</label>
-	                                                <label><input type="radio" name="bkmkAt" value="N">즐겨찾기 미추가 </label>
+	                                                <label><input type="radio" name="bkmkAt" value="N" checked>즐겨찾기 미추가 </label>
 	                                            </td>
 	                                        </tr>
-	                                        
-	                                       
-	                                        
 	                                        
 	                                    </table>
 	                                </div>
