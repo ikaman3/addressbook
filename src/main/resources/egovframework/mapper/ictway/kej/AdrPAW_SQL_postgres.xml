@@ -31,8 +31,28 @@
 		<result property="adbkDltrId" column="adbk_dltr_id"/>	<!-- 주소록삭제자아이디 -->
 		<result property="adbkDltrNm" column="adbk_dltr_nm"/>	<!-- 주소록삭제자명 -->
 	</resultMap>
+	
+	<sql id="withAdrPAWTb">
+		WITH tbPAW AS (
+			SELECT
+				 adbk_id
+				,nm
+				,adbk_delete_at
+				,adbk_frst_writng_dt
+				,adbk_frst_wrter_id
+				,adbk_last_updt_dt
+				,adbk_last_updusr_id
+				,bkmk_at
+				,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
+			FROM kej.address_info
+			WHERE
+				adbk_delete_at = 'N'
+		)
+	</sql>
+
 
 	<select id="selectAdrPAWList" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultType="egovMap">
+		<!-- <include refid="withAdrPAWTb"/> -->
 		SELECT
 			 adbk_id
 			,nm
@@ -62,18 +82,39 @@
 			,adbk_dltr_id
 			,adbk_dltr_nm
 		FROM kej.address_info
-		WHERE 
+		<!-- WHERE
+				adbk_delete_at = 'N' -->
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
 			adbk_delete_at = 'N'
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 1">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+		</trim>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<select id="selectAdrPAWListCnt" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultType="java.lang.Integer">
+		<!-- <include refid="withAdrPAWTb"/> -->
 		SELECT
 			COUNT(*)
 		FROM kej.address_info
-		WHERE 
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
 			adbk_delete_at = 'N'
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">
+					AND nm LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+				<if test="searchCondition == 1">
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+				</if>
+			</if>
+		</trim>
 	</select>
 
 	<select id="selectAdrPAWDetail" parameterType="egovframework.ictway.kej.service.AdrPAWVO" resultMap="AdrPAWVO">
@@ -181,16 +222,9 @@
 			,cmpny_psitn_team_nm = #{cmpnyPsitnTeamNm}
 			,cmpny_psitn_clsf_nm = #{cmpnyPsitnClsfNm}
 			,bkmk_at = #{bkmkAt}
-			,adbk_frst_writng_dt = #{adbkFrstWritngDt}
-			,adbk_frst_wrter_id = #{adbkFrstWrterId}
-			,adbk_frst_wrter_nm = #{adbkFrstWrterNm}
 			,adbk_last_updt_dt = #{adbkLastUpdtDt}
 			,adbk_last_updusr_id = #{adbkLastUpdusrId}
 			,adbk_last_updusr_nm = #{adbkLastUpdusrNm}
-			,adbk_delete_at = #{adbkDeleteAt}
-			,adbk_delete_dt = #{adbkDeleteDt}
-			,adbk_dltr_id = #{adbkDltrId}
-			,adbk_dltr_nm = #{adbkDltrNm}
 		WHERE
 			adbk_delete_at = 'N'
 			AND adbk_id = #{adbkId}

@@ -130,11 +130,11 @@
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>생년월일</dt>
-                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                                <dt>이메일주소</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
                                             </dl>
                                             <br>
-                                             <dl>
+                                            <dl>
                                                 <dt>성별</dt>
                                                 <dd>
                                                 <c:if test="${resultVO.sexdstnCode eq 'gen01'}">남자</c:if>
@@ -142,6 +142,12 @@
                                                 </dd>
                                             </dl>
                                             <br>
+                                            <dl>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <br>
+                                             
                                              <dl>
                                                 <dt>주소</dt>
                                                 <dd><c:out value="${resultVO.adres}" /></dd>
@@ -153,17 +159,14 @@
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>이메일주소</dt>
-                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
-                                            </dl>
-                                            <br>
-                                            <dl>
                                                 <dt>메모</dt>
-                                                <dd><c:out value="${resultVO.memo}" /></dd>
+                                                <dd>
+                                                <c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+                                                </dd>
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>그룹코드</dt>
+                                                <dt>그룹분류</dt>
                                                 <dd>
                                                 <c:if test="${resultVO.groupCode eq 'grp01'}">가족</c:if>
                                                 <c:if test="${resultVO.groupCode eq 'grp02'}">친구</c:if>
@@ -174,28 +177,28 @@
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>회사소속명</dt>
+                                                <dt>회사명</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnNm}" /></dd>
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>회사소속팀명</dt>
+                                                <dt>회사소속팀</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnTeamNm}" /></dd>
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>회사소속직급명</dt>
+                                                <dt>회사직급</dt>
                                                 <dd><c:out value="${resultVO.cmpnyPsitnClsfNm}" /></dd>
                                             </dl>
                                             <br>
                                             <dl>
-                                                <dt>즐겨찾기여부</dt>
+                                                <dt>즐겨찾기 여부</dt>
                                                 <dd><c:out value="${resultVO.bkmkAt}" /></dd>
                                             </dl>
                                         </div>
                                     </div>
                                     <br>
-
+                                    
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
