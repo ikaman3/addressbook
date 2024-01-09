@@ -39,10 +39,54 @@
 		document.searchListForm.submit();
 	}
 	
+		
+	//생년월일 숫자인지 유효성 검사
+	function isNumeric(str) {
+		
+		const strVal = str.value;
+		const regExp = /^[0-9]*$/;
+		if(strVal.length > 7 && !regExp.test(strVal)) {
+			alert("숫자만 입력 가능합니다. 다시 입력해주세요.");
+			return false;
+		} 
+		return true;
+		
+	}
+	 
+	
+	
 	//주소록 등록
 	function registAdrCAPAct() {
+		
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			//debugger;
+			
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
+		
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
+    		/* const formElement = document.registForm; */
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/phh/registAdrCAPAct.do'/>",{
@@ -65,7 +109,7 @@
     
 </script>
 
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 박현희</title>
 
 <style type="text/css">
 .ui-datepicker-trigger {
@@ -100,7 +144,7 @@
                                     <ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">박현희</a></li>
 										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">주소록 목록</a></li>
 										<li><a href="javascript:void(0);">주소록 등록</a></li>
 									</ul>
@@ -133,7 +177,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이름">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                            <td class="lb">
@@ -141,8 +185,14 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="sexdstnCode" />
+	                                            	
+	                                            	<select name="sexdstnCode" id="sexdstnCode" class="f_txt w_full required" title="성별">
+	                                            		<option value="">선택</option>
+	                                            		<option value="SX001">여성</option>
+	                                            		<option value="SX002">남성</option>
+	                                            		
+	                                            	</select>
+	                                            
 	                                            </td>
 	                                        </tr>
 	                                        
@@ -152,7 +202,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="mbtlnum" name="mbtlnum" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰">
 	                                                <br/><form:errors path="mbtlnum" />
 	                                            </td>
 	                                            <td class="lb">
@@ -160,7 +210,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이메일">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -170,15 +220,26 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" placeholder="ex)19980101" oninput="isNumeric(this);">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adresGroupCode" name="adresGroupCode" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adresGroupCode" />
+	                                            
+	                                            	<select name="adresGroupCode" id="adresGroupCode" class="f_txt w_full">
+	                                            		<option>선택</option>
+	                                            		<option value="GR001">가족</option>
+	                                            		<option value="GR002">친구</option>
+	                                            		<option value="GR003">현직장</option>
+	                                            		<option value="GR004">구직장</option>
+	                                            		<option value="GR005">동호회</option>
+	                                            		<option value="GR006">기타</option>
+	                                            		
+	                                            		
+	                                            	</select>
+	                              
 	                                            </td>
 	                                        </tr>
 	                                        
@@ -273,19 +334,17 @@
 	                                            </td>
 	                                        </tr>
 	                                        
-	                                        
-	                                        <%-- <tr>
+	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">즐겨찾기 여부</label>
+	                                                <label for="cmpnyClsfNm">즐겨찾기 여부</label>
 	                                            </td>
 	                                            <td colspan="3">
-	                                                <input id="adrSj" name="adrSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="adrSj" />
+	                                                <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="Y">예 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	                                                <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="N">아니요
+	                                                <br/><form:errors path="bkmkAt" />
 	                                            </td>
-	                                        </tr> --%>
-	                                        
-	                                        
-	                                        
+	                                        </tr>
+   
 	                                    </table>
 	                                </div>
 

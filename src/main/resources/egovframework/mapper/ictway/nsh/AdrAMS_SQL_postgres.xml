@@ -7,6 +7,7 @@
 		<result property="nm" column="nm"/>	<!-- 이름 -->
 		<result property="brthdy" column="brthdy"/>	<!-- 생년월일 -->
 		<result property="sexdstnCode" column="sexdstn_code"/>	<!-- 성별코드 -->
+		<result property="adresNo" column="adres_no"/> <!-- 우편번호 -->
 		<result property="adres" column="adres"/>	<!-- 주소 -->
 		<result property="detailAdres" column="detail_adres"/>	<!-- 상세주소 -->
 		<result property="telno" column="telno"/>	<!-- 전화번호 -->
@@ -57,6 +58,7 @@
 			,nm
 			,brthdy
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -93,11 +95,14 @@
 					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 2">
-					AND telno '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+					AND telno LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 3">
 					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
+			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
 			</if>
 		</trim>
 		ORDER BY adbk_frst_writng_dt DESC
@@ -119,11 +124,14 @@
 					AND brthdy LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 2">
-					AND telno '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
+					AND telno LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 3">
 					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
+			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
 			</if>
 		</trim>
 	</select>
@@ -137,6 +145,7 @@
 			,brthdy
 			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -163,6 +172,7 @@
 			,nm
 			,brthdy
 			,sexdstn_code
+			,adres_no
 			,adres
 			,detail_adres
 			,telno
@@ -186,6 +196,7 @@
 			,#{nm}
 			,#{brthdy}
 			,#{sexdstnCode}
+			,#{adresNo}
 			,#{adres}
 			,#{detailAdres}
 			,#{telno}
@@ -216,6 +227,7 @@
 			,nm = #{nm}
 			,brthdy = #{brthdy}
 			,sexdstn_code = #{sexdstnCode}
+			,adres_no = #{adresNo}
 			,adres = #{adres}
 			,detail_adres = #{detailAdres}
 			,telno = #{telno}

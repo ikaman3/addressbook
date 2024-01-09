@@ -58,7 +58,7 @@
 	
 </script>
 
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 박현희</title>
 
 <style type="text/css">
 	h1 {font-size:12px;}
@@ -106,7 +106,7 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkId"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 
@@ -115,23 +115,238 @@
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
-                                <div class="board_view">
-                                    <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.adrSj}" /></div>
+                                <div class="board_view2">
+                                    <%-- <div class="board_view_top">
+                                        <div class="tit"><c:out value="${resultVO.adbkId}" /></div>
                                         <div class="info">
                                             <dl>
-                                                <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.frstRegisterNm}" /></dd>
+                                                <dt>이름</dt>
+                                                <dd><c:out value="${resultVO.userNm}" /></dd>
                                             </dl>
+                                            <br>
                                             <dl>
-                                                <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.frstRegistPnttm}" /></dd>
+                                                <dt>성별</dt>
+                                                <dd>
+                                                	<c:choose>
+                                                		<c:when test="${resultVO.sexdstnCode eq 'SX001'}">여성</c:when>
+                                                		<c:when test="${resultVO.sexdstnCode eq 'SX002'}">남성</c:when>
+                                                	</c:choose>
+                                                </dd>       
+                                            </dl>
+                                        	<br>
+                                            <dl>
+                                                <dt>휴대폰</dt>
+                                                <dd><c:out value="${resultVO.mbtlnum}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <dl>
+                                                <dt>이메일</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <dl>
+                                                <dt>생년월일</dt>
+                                                <dd><c:out value="${resultVO.brthdy}" /></dd>
+                                            </dl>
+                                            <br>
+                                            <dl>
+                                                <dt>그룹</dt>
+                                                <dd>
+                                                	<c:choose>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR001'}">가족</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR002'}">친구</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR003'}">현직장</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR004'}">구직장</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR005'}">동호회</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR006'}">기타</c:when>
+                                                	</c:choose>
+                                                </dd>  
                                             </dl>
                                         </div>
-                                    </div>
+                                        
+                                    </div> --%>
+                                    
+                                    
+	                                    <table>
+	                                        <colgroup>
+	                                            <col style="width: 190px;">
+	                                            <col style="width: auto;">
+	                                        </colgroup>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="userNm">이름</label>
+	                                            </td>
+	                                            <td>
+	                                                <c:out value="${resultVO.userNm}" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+	                                            </td>
+	                                            <td>
+	                                            	<c:choose>
+                                                		<c:when test="${resultVO.sexdstnCode eq 'SX001'}">여성</c:when>
+                                                		<c:when test="${resultVO.sexdstnCode eq 'SX002'}">남성</c:when>
+                                                	</c:choose>
+	                                            
+	                                            </td>
+	                                        </tr>
+	                                        
+							                <tr>
+	                                            <td class="lb">
+	                                                <label for="mbtlnum">휴대폰</label>
+	                                            </td>
+	                                            <td>
+	                                                <c:out value="${resultVO.mbtlnum}" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일</label>
+	                                            </td>
+	                                            <td>
+	                                                <c:out value="${resultVO.emailaddr}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <c:out value="${resultVO.brthdy}" />
+	                                            </td>
+	                                            <td class="lb">
+	                                                <label for="adresGroupCode">그룹</label>
+	                                            </td>
+	                                            <td>
+	                                            	<c:choose>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR001'}">가족</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR002'}">친구</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR003'}">현직장</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR004'}">구직장</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR005'}">동호회</c:when>
+                                                		<c:when test="${resultVO.adresGroupCode eq 'GR006'}">기타</c:when>
+                                                	</c:choose>
+	                              
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.adres}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.detailAdres}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
+	                                            </td>
+	                                            <td colspan = "3">
+	                                                <c:out value="${resultVO.memo}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoFileNm">사진파일명칭</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.photoFileNm}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for=photoExtsnNm>사진확장자명칭</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.photoExtsnNm}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for=photoFlpth>사진파일경로</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.photoFlpth}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyNm">회사명</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.cmpnyNm}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyTeamNm">회사소속팀명</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.cmpnyTeamNm}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyClsfNm">회사직급</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <c:out value="${resultVO.cmpnyClsfNm}" />
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyClsfNm">즐겨찾기 여부</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <%-- <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="Y">예 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	                                                <input id=bkmkAt name="bkmkAt" type="radio" size="60" value="N">아니요
+	                                                <br/><form:errors path="bkmkAt" /> --%>
+	                                                
+	                                                <c:choose>
+                                                		<c:when test="${resultVO.bkmkAt eq 'Y'}">Y</c:when>
+                                                		<c:when test="${resultVO.bkmkAt eq 'N'}">N</c:when>
+                                                	</c:choose>
+	                                                
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyClsfNm">작성일시</label>
+	                                            </td>
+	                                            <td colspan="3">
+	                                                <fmt:parseDate value = "${resultVO.adbkCreatDt}" pattern = "yyyy-MM-dd HH:mm:ss" var = "date"/>
+	                                                <fmt:formatDate value="${date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+	                                            </td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        
+	       
+	                                    </table>
+	                                </div>
 
                                     <div class="board_article">
-                                    	<c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" />
+                                    	<%-- <c:out value="${fn:replace(resultVO.adrCn , crlf , '<br/>')}" escapeXml="false" /> --%>
                                     </div>
 
 									<!-- 버튼 시작 -->
@@ -146,6 +361,8 @@
                                         </div>
                                     </div>
                                     <!-- /버튼 끝 -->
+                                
+      
                                 </div>
                                 <!-- 게시판 상세보기 -->
                                 

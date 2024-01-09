@@ -91,7 +91,9 @@
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>전화번호</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
+												<option value="3" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>이메일 주소</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,7 +111,7 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
-											<col style="width: 80px;">
+											<col style="width: 100px;">
 											<col style="width: 150px;">
 											<col style="width: 80px;">
 											<col style="width: 150px;">
@@ -146,6 +148,7 @@
 													<c:choose>
 														<c:when test="${resultVO.sexdstnCode eq 'SE001'}">남자</br></c:when>
 														<c:when test="${resultVO.sexdstnCode eq 'SE002'}">여자</br></c:when>
+														<c:when test="${resultVO.sexdstnCode eq 'SE003'}">없음</br></c:when>
 													</c:choose>
 													</a>
 												</td>
