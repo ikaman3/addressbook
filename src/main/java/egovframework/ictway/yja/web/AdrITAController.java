@@ -155,11 +155,14 @@ public class AdrITAController {
     	String adrs = "";
 
 		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		
 		if (!files.isEmpty()) {
 			result = fileUtil.parseFileInf(files, "ITA_", 0, "", "");
+			if(result.size() > 0) {
 			atchFileId = result.get(0).getStreFileNm();
 			extension = result.get(0).fileExtsn;
 			adrs = result.get(0).getFileStreCours();
+			}
 		}
     	
     	adrITAVO.setPhotoNm(atchFileId);
@@ -194,9 +197,29 @@ public class AdrITAController {
      * @throws Exception
      */
     @RequestMapping("/ictway/yja/updateAdrITAAct.do")
-    public ModelAndView updateAdrITAAct(AdrITAVO adrITAVO, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrITAAct(MultipartHttpServletRequest multiRequest, AdrITAVO adrITAVO, ModelMap model) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
+    	
+    	List<FileVO> result = null;
+    	String atchFileId = "";
+    	String extension = "";
+    	String adrs = "";
+
+		final Map<String, MultipartFile> files = multiRequest.getFileMap();
+		
+		if (!files.isEmpty()) {
+			result = fileUtil.parseFileInf(files, "ITA_", 0, "", "");
+			if(result.size() > 0) {
+			atchFileId = result.get(0).getStreFileNm();
+			extension = result.get(0).fileExtsn;
+			adrs = result.get(0).getFileStreCours();
+			}
+		}
+    	
+    	adrITAVO.setPhotoNm(atchFileId);
+    	adrITAVO.setPhotoExtsnNm(extension);
+    	adrITAVO.setPhotoCours(adrs);
     	
 		adrITAService.updateAdrITAAct(adrITAVO);
 		

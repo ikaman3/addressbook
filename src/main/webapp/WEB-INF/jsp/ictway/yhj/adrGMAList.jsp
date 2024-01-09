@@ -90,8 +90,8 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>사용자 이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>이메일</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,16 +109,16 @@
 									<table>
 										<colgroup>
 											<col style="width: 80px;">
-											<col style="width: 150px;">
-											<col style="width: 150px;">
-											<col style="width: 150px;">
+											<col style="width: 200px;">
+											<col style="width: 220px;">
+											<col style="width: 250px;">
 											<col style="width: auto;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
 												<th scope="col">사용자 이름</th>
-												<th scope="col">생년월일</th>
+												<th scope="col">이메일</th>
 												<th scope="col">휴대폰번호</th>
 												<th scope="col">등록일</th>
 											</tr>
@@ -127,18 +127,21 @@
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
 												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<a href="javascript:void(0);" onclick="selectAdrGMADetail('<c:out value="${resultVO.adbkId}"/>'); return false;" class="lnk">
 														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td class="al">
-													<c:out value="${resultVO.brthdy }" escapeXml="false"/>
+												<td style="text-align: center;" class="al">
+													<c:out value="${resultVO.emailaddr }" escapeXml="false"/>
 												</td>
-												<td class="al">
+												<td style="text-align: center;" class="al">
 													<c:out value="${resultVO.mbtlnum }" escapeXml="false"/>
 												</td>
-												<td class="al"><c:out value="${resultVO.adbkCreatDt}" /></td>
+												<td style="text-align: center;" class="al">
+													<fmt:parseDate value="${resultVO.adbkCreatDt}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                	<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
+												</td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">

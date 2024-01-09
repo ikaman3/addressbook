@@ -28,7 +28,6 @@
 	
 	//주소록 수정 화면
 	function selectAdrPSPUpdate(adbkSn){
-		console.log("눌리나");
 		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/psp/selectAdrPSPUpdate.do'/>";
 		document.searchListForm.submit();
@@ -57,6 +56,9 @@
     		});
     	}
 	}
+	
+ 	
+	
 	
 </script>
 
@@ -127,42 +129,53 @@
                                             </dl>
                                             <dl>
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.registDt}" /></dd>
+                                             
+                                                
+                                                <fmt:parseDate value ="${resultVO.registDt}" pattern = "yyyy-MM-dd" var = "date"/>
+												<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"/>
                                             </dl>
                                             
                                             <dl>
                                                 <dt>수정일</dt>
-                                                <dd><c:out value="${resultVO.updtDt}" /></dd>
+                                                
+                                                <fmt:parseDate value ="${resultVO.updtDt}" pattern = "yyyy-MM-dd" var = "date"/>
+												<fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"/>
+
                                             </dl>
                                         </div>
                                     </div>
                                     
+                                    <div class="board_view2">
                                     <table>
 										<colgroup>
 	                                    	<col style="width: 190px;">
 	                                        <col style="width: auto;">
 	                                    </colgroup>
+	                                   
+	                                   
 	                                    <tr>
 	                                    	<td class="lb">
-	                                        	<label for="userNm">이름</label>
-	                                           
+	                                        	<label for="brthdy">생년월일</label>
+	                                           	
 	                                        </td>
 	                                        
 	                                        <td>
-	                                        	<div class="board_article">
-		                                    	<c:out value="${fn:replace(resultVO.userNm , crlf , '<br/>')}" escapeXml="false" />
+	                                        	<div id="brthdy", name="brthdy">
+		                                    	<fmt:parseDate value ="${resultVO.brthdy}" pattern = "yyyyMMdd" var = "date"/>
+												<fmt:formatDate value="${date}" pattern="yyyy-MM-dd"/>
 		                                    	</div>
 	                                        </td>
 	                                    </tr>
-	                                   
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
-	                                    
-	                                    <div class="board_article">
-											<div>
-											    <c:choose>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="sexdstnCode">성별</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="sexdstnCode", name="sexdstnCode">
+		                                    	<c:choose>
 											        <c:when test="${resultVO.sexdstnCode == '0'}">
 											            <c:out value="남자" escapeXml="false" />
 											        </c:when>
@@ -174,50 +187,129 @@
 											            <c:out value="${resultVO.sexdstnCode}" />
 											        </c:otherwise>
 											    </c:choose>
-											</div>
-	                                    </div>
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="adres">주소</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="adres", name="adres">
+		                                    	<c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="detailAdres">상세주소</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id=detailAdres, name="detailAdres">
+		                                    	<c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.moblphonNo , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="moblphonNo">휴대전화 번호</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="moblphonNo", name="moblphonNo">
+		                                    	
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-										<div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="emailaddr">이메일</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="emailaddr", name="emailaddr">
+		                                    	<c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="memo">메모</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="memo", name="memo">
+	                                    			<c:out value="${fn:replace(resultVO.memo , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.groupNm , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="cmpnyNm">회사명칭</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="cmpnyNm", name=cmpnyNm>
+		                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.cmpnyNm , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="deptNm">부서명칭</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="deptNm", name="deptNm">
+		                                    	<c:out value="${fn:replace(resultVO.deptNm , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.deptNm , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="clsfNm">직급명칭</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="clsfNm", name="clsfNm">
+		                                    	<c:out value="${fn:replace(resultVO.clsfNm , crlf , '<br/>')}" escapeXml="false" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
 	                                    
-	                                    <div class="board_article">
-	                                    	<c:out value="${fn:replace(resultVO.clsfNm , crlf , '<br/>')}" escapeXml="false" />
-	                                    </div>
-	                                    
-	                                    <div>
-	                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
-	                                    </div>
+	                                    <tr>
+	                                    	<td class="lb">
+	                                        	<label for="photo">사진</label>
+	                                           	
+	                                        </td>
+	                                        
+	                                        <td>
+	                                        	<div id="photo", name="photo">
+		                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+		                                    	</div>
+	                                        </td>
+	                                    </tr>
                                     
                                     </table>
+                                    </div>
 									<!-- 버튼 시작 -->
                                     <div class="board_view_bot">
                                         <div class="left_col btn3">
@@ -246,4 +338,33 @@
     </div>
     
 </body>
+<script>
+	function phoneFormatter() {
+			const num = "<c:out value="${resultVO.moblphonNo}"/>";
+			var formatNum = '';
+			try{
+				if (num.length == 11) {
+					formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+				} else if (num.length == 8) {
+					formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+				} else {
+					if (num.indexOf('02') == 0) {
+						formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+					} else {
+						formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+					}
+				}
+			} catch(e) {
+				formatNum = num;
+			}
+			
+			document.getElementById("moblphonNo").innerHTML= formatNum;
+	
+		} 
+	 	
+	 	
+		
+		phoneFormatter();
+	
+	</script>
 </html>

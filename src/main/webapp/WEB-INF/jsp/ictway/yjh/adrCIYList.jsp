@@ -19,7 +19,6 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
-
 <script type="text/javascript">
 
 	//주소록 목록조회
@@ -43,6 +42,14 @@
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYRegist.do'/>";
 		document.searchListForm.submit();
 	}
+	
+	function setSearchCondition(condition) {
+		document.searchListForm.elements["searchVO.searchCondition"].value = condition;
+	    selectAdrCIYList('1');
+	}
+	
+
+	
 </script>
 <title>샘플 포털 > 주소록 > 윤준현</title>
 
@@ -91,13 +98,17 @@
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>휴대폰번호</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>그룹</option>
+												<option value="3" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>회사</option>
+												<option value="4" <c:if test="${searchVO.searchCondition == '4'}">selected="selected"</c:if>>즐겨찾기</option>
 											</select>
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
 											<button class="btn" type="submit" onclick="selectAdrCIYList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
+										<!-- <button class="item btn btn_blue_46 w_100" type="submit" value="4" onclick="setSearchCondition('4'); return false;" return false;">즐겨찾기 조회</button>즐겨찾기 조회 -->
 										<a href="javascript:void(0);" onclick="selectAdrCIYRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
@@ -111,7 +122,7 @@
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
+												<th scope="col">이름</th>
 												<th scope="col">휴대폰 번호</th>
 												<th scope="col">그룹</th>
 												<th scope="col">회사</th>
@@ -126,13 +137,20 @@
 														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.mbtlnum}" /></td>
+												<c:if test="${resultVO.adresGroupCode == ''}"><td></td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR001'}"><td>가족</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR002'}"><td>친구</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR003'}"><td>현 직장</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR004'}"><td>구 직장</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR005'}"><td>동호회</td></c:if>
+												<c:if test="${resultVO.adresGroupCode == 'GR006'}"><td>기타</td></c:if>
+												<td><c:out value="${resultVO.cmpnyNm}" /></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
 											<tr>
-												<td colspan="4"><spring:message code="common.nodata.msg" /></td>
+												<td colspan="5"><spring:message code="common.nodata.msg" /></td>
                                         	</tr>
 										</c:if>
 										</tbody>

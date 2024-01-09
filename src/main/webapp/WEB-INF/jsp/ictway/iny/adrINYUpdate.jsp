@@ -47,27 +47,53 @@
 	
 	//주소록 수정
 	function updateAdrINYAct(){
+			
+		const formElement = document.registForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			//debugger;
+			
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
-        	const formData = new FormData(formElement);
-        	
-        	fetch("<c:url value='/ictway/iny/updateAdrINYAct.do'/>",{
-    			method: "POST",
-    			cache: "no-cache",
-     			headers: {},
-     			body: formData
-        	})
-        	.then(response => response.json())
-        	.then(data => {
-        		alert("<spring:message code="success.common.update"/>");
-        		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYDetail.do'/>";
-        		document.searchListForm.submit();
-        	})
-        	.catch(error => {
-    			console.log(error);
-    			alert("에러가 발생하였습니다.");
-    		});
-    	}
+	   		const formElement = document.updateForm;
+	       	const formData = new FormData(formElement);
+	       	
+	       	fetch("<c:url value='/ictway/iny/updateAdrINYAct.do'/>",{
+	   			method: "POST",
+	   			cache: "no-cache",
+	    			headers: {},
+	    			body: formData
+	       	})
+	       	.then(response => response.json())
+	       	.then(data => {
+	       		alert("<spring:message code="success.common.update"/>");
+	       		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYDetail.do'/>";
+	       		document.searchListForm.submit();
+	       	})
+	       	.catch(error => {
+	   			console.log(error);
+	   			alert("에러가 발생하였습니다.");
+	   		});
+	   	}
 	}
 	
 </script>
@@ -120,12 +146,12 @@
 									<form:hidden path="searchCondition"/>
 									<form:hidden path="searchKeyword"/>
 									
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 								</form:form>
 								<!-- 검색 form 끝 -->
 								
 								<form:form modelAttribute="resultVO" name="updateForm" method="post" enctype="multipart/form-data" >
-									<form:hidden path="adrId"/>
+									<form:hidden path="adbkSn"/>
 									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">INY 주소록 수정 입니다.</p>
@@ -139,26 +165,164 @@
 	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrSj">제목</label>
-													<span class="req">필수</span>
+	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
-	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="adrSj" />
+                                                <td>
+	                                                <select id="bkmkAt" title="즐겨찾기" name="bkmkAt" class="f_txt w_full">
+	                                                	<option hidden="" disabled="disabled" value=""></option>
+	                                                	<option value="BKM001" <c:out value="${resultVO.bkmkAt eq 'BKM001' ? 'selected' : ''}"/>>예</option>
+	                                                	<option value="BKM002" <c:out value="${resultVO.bkmkAt eq 'BKM002' ? 'selected' : ''}"/>>아니요</option>
+	                                                </select>
+	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="adrCn">내용</label>
-	                                                <span class="req">필수</span>
+	                                                <label for="userNm">이름</label>
+													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
-													<form:errors path="adrCn" />
+	                                            	<form:input path="userNm" class="f_txt w_full" title="이름" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="userNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="brthdy" class="f_txt w_full" title="생년월일" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="brthdy" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <select id="sexdstnCode" title="성별" name="sexdstnCode" class="f_txt w_full">
+	                                                	
+	                                                	<option value="SEX001" <c:out value="${resultVO.sexdstnCode eq 'SEX001' ? 'selected' : ''}"/>>남자</option>
+	                                                	<option value="SEX002" <c:out value="${resultVO.sexdstnCode eq 'SEX002' ? 'selected' : ''}"/>>여자</option>
+	                                                </select>
+	                                                <form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="adres" class="f_txt w_full" title="주소" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="adres" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="detailAdres">상세주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="detailAdres" class="f_txt w_full" title="상세주소" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="detailAdres" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="moblphonNo">휴대폰번호</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="moblphonNo" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일주소</label>
+													<span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="emailaddr" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="memo">메모</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:textarea path="memo" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+													<form:errors path="memo" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="groupNm">그룹명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="groupNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="groupNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="cmpnyNm">회사명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="cmpnyNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="cmpnyNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="deptNm">부서명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="deptNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="deptNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="clsfNm">직급명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="clsfNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="clsfNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoNm">사진명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoNm" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoCours">사진경로</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoCours" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoCours" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="photoExtsnNm">사진확장자명칭</label>
+	                                            </td>
+	                                            <td>
+	                                            	<form:input path="photoExtsnNm" class="f_txt w_full" size="60" maxlength="60"/>
+	                                                <br/><form:errors path="photoExtsnNm" />
 	                                            </td>
 	                                        </tr>
 	                                    </table>
-										
 	                                </div>
 	
 									<!-- 목록/저장버튼  시작-->
@@ -168,7 +332,7 @@
 	
 	                                    <div class="right_col btn1">
 	                                       	<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="updateAdrINYAct();"><spring:message code='button.save' /></a><!-- 저장 -->
-	                                        <a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
+											<a href="javascript:void(0);" class="btn btn_blue_46 w_100" onclick="goToBack();"><spring:message code="button.reset" /></a><!-- 취소 -->
 	                                    </div>
 	                                </div>
 	                                <!-- 목록/저장버튼  끝-->

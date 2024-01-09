@@ -47,8 +47,32 @@
 	
 	//주소록 수정
 	function updateAdrAct(){
+		
+		const formElement = document.updateForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = ""; //유효성검사메세지
+		let firstObjectAt = "Y"; //첫번째 object 여부
+		let focusObject; //focus해야할 object
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			
+			if(!!!v.value) {
+				if("Y" === firstObjectAt){
+					focusObject = v;
+					firstObjectAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/kjk/updateAdrAct.do'/>",{
@@ -59,6 +83,13 @@
         	})
         	.then(response => response.json())
         	.then(data => {
+        		if("FAIL" === data.returnResult){
+        			console.log(returnErrors);
+        			alert("실패하였습니다. 다시 입력해주세요.");
+        			location.reload();
+        			return;
+        		}
+        		
         		alert("<spring:message code="success.common.update"/>");
         		document.searchListForm.action = "<c:url value='/ictway/kjk/selectAdrDetail.do'/>";
         		document.searchListForm.submit();
@@ -143,7 +174,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="adrSj" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="adrSj" class="f_txt w_full required" title="제목" size="60" maxlength="60"/>
 	                                                <br/><form:errors path="adrSj" />
 	                                            </td>
 	                                        </tr>
@@ -153,7 +184,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200"/>
+	                                            	<form:textarea path="adrCn" cols="30" maxlength="500" rows="10" title="내용" htmlEscape="false" class="f_txtar w_full h_200 required"/>
 													<form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>

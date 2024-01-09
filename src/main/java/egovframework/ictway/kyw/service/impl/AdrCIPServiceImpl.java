@@ -12,6 +12,7 @@ import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.springframework.stereotype.Service;
 
 import egovframework.com.cmm.LoginVO;
+import egovframework.ictway.kjk.service.AdrVO;
 import egovframework.ictway.kyw.service.AdrCIPService;
 import egovframework.ictway.kyw.service.AdrCIPVO;
 
@@ -71,17 +72,36 @@ public class AdrCIPServiceImpl implements AdrCIPService {
 	}
 
 	@Override
-	public void updateAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
+	public Boolean updateAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
+		boolean result = false;
+		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrCIPVO.setAdbkLastUpdusrId(user.getUniqId());
-		adrCIPDAO.updateAdrCIPAct(adrCIPVO);
+		AdrCIPVO resultVO = adrCIPDAO.selectAdrCIPDetail(adrCIPVO);
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		
+		if(resultVO.getAdbkFrstWrterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			adrCIPVO.setAdbkLastUpdusrId(user.getUniqId());
+			adrCIPDAO.updateAdrCIPAct(adrCIPVO);
+			result = true;
+		}
+		
+		return result;
 	}
 
 	@Override
-	public void deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
+	public Boolean deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception {
+		boolean result = false;
+		
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		adrCIPVO.setAdbkLastUpdusrId(user.getUniqId());
-		adrCIPDAO.deleteAdrCIPAct(adrCIPVO);
+		AdrCIPVO resultVO = adrCIPDAO.selectAdrCIPDetail(adrCIPVO);
+		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
+		
+		if(resultVO.getAdbkFrstWrterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			adrCIPVO.setAdbkLastUpdusrId(user.getUniqId());
+			adrCIPDAO.deleteAdrCIPAct(adrCIPVO);
+			result = true;
+		}
+		
+		return result;
 	}
-
 }

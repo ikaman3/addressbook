@@ -43,6 +43,89 @@
 	
 	//주소록 등록
 	function registAdrPSPAct() {
+		
+		var form = registForm;
+			/* alert("사용자 함수를 호출함"); */
+		if (form.userNm.value == "")
+		{
+			alert("아이디를 입력하여 주시기 바랍니다.");
+			document.getElementById("userNm").focus();
+			return false;
+		}
+			
+		if (form.year.value == "")
+		{
+			alert("생년을 입력하여 주시기 바랍니다.");
+			document.getElementById("year").focus();
+			return false;
+		}
+		
+		if (form.month.value == "")
+		{
+			alert("월을 입력하여 주시기 바랍니다.");
+			document.getElementById("month").focus();
+			return false;
+		}
+		
+		if (form.day.value == "")
+		{
+			alert("일을 입력하여 주시기 바랍니다.");
+			document.getElementById("day").focus();
+			return false;
+		}
+		
+		if (form.sexdstnCode.value == "")
+		{
+			alert("성별을 입력하여 주시기 바랍니다.");
+			return false;
+		}
+		
+		if (form.adres.value == "")
+		{
+			alert("주소를 입력하여 주시기 바랍니다.");
+			return false;
+		}
+		
+		if (form.moblphonNo.value == "")
+		{
+			alert("휴대전화를를 입력하여 주시기 바랍니다.");
+			document.getElementById("moblphonNo").focus();
+			return false;
+		}
+		
+		if (form.emailaddr.value == "")
+		{
+			alert("이메일을 입력하여 주시기 바랍니다.");
+			document.getElementById("emailaddr").focus();
+			return false;
+		}
+		
+		
+		
+		
+		if (form.cmpnyNm.value == "")
+		{
+			alert("회사명칭을 입력하여 주시기 바랍니다.");
+			document.getElementById("cmpnyNm").focus();
+			return false;
+		}
+		
+		if (form.deptNm.value == "")
+		{
+			alert("부서명칭을 입력하여 주시기 바랍니다.");
+			document.getElementById("deptNm").focus();
+			return false;
+		}
+		
+		if (form.clsfNm.value == "")
+		{
+			alert("직급명칭을 입력하여 주시기 바랍니다.");
+			document.getElementById("clsfNm").focus();
+			return false;
+		}
+		
+		
+		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
         	const formData = new FormData(formElement);
@@ -118,19 +201,14 @@
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample6_postcode').value = data.zonecode;
 	            document.getElementById("adres").value = addr;
-	            document.getelementbyid("adres") = addr + extraAddr;
 	            // 커서를 상세주소 필드로 이동한다.
-	            document.getElementById("detailAddress").focus();
+	            document.getElementById("detailAdres").focus();
+	            
 	        }
 	    }).open();
 	}
-    
-	var maxFileNum = document.frm.posblAtchFileNumber.value;
-	if(maxFileNum==null || maxFileNum==""){
-		maxFileNum = 3;
-	}     
-	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
-	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );		
+	
+	
 </script>
 
 
@@ -214,14 +292,14 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <select id="year" name="year" class="form-control">
+	                                                <select id="year" name="year" class="form-control" style="width:100px; height:30px">
 													  <option value="">년</option>
 													  <c:forEach var="i" begin="1924" end="2024">
 													    <option value="${i}">${i}</option>
 													  </c:forEach>
 													</select>
 													  
-													<select id="month" name="month" class="form-control">
+													<select id="month" name="month" class="form-control" style="width:100px; height:30px">
 													  <option value="">월</option>
 													  <c:forEach var="i" begin="1" end="12">
 													  <c:choose>
@@ -235,7 +313,7 @@
 													  </c:forEach>
 													</select>
 													  
-													<select id="day" name="day" class="form-control">
+													<select id="day" name="day" class="form-control" style="width:100px; height:30px">
 													  <option value="">일</option>
 													  <c:forEach var="i" begin="1" end="31">
 													  <c:choose>
@@ -258,8 +336,11 @@
 	                                            </td>
 	                                            <td>
 	                                            
-	                                            	<input type='radio' name='sexdstnCode' value='0' />남성
-                                                	<input type='radio' name='sexdstnCode' value='1' />여성
+	                                            	
+	                                            	<label><input type='radio' name='sexdstnCode' value='0' />남성</label>
+	                                            	
+	                                     
+                                                	<label><input type='radio' name='sexdstnCode' value='1'style= "margin-left:20px" />여성</label>
 	                                               
 	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
@@ -271,12 +352,12 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                              	<input type="text" id="sample6_postcode" placeholder="우편번호">
+	                                              	<input type="hidden" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px; margin-bottom:30px;">
 												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="주소"><br>
+												    <input type="text" id="adres" name="adres" placeholder="주소" style="width:400px; height:30px; margin-bottom:30px;"><br>
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소">
-												    <input type="text" id="sample6_extraAddress" placeholder="참고항목">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" style="width:100px; height:30px">
+												    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
 	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
@@ -304,7 +385,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="memo">메모</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <textarea id="memo" name="memo" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
@@ -314,7 +394,6 @@
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="groupNm">그룹명칭</label>
-	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
 	                                                <input type="text" id="groupNm" name="groupNm"  >

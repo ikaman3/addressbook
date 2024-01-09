@@ -35,18 +35,17 @@
 <validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 --%>
 <script type="text/javascript">
-    
 	//주소록 목록조회
 	function selectAdrGMAList(){
 		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
 		document.searchListForm.submit();
 	}
 	
-	// 날짜 파싱
-	function processDate(formData) {
-    const inputDate = formData.get("brthdy");
-    const formattedDate = inputDate.replace(/-/g, '');
-    formData.set("brthdy", formattedDate);
+	//수정 취소
+	function goToBack(){
+		if (confirm('<spring:message code="common.reset.msg" />')) {
+			history.back();
+		}
 	}
 	
 	//휴대폰번호 유효성 검사
@@ -78,15 +77,13 @@
 	}
 
 	function validateForm() {
-	    let userNm = document.getElementById("userNm");
-	    let brthdy = document.getElementById("brthdy");
 	    let sexdstnCode = document.querySelector('input[name="sexdstnCode"]:checked');
 	    let mbtlnum = document.getElementById("mbtlnum");
 	    let emailaddr = document.getElementById("emailaddr");
 
-	    if (isEmpty(userNm) || isEmpty(brthdy) || !sexdstnCode || isEmpty(mbtlnum) || isEmpty(emailaddr)) {
+	    if (!sexdstnCode || isEmpty(mbtlnum) || isEmpty(emailaddr)) {
 	        alert("필수 입력값을 모두 입력해주세요.");
-	        focusOnEmptyField(userNm, brthdy, mbtlnum, emailaddr);
+	        focusOnEmptyField(mbtlnum, emailaddr);
 	        return false;
 	    }
 
@@ -104,38 +101,35 @@
 
 	    return true;
 	}
-
 	
-	//주소록 등록
-	function registAdrGMAAct() {
+	//주소록 수정
+	function updateAdrGMAAct(){
 		
 		if (!validateForm()) return;
 		
-    	if (confirm('<spring:message code="common.regist.msg" />')) {
-    		const formElement = document.registForm;
+		if (confirm('<spring:message code="common.update.msg" />')) {
+    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
-        	processDate(formData);
-        	
-        	fetch("<c:url value='/ictway/yhj/registAdrGMAAct.do'/>",{
+        	fetch("<c:url value='/ictway/yhj/updateAdrGMAAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
-     			headers: {
-     			},
+     			headers: {},
      			body: formData
         	})
         	.then(response => response.json())
         	.then(data => {
-        		alert("<spring:message code="success.common.insert"/>");
-        		location.href = "<c:url value='/ictway/yhj/selectAdrGMAList.do'/>";
+        		alert("<spring:message code="success.common.update"/>");
+        		document.searchListForm.action = "<c:url value='/ictway/yhj/selectAdrGMADetail.do'/>";
+        		document.searchListForm.submit();
         	})
         	.catch(error => {
     			console.log(error);
     			alert("에러가 발생하였습니다.");
     		});
     	}
-    }
-    
+	}
+	
 </script>
 
 <title>샘플 포털 > 주소록 > 염혜정</title>
@@ -178,7 +172,7 @@
 										<li><a
 											href="<c:url value="/ictway/yhj/selectAdrGMAList.do"/>">주소록
 												목록</a></li>
-										<li><a href="javascript:void(0);">주소록 등록</a></li>
+										<li><a href="javascript:void(0);">주소록 수정</a></li>
 									</ul>
 								</div>
 								<!--// Location -->
@@ -189,15 +183,18 @@
 									<form:hidden path="pageIndex" />
 									<form:hidden path="searchCondition" />
 									<form:hidden path="searchKeyword" />
+
+									<form:hidden path="adbkId" />
 								</form:form>
 								<!-- 검색 form 끝 -->
 
-								<form name="registForm" method="post"
-									enctype="multipart/form-data">
+								<form:form modelAttribute="resultVO" name="updateForm"
+									method="post" enctype="multipart/form-data">
+									<form:hidden path="adbkId" />
 
 									<h1 class="tit_1">주소록</h1>
-									<p class="txt_1">염혜정 - 주소록 등록 화면입니다.</p>
-									<h2 class="tit_2">주소록 등록</h2>
+									<p class="txt_1">주소록 - 수정 페이지</p>
+									<h2 class="tit_2">주소록 수정</h2>
 
 									<div class="board_view2">
 										<table>
@@ -206,25 +203,32 @@
 												<col style="width: auto;">
 											</colgroup>
 											<tr>
-												<td class="lb"><label for="adrSj">이름</label> <span
-													class="req">필수</span></td>
-												<td><input id="userNm" name="userNm" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full" title="이름">
-													<br /> <form:errors path="userNm" /></td>
+												<td class="lb"><label for="adrSj">이름</label></td>
+												<td><c:out value="${resultVO.userNm}" /></td>
 											</tr>
 											<tr>
-												<td class="lb"><label for="brthdy">생년월일</label> <span
-													class="req">필수</span></td>
-												<td><input id="brthdy" name="brthdy" type="date"
-													value="" class="f_txt w_full" title="생년월일"></input> <form:errors
-														path="brthdy" /></td>
+												<td class="lb"><label for="brthdy">생년월일</label></td>
+												<td><fmt:parseDate value="${resultVO.brthdy}"
+															pattern="yyyyMMdd" var="date" />
+														<fmt:formatDate value="${date}" pattern="yyyy-MM-dd" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="sexdstnCode">성별</label> <span
 													class="req">필수</span></td>
-												<td><input type="radio" name="sexdstnCode" title="성별"
-													value="SX001" /> 여성 <input type="radio" name="sexdstnCode"
-													value="SX002" title="성별"/> 남성</td>
+												<td><c:choose>
+															<c:when test="${resultVO.sexdstnCode == 'SX001'}">
+																<input type="radio" name="sexdstnCode" value="SX001" checked="checked" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" /> 남성
+															</c:when>
+															<c:when test="${resultVO.sexdstnCode == 'SX002'}">
+																<input type="radio" name="sexdstnCode" value="SX001" /> 여성 
+																<input type="radio" name="sexdstnCode" value="SX002" checked="checked" /> 남성
+															</c:when>
+															<c:otherwise>
+																<!-- 다른 값이 올 경우에 대한 처리 -->
+																<c:out value="${resultVO.sexdstnCode}" />
+															</c:otherwise>
+														</c:choose></td>
 											</tr>
 											<tr>
 												<script
@@ -269,35 +273,38 @@
 												<td><input type="text" id="sample6_postcode"
 													placeholder="우편번호"> <input type="button"
 													onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-													<input name="adres" type="text" id="sample6_address" placeholder="주소"><br>
-													<input name="detailAdres" type="text" id="sample6_detailAddress"
-													placeholder="상세주소"> <input type="text"
+													<input name="adres" type="text" id="sample6_address"
+													placeholder="주소" value="<c:out value="${resultVO.adres}" />"><br> <input
+													name="detailAdres" type="text" id="sample6_detailAddress"
+													placeholder="상세주소" value="<c:out value="${resultVO.detailAdres}" />"> <input type="text"
 													id="sample6_extraAddress" placeholder="참고항목"></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="mbtlnum">휴대폰번호</label> <span
 													class="req">필수</span></td>
 												<td><input id="mbtlnum" name="mbtlnum" type="tel"
-													size="50" value="" maxlength="13" class="f_txt w_full"
-													placeholder="010-0000-0000 형식으로 입력해주세요." title="휴대폰번호"></input> <form:errors
+													maxlength="13" value="<c:out value="${resultVO.mbtlnum}" />" class="f_txt w_full"
+													placeholder="010-0000-0000 형식으로 입력해주세요."></input> <form:errors
 														path="mbtlnum" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="emailaddr">이메일주소</label> <span
 													class="req">필수</span></td>
 												<td><input id="emailaddr" name="emailaddr" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full" title="이메일주소"></input>
+													size="50" value="<c:out value="${resultVO.emailaddr}" />" maxlength="50" class="f_txt w_full"></input>
 													<form:errors path="emailaddr" /></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="memo">메모</label></td>
 												<td><input id="memo" name="memo" type="text" size="50"
-													value="" maxlength="50" class="f_txt w_full"></input></td>
+													value="<c:out value="${resultVO.memo}" />" maxlength="50" class="f_txt w_full"></input></td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="photoFlpth">사진</label></td>
-												<td><input id="photoFlpth" name="image" type="file"
-													value="" class="f_txt w_full"></input></td>
+												<td>
+													<img src='<c:url value='/ictway/yhj/getImage.do'/>?adbkId=<c:out value="${resultVO.adbkId}"/>'/>
+													<input id="photoFlpth" name="image" type="file" value="" class="f_txt w_full">
+												</td>
 											</tr>
 											<tr>
 												<td class="lb"><label for="adresGroupCode">소속그룹</label>
@@ -316,28 +323,32 @@
 											<tr>
 												<td class="lb"><label for="cmpnyNm">회사</label></td>
 												<td><input id="cmpnyNm" name="cmpnyNm" type="text"
-													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+													size="50" value="<c:out value="${resultVO.cmpnyNm}" />" maxlength="50" class="f_txt w_full"></input>
 												</td>
 											</tr>
 										</table>
 									</div>
 
+									<!-- 목록/저장버튼  시작-->
 									<div class="board_view_bot">
 										<div class="left_col btn3"></div>
 
 										<div class="right_col btn1">
 											<a href="javascript:void(0);" class="btn btn_blue_46 w_100"
-												onclick="registAdrGMAAct();"><spring:message
-													code="button.save" /></a> <a href="javascript:void(0);"
-												class="btn btn_blue_46 w_100" onclick="selectAdrGMAList();"><spring:message
-													code="button.list" /></a>
+												onclick="updateAdrGMAAct();"><spring:message
+													code='button.save' /></a>
+											<!-- 저장 -->
+											<a href="javascript:void(0);" class="btn btn_blue_46 w_100"
+												onclick="goToBack();"><spring:message
+													code="button.reset" /></a>
+											<!-- 취소 -->
 										</div>
 									</div>
+									<!-- 목록/저장버튼  끝-->
 
-									<!--// 주소록 -->
+								</form:form>
 
-								</form>
-
+								<!--// 게시판 -->
 							</div>
 						</div>
 					</div>

@@ -24,7 +24,7 @@
 
 	//주소록 목록조회
 	function selectAdrITAList(pageIndex){
-		document.searchListForm.adbkSn.value = "";
+		document.searchListForm.adbkSn.value = 0;
 		document.searchListForm.pageIndex.value = pageIndex;
 		document.searchListForm.action = "<c:url value='/ictway/yja/selectAdrITAList.do'/>";
 		document.searchListForm.submit();
@@ -86,12 +86,12 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adbkSn">
+ 										<input type="hidden" name="adbkSn"> 
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>메모</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>휴대폰번호</option>
 											</select>
 										</label>
 										<span class="item f_search">

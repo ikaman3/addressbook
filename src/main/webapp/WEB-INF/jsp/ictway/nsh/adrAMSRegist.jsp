@@ -42,6 +42,29 @@
 	
 	//주소록 등록
 	function registAdrAMSAct() {
+		const formElement = document.registForm;
+		let validFailAt = "N"; // 유효성 검사 여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+			if (!!!v.value) {
+				if ("Y" === firstAt) {
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if ("Y" === validFailAt) {
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.regist.msg" />')) {
 	    	const formElement = document.registForm;
 	        const formData = new FormData(formElement);
@@ -117,37 +140,18 @@
     }
 	
 	// 이메일 유효성 검사
-	function emailCheck(emailaddr){     
-	email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-	if(!email_regex.test(emailaddr)){ 
-		return false; 
-	}else{
-		return true;
+	function validEmail(obj){
+	    if(validEmailCheck(obj)==false){
+	        alert('올바른 이메일 주소를 입력해주세요.')
+	        obj.value='';
+	        obj.focus();
+	        return false;
+    	}
 	}
-	
-	}
-	function validateEmail() {
-		var emailInput = document.getElementById('emailaddr');
-		var resultDiv = document.getElementById('result');
-	
-		var emailaddr = emailInput.value;
-	
-		if (emailCheck(emailaddr)) {
-			resultDiv.innerHTML = '유효한 이메일 주소입니다.';
-		} else {
-			resultDiv.innerHTML = '유효하지 않은 이메일 주소입니다.';
-		}
-	}
-	
-	// 필수 입력란 확인
-	function checkRequiredForm() {
-		requiredForm = document.registForm;
-		if (requiredForm.nm.value==""
-				|| requiredForm.sexdstnCode.value==""
-				|| requiredForm.telno.value==""
-				|| requiredForm.emailaddr.value==""
-				|| requiredForm.groupId.value=="")
-			alert("필수 입력란을 확인해 주세요.");
+
+	function validEmailCheck(obj){
+	    var pattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	    return (obj.value.match(pattern)!=null);
 	}
 
 </script>
@@ -222,7 +226,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" required>
+	                                                <input id="nm" title="이름" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required">
 	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
@@ -241,7 +245,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <select id="sexdstnCode" name="sexdstnCode" class="f_txt w_full">
+	                                                <select id="sexdstnCode" title="성별" name="sexdstnCode" class="f_txt w_full required">
 	                                                	<option hidden="" disabled="disabled" value="" selected>선택하세요</option>
 	                                                	<option value="SEX01">남자</option>
 	                                                	<option value="SEX02">여자</option>
@@ -252,12 +256,12 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="sexdstnCode">주소</label>
+	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="sample4_postcode" class="f_txt w_full" placeholder="우편번호">
-													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-													<input type="text" id="sample4_roadAddress" name="adres" class="f_txt w_full" placeholder="도로명주소">
+	                                                <input type="text" id="sample4_postcode" name="adresNo" class="f_txt" placeholder="우편번호" style="width:45%;">
+													<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width:130px; height:46px; border-radius:5px; border:none; color:#fff; font-size:16px; text-align:center; line-height:46px; background:#169bd5; margin-left: 10px;"><br>
+													<input type="text" id="sample4_roadAddress" name="adres" class="f_txt w_full" placeholder="도로명주소" style="margin-top: 10px; margin-bottom:10px">
 													<span id="guide" style="color:#999;display:none"></span>
 													<input type="text" id="sample4_detailAddress" name="detailAdres" class="f_txt w_full" placeholder="상세주소">
 													<form:errors path="adres" />
@@ -270,7 +274,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="telno" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="14" class="f_txt w_full" placeholder="하이픈(-) 없이 입력하세요" required>
+	                                                <input id="telno" title="전화번호" name="telno" type="text" oninput="oninputPhone(this)" size="60" maxlength="13" class="f_txt w_full required" placeholder="하이픈(-) 없이 입력하세요">
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                        </tr>
@@ -280,8 +284,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<input type="text" id="emailaddr" name="emailaddr" class="f_txt w_full" placeholder="gildong@gmail.com" required>
-	                                            	<button onclick="validateEmail()">확인</button>
+	                                            	<input type="text" title="이메일주소" id="emailaddr" name="emailaddr" onchange="validEmail(this)" class="f_txt w_full required" placeholder="gildong@gmail.com">
 													<div id="result"></div>
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
@@ -343,8 +346,12 @@
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
 	                                            <td>
-	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="N" checked="checked">추가하지 않음</input></br>
-	                                                <input type="radio" id="bkmkAt" name="bkmkAt" value="Y">추가</input>
+	                                            	<label>
+	                                            		<input type="radio" id="bkmkAt" name="bkmkAt" value="N" checked="checked">추가하지 않음</input></br>
+	                                            	</label>
+	                                                <label>
+	                                                	<input type="radio" id="bkmkAt" name="bkmkAt" value="Y">추가</input>
+	                                                </label>
 	                                                <form:errors path="bkmkAt" />
 	                                            </td>
 	                                        </tr>

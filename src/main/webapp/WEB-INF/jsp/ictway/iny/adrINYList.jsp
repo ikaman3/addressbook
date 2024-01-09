@@ -31,15 +31,15 @@
 	}
 	
 	//주소록 상세조회
-	function selectAdrINYDetail(adrId){
-		document.searchListForm.adrId.value = adrId;
+	function selectAdrINYDetail(adbkSn){
+		document.searchListForm.adbkSn.value = adbkSn;
 		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYDetail.do'/>";
 		document.searchListForm.submit();
 	}
 	
 	//주소록 등록 화면
 	function selectAdrINYRegist(){
-		document.searchListForm.adrId.value = "";
+		document.searchListForm.adbkSn.value = 0;
 		document.searchListForm.action = "<c:url value='/ictway/iny/selectAdrINYRegist.do'/>";
 		document.searchListForm.submit();
 	}
@@ -86,13 +86,13 @@
 									<!-- 검색 form 시작 -->
 									<form:form modelAttribute="searchVO" name="searchListForm" method="post">
 										<form:hidden path="pageIndex"/>
-										<input type="hidden" name="adrId">
+										<input type="hidden" name="adbkSn">
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
-												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>휴대폰번호</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
 											</select>
 										</label>
 										<span class="item f_search">
@@ -109,30 +109,30 @@
 								<div class="board_list">
 									<table>
 										<colgroup>
-											<col style="width: 80px;">
-											<col style="width: auto;">
+											<col style="width: 100px;">
+											<col style="width: 100px;">
 											<col style="width: 100px;">
 											<col style="width: 100px;">
 										</colgroup>
 										<thead>
 											<tr>
 												<th scope="col">번호</th>
-												<th scope="col">제목</th>
-												<th scope="col">등록자</th>
-												<th scope="col">등록일</th>
+												<th scope="col">이름</th>
+												<th scope="col">생년월일</th>
+												<th scope="col">휴대폰번호</th>
 											</tr>
 										</thead>
 										<tbody>
 										<c:forEach items="${resultList}" var="resultVO" varStatus="status">
 											<tr>
-												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }"/></td>
+												<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageUnit + status.count) }" /></td>
 												<td class="al">
-													<a href="javascript:void(0);" onclick="selectAdrINYDetail('<c:out value="${resultVO.adrId}"/>'); return false;" class="lnk">
-														<c:out value="${resultVO.adrSj }" escapeXml="false"/>
+													<a href="javascript:void(0);" onclick="selectAdrINYDetail('<c:out value="${resultVO.adbkSn}"/>'); return false;" class="lnk">
+														<c:out value="${resultVO.userNm }" escapeXml="false"/>
 													</a>
 												</td>
-												<td><c:out value="${resultVO.frstRegisterNm}" /></td>
-												<td><fmt:formatDate value="${resultVO.frstRegistPnttm }" pattern="yyyy-MM-dd"/></td>
+												<td><c:out value="${resultVO.brthdy}" /></td>
+												<td><c:out value="${resultVO.moblphonNo}" /></td>
 											</tr>
 										</c:forEach>
 										<c:if test="${fn:length(resultList) == 0}">
@@ -165,4 +165,4 @@
 
 
 </body>
-</html>
+</html>	
