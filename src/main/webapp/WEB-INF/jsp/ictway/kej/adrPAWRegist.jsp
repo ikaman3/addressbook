@@ -160,7 +160,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이름">
+	                                                <input title="이름" id="nm" name="nm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required"  placeholder="예)김길동">
 	                                                <br/><form:errors path="nm" />
 	                                            </td>
 	                                        </tr>
@@ -170,7 +170,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="telno" name="telno" class="textarea f_txtar w_full h_200 required" title = "전화번호"></textarea>
+	                                                <textarea title = "전화번호" id="telno" name="telno" class="textarea f_txtar w_full h_200 required" placeholder="예)01012345678"></textarea>
 	                                                <form:errors path="telno" />
 	                                            </td>
 	                                       </tr>
@@ -179,7 +179,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full" placeholder="예)20001010">
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -188,7 +188,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                           		<select id="sexdstnCode" name="sexdstnCode" class="f_txt w_full required" title="성별">
+	                                           		<select title="성별" id="sexdstnCode" name="sexdstnCode" class="f_txt w_full required" >
 	                                                	<option hidden=""  value="" selected>성별 선택</option>
 	                                                	<option value="gen01">남자</option>
 	                                                	<option value="gen02">여자</option>
@@ -201,7 +201,7 @@
 	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
+	                                                <textarea id="adres" name="adres" class="textarea f_txtar w_full h_200" cols="30" rows="10"></textarea>
 	                                            </td>
 	                                        </tr>
 	                                        <tr>    
@@ -219,7 +219,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <textarea id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200 required" title = "이메일주소" cols="30" rows="10" ></textarea>
+	                                                <textarea title = "이메일주소" id="emailaddr" name="emailaddr" class="textarea f_txtar w_full h_200 required" cols="30" rows="10" placeholder="예)eunzi@gmail.com" ></textarea>
 	                                                <form:errors path="adrCn" />
 	                                            </td>
 	                                        </tr>
