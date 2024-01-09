@@ -46,9 +46,6 @@
 			,dept_nm
 			,clsf_nm
 			,bkmk_at
-			,photo_nm
-			,photo_cours
-			,photo_extsn_nm
 			,regist_dt
 			,updt_dt
 			,regist_user_nm
@@ -87,9 +84,6 @@
 			,dept_nm
 			,clsf_nm
 			,bkmk_at
-			,photo_nm
-			,photo_cours
-			,photo_extsn_nm
 			,regist_dt
 			,updt_dt
 			,regist_user_nm
@@ -116,9 +110,6 @@
 			,dept_nm
 			,clsf_nm
 			,bkmk_at
-			,photo_nm
-			,photo_cours
-			,photo_extsn_nm
 			,regist_user_nm
 			,delete_at
 			,regist_user_id
@@ -137,9 +128,6 @@
 			,#{deptNm}
 			,#{clsfNm}
 			,'BKM002'
-			,#{photoNm}
-			,#{photoCours}
-			,#{photoExtsnNm}
 			,#{registUserNm}
 			,'N'
 			,#{registUserId}
@@ -162,9 +150,6 @@
 			,cmpny_nm = #{cmpnyNm}
 			,dept_nm = #{deptNm}
 			,clsf_nm = #{clsfNm}
-			,photo_nm = #{photoNm}
-			,photo_cours = #{photoCours}
-			,photo_extsn_nm = #{photoExtsnNm}
 			,updt_dt = now()
 			,regist_user_id = #{registUserId}
 			,bkmk_at = #{bkmkAt}

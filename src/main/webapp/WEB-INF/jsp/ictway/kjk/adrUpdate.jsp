@@ -74,6 +74,7 @@
 		
 		if (confirm('<spring:message code="common.update.msg" />')) {
         	const formData = new FormData(formElement);
+        	formData.set("__CSRF", "<c:out value="${__CSRF_TOKEN__}"/>"); //위조요청 방지
         	
         	fetch("<c:url value='/ictway/kjk/updateAdrAct.do'/>",{
     			method: "POST",

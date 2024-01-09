@@ -1,6 +1,7 @@
 package egovframework.ictway.kjk.web;
 
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -79,7 +81,6 @@ public class AdrController {
 		model.addAttribute("resultCnt", map.get("resultCnt"));
 		model.addAttribute("paginationInfo", paginationInfo);
 		
-		/* return "cop/bbs/EgovNoticeList"; */
 		return "ictway/kjk/adrList";
 	}
 	
@@ -91,12 +92,13 @@ public class AdrController {
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/kjk/selectAdrDetail.do")
-	public String selectAdrDetail(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	public String selectAdrDetail(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
 		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
 		model.addAttribute("resultVO", resultVO);
 		
-		/* return "cop/bbs/EgovNoticeInqire"; */
+		request.getSession().setAttribute("__CSRF_TOKEN__", UUID.randomUUID().toString()); /** CSRF 위조요청 방지를 위한 세션 등록 */
+		
 		return "ictway/kjk/adrDetail";
 	}
 	
@@ -107,9 +109,10 @@ public class AdrController {
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/kjk/selectAdrRegist.do")
-	public String selectAdrRegist(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	public String selectAdrRegist(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
-		/*return "cop/bbs/EgovNoticeRegist";*/
+		request.getSession().setAttribute("__CSRF_TOKEN__", UUID.randomUUID().toString()); /** CSRF 위조요청 방지를 위한 세션 등록 */
+		
 		return "ictway/kjk/adrRegist";
 	}
 	
@@ -120,18 +123,30 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/registAdrAct.do")
-    public ModelAndView registAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
+    public ModelAndView registAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model, HttpServletRequest request) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-    	if (bindingResult.hasErrors()) {
+		String reqestCsrfToken = ObjectUtils.nullSafeToString(request.getParameter("__CSRF")); /* request CSRF TOKEN */
+    	String sessionCsrfToken = ObjectUtils.nullSafeToString(request.getSession().getAttribute("__CSRF_TOKEN__")); /* session CSRF TOKEN */
+    	
+    	if (bindingResult.hasErrors()
+    			|| ("null".equals(reqestCsrfToken) || !reqestCsrfToken.equals(sessionCsrfToken))
+    	) { /* valid검사 및 CSRF 비교 */
+    		log.debug("bindingResult.hasErrors() = {}", bindingResult.hasErrors());
+    		log.debug("reqestCsrfToken = {}", reqestCsrfToken);
+    		log.debug("sessionCsrfToken = {}", sessionCsrfToken);
+    		log.debug("reqestCsrfToken.equals(sessionCsrfToken) = {}", reqestCsrfToken.equals(sessionCsrfToken));
+    		
 			mav.addObject("returnResult", "FAIL");
-			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+			mav.addObject("returnErrors", bindingResult.hasErrors() ? bindingResult.getFieldErrors() : "");
 		    return mav;
 		}
     	
 		String adrId = adrService.registAdrAct(adrVO);
 		mav.addObject("adrId", adrId);
+		
+		request.getSession().removeAttribute("__CSRF_TOKEN__"); /** CSRF 위조요청 방지를 위한 세션 삭제 처리 */
 		
 		return mav;
     }
@@ -143,16 +158,20 @@ public class AdrController {
 	 * @exception Exception
 	 */
 	@RequestMapping("/ictway/kjk/selectAdrUpdate.do")
-	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model) throws Exception {
+	public String selectAdrUpdate(@ModelAttribute("searchVO") AdrVO adrVO, ModelMap model, HttpServletRequest request) throws Exception {
 		
 		AdrVO resultVO = adrService.selectAdrDetail(adrVO);
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAdmin = EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN");
-		if(resultVO.getFrstRegisterId().equals(user.getUniqId()) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+		
+		if((null != resultVO && resultVO.getFrstRegisterId().equals(user.getUniqId())) || isAdmin) { //등록자 또는 관리자만 action할 수 있는 로직
+			/* 성공일때 */
 			model.addAttribute("resultVO", resultVO);
+			request.getSession().setAttribute("__CSRF_TOKEN__", UUID.randomUUID().toString()); /** CSRF 위조요청 방지를 위한 세션 등록 */
+			return "ictway/kjk/adrUpdate";
 		}
 		
-		return "ictway/kjk/adrUpdate";
+		return "redirect:/ictway/kjk/selectAdrList.do";
 	}
 	
 	/**
@@ -162,15 +181,28 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/updateAdrAct.do")
-    public ModelAndView updateAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model) throws Exception { 
+    public ModelAndView updateAdrAct(@Validated AdrVO adrVO, BindingResult bindingResult, ModelMap model, HttpServletRequest request) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
+    	
+    	String reqestCsrfToken = ObjectUtils.nullSafeToString(request.getParameter("__CSRF")); /* request CSRF TOKEN */
+    	String sessionCsrfToken = ObjectUtils.nullSafeToString(request.getSession().getAttribute("__CSRF_TOKEN__")); /* session CSRF TOKEN */
 
-    	if (bindingResult.hasErrors() || !adrService.updateAdrAct(adrVO)) {
+    	if (bindingResult.hasErrors()
+    			 || ("null".equals(reqestCsrfToken) || !reqestCsrfToken.equals(sessionCsrfToken))
+    			 || !adrService.updateAdrAct(adrVO)
+    	) { /* valid검사 및 CSRF 비교 */
+    		log.debug("bindingResult.hasErrors() = {}", bindingResult.hasErrors());
+    		log.debug("reqestCsrfToken = {}", reqestCsrfToken);
+    		log.debug("sessionCsrfToken = {}", sessionCsrfToken);
+    		log.debug("reqestCsrfToken.equals(sessionCsrfToken) = {}", reqestCsrfToken.equals(sessionCsrfToken));
+    		
 			mav.addObject("returnResult", "FAIL");
-			mav.addObject("returnErrors", bindingResult.getFieldErrors());
+			mav.addObject("returnErrors", bindingResult.hasErrors() ? bindingResult.getFieldErrors() : "");
 		    return mav;
 		}
+    	
+    	request.getSession().removeAttribute("__CSRF_TOKEN__"); /** CSRF 위조요청 방지를 위한 세션 삭제 처리 */
 		
 		return mav;
     }
@@ -182,14 +214,26 @@ public class AdrController {
      * @throws Exception
      */
     @RequestMapping("/ictway/kjk/deleteAdrAct.do")
-    public ModelAndView deleteAdrAct(AdrVO adrVO, ModelMap model) throws Exception { 
+    public ModelAndView deleteAdrAct(AdrVO adrVO, ModelMap model, HttpServletRequest request) throws Exception { 
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-    	if (!adrService.deleteAdrAct(adrVO)) {
+    	String reqestCsrfToken = ObjectUtils.nullSafeToString(request.getParameter("__CSRF")); /* request CSRF TOKEN */
+    	String sessionCsrfToken = ObjectUtils.nullSafeToString(request.getSession().getAttribute("__CSRF_TOKEN__")); /* session CSRF TOKEN */
+    	
+    	if (("null".equals(reqestCsrfToken) || !reqestCsrfToken.equals(sessionCsrfToken))
+    			|| !adrService.deleteAdrAct(adrVO)
+    	) {/* valid검사 및 CSRF 비교 */
+    		log.debug("reqestCsrfToken = {}", reqestCsrfToken);
+    		log.debug("sessionCsrfToken = {}", sessionCsrfToken);
+    		log.debug("reqestCsrfToken.equals(sessionCsrfToken) = {}", reqestCsrfToken.equals(sessionCsrfToken));
+    		
 			mav.addObject("returnResult", "FAIL");
+			mav.addObject("returnErrors", "");
 		    return mav;
 		}
+    	
+    	request.getSession().removeAttribute("__CSRF_TOKEN__"); /** CSRF 위조요청 방지를 위한 세션 삭제 처리 */
 		
 		return mav;
     }
