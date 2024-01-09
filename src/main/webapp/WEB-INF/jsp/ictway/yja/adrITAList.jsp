@@ -77,7 +77,7 @@
 								<!--// Location -->
 
 								<h1 class="tit_1">알려주소</h1>
-								<p class="txt_1">주소록 목록 페이지</p>
+								<p class="txt_1">주소록 목록 페이지 <br>이름을 클릭하면 상세 페이지로 이동합니다</p>
 								<h2 class="tit_2">주소록 목록</h2>
 
 								<!-- 검색조건 -->
@@ -92,6 +92,7 @@
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
 												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>휴대폰번호</option>
+												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>그룹</option>
 											</select>
 										</label>
 										<span class="item f_search">
