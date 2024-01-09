@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class UploadFileService {
 	
-	public final static String saveFilePathGMA = "D:\\ictwayEdu\\images";
+	public final static String saveFilePathGMA = "D:\\ictwayEdu\\addFiles\\";
 	
 	public String uploadFile(MultipartFile image) {
 		
