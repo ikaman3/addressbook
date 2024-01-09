@@ -119,7 +119,7 @@
                                         <div class="tit"><c:out value="${resultVO.userNm}" /></div>
                                       
                                         <div style="text-align:center;">
-	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+	                                    	<img src='<c:url value='/ictway/yja/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" style="width: 300px; height: 300px; margin: 20px;"/>
                                         </div>
                                         <div class="board_faq_top"></div>
                                         <div class="info">
