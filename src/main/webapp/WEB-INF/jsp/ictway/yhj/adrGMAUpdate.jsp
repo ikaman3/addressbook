@@ -323,7 +323,19 @@
 											<tr>
 												<td class="lb"><label for="cmpnyNm">회사</label></td>
 												<td><input id="cmpnyNm" name="cmpnyNm" type="text"
-													size="50" value="<c:out value="${resultVO.cmpnyNm}" />" maxlength="50" class="f_txt w_full"></input>
+													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+												</td>
+											</tr>
+											<tr>
+												<td class="lb"><label for="cmpnyTeamNm">팀</label></td>
+												<td><input id="cmpnyTeamNm" name="cmpnyTeamNm" type="text"
+													size="50" value="" maxlength="50" class="f_txt w_full"></input>
+												</td>
+											</tr>
+											<tr>
+												<td class="lb"><label for="cmpnyClsfNm">직급</label></td>
+												<td><input id="cmpnyClsfNm" name="cmpnyClsfNm" type="text"
+													size="50" value="" maxlength="50" class="f_txt w_full"></input>
 												</td>
 											</tr>
 											<tr>
