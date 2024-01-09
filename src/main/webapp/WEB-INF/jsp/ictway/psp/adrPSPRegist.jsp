@@ -86,12 +86,34 @@
 			return false;
 		}
 		
+		const phoneNumberPattern = /^010\d{8}$/;
+
+		
+		  if(!phoneNumberPattern.test(form.moblphonNo.value))    {    
+			    alert('핸드폰 번호 형식을 확인 해주세요');    
+				document.getElementById("moblphonNo").focus();  
+			  return false;   
+		}  
+
+		
 		if (form.moblphonNo.value == "")
 		{
 			alert("휴대전화를를 입력하여 주시기 바랍니다.");
 			document.getElementById("moblphonNo").focus();
 			return false;
 		}
+		
+		
+		var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+		if(emailaddr.length < 6 || !regExpEmail.test(form.emailaddr.value))    {       
+			alert('메일형식을 확인 해주세요.')        
+			document.getElementById("emailaddr").focus();
+
+			return false;    
+			}  
+
+		
 		
 		if (form.emailaddr.value == "")
 		{
@@ -265,7 +287,8 @@
 
 								<form name="registForm" method="post" enctype="multipart/form-data" >
 									<input type="hidden" name="posblAtchFileNumber" value="1" />
-									<input type="hidden" name="photoCours" value="Globals.fileStorePath"
+									<input type="hidden" name="photoCours" value="Globals.fileStorePath"/>
+									
 	                                <h1 class="tit_1">주소록</h1>
 									<p class="txt_1">아이씨티웨이(주) 신입사원 대상 개발자 교육 샘플 주소록입니다.</p>
 									<h2 class="tit_2">주소록 등록</h2>
@@ -292,14 +315,14 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <select id="year" name="year" class="form-control" style="width:100px; height:30px">
+	                                                <select id="year" name="year" class="form-control" style="width:100px; height:30px" class="f_txt w_full">
 													  <option value="">년</option>
 													  <c:forEach var="i" begin="1924" end="2024">
 													    <option value="${i}">${i}</option>
 													  </c:forEach>
 													</select>
 													  
-													<select id="month" name="month" class="form-control" style="width:100px; height:30px">
+													<select id="month" name="month" class="form-control" style="width:100px; height:30px" class="f_txt w_full">
 													  <option value="">월</option>
 													  <c:forEach var="i" begin="1" end="12">
 													  <c:choose>
@@ -313,7 +336,7 @@
 													  </c:forEach>
 													</select>
 													  
-													<select id="day" name="day" class="form-control" style="width:100px; height:30px">
+													<select id="day" name="day" class="form-control" style="width:100px; height:30px" class="f_txt w_full">
 													  <option value="">일</option>
 													  <c:forEach var="i" begin="1" end="31">
 													  <c:choose>
@@ -337,10 +360,10 @@
 	                                            <td>
 	                                            
 	                                            	
-	                                            	<label><input type='radio' name='sexdstnCode' value='0' />남성</label>
+	                                            	<label><input type='radio' name='sexdstnCode' value='0'/>남성</label>
 	                                            	
 	                                     
-                                                	<label><input type='radio' name='sexdstnCode' value='1'style= "margin-left:20px" />여성</label>
+                                                	<label><input type='radio' name='sexdstnCode' value='1'style= "margin-left:20px"/>여성</label>
 	                                               
 	                                                <form:errors path="sexdstnCode" />
 	                                            </td>
@@ -353,10 +376,10 @@
 	                                            </td>
 	                                            <td>
 	                                              	<input type="hidden" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px; margin-bottom:30px;">
-												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-bottom : 20px"><br>
 												    <input type="text" id="adres" name="adres" placeholder="주소" style="width:400px; height:30px; margin-bottom:30px;" readonly><br>
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" style="width:100px; height:30px">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" style="width:100px; height:30px" class="f_txt w_full">
 												    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
 	                                                <form:errors path="adres" />
 	                                            </td>
@@ -368,7 +391,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" title="11자리 숫자만 입력하세요" maxlength="11" required>
+	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" title="11자리 숫자만 입력하세요" maxlength="11" class="f_txt w_full" required placeholder="ex) 01011112222">
 	                                                <form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -378,7 +401,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="emailaddr" name="emailaddr"  >
+	                                                <input type="text" id="emailaddr" name="emailaddr" class="f_txt w_full" placeholder="ex) abcd1234@gmail.com" >
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -393,20 +416,11 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="groupNm">그룹명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <input type="text" id="groupNm" name="groupNm"  >
-	                                                <form:errors path="groupNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="cmpnyNm">회사명칭</label>
+	                                                <label for="cmpnyNm">회사 명칭</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="cmpnyNm" name="cmpnyNm"  >
+	                                                <input type="text" id="cmpnyNm" name="cmpnyNm" class="f_txt w_full" >
 	                                                <form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
@@ -417,7 +431,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="deptNm" name="deptNm"  >
+	                                                <input type="text" id="deptNm" name="deptNm" class="f_txt w_full" >
 	                                                <form:errors path="deptNm" />
 	                                            </td>
 	                                        </tr>
@@ -428,7 +442,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="clsfNm" name="clsfNm"  >
+	                                                <input type="text" id="clsfNm" name="clsfNm" class="f_txt w_full" >
 	                                                <form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>

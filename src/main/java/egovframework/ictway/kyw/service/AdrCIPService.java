@@ -56,5 +56,5 @@ public interface AdrCIPService {
 	 * @return void
 	 * @exception Exception
 	 */	
-	Boolean deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
+	void deleteAdrCIPAct(AdrCIPVO adrCIPVO) throws Exception;
 }

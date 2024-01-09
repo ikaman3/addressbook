@@ -32,7 +32,6 @@
 	
 	//주소록 상세조회
 	function selectAdrCAPDetail(adbkId){
-		debugger;
 		document.searchListForm.adbkId.value = adbkId;
 		document.searchListForm.action = "<c:url value='/ictway/phh/selectAdrCAPDetail.do'/>";
 		document.searchListForm.submit();
@@ -45,7 +44,7 @@
 		document.searchListForm.submit();
 	}
 </script>
-<title>샘플 포털 > 주소록 > 김진광</title>
+<title>샘플 포털 > 주소록 > 박현희</title>
 
 </head>
 <body>
@@ -71,7 +70,7 @@
 									<ul>
 										<li><a class="home" href="<c:url value="/"/>">Home</a></li>
 										<li><a href="javascript:void(0);">주소록</a></li>
-										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">김진광</a></li>
+										<li><a href="<c:url value="/ictway/phh/selectAdrCAPList.do"/>">박현희</a></li>
 										<li><a href="javascript:void(0);">주소록 목록</a></li>
 									</ul>
 								</div>
@@ -91,8 +90,8 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>제목</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>등록자</option>
+												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
+												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>번호</option>
 											</select>
 										</label>
 										<span class="item f_search">

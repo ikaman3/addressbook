@@ -90,9 +90,9 @@
 										
 										<label class="item f_select" for="searchCondition">
 											<select name="searchCondition" id="searchCondition" title="검색조건 선택">
-												<option value="0" <c:if test="${searchVO.searchCondition == '0'}">selected="selected"</c:if>>이름</option>
-												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
-												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
+												<option value="0" <c:out value="${searchVO.searchCondition eq '0' ? 'selected' : ''}"/>>이름</option>
+												<option value="1" <c:out value="${searchVO.searchCondition eq '1' ? 'selected' : ''}"/>>생년월일</option>
+												<option value="2" <c:out value="${searchVO.searchCondition eq '2' ? 'selected' : ''}"/>>전화번호</option>
 												<option value="3" <c:out value="${searchVO.searchCondition eq '3' ? 'selected' : ''}"/>>이메일주소</option>
 												<option value="4" <c:out value="${searchVO.searchCondition eq '4' ? 'selected' : ''}"/>>즐겨찾기</option>
 											</select>
@@ -124,7 +124,7 @@
 												<th scope="col">성별</th>
 												<th scope="col">전화번호</th>
 												<th scope="col">이메일주소</th>
-												<th scope="col">등록자</th>
+												<th scope="col">즐겨찾기</th>
 												<th scope="col">등록일</th>
 											</tr>
 										</thead>
@@ -147,7 +147,11 @@
 												</td>
 												<td><c:out value="${resultVO.telno}" /></td>
 												<td><c:out value="${resultVO.emailaddr}" /></td>
-												<td><c:out value="${resultVO.adbkFrstWrterNm}" /></td>
+												<td>
+													<c:choose>
+			                                    		<c:when test="${resultVO.bkmkAt eq 'N'}">추가하지 않음</br></c:when>
+			                                    		<c:when test="${resultVO.bkmkAt eq 'Y'}">추가</br></c:when>
+			                                    	</c:choose>
 												<td><fmt:formatDate value="${resultVO.adbkFrstWritngDt }" pattern="yyyy-MM-dd"/></td>
 											</tr>
 										</c:forEach>

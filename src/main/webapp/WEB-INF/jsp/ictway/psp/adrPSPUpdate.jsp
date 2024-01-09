@@ -93,6 +93,17 @@
 		return false;
 	}
 	
+	
+	const phoneNumberPattern = /^010\d{8}$/;
+
+	
+	  if(!phoneNumberPattern.test(form.moblphonNo.value))    {    
+		    alert('핸드폰 번호 형식을 확인 해주세요');    
+			document.getElementById("moblphonNo").focus();  
+		  return false;   
+	}  
+
+	
 	if (form.moblphonNo.value == "")
 	{
 		alert("휴대전화를를 입력하여 주시기 바랍니다.");
@@ -100,6 +111,15 @@
 		return false;
 	}
 	
+	
+	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+	if(emailaddr.length < 6 || !regExpEmail.test(form.emailaddr.value))    {       
+		alert('메일형식을 확인 해주세요.')        
+		document.getElementById("emailaddr").focus();
+
+		return false;    
+		}  
 	if (form.emailaddr.value == "")
 	{
 		alert("이메일을 입력하여 주시기 바랍니다.");
@@ -207,13 +227,13 @@
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample6_postcode').value = data.zonecode;
 	            document.getElementById("adres").value = addr;
-	            document.getelementbyid("adres") = addr + extraAddr;
 	            // 커서를 상세주소 필드로 이동한다.
-	            document.getElementById("detailAddress").focus();
+	            document.getElementById("detailAdres").focus();
+	            
 	        }
 	    }).open();
 	}
-    
+	
 
 	
 </script>
@@ -359,9 +379,9 @@
 	                                            <td>
 	                                              	<input type="hidden" id="sample6_postcode" placeholder="우편번호" style="width:100px; height:30px; margin-bottom:30px;">
 												    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-												    <input type="text" id="adres" name="adres" placeholder="" value="${resultVO.adres }" style="width:400px; height:30px; margin-bottom:30px;"><br>
+												    <input type="text" id="adres" name="adres" placeholder="" value="${resultVO.adres }" style="width:400px; height:30px; margin-bottom:30px;" class="f_txt w_full" readOnly><br>
 		
-												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" value="${resultVO.detailAdres }"style="width:100px; height:30px">
+												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" value="${resultVO.detailAdres }"style="width:100px; height:30px" class="f_txt w_full">
 												    <input type="hidden" id="sample6_extraAddress" placeholder="참고항목" style="width:100px; height:30px">
 	                                                <form:errors path="adres" />
 	                                            </td>
@@ -373,7 +393,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" value="${resultVO.moblphonNo }"title="11자리 숫자만 입력하세요" maxlength="11" required>
+	                                                <input type="text" id="moblphonNo" name="moblphonNo" pattern="[0-9]{11}" value="${resultVO.moblphonNo }" class="f_txt w_full" title="11자리 숫자만 입력하세요" maxlength="11" required >
 	                                                <form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -383,7 +403,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="emailaddr" name="emailaddr" value="${resultVO.emailaddr }"  >
+	                                                <input type="text" id="emailaddr" name="emailaddr" value="${resultVO.emailaddr }" class="f_txt w_full" >
 	                                                <form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -398,20 +418,11 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="groupNm">그룹명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <input type="text" id="groupNm" name="groupNm" value="${resultVO.groupNm }"  >
-	                                                <form:errors path="groupNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="cmpnyNm">회사명칭</label>
+	                                                <label for="cmpnyNm">회사 명칭</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="cmpnyNm" name="cmpnyNm" value="${resultVO.cmpnyNm }" >
+	                                                <input type="text" id="cmpnyNm" name="cmpnyNm" value="${resultVO.cmpnyNm }" class="f_txt w_full">
 	                                                <form:errors path="cmpnyNm" />
 	                                            </td>
 	                                        </tr>
@@ -422,7 +433,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="deptNm" name="deptNm" value="${resultVO.deptNm }" >
+	                                                <input type="text" id="deptNm" name="deptNm" value="${resultVO.deptNm }" class="f_txt w_full">
 	                                                <form:errors path="deptNm" />
 	                                            </td>
 	                                        </tr>
@@ -434,7 +445,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input type="text" id="clsfNm" name="clsfNm" value="${resultVO.clsfNm }" >
+	                                                <input type="text" id="clsfNm" name="clsfNm" value="${resultVO.clsfNm }" class="f_txt w_full">
 	                                                <form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
@@ -445,7 +456,7 @@
 	                                            </td>
 	                                            
 	                                        	<td>
-	                                        		<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+	                                        		<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" style="width:500px; height:300px"/>
 	                                        	</td>
 	                                        </tr>
 	                                        
