@@ -146,14 +146,6 @@
 	                                        </tr>
 	                                        <tr height="50px">
 	                                        	<td class="lb">
-	                                                <label for="brthdy"><b>생년월일</b></label>
-	                                            </td>
-	                                        	<td>
-	                                                <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
-	                                            </td>
-	                                        </tr>
-	                                        <tr height="50px">
-	                                        	<td class="lb">
 	                                                <label for="sexdstnCode"><b>성별</b></label>
 	                                            </td>
 	                                        	<td>
@@ -162,16 +154,6 @@
 			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
 			                                    		<c:otherwise>공개 안 함</br></c:otherwise>
                                     				</c:choose>
-	                                            </td>
-	                                        </tr>
-	                                        <tr height="50px">
-	                                        	<td class="lb">
-	                                                <label for="adres"><b>주소</b></label>
-	                                            </td>
-	                                        	<td>
-	                                        		<c:out value="${fn:replace(resultVO.adresNo , crlf , '<br/>')}" escapeXml="false" /> </br>
-	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
-	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                            </td>
 	                                        </tr>
 	                                        <tr height="50px">
@@ -188,6 +170,24 @@
 	                                            </td>
 	                                        	<td>
 	                                                <c:out value="${fn:replace(resultVO.emailaddr , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="brthdy"><b>생년월일</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="adres"><b>주소</b></label>
+	                                            </td>
+	                                        	<td>
+	                                        		<c:out value="${fn:replace(resultVO.adresNo , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                            </td>
 	                                        </tr>
 	                                        <tr height="50px">
