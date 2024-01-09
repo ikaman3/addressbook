@@ -47,8 +47,32 @@
 	
 	//주소록 수정
 	function updateAdrITAAct(){
+		
+		const formElement = document.updateForm;
+		let validFailAt = "N"; //유효성검사실패여부
+		let validMsg = "";
+		let firstAt = "Y";
+		let focusObject;
+		
+		formElement.querySelectorAll(".required").forEach(v=>{
+
+			if(!!!v.value) {
+				if("Y" === firstAt){
+					focusObject = v;
+					firstAt = "N";
+				}
+				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
+				validFailAt = "Y";
+			}
+		});
+		
+		if("Y" === validFailAt){
+			alert(validMsg);
+			focusObject.focus();
+			return;
+		}
+		
 		if (confirm('<spring:message code="common.update.msg" />')) {
-    		const formElement = document.updateForm;
         	const formData = new FormData(formElement);
         	
         	fetch("<c:url value='/ictway/yja/updateAdrITAAct.do'/>",{
@@ -142,7 +166,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="userNm" class="f_txt w_full" title="제목" size="60" maxlength="10"/>
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -167,7 +191,7 @@
 													<span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="moblphonNo" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="moblphonNo" class="f_txt w_full" title="제목" size="60" maxlength="11"/>
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -204,7 +228,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                            	<form:input path="brthdy" class="f_txt w_full" title="제목" size="60" maxlength="60"/>
+	                                            	<form:input path="brthdy" class="f_txt w_full" title="제목" size="60" maxlength="8"/>
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
