@@ -38,7 +38,7 @@
 	        , cmpny_nm
 	    FROM yjh.address_info
 	    WHERE adbk_delete_at = 'N'
-	    <if test="searchCondition != '' and searchKeyword != ''">
+	    <if test="searchCondition != '' and searchCondition != 4 and searchKeyword != ''">
 	        AND (
 	            <choose>
 	                <when test="searchCondition == 0">

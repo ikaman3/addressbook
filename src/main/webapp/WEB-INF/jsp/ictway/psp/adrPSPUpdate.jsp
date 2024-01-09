@@ -439,6 +439,16 @@
 	                                            </td>
 	                                        </tr>
 	                                        
+	                                         <tr>
+	                                        	<td class="lb">
+	                                                <label for="clsfNm">사진</label>
+	                                            </td>
+	                                            
+	                                        	<td>
+	                                        		<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+	                                        	</td>
+	                                        </tr>
+	                                        
 	                                        <!--  <tr>
 	                                            <td class="lb">
 	                                                <label for="phto">사진 첨부</label>

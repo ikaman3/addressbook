@@ -61,7 +61,7 @@
 				</when>
 				
 				<when test="searchCondition == 1">
-					AND moblphonNo LIKE CONCAT('%', #{searchKeyword}, '%')
+					AND moblphon_no LIKE CONCAT('%', #{searchKeyword}, '%')
 				</when>
 			</choose>
 			

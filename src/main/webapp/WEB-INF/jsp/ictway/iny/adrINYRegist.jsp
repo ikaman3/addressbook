@@ -40,33 +40,32 @@
 		document.searchListForm.submit();
 	}
 	
+	//생년월일 숫자인지 유효성 검사
+	function isNumeric(str) {
+		
+		const strVal = str.value;
+		const regExp = /^[0-9]*$/;
+		if(strVal.length > 8 || !regExp.test(strVal)) {  
+			alert("양식에 맞게 다시 입력해주세요. (ex)20240109");
+			return false;
+		}
+		return true;
+	}
+	
+	//휴대폰번호 유효성 검사
+	function isPhoneNumeric(str) {
+		
+		const strVal = str.value;
+		const regExp = /^[0-9]*$/;
+		if(strVal.length > 11 || !regExp.test(strVal)) {  
+			alert("양식에 맞게 다시 입력해주세요. (ex)01012345678");
+			return false;
+		}
+		return true;
+	}
+	
 	//주소록 등록
 	function registAdrINYAct() {
-		
-		const formElement = document.registForm;
-		let validFailAt = "N"; //유효성검사실패여부
-		let validMsg = "";
-		let firstAt = "Y";
-		let focusObject;
-		
-		formElement.querySelectorAll(".required").forEach(v=>{
-			//debugger;
-			
-			if(!!!v.value) {
-				if("Y" === firstAt){
-					focusObject = v;
-					firstAt = "N";
-				}
-				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
-				validFailAt = "Y";
-			}
-		});
-		
-		if("Y" === validFailAt){
-			alert(validMsg);
-			focusObject.focus();
-			return;
-		}		
 		
     	if (confirm('<spring:message code="common.regist.msg" />')) {
     		const formElement = document.registForm;
@@ -93,6 +92,7 @@
 	function sample_execDaumPostcode() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {
+	        	debugger;
 	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
 	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -133,7 +133,7 @@
 	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	            document.getElementById('sample_postcode').value = data.zonecode;
 	            document.getElementById("adres").value = addr;
-	            document.getelementbyid("adres") = addr + extraAddr;
+	            document.getElementById("adres").value = addr + extraAddr;
 	            // 커서를 상세주소 필드로 이동한다.
 	            document.getElementById("detailAdres").focus();
 	        }
@@ -226,7 +226,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="생년월일">
+	                                                <input id="brthdy" name="brthdy" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="생년월일" 
+	                                                 placeholder="ex)20240109" oninput="isNumeric(this);">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
@@ -255,7 +256,6 @@
 												    <input type="text" id="adres" name="adres" placeholder="주소" class="required" title="주소" size="40">
 		
 												    <input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="30">
-												   	<!-- <input type="text" id="sample_extraAddress" placeholder="동"> -->
 	                                                <form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
@@ -265,7 +265,8 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰번호">
+	                                                <input id="moblphonNo" name="moblphonNo" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="휴대폰번호" 
+	                                                 placeholder="ex)01012345678" oninput="isPhoneNumeric(this)">
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -324,35 +325,6 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
-	                                        <%-- 
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoNm">사진명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="photoNm" name="photoNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="photoNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoCours">사진경로</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoCours" name="photoCours" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoCours" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoExtsnNm">사진확장자명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoExtsnNm" name="photoExtsnNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoExtsnNm" />
-	                                            </td>
-	                                        </tr>
-	                                         --%>
 	                                    </table>
 	                                </div>
 

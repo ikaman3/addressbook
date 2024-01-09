@@ -70,7 +70,6 @@
 	   		});
 	   	}
 	}
-	
 </script>
 
 <title>샘플 포털 > 주소록 > 윤현종</title>
@@ -270,35 +269,6 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
-	                                        <%-- 
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoNm">사진명칭</label>
-	                                            </td>
-	                                            <td>
-	                                            	<form:input path="photoNm" class="f_txt w_full" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="photoNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoCours">사진경로</label>
-	                                            </td>
-	                                            <td>
-	                                            	<form:input path="photoCours" class="f_txt w_full" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="photoCours" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoExtsnNm">사진확장자명칭</label>
-	                                            </td>
-	                                            <td>
-	                                            	<form:input path="photoExtsnNm" class="f_txt w_full" size="60" maxlength="60"/>
-	                                                <br/><form:errors path="photoExtsnNm" />
-	                                            </td>
-	                                        </tr>
-	                                         --%>
 	                                    </table>
 	                                </div>
 	
