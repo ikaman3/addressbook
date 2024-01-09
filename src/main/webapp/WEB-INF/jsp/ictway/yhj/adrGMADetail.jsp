@@ -269,7 +269,7 @@ caption {
 											</tr>
 
 											<tr>
-												<td class="lb"><label for="cmpnyNm">회사명칭</label></td>
+												<td class="lb"><label for="cmpnyNm">회사</label></td>
 
 												<td>
 													<div id="cmpnyNm" , name=cmpnyNm>
@@ -281,7 +281,7 @@ caption {
 											</tr>
 
 											<tr>
-												<td class="lb"><label for="cmpnyTeamNm">부서명칭</label></td>
+												<td class="lb"><label for="cmpnyTeamNm">팀</label></td>
 
 												<td>
 													<div id="cmpnyTeamNm" , name="cmpnyTeamNm">
@@ -293,13 +293,34 @@ caption {
 											</tr>
 
 											<tr>
-												<td class="lb"><label for=cmpnyClsfNm>직급명칭</label></td>
+												<td class="lb"><label for=cmpnyClsfNm>직급</label></td>
 
 												<td>
 													<div id="cmpnyClsfNm" , name="cmpnyClsfNm">
 														<c:out
 															value="${fn:replace(resultVO.cmpnyClsfNm , crlf , '<br/>')}"
 															escapeXml="false" />
+													</div>
+												</td>
+											</tr>
+											
+											<tr>
+												<td class="lb"><label for="bkmkAt">즐겨찾기</label></td>
+
+												<td>
+													<div id="bkmkAt" , name="bkmkAt">
+														<c:choose>
+															<c:when test="${resultVO.bkmkAt == 'Y'}">
+																즐겨찾기 등록
+															</c:when>
+															<c:when test="${resultVO.bkmkAt == 'N'}">
+																즐겨찾기 미등록
+															</c:when>
+															<c:otherwise>
+																<!-- 다른 값이 올 경우에 대한 처리 -->
+																<c:out value="${resultVO.bkmkAt}" />
+															</c:otherwise>
+														</c:choose>
 													</div>
 												</td>
 											</tr>
