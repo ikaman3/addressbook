@@ -117,15 +117,15 @@
                                 <!-- 주소록 상세보기 -->
                                 <div class="board_view">
                                     <div class="board_view_top">
-                                        <div class="tit"><c:out value="${resultVO.nm}" /></div>
+                                        <div class="tit"><c:out value="${resultVO.nm}"/></div>
                                         <div class="info">
                                             <dl>
                                                 <dt>등록자</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}" /></dd>
+                                                <dd><c:out value="${resultVO.adbkFrstWrterNm}"/></dd>
                                             </dl>
                                             <dl style="float:right; margin-right:20px;">
                                                 <dt>등록일</dt>
-                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}" /></dd>
+                                                <dd><c:out value="${resultVO.adbkFrstWritngDt}"/></dd>
                                             </dl>
                                         </div>
                                     </div>
@@ -146,14 +146,6 @@
 	                                        </tr>
 	                                        <tr height="50px">
 	                                        	<td class="lb">
-	                                                <label for="brthdy"><b>생년월일</b></label>
-	                                            </td>
-	                                        	<td>
-	                                                <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
-	                                            </td>
-	                                        </tr>
-	                                        <tr height="50px">
-	                                        	<td class="lb">
 	                                                <label for="sexdstnCode"><b>성별</b></label>
 	                                            </td>
 	                                        	<td>
@@ -162,15 +154,6 @@
 			                                    		<c:when test="${resultVO.sexdstnCode eq 'SEX02'}">여자</br></c:when>
 			                                    		<c:otherwise>공개 안 함</br></c:otherwise>
                                     				</c:choose>
-	                                            </td>
-	                                        </tr>
-	                                        <tr height="50px">
-	                                        	<td class="lb">
-	                                                <label for="adres"><b>주소</b></label>
-	                                            </td>
-	                                        	<td>
-	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
-	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                            </td>
 	                                        </tr>
 	                                        <tr height="50px">
@@ -191,6 +174,24 @@
 	                                        </tr>
 	                                        <tr height="50px">
 	                                        	<td class="lb">
+	                                                <label for="brthdy"><b>생년월일</b></label>
+	                                            </td>
+	                                        	<td>
+	                                                <c:out value="${fn:replace(resultVO.brthdy , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
+	                                                <label for="adres"><b>주소</b></label>
+	                                            </td>
+	                                        	<td>
+	                                        		<c:out value="${fn:replace(resultVO.adresNo , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                            </td>
+	                                        </tr>
+	                                        <tr height="50px">
+	                                        	<td class="lb">
 	                                                <label for="memo"><b>메모</b></label>
 	                                            </td>
 	                                        	<td>
@@ -199,7 +200,7 @@
 	                                        </tr>
 	                                        <tr height="50px">
 	                                        	<td class="lb">
-	                                                <label for="groupCode"><b>그룹코드</b></label>
+	                                                <label for="groupCode"><b>그룹 지정</b></label>
 	                                            </td>
 	                                        	<td>
 	                                                <c:choose>
@@ -241,7 +242,10 @@
 	                                                <label for="bkmkAt"><b>즐겨찾기</b></label>
 	                                            </td>
 	                                        	<td>
-	                                                <c:out value="${fn:replace(resultVO.bkmkAt , crlf , '<br/>')}" escapeXml="false" /> </br>
+	                                        		<c:choose>
+			                                    		<c:when test="${resultVO.bkmkAt eq 'N'}">추가하지 않음</br></c:when>
+			                                    		<c:when test="${resultVO.bkmkAt eq 'Y'}">추가</br></c:when>
+                                    				</c:choose>
 	                                            </td>
 	                                        </tr>
                                     	</table>
