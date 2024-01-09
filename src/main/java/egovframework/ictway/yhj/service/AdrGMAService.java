@@ -46,16 +46,16 @@ public interface AdrGMAService {
 	/**
 	 * 정보를 수정한다.
 	 * @param adrGMAVO - 수정할 정보가 담긴 VO
-	 * @return void
+	 * @return true/false - 성공 실패 여부
 	 * @exception Exception
 	 */	
-	void updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception;
+	Boolean updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception;
 
 	/**
 	 * 정보를 삭제한다.
 	 * @param adrGMAVO - 삭제할 정보가 담긴 VO
-	 * @return void
+	 * @return true/false - 성공 실패 여부
 	 * @exception Exception
 	 */	
-	void deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
+	Boolean deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception;
 }
