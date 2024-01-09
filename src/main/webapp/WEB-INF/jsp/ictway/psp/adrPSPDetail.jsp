@@ -58,6 +58,23 @@
     	}
 	}
 	
+	function registBkmkAdrPSPAct(){
+		var usrId = '<c:out value = "${EgovUserDetailsHelper.getAuthenticatedUser().uniqId}"/>';
+		var adbkSn = '<c:out value="${resultVO.adbkSn}"/>';
+		
+		
+		
+		fetch("<c:url value='/ictway/psp/registBkmkAdrPSPAct.do'/>",{
+			method: "POST",
+			cache: "no-cache",
+ 			headers: {},
+ 			body: formData
+		}).catch(error => {
+			console.log(error);
+			alert("에러가 발생하였습니다.");
+		});
+	}
+	
  	
 	
 	
@@ -304,7 +321,7 @@
 	                                        
 	                                        <td>
 	                                        	<div id="photo", name="photo">
-		                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" />
+		                                    	<img src='<c:url value='/ictway/psp/getImage.do'/>?adbkSn=<c:out value="${resultVO.adbkSn}"/>' alt="파일보기링크" style="width:500px; height:300px" />
 		                                    	</div>
 	                                        </td>
 	                                    </tr>
@@ -319,6 +336,7 @@
                                             	<a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="selectAdrPSPUpdate('<c:out value="${resultVO.adbkSn}"/>'); return false;">수정</a>
                                             	<a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="deleteAdrPSPAct();">삭제</a>
                                            	</c:if>
+                                           	<a href="javascript:void(0);" class="btn btn_skyblue_h46 w_100" onclick="registBkmkAdrPSPAct();">즐겨찾기</a> 	
                                         </div>
 
                                         <div class="right_col btn1">
