@@ -110,7 +110,7 @@
 								<!-- 검색 form 끝 -->
 
                               	<h1 class="tit_1">알려주소</h1>
-								<p class="txt_1">주소록 상세화면</p>
+								<p class="txt_1">주소록 상세 페이지</p>
 								<h2 class="tit_2">주소록 상세</h2>
 
                                 <!-- 주소록 상세보기 -->
@@ -135,9 +135,13 @@
                                         
                                         <div class="board_faq_top"></div>
                                         <div class="info">
-                                        <dl>
+                                        <dl style="width:300px;">
                                                 <dt>휴대폰번호</dt>
                                                 <dd><c:out value="${resultVO.moblphonNo}" escapeXml="false" /></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>이메일주소</dt>
+                                                <dd><c:out value="${resultVO.emailaddr}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
                                         <div class="board_faq_top"></div>
@@ -160,8 +164,8 @@
                                                 <dd style="margin-right:0px;"><c:out value="${resultVO.adres}" escapeXml="false" /></dd>
                                             </dl>
                                             <dl>
-                                                <dt>이메일주소</dt>
-                                                <dd><c:out value="${resultVO.emailaddr}" escapeXml="false" /></dd>
+                                                <dt>상세주소</dt>
+                                                <dd><c:out value="${resultVO.detailAdres}" escapeXml="false" /></dd>
                                             </dl>
                                         </div>
                                     </div>

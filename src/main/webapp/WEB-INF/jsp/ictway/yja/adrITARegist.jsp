@@ -285,9 +285,8 @@
 	                                            </td>
 	                                            <td>
 	                                                <select name="bkmkAt" class="f_txt w_full">
-	                                            		<option value="">선택</option>
-	                                            		<option value="Y">예</option>
 	                                            		<option value="N">아니오</option>
+	                                            		<option value="Y">예</option>
 	                                            	</select>
 	                                            </td>
 	                                        </tr>
