@@ -20,6 +20,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
 	//주소록 목록조회
@@ -43,6 +44,14 @@
 		document.searchListForm.action = "<c:url value='/ictway/yjh/selectAdrCIYRegist.do'/>";
 		document.searchListForm.submit();
 	}
+	
+	function setSearchCondition(condition) {
+		document.searchListForm.elements["searchVO.searchCondition"].value = condition;
+	    selectAdrCIYList('1');
+	}
+	
+
+	
 </script>
 <title>샘플 포털 > 주소록 > 윤준현</title>
 
@@ -94,13 +103,14 @@
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>휴대폰번호</option>
 												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>그룹</option>
 												<option value="3" <c:if test="${searchVO.searchCondition == '3'}">selected="selected"</c:if>>회사</option>
+												<option value="4" <c:if test="${searchVO.searchCondition == '4'}">selected="selected"</c:if>>즐겨찾기</option>
 											</select>
 										</label>
 										<span class="item f_search">
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
 											<button class="btn" type="submit" onclick="selectAdrCIYList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<a href="javascript:void(0);" onclick="selectAdrCIYList('1'); return false;" class="item btn btn_blue_46 w_100">즐겨찾기 조회</a><!-- 즐겨찾기 조회 -->	
+										<!-- <button class="item btn btn_blue_46 w_100" type="submit" value="4" onclick="setSearchCondition('4'); return false;" return false;">즐겨찾기 조회</button>즐겨찾기 조회 -->
 										<a href="javascript:void(0);" onclick="selectAdrCIYRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->

@@ -57,6 +57,4 @@ public interface AdrCIYService {
 	 * @exception Exception
 	 */	
 	void deleteAdrCIYAct(AdrCIYVO adrCIYVO) throws Exception;
-
-	Map<String, Object> selectAdrCIYBkmkList(AdrCIYVO adrCIYVO) throws Exception;
 }

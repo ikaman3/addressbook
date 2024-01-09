@@ -52,11 +52,15 @@
 				<when test="searchCondition == 3">
 					AND cmpny_nm LIKE CONCAT('%', #{searchKeyword}, '%')
 				</when>
-				<when test="searchCondition == 4">
-					AND bkmk_at = 'Y'
-				</when>
 			</choose>
 		</if>
+	    <if test="searchCondition != ''">
+	    	<choose>
+	    		<when test="searchCondition == 4">
+	        		AND bkmk_at = 'Y'
+	    		</when>
+	    	</choose>
+	    </if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
