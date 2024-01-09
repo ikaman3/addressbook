@@ -94,6 +94,7 @@
 												<option value="1" <c:if test="${searchVO.searchCondition == '1'}">selected="selected"</c:if>>생년월일</option>
 												<option value="2" <c:if test="${searchVO.searchCondition == '2'}">selected="selected"</c:if>>전화번호</option>
 												<option value="3" <c:out value="${searchVO.searchCondition eq '3' ? 'selected' : ''}"/>>이메일주소</option>
+												<option value="4" <c:out value="${searchVO.searchCondition eq '4' ? 'selected' : ''}"/>>즐겨찾기</option>
 											</select>
 										</label>
 										<span class="item f_search">

@@ -99,6 +99,9 @@
 					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
+			</if>
 		</trim>
 		ORDER BY adbk_frst_writng_dt DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -124,6 +127,9 @@
 				<if test="searchCondition == 3">
 					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
+			</if>
+			<if test="searchCondition == 4 and searchKeyword == null and searchKeyword == ''">
+				AND bkmk_at LIKE 'Y'
 			</if>
 		</trim>
 	</select>
