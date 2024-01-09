@@ -170,12 +170,13 @@
                 } else {
                     document.getElementById("sample6_extraAddress").value = '';
                 }
-
+				
+                adres = addr + extraAddr;
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById("adres").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
+                document.getElementById("detailAdres").focus();
             }
         }).open();
     }
@@ -277,22 +278,15 @@
 	                                                <label for="adres">주소</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="adres" name="adres" type="text" size="50"  maxlength="50" class="f_txt w_full">
-	                                                <!-- <input type="text" id="sample6_postcode" placeholder="우편번호">
-													<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-													<input type="text" id="sample6_address" name="adres" placeholder="주소" size="50"  maxlength="50" class="f_txt w_full">
-													<input type="text" id="sample6_detailAddress" name="detailAdres" placeholder="상세주소" size="50"  maxlength="50" class="f_txt w_full">
-													<input type="hidden" id="sample6_extraAddress" placeholder="참고항목"> -->
+													<div style="display: flex; align-items: center;">
+													    <input type="text" id="sample6_postcode" placeholder="우편번호" class="f_txt" style="width: 70%;">
+													    <div style="width: 5%;"></div><!-- 간격 조절용 div -->
+													    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width: 20%;" class="item btn btn_blue_46 w_100">
+													</div>
+													<input type="text" id="adres" name="adres" placeholder="주소" size="50"  maxlength="50" class="f_txt w_full">
+													<input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="50"  maxlength="50" class="f_txt w_full">
+													<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
 													<form:errors path="adres" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="detailAdres">상세주소</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="detailAdres" name="detailAdres" type="text" size="50"  maxlength="50" class="f_txt w_full">
-	                                                <br/><form:errors path="detailAdres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
