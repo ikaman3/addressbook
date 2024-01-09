@@ -48,7 +48,7 @@
 					AND telno LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
 				</if>
 				<if test="searchCondition == 3">
-					AND emailaddr LIKE '%'||REPLACE(UPPER(#{searchKeyword}),' ','')||'%'
+					AND emailaddr LIKE '%'||REPLACE(LOWER(#{searchKeyword}),' ','')||'%'
 				</if>
 			</if>
 		</trim>
