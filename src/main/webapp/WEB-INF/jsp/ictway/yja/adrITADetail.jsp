@@ -140,7 +140,6 @@
                                                 <dd><c:out value="${resultVO.moblphonNo}" /></dd>
                                             </dl>
                                         </div>
-                                        
                                         <div class="board_faq_top"></div>
                                         <div class="info">
                                         	 <dl style="width:300px;">
