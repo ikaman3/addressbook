@@ -202,7 +202,10 @@ public class AdrGMAController {
 
     	ModelAndView mav = new ModelAndView("jsonView");
     	
-		adrGMAService.deleteAdrGMAAct(adrGMAVO);
+		if(!adrGMAService.deleteAdrGMAAct(adrGMAVO)) {
+			mav.addObject("returnResult", "FAIL");
+		    return mav;
+		}
 		
 		return mav;
     }
