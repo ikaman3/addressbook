@@ -97,9 +97,9 @@
 			,cmpny_psitn_team_nm
 			,cmpny_psitn_clsf_nm
 			,bkmk_at
-			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd HH:mm:ss') AS adbk_frst_writng_dt
+			,to_char(adbk_frst_writng_dt, 'yyyy-mm-dd') AS adbk_frst_writng_dt
 			,adbk_frst_wrter_id
-			,to_char(adbk_last_updt_dt, 'yyyy-mm-dd HH:mm:ss') AS adbk_last_updt_dt
+			,to_char(adbk_last_updt_dt, 'yyyy-mm-dd') AS adbk_last_updt_dt
 			,adbk_last_updusr_id
 			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_frst_wrter_id) AS adbk_frst_wrter_nm
 			,(SELECT user_nm FROM comvnusermaster WHERE esntl_id = adbk_last_updusr_id) AS adbk_last_updusr_nm
