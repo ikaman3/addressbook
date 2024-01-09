@@ -159,7 +159,12 @@
                                                 <td class="lb">
 	                                                <label for="bkmkAt">즐겨찾기</label>
 	                                            </td>
-                                                <td><c:out value="${fn:replace(resultVO.bkmkAt, crlf , '<br/>')}" escapeXml="false" /></td>
+                                                <td>
+                                                	<c:choose>
+														<c:when test="${resultVO.bkmkAt eq 'Y'}">O</br></c:when>
+														<c:when test="${resultVO.bkmkAt eq 'N'}">X</br></c:when>
+													</c:choose>
+                                               </td>
                                             </tr>
                                             <tr>
                                             	<td class="lb">
