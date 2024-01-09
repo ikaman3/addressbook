@@ -111,10 +111,14 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	@Override
 	public Boolean deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		AdrGMAVO resultVO = adrGMADAO.selectAdrGMADetail(adrGMAVO);
+		
+		if(! AuthGMA.isSameUserAsAdrGMAWrter(resultVO, user)) return false;
+		
 		adrGMAVO.setAdbkDltrId(user.getUniqId());
 		adrGMADAO.deleteAdrGMAAct(adrGMAVO);
 		
-		return false;
+		return true;
 	}
 
 }
