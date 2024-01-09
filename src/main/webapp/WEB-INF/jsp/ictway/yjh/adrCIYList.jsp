@@ -108,7 +108,6 @@
 											<input class="f_input w_500" type="text" name="searchKeyword" value='<c:out value="${searchVO.searchKeyword}"/>' title="검색어 입력">
 											<button class="btn" type="submit" onclick="selectAdrCIYList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
 										</span>
-										<!-- <button class="item btn btn_blue_46 w_100" type="submit" value="4" onclick="setSearchCondition('4'); return false;" return false;">즐겨찾기 조회</button>즐겨찾기 조회 -->
 										<a href="javascript:void(0);" onclick="selectAdrCIYRegist();" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
 									</form:form>
 									<!-- 검색 form 끝 -->
@@ -117,6 +116,10 @@
 								<div class="board_list">
 									<table>
 										<colgroup>
+											<col style="width: 100px;">
+											<col style="width: auto;">
+											<col style="width: auto;">
+											<col style="width: auto;">
 											<col style="width: auto;">
 										</colgroup>
 										<thead>
