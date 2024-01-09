@@ -136,7 +136,7 @@
 			,#{cmpnyNm}
 			,#{deptNm}
 			,#{clsfNm}
-			,#{bkmkAt}
+			,'BKM002'
 			,#{photoNm}
 			,#{photoCours}
 			,#{photoExtsnNm}

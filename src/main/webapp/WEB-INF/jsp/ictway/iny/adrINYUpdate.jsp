@@ -48,31 +48,6 @@
 	//주소록 수정
 	function updateAdrINYAct(){
 			
-		const formElement = document.registForm;
-		let validFailAt = "N"; //유효성검사실패여부
-		let validMsg = "";
-		let firstAt = "Y";
-		let focusObject;
-		
-		formElement.querySelectorAll(".required").forEach(v=>{
-			//debugger;
-			
-			if(!!!v.value) {
-				if("Y" === firstAt){
-					focusObject = v;
-					firstAt = "N";
-				}
-				validMsg += v.title + "은(는) 필수 입력 값입니다.\n";
-				validFailAt = "Y";
-			}
-		});
-		
-		if("Y" === validFailAt){
-			alert(validMsg);
-			focusObject.focus();
-			return;
-		}
-		
 		if (confirm('<spring:message code="common.update.msg" />')) {
 	   		const formElement = document.updateForm;
 	       	const formData = new FormData(formElement);
@@ -295,6 +270,7 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
+	                                        <%-- 
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="photoNm">사진명칭</label>
@@ -322,6 +298,7 @@
 	                                                <br/><form:errors path="photoExtsnNm" />
 	                                            </td>
 	                                        </tr>
+	                                         --%>
 	                                    </table>
 	                                </div>
 	
