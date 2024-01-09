@@ -169,6 +169,7 @@
 	                                                <label for="adres"><b>주소</b></label>
 	                                            </td>
 	                                        	<td>
+	                                        		<c:out value="${fn:replace(resultVO.adresNo , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                                <c:out value="${fn:replace(resultVO.adres , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                                <c:out value="${fn:replace(resultVO.detailAdres , crlf , '<br/>')}" escapeXml="false" /> </br>
 	                                            </td>
