@@ -6,6 +6,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper" %>
 <%
 pageContext.setAttribute("crlf", "\r\n");
 %>
@@ -320,6 +322,7 @@ caption {
 
 									<!-- 버튼 시작 -->
 									<div class="board_view_bot">
+									<c:if test="${(EgovUserDetailsHelper.getAuthenticatedUser().uniqId eq resultVO.adbkWrterId) || fn:contains(EgovUserDetailsHelper.getAuthorities(), 'ROLE_ADMIN')}">
 										<div class="left_col btn3">
 											<a href="javascript:void(0);"
 												class="btn btn_skyblue_h46 w_100"
@@ -327,6 +330,7 @@ caption {
 												href="javascript:void(0);" class="btn btn_skyblue_h46 w_100"
 												onclick="deleteAdrGMAAct();">삭제</a>
 										</div>
+										</c:if>
 
 										<div class="right_col btn1">
 											<a href="javascript:void(0);" class="btn btn_blue_46 w_100"
