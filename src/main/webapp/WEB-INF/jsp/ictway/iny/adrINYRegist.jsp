@@ -324,35 +324,6 @@
 	                                                <br/><form:errors path="clsfNm" />
 	                                            </td>
 	                                        </tr>
-	                                        <%-- 
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoNm">사진명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <textarea id="photoNm" name="photoNm" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-	                                                <form:errors path="photoNm" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoCours">사진경로</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoCours" name="photoCours" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoCours" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="photoExtsnNm">사진확장자명칭</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="photoExtsnNm" name="photoExtsnNm" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-	                                                <br/><form:errors path="photoExtsnNm" />
-	                                            </td>
-	                                        </tr>
-	                                         --%>
 	                                    </table>
 	                                </div>
 
