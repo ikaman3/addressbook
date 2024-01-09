@@ -48,21 +48,19 @@
 	                    mbtlnum LIKE CONCAT('%', #{searchKeyword}, '%')
 	                </when>
 	                <when test="searchCondition == 2">
-	                    <!-- 각 그룹명에 해당하는 코드로 매핑하고, 없으면 기본적으로 '' -->
-	                    adres_group_code = 
-	                        CASE 
-	                            WHEN '가족' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR001'
-	                            WHEN '친구' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR002'
-	                            WHEN '현 직장' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR003'
-	                            WHEN '구 직장' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR004'
-	                            WHEN '동호회' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR005'
-	                            WHEN '기타' LIKE CONCAT('%', #{searchKeyword}, '%') THEN 'GR006'
-	                            ELSE ''
-	                        END
-	                </when>
-	                <when test="searchCondition == 3">
-	                    cmpny_nm LIKE CONCAT('%', #{searchKeyword}, '%')
-	                </when>
+				        (#{searchKeyword} = '가족' AND adres_group_code = 'GR001')
+				        OR (#{searchKeyword} = '친구' AND adres_group_code = 'GR002')
+				        OR (#{searchKeyword} = '현 직장' AND adres_group_code = 'GR003')
+				        OR (#{searchKeyword} = '구 직장' AND adres_group_code = 'GR004')
+				        OR (#{searchKeyword} = '동호회' AND adres_group_code = 'GR005')
+				        OR (#{searchKeyword} = '기타' AND adres_group_code = 'GR006')
+				        OR ('가족' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR001')
+				        OR ('친구' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR002')
+				        OR ('현 직장' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR003')
+				        OR ('구 직장' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR004')
+				        OR ('동호회' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR005')
+				        OR ('기타' LIKE CONCAT('%', #{searchKeyword}, '%') AND adres_group_code = 'GR006')
+					</when>
 	            </choose>
 	        )
 	    </if>
