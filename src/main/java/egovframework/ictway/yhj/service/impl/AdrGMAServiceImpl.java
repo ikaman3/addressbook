@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.com.cmm.LoginVO;
 import egovframework.ictway.yhj.service.AdrGMAVO;
+import egovframework.ictway.yhj.utils.AuthGMA;
 import egovframework.ictway.yhj.utils.UploadFileService;
 import egovframework.ictway.yhj.service.AdrGMAService;
 
@@ -88,8 +89,11 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 	}
 
 	@Override
-	public void updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception {
+	public Boolean updateAdrGMAAct(AdrGMAVO adrGMAVO, MultipartFile image) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		AdrGMAVO resultVO = adrGMADAO.selectAdrGMADetail(adrGMAVO);
+			
+		if(! AuthGMA.isSameUserAsAdrGMAWrter(resultVO, user)) return false;
 		
 		if(! image.isEmpty()) {
 			String fileName = uploadFileService.uploadFile(image);
@@ -100,13 +104,17 @@ public class AdrGMAServiceImpl implements AdrGMAService {
 		
 		adrGMAVO.setAdbkUpdusrId(user.getUniqId());
 		adrGMADAO.updateAdrGMAAct(adrGMAVO);
+		
+		return true;
 	}
 
 	@Override
-	public void deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
+	public Boolean deleteAdrGMAAct(AdrGMAVO adrGMAVO) throws Exception {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		adrGMAVO.setAdbkDltrId(user.getUniqId());
 		adrGMADAO.deleteAdrGMAAct(adrGMAVO);
+		
+		return false;
 	}
 
 }
