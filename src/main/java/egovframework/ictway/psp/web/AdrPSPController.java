@@ -34,6 +34,7 @@ import egovframework.com.cmm.service.FileVO;
 import egovframework.com.cmm.web.EgovImageProcessController;
 import egovframework.ictway.psp.service.AdrPSPService;
 import egovframework.ictway.psp.service.AdrPSPVO;
+import egovframework.ictway.psp.service.BkmkPSPVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -245,6 +246,16 @@ public class AdrPSPController {
 		
 		return mav;
     }
+    
+    
+  @RequestMapping("/ictway/psp/registBkmkAdrPSPAct.do")
+  public void registBkmkAdrPSPAct(BkmkPSPVO bkmkPSPvo ) {
+  	
+	  BkmkPSPVO bkmk = bkmkPSPvo;
+  	
+  	
+  	return;
+  }
     
     @RequestMapping("/ictway/psp/getImage.do")
 	public void getImageInf(AdrPSPVO AdrPSPVO, SessionVO sessionVO, ModelMap model, @RequestParam Map<String, Object> commandMap, HttpServletResponse response) throws Exception {
