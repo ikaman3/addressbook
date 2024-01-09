@@ -63,7 +63,13 @@
 					AND emailaddr like CONCAT('%', #{searchKeyword}, '%')
 				</when>
 			</choose>
-			
+		</if>
+		<if test="searchKeyword == '' or searchKeyword == null">
+			<choose>
+				<when test="searchCondition == 2">
+					AND bkmk_at = 'Y'
+				</when>
+			</choose>
 		</if>
 		ORDER BY 1 DESC
 		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
@@ -126,6 +132,7 @@
 			,cmpny_nm
 			,cmpny_team_nm
 			,cmpny_clsf_nm
+			,bkmk_at
 			,adbk_creat_dt
 			,adbk_wrter_id
 		) VALUES(
@@ -145,6 +152,7 @@
 			,#{cmpnyNm}
 			,#{cmpnyTeamNm}
 			,#{cmpnyClsfNm}
+			,#{bkmkAt}
 			,now()
 			,#{adbkWrterId}
 		)

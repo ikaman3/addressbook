@@ -41,6 +41,8 @@
     		const formElement = document.searchListForm;
         	const formData = new FormData(formElement);
         	
+        	formData.set("__CSRF", "<c:out value="${__CSRF_TOKEN__}"/>"); //위조요청 방지
+        	
         	fetch("<c:url value='/ictway/kjk/deleteAdrAct.do'/>",{
     			method: "POST",
     			cache: "no-cache",
