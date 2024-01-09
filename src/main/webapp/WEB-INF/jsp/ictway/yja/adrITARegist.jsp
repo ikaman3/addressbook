@@ -39,6 +39,20 @@
 		document.searchListForm.submit();
 	}
 	
+	// 전화번호 입력 시 하이픈
+	function addHyphenPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+	}
+	
+	// 날짜 입력 시 하이픈
+	function addHyphenBrth(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(\d{4})(\d{2})(\d{2})$/, `$1-$2-$3`);
+	}
+	
 	//주소록 등록
 	function registAdrITAAct() {
 		
@@ -158,7 +172,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="userNm" name="userNm" type="text" size="60" value=""  maxlength="10" class="f_txt w_full required" title="이름">
+	                                                <input id="userNm" name="userNm" type="text" placeholder="필수 입력" size="60" value=""  maxlength="10" class="f_txt w_full required" title="이름">
 	                                                <br/><form:errors path="userNm" />
 	                                            </td>
 	                                        </tr>
@@ -181,7 +195,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="moblphonNo" name="moblphonNo" placeholder="'-' 없이 11자리로 입력해 주세요 ex) 01085967102" type="text" size="60" value=""  maxlength="11" class="f_txt w_full required" title="휴대폰번호">
+	                                                <input id="moblphonNo" name="moblphonNo" oninput="addHyphenPhone(this)" placeholder="필수 입력" type="text" size="60" value=""  maxlength="13" class="f_txt w_full required" title="휴대폰번호">
 	                                                <br/><form:errors path="moblphonNo" />
 	                                            </td>
 	                                        </tr>
@@ -191,7 +205,7 @@
 	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" value=""  maxlength="60" class="f_txt w_full required" title="이메일주소">
+	                                                <input id="emailaddr" name="emailaddr" type="text" size="60" placeholder="필수 입력" value=""  maxlength="60" class="f_txt w_full required" title="이메일주소">
 	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
@@ -215,7 +229,7 @@
 	                                                <label for="brthdy">생년월일</label>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" placeholder="8자리로 입력해 주세요 ex) 20010731" type="text" size="60" value=""  maxlength="8" class="f_txt w_full">
+	                                                <input id="brthdy" name="brthdy" oninput="addHyphenBrth(this)" placeholder="연도(yyyy)-월(mm)-일(dd)" type="text" size="60" value=""  maxlength="10" class="f_txt w_full">
 	                                                <br/><form:errors path="brthdy" />
 	                                            </td>
 	                                        </tr>
