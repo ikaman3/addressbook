@@ -285,41 +285,6 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>
-	                                            </td>
-	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" title="yyyymmdd와 같은 8자리 숫자" value="${resultVO.brthdy}">
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="sexdstnCode">성별</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001" <c:if test="${resultVO.sexdstnCode == 'SX001'}">checked</c:if>>여성</input>
-	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002" <c:if test="${resultVO.sexdstnCode == 'SX002'}">checked</c:if>>남성</input>
-	                                                <br/><form:errors path="sexdstnCode" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="adres">주소</label>
-	                                            </td>
-	                                            <td>
-													<div style="display: flex; align-items: center;">
-													    <input type="text" id="sample6_postcode" placeholder="우편번호" class="f_txt" style="width: 70%;">
-													    <div style="width: 3%;"></div><!-- 간격 조절용 div -->
-													    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width: 20%;" class="item btn btn_blue_46 w_100">
-													</div>
-													<input type="text" id="adres" name="adres" placeholder="주소" size="50"  maxlength="50" class="f_txt w_full"  value="${resultVO.adres}" >
-													<input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.detailAdres}">
-													<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
-													<form:errors path="adres" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
 	                                                <label for="mbtlnum">휴대폰번호</label>
 	                                                <span class="req">필수</span>
 	                                            </td>
@@ -336,6 +301,41 @@
 	                                            <td>
 	                                            	<input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" placeholder="yes@myemail.com" value="${resultVO.emailaddr}">
 	                                                <br/><form:errors path="emailaddr" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="sexdstnCode">성별</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001" <c:if test="${resultVO.sexdstnCode == 'SX001'}">checked</c:if>>여성</input>
+	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002" <c:if test="${resultVO.sexdstnCode == 'SX002'}">checked</c:if>>남성</input>
+	                                                <br/><form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" title="yyyymmdd와 같은 8자리 숫자" value="${resultVO.brthdy}">
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="adres">주소</label>
+	                                            </td>
+	                                            <td>
+													<div style="display: flex; align-items: center;">
+													    <input type="text" id="sample6_postcode" placeholder="우편번호" class="f_txt" style="width: 70%;">
+													    <div style="width: 3%;"></div><!-- 간격 조절용 div -->
+													    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width: 20%;" class="item btn btn_blue_46 w_100">
+													</div>
+													<input type="text" id="adres" name="adres" placeholder="주소" size="50"  maxlength="50" class="f_txt w_full"  value="${resultVO.adres}" >
+													<input type="text" id="detailAdres" name="detailAdres" placeholder="상세주소" size="50"  maxlength="50" class="f_txt w_full" value="${resultVO.detailAdres}">
+													<input type="hidden" id="sample6_extraAddress" placeholder="참고항목">
+													<form:errors path="adres" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>

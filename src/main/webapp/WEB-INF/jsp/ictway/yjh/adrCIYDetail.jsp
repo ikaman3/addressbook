@@ -167,8 +167,12 @@
                                     </div>
                                     <div class="board_article">
                                     	<label>성별</label>
-										<input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001" <c:if test="${resultVO.sexdstnCode == 'SX001'}">checked</c:if> disabled >여성</input>
-                                        <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002" <c:if test="${resultVO.sexdstnCode == 'SX002'}">checked</c:if> disabled >남성</input>
+                                    	<c:if test="${resultVO.sexdstnCode == 'SX001'}">
+	                                    	<c:out value="여성" escapeXml="false" />                                	
+                                    	</c:if>
+                            	        <c:if test="${resultVO.sexdstnCode == 'SX002'}">
+	                                    	<c:out value="남성" escapeXml="false" />                                	
+                                    	</c:if>
                                     </div>
                                     <div class="board_article">
                                     	<label>주소</label>
@@ -180,16 +184,27 @@
                                     </div>
                                     <div class="board_article">
 										<label>그룹</label>
-                                    	<form:select action="#" path="resultVO.adresGroupCode" >
-											<form:option value="">해당 없음</form:option>
-											<form:option value="GR001">가족</form:option>
-											<form:option value="GR002">친구</form:option>
-											<form:option value="GR003">현 직장</form:option>
-											<form:option value="GR004">구 직장</form:option>
-											<form:option value="GR005">동호회</form:option>
-											<form:option value="GR006">기타</form:option>
-										</form:select>
-                                        <br/><form:errors path="resultVO.adresGroupCode" />
+										<c:if test="${resultVO.adresGroupCode == 'GR001'}">
+	                                    	<c:out value="가족" escapeXml="false" />                                	
+                                    	</c:if>
+										<c:if test="${resultVO.adresGroupCode == 'GR002'}">
+	                                    	<c:out value="친구" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.adresGroupCode == 'GR003'}">
+	                                    	<c:out value="현 직장" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.adresGroupCode == 'GR004'}">
+	                                    	<c:out value="구 직장" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.adresGroupCode == 'GR005'}">
+	                                    	<c:out value="동호회" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.adresGroupCode == 'GR006'}">
+	                                    	<c:out value="기타" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.adresGroupCode == ''}">
+	                                    	<c:out value="해당 없음" escapeXml="false" />                                	
+                                    	</c:if>
                                     </div>
                                     <div class="board_article">
 										<label>회사</label>
@@ -205,8 +220,12 @@
                                     </div>
                                     <div class="board_article">
 										<label for="bkmkAt">즐겨찾기</label>
-										<input id="bkmkAt" name="bkmkAt" type="radio" value="Y" <c:if test="${resultVO.bkmkAt == 'Y'}">checked</c:if> disabled >등록</input>
-                                        <input id="bkmkAt" name="bkmkAt" type="radio" value="N" <c:if test="${resultVO.bkmkAt == 'N'}">checked</c:if> disabled >미등록</input>
+										<c:if test="${resultVO.bkmkAt == 'Y'}">
+	                                    	<c:out value="등록" escapeXml="false" />                                	
+                                    	</c:if>
+                                    	<c:if test="${resultVO.bkmkAt == 'N'}">
+	                                    	<c:out value="미등록" escapeXml="false" />                                	
+                                    	</c:if>
                                     </div>
                                     <div class="board_article">
                                     	<label>메모</label>

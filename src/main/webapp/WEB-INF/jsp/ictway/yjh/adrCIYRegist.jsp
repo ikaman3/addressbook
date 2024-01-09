@@ -274,10 +274,22 @@
 	                                        </tr>
 	                                        <tr>
 	                                            <td class="lb">
-	                                                <label for="brthdy">생년월일</label>
+	                                                <label for="mbtlnum">휴대폰번호</label>
+	                                                <span class="req">필수</span>
 	                                            </td>
 	                                            <td>
-	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" pattern="[0-9]{8,8}" title="yyyymmdd와 같은 8자리 숫자" >
+	                                                <input id="mbtlnum" name="mbtlnum" type="tel" maxlength="11" class="f_txt w_full" placeholder="01012345678" >
+	                                                <br/><form:errors path="mbtlnum" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="emailaddr">이메일</label>
+	                                                <span class="req">필수</span>
+	                                            </td>
+	                                            <td>
+	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" placeholder="yes@myemail.com">
+	                                                <br/><form:errors path="emailaddr" />
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -289,6 +301,14 @@
 	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX001">여성</input>
 	                                                <input id="sexdstnCode" name="sexdstnCode" type="radio" value="SX002">남성</input>
 	                                                <br/><form:errors path="sexdstnCode" />
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="lb">
+	                                                <label for="brthdy">생년월일</label>
+	                                            </td>
+	                                            <td>
+	                                                <input id="brthdy" name="brthdy" type="text" size="8" maxlength="8" class="f_txtar w_full" placeholder="예)19990213" pattern="[0-9]{8,8}" title="yyyymmdd와 같은 8자리 숫자" >
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
@@ -308,25 +328,6 @@
 	                                            </td>
 	                                        </tr>
 	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="mbtlnum">휴대폰번호</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="mbtlnum" name="mbtlnum" type="tel" maxlength="11" class="f_txt w_full" placeholder="01012345678" >
-	                                                <br/><form:errors path="mbtlnum" />
-	                                            </td>
-	                                        </tr>
-	                                        <tr>
-	                                            <td class="lb">
-	                                                <label for="emailaddr">이메일</label>
-	                                                <span class="req">필수</span>
-	                                            </td>
-	                                            <td>
-	                                                <input id="emailaddr" name="emailaddr" type="email" size="50"  maxlength="50" class="f_txt w_full" placeholder="yes@myemail.com">
-	                                                <br/><form:errors path="emailaddr" />
-	                                            </td>
-	                                        </tr>
 	                                            <td class="lb">
 	                                                <label for="adresGroupCode">그룹</label>
 	                                            </td>
