@@ -185,10 +185,28 @@
 <title>샘플 포털 > 주소록 > 윤준현</title>
 
 <style type="text/css">
-.ui-datepicker-trigger {
-	margin-left: 10px;
-	vertical-align: middle;
-}
+	.ui-datepicker-trigger {
+		margin-left: 10px;
+		vertical-align: middle;
+	}
+	
+ 	.board_view2 table {
+		display: flex;
+	    flex-direction: column;
+	    height: auto;
+	}
+	
+	.board_view2 table tr {
+		height: 85px;
+	}
+	
+	.board_view2 table tr td.lb {
+	    width: 15%;
+	}
+	
+	.board_view2 table tr td:not(.lb) {
+	    width: 85%;
+	}
 </style>
 
 </head>
@@ -239,11 +257,11 @@
 									<h2 class="tit_2">주소록 등록</h2>
 									
 	                                <div class="board_view2">
+                                        <colgroup>
+                                            <col style="width: auto;">
+                                            <col style="width: auto;">
+                                        </colgroup>
 	                                    <table>
-	                                        <colgroup>
-	                                            <col style="width: 190px;">
-	                                            <col style="width: auto;">
-	                                        </colgroup>
 	                                        <tr>
 	                                            <td class="lb">
 	                                                <label for="userNm">이름</label>
